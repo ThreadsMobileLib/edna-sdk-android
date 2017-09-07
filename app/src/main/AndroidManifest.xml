@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="im.threads.android">
+
+    <permission
+        android:name="im.threads.android.permission.pushserver.RECEIVE"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="im.threads.android.permission.pushserver.RECEIVE" />
+
+    <application
+        android:name=".App"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity"
+            android:windowSoftInputMode="stateAlwaysHidden">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".BottomNavigationActivity"
+            android:label="@string/title_activity_bottom_navigation"
+            android:theme="@style/BottomNavigationTheme" />
+
+        <receiver
+            android:name="im.threads.broadcastReceivers.MainPBReceiver"
+            android:exported="false"
+            android:permission="im.threads.android.permission.pushserver.RECEIVE">
+            <intent-filter>
+                <action android:name="com.pushserver.android.NEW_PUSH_MESSAGE_EVENT" />
+                <action android:name="com.pushserver.android.RECEIVER_CHANGED_EVENT" />
+                <action  android:name="com.pushserver.android.DEVICE_ADDRESS_CHANGED_EVENT"/>
+                <action android:name="com.pushserver.android.HAS_SECURED_MESSAGE" />
+                <action android:name="com.pushserver.android.ERROR_EVENT" />
+            </intent-filter>
+        </receiver>
+
+        <meta-data
+            android:name="com.pushserver.android.service"
+            android:value="im.threads.services.IncomingMessagesIntentService" />
+        <meta-data
+            android:name="com.pushserver.android.senderId"
+            android:value="!STRING!YOUR_SENDER_ID" />
+        <meta-data
+            android:name="com.pushserver.android.serverUrl"
+            android:value="YOUR_PUSHSERVER_URL" />
+        <meta-data
+            android:name="com.pushserver.android.logs"
+            android:value="true" />
+        <meta-data
+            android:name="com.pushserver.android.location"
+            android:value="true" />
+        <meta-data
+            android:name="com.pushserver.android.heartbeatInterval"
+            android:value="300000" />
+        <meta-data
+            android:name="com.pushserver.android.providerUid"
+            android:value="YOUR_PROVIDER_ID" />
+        <meta-data
+            android:name="com.pushserver.android.uploadServerUrl"
+            android:value="YOUR_UPLOAD_URL" />
+        <meta-data
+            android:name="im.threads.getServerUrl"
+            android:value="YOUR_DATASTORE_URL" />
+        <meta-data
+            android:name="com.pushserver.android.serverIdList"
+            android:resource="@array/server_id_list" />
+        <meta-data
+            android:name="com.pushserver.android.serverUrlList"
+            android:resource="@array/server_url_list" />
+        <meta-data
+            android:name="com.pushserver.android.serverPrimaryId"
+            android:value="YOUR_SERVER_ID" />
+
+    </application>
+
+</manifest>
