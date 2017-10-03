@@ -16,7 +16,9 @@ import com.pushserver.android.PushBroadcastReceiver;
 import com.pushserver.android.PushController;
 import com.pushserver.android.PushServerIntentService;
 import com.pushserver.android.model.PushMessage;
+import com.sequenia.appwithchatdev.ChatBuilderHelper;
 
+import im.threads.activities.ChatActivity;
 import im.threads.controllers.ChatController;
 import im.threads.utils.PermissionChecker;
 
@@ -86,8 +88,9 @@ public class MainActivity extends AppCompatActivity {
         if (!PermissionChecker.checkPermissions(this)) {
             PermissionChecker.requestPermissionsAndInit(CHAT_PERMISSIONS_REQUEST_CODE, this);
         } else {
-            Intent i = ChatIntentHelper.getIntentBuilder(this, clientId, userName, "").build();
-            startActivity(i);
+            // генерируем настройки стилей чата
+            ChatBuilderHelper.buildChatStyle(this, clientId, userName, "");
+            startActivity(new Intent(this, ChatActivity.class));
         }
     }
 

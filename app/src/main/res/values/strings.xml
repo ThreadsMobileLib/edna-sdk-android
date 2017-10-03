@@ -9,6 +9,7 @@
     <string name="title_chat">Чат</string>
     <string name="title_notifications">Notifications</string>
     <string name="unread_messages_count">Количество непрочитанных сообщений:&#032;</string>
+    <string name="input_hint">Введите сообщение</string>
 
     <string name="resolve_thread">Специалист ответил на все ваши вопросы, продолжить консультацию?</string>
     <string name="close_thread">Нет</string>

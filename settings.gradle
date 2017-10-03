@@ -1,3 +1,1 @@
-include ':app',
-        ':push-api-release-2.0.95',
-        ':threads-release_1.53'
+include ':app', ':push-api-release-2.0.95', ':threads-release_2.27.0'
