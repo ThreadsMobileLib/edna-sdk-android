@@ -56,7 +56,7 @@ public class ChatBuilderHelper {
                         ChatStyle.INVALID, // иконка кнопки отправки сообщений sendMessageIconResId
                         R.string.input_hint, // текст-подсказка в поле ввода сообщения inputHint
                         ChatStyle.INVALID, // высота поля ввода сообщения в dp inputHeight
-                        ChatStyle.INVALID
+                        ChatStyle.INVALID // фон поля ввода сообщения inputBackground
                 )
                 .setGoogleAnalyticsEnabled(false)
                 .setPushNotificationStyle(R.drawable.push_icon_def,
