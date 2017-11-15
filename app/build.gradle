@@ -7,8 +7,8 @@ android {
         applicationId "im.threads.android"
         minSdkVersion 17
         targetSdkVersion 25
-        versionCode 227
-        versionName "2.27.1_test"
+        versionCode 229
+        versionName "2.29.0_test"
         vectorDrawables.useSupportLibrary = true
         multiDexEnabled = true
     }
@@ -22,26 +22,34 @@ android {
     dexOptions {
         javaMaxHeapSize "12g"
     }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    dataBinding {
+        enabled = true
+    }
 }
 
 dependencies {
+    def final supportVersion = "25.3.1"
+
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile project(':push-api-release-2.0.103')
-    compile project(':threads-release_2.27.1')
+    compile project(':threads-release_2.29')
 
     compile 'com.google.firebase:firebase-messaging:10.2.0'
-    compile 'com.google.android.gms:play-services-analytics:10.2.0'
-    compile 'com.google.android.gms:play-services-analytics-impl:10.2.0'
-    compile 'com.android.support:appcompat-v7:+'
-    compile 'com.android.support:recyclerview-v7:+'
 
-
-    compile 'com.android.support:design:25.1.0'
-    compile 'com.android.support:support-vector-drawable:25.1.0'
+    compile "com.android.support:appcompat-v7:$supportVersion"
+    compile "com.android.support:design:$supportVersion"
+    compile "com.android.support:support-vector-drawable:$supportVersion"
 
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
     compile 'com.squareup.okhttp3:logging-interceptor:3.3.0'
+
+    compile 'com.azoft.carousellayoutmanager:carousel:1.2.1'
 }
 
 apply plugin: 'com.google.gms.google-services'

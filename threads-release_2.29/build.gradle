@@ -1,0 +1,2 @@
+configurations.maybeCreate("default")
+artifacts.add("default", file('threads-release_2.29.aar'))

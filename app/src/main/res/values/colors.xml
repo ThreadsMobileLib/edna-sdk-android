@@ -5,32 +5,39 @@
     <color name="colorAccent">#83B144</color>
 
     <color name="white">#ffffff</color>
-    <color name="purple">#551a8b</color>
+    <color name="shadow">#30000000</color>
+    <color name="gray">#707070</color>
+    <color name="light_green">#B5D18F</color>
 
-    <color name="toolbar_background">#83B144</color>
-    <color name="toolbar_widget">@color/white</color>
-    <color name="status_bar">#698D35</color>
+    <!-- цвета для кастомизации -->
+    <color name="threads_welcome_screen_title">@color/gray</color>
+    <color name="threads_welcome_screen_subtitle">@color/gray</color>
 
-    <color name="chat_background">#EAF0F0</color>
-    <color name="chat_message_hint_input_text">#999999</color>
-    <color name="chat_message_input_background">@color/white</color>
-    <color name="incoming_message_bubble_background">@color/white</color>
-    <color name="outgoing_message_bubble_background">#83B144</color>
-    <color name="incoming_message_text">#333333</color>
-    <color name="outgoing_message_text">@color/white</color>
-    <color name="chatbody_icons_tint">#83B144</color>
-    <color name="connection_message_text_color">#333333</color>
-    <color name="files_and_media_screen_bg_color">@color/white</color>
-    <color name="schedule_message_text_color">#333333</color>
+    <color name="threads_chat_toolbar">@color/colorPrimary</color>
+    <color name="threads_chat_toolbar_text">@color/white</color>
+    <color name="threads_chat_status_bar">@color/colorPrimaryDark</color>
+    <color name="threads_chat_toolbar_menu_item">@color/colorPrimary</color>
+    <color name="threads_chat_toolbar_hint">#B5D18F</color>
 
-    <color name="file_browser_dialog_text">#83B144</color>
-    <color name="file_browser_window_background">@color/white</color>
-    <color name="welcome_screen_text">#707070</color>
+    <color name="threads_chat_background">#EAF0F0</color>
+    <color name="threads_chat_highlighting">#3083B144</color>
+    <color name="threads_chat_incoming_message_bubble">@color/white</color>
+    <color name="threads_chat_outgoing_message_bubble">@color/colorPrimary</color>
+    <color name="threads_chat_icons_tint">@color/colorPrimary</color>
+    <color name="threads_chat_connection_message">#333333</color>
 
-    <color name="menu_item_text">#83B144</color>
-    <color name="toolbar_edit_text_hint">#B5D18F</color>
-    <color name="toolbar_background_transparent">#3083B144</color>
+    <color name="threads_files_medias_screen_background">@color/white</color>
+    <color name="threads_icon_and_separators_color">@color/gray</color>
 
-    <color name="push_background">#3083B144</color>
-    <color name="nugat_push_accent">#83B144</color>
+    <color name="threads_input_background">@color/white</color>
+    <color name="threads_input_text">#551a8b</color>
+    <color name="threads_input_hint">#999999</color>
+
+    <color name="threads_schedule_text">@color/gray</color>
+
+    <color name="threads_push_background">@color/colorAccent</color>
+    <color name="threads_nougat_push_accent">@color/colorAccent</color>
+
+    <color name="threads_survey_selected_icon_tint">@color/colorAccent</color>
+    <color name="threads_survey_unselected_icon_tint">@color/colorAccent</color>
 </resources>

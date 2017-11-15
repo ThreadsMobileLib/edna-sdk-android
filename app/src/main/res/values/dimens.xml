@@ -3,6 +3,9 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
-    <dimen name="operator_avatar_size">40dp</dimen>
-    <dimen name="operator_system_avatar_size">40dp</dimen>
+    <dimen name="threads_operator_photo_size">40dp</dimen>
+    <dimen name="threads_system_operator_photo_size">40dp</dimen>
+
+    <dimen name="threads_welcome_screen_title">16sp</dimen>
+    <dimen name="threads_welcome_screen_subtitle">12sp</dimen>
 </resources>

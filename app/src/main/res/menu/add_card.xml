@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/add_card"
+        android:icon="@drawable/ic_add_card_white"
+        android:title="@string/title_home"
+        app:showAsAction="always"/>
+
+</menu>
