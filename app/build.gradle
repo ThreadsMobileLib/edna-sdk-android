@@ -36,8 +36,8 @@ dependencies {
     def final supportVersion = "25.3.1"
 
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile project(':push-api-release-2.0.103')
-    compile project(':threads-release_2.30')
+    compile project(':push-api-release-2.0.110')
+    compile project(':threads-release_2.32')
 
     compile 'com.google.firebase:firebase-messaging:10.2.0'
 
