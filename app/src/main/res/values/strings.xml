@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AppWithChat</string>
+    <string name="app_name1">AppWithChat</string>
 
     <string name="default_title">ThreadsApp</string>
 
@@ -36,5 +36,5 @@
     <string name="threads_request_to_resolve_thread_close">Нет</string>
     <string name="threads_request_to_resolve_thread_open">Да</string>
 
-    <string name="threads_push_title">@string/app_name</string>
+    <string name="threads_push_title">@string/app_name1</string>
 </resources>

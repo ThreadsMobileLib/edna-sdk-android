@@ -4,10 +4,6 @@ import android.app.Activity;
 
 import im.threads.model.ChatStyle;
 
-/**
- * Created by chybakut2004 on 14.04.17.
- */
-
 public class ChatBuilderHelper {
 
     public static ChatStyle buildChatStyle(Activity activity, String clientId, String userName, String data) {
@@ -21,5 +17,4 @@ public class ChatBuilderHelper {
                 .setScrollChatToEndIfUserTyping(false) // не прокручивать чат к последнему сообщению, если пользователь начал ввод
                 .build();
     }
-
 }
