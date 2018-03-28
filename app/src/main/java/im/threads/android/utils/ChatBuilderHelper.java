@@ -15,6 +15,7 @@ public class ChatBuilderHelper {
                 .showChatBackButton(true)// показывать кнопку назад
                 .setShowConsultSearching(true) //показывать загрузку при поиске консультанта
                 .setScrollChatToEndIfUserTyping(false) // не прокручивать чат к последнему сообщению, если пользователь начал ввод
+                .setDebugLoggingEnabled(true)
                 .build();
     }
 }
