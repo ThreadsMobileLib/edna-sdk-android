@@ -1,10 +1,8 @@
 *.iml
 .gradle
 /local.properties
-/.idea
+*/.idea
 .DS_Store
 /build
 /captures
-.externalNativeBuild
-/app/fabric.properties
-/app/google-services.json
+/.idea

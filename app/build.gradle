@@ -8,9 +8,9 @@ android {
         applicationId "im.threads.android"
         minSdkVersion 17
         targetSdkVersion 26
-        versionCode 67
-        versionName "2.33.0"
-        project.ext.set("archivesBaseName", "Threads-app " + defaultConfig.versionName);
+        versionCode 69
+        versionName "2.34.0"
+        project.ext.set("archivesBaseName", "Threads-app " + defaultConfig.versionName)
         vectorDrawables.useSupportLibrary = true
         multiDexEnabled = true
     }
@@ -38,7 +38,7 @@ dependencies {
     def final supportVersion = "26.1.0"
 
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile project(':push-api-release-2.0.110')
+    compile project(':push-api-release-2.0.114')
     compile project(':threads')
 
     compile 'com.google.firebase:firebase-messaging:10.2.1'
