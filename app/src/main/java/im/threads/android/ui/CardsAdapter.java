@@ -5,11 +5,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import im.threads.android.data.Card;
 import im.threads.android.databinding.ItemCardBinding;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.ViewHolder>{
 

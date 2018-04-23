@@ -7,11 +7,10 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import im.threads.android.data.Card;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import im.threads.android.data.Card;
 
 public final class PrefUtils {
     private static final String TAG = "DemoAppPrefUtils ";

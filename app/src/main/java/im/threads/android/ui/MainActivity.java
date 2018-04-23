@@ -20,15 +20,15 @@ import com.pushserver.android.PushBroadcastReceiver;
 import com.pushserver.android.PushController;
 import com.pushserver.android.PushServerIntentService;
 import com.pushserver.android.model.PushMessage;
-
-import java.util.List;
-
-import im.threads.activities.ChatActivity;
 import im.threads.android.R;
 import im.threads.android.data.Card;
 import im.threads.android.databinding.ActivityMainBinding;
 import im.threads.android.utils.ChatBuilderHelper;
 import im.threads.android.utils.PrefUtils;
+
+import java.util.List;
+
+import im.threads.activities.ChatActivity;
 import im.threads.controllers.ChatController;
 import im.threads.utils.AppInfoHelper;
 import im.threads.utils.PermissionChecker;

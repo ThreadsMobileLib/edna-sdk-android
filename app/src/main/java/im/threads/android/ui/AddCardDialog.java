@@ -16,7 +16,6 @@ import android.view.Window;
 import im.threads.android.data.Card;
 import im.threads.android.databinding.DialogAddCardBinding;
 
-
 /**
  * Диалог добавления пользователя
  */

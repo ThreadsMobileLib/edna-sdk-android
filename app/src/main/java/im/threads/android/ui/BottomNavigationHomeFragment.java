@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import im.threads.android.R;
+
 import im.threads.controllers.ChatController;
 
 /**
