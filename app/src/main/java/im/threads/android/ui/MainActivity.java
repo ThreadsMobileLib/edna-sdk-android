@@ -223,8 +223,8 @@ public class MainActivity extends AppCompatActivity implements AddCardDialog.Add
 
         @Override
         public void onNewShortPushNotification(PushBroadcastReceiver pushBroadcastReceiver, Context context, String s, Bundle bundle) {
-            Log.i(TAG, "Short Push Accepted");
-            Log.i(TAG, bundle.toString());
+            Log.i(TAG, "Short push not accepted by chat: " + bundle.toString());
+            Toast.makeText(context, "Short push not accepted by chat: " + bundle.toString(), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -234,10 +234,8 @@ public class MainActivity extends AppCompatActivity implements AddCardDialog.Add
 
         @Override
         public void onNewFullPushNotification(PushServerIntentService pushServerIntentService, PushMessage pushMessage) {
-            if (pushMessage != null && pushMessage.fullMessage != null) {
-                Log.i(TAG, "Full Push Accepted");
-                Log.i(TAG, pushMessage.fullMessage);
-            }
+            Toast.makeText(pushServerIntentService.getApplicationContext(), "Full push not accepted by chat: " + String.valueOf(pushMessage), Toast.LENGTH_SHORT).show();
+            Log.i(TAG, "Full push not accepted by chat: " + String.valueOf(pushMessage));
         }
     }
 }
