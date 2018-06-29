@@ -21,4 +21,9 @@
         <item name="android:textColor">@color/threads_white</item>
     </style>
 
+    <!--Alternative Design-->
+    <style name="AltFileDialogStyleTransparent" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:textColor">@android:color/holo_blue_light</item>
+    </style>
+
 </resources>

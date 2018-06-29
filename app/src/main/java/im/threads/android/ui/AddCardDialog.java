@@ -68,7 +68,9 @@ public class AddCardDialog extends DialogFragment {
         binding.addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-                Card newCard = new Card(binding.clientId.getText().toString(), binding.clientName.getText().toString());
+                Card newCard = new Card(binding.clientId.getText().toString(),
+                        binding.clientName.getText().toString(),
+                        binding.appMarker.getText().toString());
                 addButtonClicked(newCard);
                 dismiss();
             }

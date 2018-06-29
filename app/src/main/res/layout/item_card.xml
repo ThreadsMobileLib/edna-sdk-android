@@ -8,8 +8,8 @@
 
     <LinearLayout
         android:orientation="vertical"
-        android:layout_width="200dp"
-        android:layout_height="120dp"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
         android:paddingLeft="16dp"
         android:paddingRight="8dp"
         android:paddingTop="8dp"
@@ -23,11 +23,6 @@
             android:layout_marginBottom="8dp"
             android:layout_gravity="right"
             app:srcCompat="@drawable/ic_delete"/>
-
-        <View
-            android:layout_width="1dp"
-            android:layout_height="0dp"
-            android:layout_weight="1"/>
 
         <TextView
             android:id="@+id/client_id"
@@ -47,7 +42,17 @@
             android:textColor="@color/white"
             android:textSize="14sp"
             android:lines="1"
-            tools:text = "client_id"/>
+            tools:text = "client_name"/>
+
+        <TextView
+            android:id="@+id/app_marker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/threads_blue"
+            android:textSize="14sp"
+            android:ellipsize="middle"
+            android:singleLine="true"
+            tools:text = "polarbear.threads.im/appMarker/1"/>
 
     </LinearLayout>
 </layout>

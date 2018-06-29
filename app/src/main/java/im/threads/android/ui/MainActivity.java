@@ -20,15 +20,15 @@ import com.pushserver.android.PushBroadcastReceiver;
 import com.pushserver.android.PushController;
 import com.pushserver.android.PushServerIntentService;
 import com.pushserver.android.model.PushMessage;
+
+import java.util.List;
+
+import im.threads.activities.ChatActivity;
 import im.threads.android.R;
 import im.threads.android.data.Card;
 import im.threads.android.databinding.ActivityMainBinding;
 import im.threads.android.utils.ChatBuilderHelper;
 import im.threads.android.utils.PrefUtils;
-
-import java.util.List;
-
-import im.threads.activities.ChatActivity;
 import im.threads.controllers.ChatController;
 import im.threads.utils.AppInfoHelper;
 import im.threads.utils.PermissionChecker;
@@ -132,9 +132,14 @@ public class MainActivity extends AppCompatActivity implements AddCardDialog.Add
         if (!PermissionChecker.checkPermissions(this)) {
             PermissionChecker.requestPermissionsAndInit(CHAT_PERMISSIONS_REQUEST_CODE, this);
         } else {
-            ChatBuilderHelper.buildChatStyle(this, currentCard.getUserId(), currentCard.getUserName(), "");
+            ChatBuilderHelper.buildChatStyle(this, currentCard.getAppMarker(), currentCard.getUserId(), currentCard.getUserName(),
+                    "", getCurrentDesign());
             startActivity(new Intent(this, ChatActivity.class));
         }
+    }
+
+    private ChatBuilderHelper.ChatDesign getCurrentDesign() {
+        return ChatBuilderHelper.ChatDesign.enumOf(this, (String) binding.designSpinner.getSelectedItem());
     }
 
     /**
@@ -142,7 +147,8 @@ public class MainActivity extends AppCompatActivity implements AddCardDialog.Add
      */
     private void showChatAsFragment() {
         Card currentCard = getCurrentCard();
-        Intent i = BottomNavigationActivity.createIntent(this, currentCard.getUserId(), currentCard.getUserName());
+        Intent i = BottomNavigationActivity.createIntent(this, currentCard.getAppMarker(), currentCard.getUserId(),
+                currentCard.getUserName(), getCurrentDesign());
         startActivity(i);
     }
 

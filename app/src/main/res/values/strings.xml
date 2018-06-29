@@ -12,6 +12,7 @@
     <string name="lib_version">lib v.%s</string>
     <string name="client_id_hint">Client ID *</string>
     <string name="client_name_hint">Client name</string>
+    <string name="app_marker_hint">App Marker</string>
     <string name="no_cards">Добавьте клиента</string>
     <string name="client_id_already_exist">Такой client_id уже существует</string>
 
@@ -37,4 +38,28 @@
     <string name="threads_request_to_resolve_thread_open">Да</string>
 
     <string name="threads_push_title">@string/app_name1</string>
+
+    <string-array name="designs">
+        <item>@string/design_green_enum</item>
+        <item>@string/design_blue_enum</item>
+    </string-array>
+    <string name="design_green_enum">Green</string>
+    <string name="design_blue_enum">Blue</string>
+
+
+    <!--Alternative Design -->
+
+    <string name="alt_threads_push_title">Тредс</string>
+
+    <string name="alt_threads_contact_center">VIP Чат</string>
+    <string name="alt_threads_operator_subtitle">Ваш персональный менеджер</string>
+
+    <string name="alt_threads_request_to_resolve_thread">У вас еще остались вопросы?</string>
+    <string name="alt_threads_request_to_resolve_thread_close">Все решено</string>
+    <string name="alt_threads_request_to_resolve_thread_open">Еще вопрос</string>
+
+    <string name="alt_threads_welcome_screen_title_text">Рады помочь Вам в VIP Чат</string>
+    <string name="alt_threads_welcome_screen_subtitle_text">Отправьте ваш вопрос, и ваш персональный менеджер на него сразу ответит</string>
+    <string name="alt_threads_input_hint">Введите Ваше сообщение</string>
+
 </resources>

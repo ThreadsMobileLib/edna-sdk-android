@@ -8,6 +8,7 @@
     <color name="shadow">#30000000</color>
     <color name="gray">#707070</color>
     <color name="light_green">#B5D18F</color>
+    <color name="lighter_blue">#aff0ff</color>
 
     <!-- цвета для кастомизации -->
     <color name="threads_welcome_screen_title">@color/gray</color>
@@ -40,4 +41,91 @@
 
     <color name="threads_survey_selected_icon_tint">@color/colorAccent</color>
     <color name="threads_survey_unselected_icon_tint">@color/colorAccent</color>
+
+    <color name="threads_outgoing_message_link">@color/lighter_blue</color>
+    <color name="threads_incoming_message_link">@color/threads_blue_0F87FF</color>
+
+
+
+    <!--Alternative design-->
+    <!-- Приветственный экран -->
+    <color name="alt_threads_welcome_screen_title">@color/threads_blue</color>
+    <color name="alt_threads_welcome_screen_subtitle">@color/threads_blue_grey_607d8b</color>
+
+    <!-- Заголовок экрана чата -->
+    <color name="alt_threads_chat_status_bar">@color/threads_blue_grey_607d8b</color>
+    <color name="alt_threads_chat_toolbar">@color/threads_blue</color>
+    <color name="alt_threads_chat_toolbar_text">@color/lighter_blue</color>
+    <color name="alt_threads_chat_toolbar_menu_item">@color/threads_blue_0F87FF</color>
+    <color name="alt_threads_chat_toolbar_hint">@color/lighter_blue</color>
+
+    <!-- Основная область чата -->
+    <color name="alt_threads_chat_background">@color/threads_blue_grey_607d8b</color>
+    <color name="alt_threads_chat_highlighting">@color/threads_chat_highlighting</color>
+
+    <color name="alt_threads_chat_incoming_message_bubble">@color/lighter_blue</color>
+    <color name="alt_threads_chat_outgoing_message_bubble">@color/threads_blue</color>
+    <color name="alt_threads_incoming_message_text">@color/threads_blue_grey_607d8b</color>
+    <color name="alt_threads_outgoing_message_text">@color/lighter_blue</color>
+    <color name="alt_threads_user_message_timestamp">@color/lighter_blue</color>
+    <color name="alt_threads_operator_message_timestamp">@color/threads_blue_grey_607d8b</color>
+
+    <color name="alt_threads_outgoing_message_link">@color/threads_red_f44336</color>
+    <color name="alt_threads_incoming_message_link">@color/white</color>
+
+    <color name="alt_threads_chat_icons_tint">@color/threads_blue</color>
+    <color name="alt_threads_chat_system_message">@color/threads_black</color>
+    <color name="alt_threads_chat_connection_message">@color/threads_gray_text</color>
+
+    <color name="alt_threads_icon_and_separators_color">@color/threads_blue_grey_607d8b</color>
+    <color name="alt_threads_outgoing_time_underlay">@color/threads_blue_transparent_700F87FF</color>
+    <color name="alt_threads_outgoing_message_time">@color/lighter_blue</color>
+    <color name="alt_threads_incoming_time_underlay">@color/threads_blue_transparent</color>
+    <color name="alt_threads_incoming_message_time">@color/lighter_blue</color>
+
+    <!-- Цвет иконок статусов доставки сообщений пользователя -->
+    <color name="alt_threads_outgoing_message_sent_icon">@color/lighter_blue</color>
+    <color name="alt_threads_outgoing_message_received_icon">@color/lighter_blue</color>
+    <color name="alt_threads_outgoing_message_not_send_icon">@color/threads_red_f44336</color>
+
+    <!-- Цвет иконок статусов доставки изображений пользователя -->
+    <color name="alt_threads_outgoing_message_image_sent_icon">@color/lighter_blue</color>
+    <color name="alt_threads_outgoing_message_image_received_icon">@color/lighter_blue</color>
+    <color name="alt_threads_outgoing_message_image_not_send_icon">@color/threads_red_f44336</color>
+
+
+    <!-- Экран истории файлов -->
+    <color name="alt_threads_files_medias_screen_background">@color/threads_blue_grey_607d8b</color>
+    <color name="alt_threads_files_list">@color/threads_blue</color>
+
+    <!-- Экран просмотра файлов -->
+    <color name="alt_threads_attachments_toolbar">@color/threads_blue</color>
+    <color name="alt_threads_attachments_background">@color/threads_blue_grey_607d8b</color>
+    <color name="alt_threads_attachments_author_text_color">@color/lighter_blue</color>
+    <color name="alt_threads_attachments_date_text_color">@color/lighter_blue</color>
+
+    <!-- Индикатор непрочитанных сообщений -->
+    <color name="alt_threads_chat_unread_msg_sticker_background">@color/threads_blue</color>
+    <color name="alt_threads_chat_unread_msg_count_text">@color/lighter_blue</color>
+
+    <!-- Поле ввода сообщения -->
+    <color name="alt_threads_input_background">@color/lighter_blue</color>
+    <color name="alt_threads_input_text">@color/threads_blue</color>
+    <color name="alt_threads_input_hint">@color/threads_blue_grey_607d8b</color>
+
+    <!-- Сообщения о расписании -->
+    <color name="alt_threads_schedule_text">@color/threads_blue_grey_607d8b</color>
+
+    <!-- Пуш нотификации -->
+    <color name="alt_threads_push_background">@color/threads_blue</color>
+    <color name="alt_threads_nougat_push_accent">@color/threads_blue</color>
+
+    <!-- Опросы -->
+    <color name="alt_threads_survey_selected_icon_tint">@color/threads_blue</color>
+    <color name="alt_threads_survey_unselected_icon_tint">@color/threads_blue</color>
+
+    <!-- Notification Quick Reply -->
+    <color name="alt_threads_quick_reply_message_background">@color/lighter_blue</color>
+    <color name="alt_threads_quick_reply_message_text_color">@color/threads_blue_grey_607d8b</color>
+
 </resources>

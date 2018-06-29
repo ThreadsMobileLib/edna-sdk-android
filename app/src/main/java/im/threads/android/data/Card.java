@@ -5,12 +5,14 @@ import java.io.Serializable;
 public class Card implements Serializable {
     private String userId;
     private String userName;
+    private String appMarker;
 
     public Card(){}
 
-    public Card(final String userId, final String userName) {
+    public Card(final String userId, final String userName, String appMarker) {
         this.userId = userId;
         this.userName = userName;
+        this.appMarker = appMarker;
     }
 
     public String getUserId() {
@@ -19,6 +21,10 @@ public class Card implements Serializable {
 
     public String getUserName() {
         return userName;
+    }
+
+    public String getAppMarker() {
+        return appMarker;
     }
 
     @Override

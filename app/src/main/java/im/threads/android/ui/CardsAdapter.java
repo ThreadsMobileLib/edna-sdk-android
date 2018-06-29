@@ -35,6 +35,7 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.ViewHolder>{
         final Card card = cards.get(position);
         holder.binding.clientId.setText(card.getUserId());
         holder.binding.clientName.setText(card.getUserName());
+        holder.binding.appMarker.setText(card.getAppMarker());
 
         holder.binding.removeCard.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -8,4 +8,16 @@
 
     <dimen name="threads_welcome_screen_title">16sp</dimen>
     <dimen name="threads_welcome_screen_subtitle">12sp</dimen>
+
+    <!--Alternative Design-->
+    <dimen name="alt_threads_input_height">80dp</dimen>
+
+    <dimen name="alt_threads_welcome_screen_title">20sp</dimen>
+    <dimen name="alt_threads_welcome_screen_subtitle">16sp</dimen>
+
+    <dimen name="alt_threads_operator_photo_size">55dp</dimen>
+    <dimen name="alt_threads_system_operator_photo_size">55dp</dimen>
+
+    <dimen name="alt_threads_attachments_author_text_size">18sp</dimen>
+    <dimen name="alt_threads_attachments_date_text_size">18sp</dimen>
 </resources>
