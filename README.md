@@ -1,5 +1,8 @@
-# threads-sdk-android
-Приложение для демонстрации интеграции библиотеки threads
+# Threads Android SDK
+Threads Android SDK libraries and Demo project
 
-Руководство по интеграции и настройке библиотеки:
-https://github.com/ThreadsMobileLib/threads-sdk-android/wiki
+[Documentation and Guides](../../wiki)
+
+Contacts:  
+https://threads.im  
+customer@threads.im
