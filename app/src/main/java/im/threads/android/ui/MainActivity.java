@@ -2,10 +2,7 @@ package im.threads.android.ui;
 
 import android.content.Context;
 import android.content.Intent;
-import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -23,6 +20,9 @@ import com.mfms.android.push_lite.repo.push.remote.model.PushMessage;
 
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 import im.threads.activities.ChatActivity;
 import im.threads.android.R;
 import im.threads.android.data.Card;

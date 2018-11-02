@@ -7,13 +7,12 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-    compileSdkVersion 27
-    buildToolsVersion '27.0.3'
+    compileSdkVersion 28
 
     defaultConfig {
         applicationId "im.threads.android"
         minSdkVersion 17
-        targetSdkVersion 27
+        targetSdkVersion 28
         versionCode 78
         versionName "2.43.0"
         project.ext.set("archivesBaseName", "Threads-app " + defaultConfig.versionName)
@@ -51,7 +50,7 @@ android {
 }
 
 dependencies {
-    def final supportVersion = "27.1.1"
+    def final androidXVersion = "1.0.0"
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':threads')
@@ -59,10 +58,11 @@ dependencies {
     implementation 'com.google.firebase:firebase-messaging:17.3.1'
     implementation 'com.android.support:multidex:1.0.3'
 
-    implementation "com.android.support:appcompat-v7:$supportVersion"
-    implementation "com.android.support:design:$supportVersion"
-    implementation "com.android.support:support-vector-drawable:$supportVersion"
-    implementation "com.android.support:support-media-compat:$supportVersion"
+    implementation "androidx.appcompat:appcompat:$androidXVersion"
+    implementation "com.google.android.material:material:$androidXVersion"
+    implementation "androidx.legacy:legacy-support-v4:$androidXVersion"
+    implementation "androidx.vectordrawable:vectordrawable:$androidXVersion"
+    implementation "androidx.media:media:$androidXVersion"
 
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
@@ -77,7 +77,8 @@ dependencies {
     */
     implementation 'com.google.code.gson:gson:2.8.2'
 
-    implementation 'com.azoft.carousellayoutmanager:carousel:1.2.1'
+    implementation 'com.azoft.carousellayoutmanager:carousel:1.2.4'
+
     debugImplementation 'com.mfms.android:push-lite-debug:2.5.0'
     releaseImplementation 'com.mfms.android:push-lite-release:2.5.0'
 }
