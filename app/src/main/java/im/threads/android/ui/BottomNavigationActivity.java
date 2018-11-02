@@ -17,7 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import com.pushserver.android.PushController;
+import com.mfms.android.push_lite.PushController;
 
 import java.util.List;
 

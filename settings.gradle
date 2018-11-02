@@ -1,2 +1,2 @@
-include ':app', ':threads', ':push-api-release-2.0.114'
+include ':app', ':threads'
 
