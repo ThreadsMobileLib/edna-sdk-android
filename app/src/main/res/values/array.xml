@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string-array name="server_url_list">
-        <item>YOUR_PUSHSERVER_URL</item>
-    </string-array>
-    <string-array name="server_id_list">
-        <item>YOUR_SERVER_ID</item>
-    </string-array>
-</resources>

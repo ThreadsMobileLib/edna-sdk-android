@@ -4,16 +4,10 @@
           package="im.threads.android">
 
     <permission
-        android:name="${applicationId}.permission.C2D_MESSAGE"
-        android:protectionLevel="signature"/>
-    <permission
         android:name="${applicationId}.permission.pushserver.RECEIVE"
         android:protectionLevel="signature"/>
 
     <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="${applicationId}.permission.C2D_MESSAGE"/>
-    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE"/>
-    <uses-permission android:name="com.google.android.c2dm.permission.SEND"/>
     <uses-permission android:name="${applicationId}.permission.pushserver.RECEIVE"/>
 
     <application
@@ -45,10 +39,11 @@
             android:exported="false"
             android:permission="${applicationId}.permission.pushserver.RECEIVE">
             <intent-filter>
-                <action android:name="com.pushserver.android.NEW_PUSH_MESSAGE_EVENT"/>
-                <action android:name="com.pushserver.android.RECEIVER_CHANGED_EVENT"/>
-                <action android:name="com.pushserver.android.DEVICE_ADDRESS_CHANGED_EVENT"/>
-                <action android:name="com.pushserver.android.ERROR_EVENT"/>
+                <action android:name="com.pushserver.android.NEW_PUSH_MESSAGE_EVENT" />
+                <action android:name="com.pushserver.android.RECEIVER_CHANGED_EVENT" />
+                <action android:name="com.pushserver.android.DEVICE_ADDRESS_CHANGED_EVENT" />
+                <action android:name="com.pushserver.android.HAS_SECURED_MESSAGE" />
+                <action android:name="com.pushserver.android.ERROR_EVENT" />
             </intent-filter>
         </receiver>
 
@@ -63,32 +58,9 @@
         <meta-data
             android:name="com.pushserver.android.service"
             android:value="im.threads.services.IncomingMessagesIntentService"/>
-        <meta-data
-            android:name="com.pushserver.android.senderId"
-            android:value="!STRING!YOUR_SENDER_ID"/>
-        <meta-data
-            android:name="com.pushserver.android.serverUrl"
-            android:value="YOUR_PUSHSERVER_URL"/>
+
         <meta-data
             android:name="com.pushserver.android.logs"
             android:value="false"/>
-        <meta-data
-            android:name="com.pushserver.android.location"
-            android:value="true"/>
-        <meta-data
-            android:name="com.pushserver.android.heartbeatInterval"
-            android:value="300000"/>
-        <meta-data
-            android:name="com.pushserver.android.uploadServerUrl"
-            android:value="YOUR_UPLOAD_URL"/>
-        <meta-data
-            android:name="com.pushserver.android.serverIdList"
-            android:resource="@array/server_id_list"/>
-        <meta-data
-            android:name="com.pushserver.android.serverUrlList"
-            android:resource="@array/server_url_list"/>
-        <meta-data
-            android:name="com.pushserver.android.serverPrimaryId"
-            android:value="YOUR_SERVER_ID"/>
     </application>
 </manifest>
