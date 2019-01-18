@@ -47,6 +47,7 @@ public class ChatBuilderHelper {
                 .setDefaultFontRegular(LATO_REGULAR_FONT_PATH)
                 .showChatBackButton(true)// показывать кнопку назад
                 .setShowConsultSearching(true) //показывать загрузку при поиске консультанта
+                .setUseExternalCameraApp(true)
                 .setScrollChatToEndIfUserTyping(false) // не прокручивать чат к последнему сообщению, если пользователь начал ввод
                 .setDebugLoggingEnabled(true);
 
