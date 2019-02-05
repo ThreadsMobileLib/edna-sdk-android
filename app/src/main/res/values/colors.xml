@@ -41,6 +41,7 @@
 
     <color name="threads_survey_selected_icon_tint">@color/colorAccent</color>
     <color name="threads_survey_unselected_icon_tint">@color/colorAccent</color>
+    <color name="threads_survey_choices_text">@color/colorAccent</color>
 
     <color name="threads_outgoing_message_link">@color/lighter_blue</color>
     <color name="threads_incoming_message_link">@color/threads_blue_0F87FF</color>
@@ -75,7 +76,7 @@
 
     <color name="alt_threads_chat_icons_tint">@color/threads_blue</color>
     <color name="alt_threads_chat_system_message">@color/threads_black</color>
-    <color name="alt_threads_chat_connection_message">@color/threads_gray_text</color>
+    <color name="alt_threads_chat_connection_message">@color/lighter_blue</color>
 
     <color name="alt_threads_icon_and_separators_color">@color/threads_blue_grey_607d8b</color>
     <color name="alt_threads_outgoing_time_underlay">@color/threads_blue_transparent_700F87FF</color>
@@ -121,8 +122,9 @@
     <color name="alt_threads_nougat_push_accent">@color/threads_blue</color>
 
     <!-- Опросы -->
-    <color name="alt_threads_survey_selected_icon_tint">@color/threads_blue</color>
-    <color name="alt_threads_survey_unselected_icon_tint">@color/threads_blue</color>
+    <color name="alt_threads_survey_selected_icon_tint">@color/lighter_blue</color>
+    <color name="alt_threads_survey_unselected_icon_tint">@color/lighter_blue</color>
+    <color name="alt_threads_survey_choices_text">@color/lighter_blue</color>
 
     <!-- Notification Quick Reply -->
     <color name="alt_threads_quick_reply_message_background">@color/lighter_blue</color>

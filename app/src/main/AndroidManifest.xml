@@ -39,11 +39,11 @@
             android:exported="false"
             android:permission="${applicationId}.permission.pushserver.RECEIVE">
             <intent-filter>
-                <action android:name="com.pushserver.android.NEW_PUSH_MESSAGE_EVENT" />
-                <action android:name="com.pushserver.android.RECEIVER_CHANGED_EVENT" />
-                <action android:name="com.pushserver.android.DEVICE_ADDRESS_CHANGED_EVENT" />
-                <action android:name="com.pushserver.android.HAS_SECURED_MESSAGE" />
-                <action android:name="com.pushserver.android.ERROR_EVENT" />
+                <action android:name="com.pushserver.android.NEW_PUSH_MESSAGE_EVENT"/>
+                <action android:name="com.pushserver.android.RECEIVER_CHANGED_EVENT"/>
+                <action android:name="com.pushserver.android.DEVICE_ADDRESS_CHANGED_EVENT"/>
+                <action android:name="com.pushserver.android.HAS_SECURED_MESSAGE"/>
+                <action android:name="com.pushserver.android.ERROR_EVENT"/>
             </intent-filter>
         </receiver>
 
