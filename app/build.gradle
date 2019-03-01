@@ -14,7 +14,7 @@ android {
         minSdkVersion 17
         targetSdkVersion 28
         versionCode 83
-        versionName "2.47.0"
+        versionName "2.47.1"
         project.ext.set("archivesBaseName", "Threads-app " + defaultConfig.versionName)
         vectorDrawables.useSupportLibrary = true
         multiDexEnabled = true
@@ -79,7 +79,7 @@ dependencies {
 
     implementation 'com.azoft.carousellayoutmanager:carousel:1.2.4'
 
-    debugImplementation 'com.mfms.android:push-lite-debug:2.6.13'
-    releaseImplementation 'com.mfms.android:push-lite-release:2.6.13'
+    debugImplementation 'com.mfms.android:push-lite-debug:2.6.18'
+    releaseImplementation 'com.mfms.android:push-lite-release:2.6.18'
 }
 apply plugin: 'com.google.gms.google-services'
