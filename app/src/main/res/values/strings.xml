@@ -15,6 +15,7 @@
     <string name="app_marker_hint">App Marker</string>
     <string name="no_cards">Добавьте клиента</string>
     <string name="client_id_already_exist">Такой client_id уже существует</string>
+    <string name="error_empty_username_userid">Пустой id пользователя</string>
 
     <string name="card_delete_text">Выдействительно хотите удалить клиента?</string>
     <string name="card_delete_yes">Да</string>

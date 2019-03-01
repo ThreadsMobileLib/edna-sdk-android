@@ -48,11 +48,14 @@ public class ThreadsDemoApplication extends MultiDexApplication {
                 } else {
                     //This is an exaple of creating pending intent for single chat app
                     List<Card> clientCards = PrefUtils.getCards(context);
-                    Card pushClientCard = clientCards.get(0);
 
-                    return BottomNavigationActivity.createPendingIntent(context, true,
-                            pushClientCard.getUserId(), pushClientCard.getUserName(),
-                            pushClientCard.getAppMarker(), ChatBuilderHelper.ChatDesign.GREEN);
+                    if (!clientCards.isEmpty()) {
+                        Card pushClientCard = clientCards.get(0);
+
+                        return BottomNavigationActivity.createPendingIntent(context, true,
+                                pushClientCard.getUserId(), pushClientCard.getUserName(),
+                                pushClientCard.getAppMarker(), ChatBuilderHelper.ChatDesign.GREEN);
+                    }
                 }
 
                 return null;
