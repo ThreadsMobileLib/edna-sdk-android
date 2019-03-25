@@ -15,7 +15,7 @@
     <string name="app_marker_hint">App Marker</string>
     <string name="no_cards">Добавьте клиента</string>
     <string name="client_id_already_exist">Такой client_id уже существует</string>
-    <string name="error_empty_username_userid">Пустой id пользователя</string>
+    <string name="error_empty_userid">Пустой id пользователя</string>
 
     <string name="card_delete_text">Выдействительно хотите удалить клиента?</string>
     <string name="card_delete_yes">Да</string>
@@ -53,7 +53,7 @@
     <string name="alt_threads_push_title">Тредс</string>
 
     <string name="alt_threads_contact_center">VIP Чат</string>
-    <string name="alt_threads_operator_subtitle">Ваш персональный менеджер</string>
+    <string name="alt_threads_operator_subtitle">Ваш персональный менеджер всегда с вами и рад ответить на любые ваши вопросы</string>
 
     <string name="alt_threads_request_to_resolve_thread">У вас еще остались вопросы?</string>
     <string name="alt_threads_request_to_resolve_thread_close">Все решено</string>
