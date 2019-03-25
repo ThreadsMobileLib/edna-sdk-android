@@ -67,6 +67,7 @@ public class ChatBuilderHelper {
     }
 
     private static void configureGreenDesign(ChatStyle.ChatStyleBuilder builder) {
+        builder.setChatSubtitleShowConsultOrgUnit(true);
         //Do nothing, using default threads design
     }
 

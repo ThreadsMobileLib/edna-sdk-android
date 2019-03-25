@@ -138,7 +138,7 @@ public class MainActivity extends AppCompatActivity implements AddCardDialog.Add
                         "", getCurrentDesign());
                 startActivity(new Intent(this, ChatActivity.class));
             } else {
-                displayError(R.string.error_empty_username_userid);
+                displayError(R.string.error_empty_userid);
             }
         }
     }
@@ -156,7 +156,7 @@ public class MainActivity extends AppCompatActivity implements AddCardDialog.Add
             startActivity(BottomNavigationActivity.createIntent(this, currentCard.getAppMarker(), currentCard.getUserId(),
                     currentCard.getUserName(), getCurrentDesign()));
         } else {
-            displayError(R.string.error_empty_username_userid);
+            displayError(R.string.error_empty_userid);
         }
     }
 

@@ -63,6 +63,8 @@ public class BottomNavigationActivity extends AppCompatActivity {
     private TabItem selectedTab;
 
     private boolean showChatAfterGrantPermission;
+    private BottomNavigationHomeFragment homeFragment;
+    private ChatFragment chatFragment;
 
     private enum TabItem {
         TAB_HOME(R.id.navigation_home),
@@ -188,13 +190,20 @@ public class BottomNavigationActivity extends AppCompatActivity {
 
         switch (newTabItem) {
             case TAB_HOME:
-                fragment = BottomNavigationHomeFragment.newInstance();
+                if (homeFragment == null) {
+                    homeFragment = BottomNavigationHomeFragment.newInstance();
+                }
+                fragment = homeFragment;
                 break;
             case TAB_CHAT:
+
+                if (chatFragment == null) {
+                    chatFragment = ChatFragment.newInstance();
+                }
                 // генерируем настройки стилей чата
                 ChatBuilderHelper.buildChatStyle(this, appMarker, clientId, userName, "", chatDesign);
                 // создаем фрагмент чата
-                fragment = ChatFragment.newInstance();
+                fragment = chatFragment;
                 break;
         }
 
