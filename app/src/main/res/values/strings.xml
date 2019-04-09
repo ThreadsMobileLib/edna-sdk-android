@@ -13,6 +13,7 @@
     <string name="client_id_hint">Client ID *</string>
     <string name="client_name_hint">Client name</string>
     <string name="app_marker_hint">App Marker</string>
+    <string name="client_id_signature_hint">Signature (if empty - will load from server)</string>
     <string name="no_cards">Добавьте клиента</string>
     <string name="client_id_already_exist">Такой client_id уже существует</string>
     <string name="error_empty_userid">Пустой id пользователя</string>
@@ -62,5 +63,6 @@
     <string name="alt_threads_welcome_screen_title_text">Рады помочь Вам в VIP Чат</string>
     <string name="alt_threads_welcome_screen_subtitle_text">Отправьте ваш вопрос, и ваш персональный менеджер на него сразу ответит</string>
     <string name="alt_threads_input_hint">Введите Ваше сообщение</string>
+    <string name="get_signature_error">Не удалось получить подпись clientId</string>
 
 </resources>

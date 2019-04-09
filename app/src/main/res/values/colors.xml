@@ -9,6 +9,7 @@
     <color name="gray">#707070</color>
     <color name="light_green">#B5D18F</color>
     <color name="lighter_blue">#aff0ff</color>
+    <color name="lighter_green">#ddff88</color>
 
     <!-- цвета для кастомизации -->
     <color name="threads_welcome_screen_title">@color/gray</color>

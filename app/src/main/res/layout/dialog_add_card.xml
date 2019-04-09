@@ -13,7 +13,7 @@
         android:background="@drawable/rounded_background">
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/client_id_parent"
+            android:id="@+id/client_id_input_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -44,6 +44,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/app_marker_hint"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/client_id_signature"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/client_id_signature_hint"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
