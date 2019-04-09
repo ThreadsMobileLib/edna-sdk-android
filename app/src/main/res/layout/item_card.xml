@@ -54,5 +54,15 @@
             android:singleLine="true"
             tools:text = "polarbear.threads.im/appMarker/1"/>
 
+        <TextView
+            android:id="@+id/client_id_signature"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/lighter_green"
+            android:textSize="14sp"
+            android:ellipsize="middle"
+            android:singleLine="true"
+            tools:text = "EXJVNWEY#CG@!F#E$#T"/>
+
     </LinearLayout>
 </layout>

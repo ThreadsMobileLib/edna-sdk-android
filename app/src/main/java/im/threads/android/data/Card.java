@@ -6,13 +6,15 @@ public class Card implements Serializable {
     private String userId;
     private String userName;
     private String appMarker;
+    private String clientIdSignature;
 
     public Card(){}
 
-    public Card(final String userId, final String userName, String appMarker) {
+    public Card(final String userId, final String userName, String appMarker, String clientIdSignature) {
         this.userId = userId;
         this.userName = userName;
         this.appMarker = appMarker;
+        this.clientIdSignature = clientIdSignature;
     }
 
     public String getUserId() {
@@ -25,6 +27,10 @@ public class Card implements Serializable {
 
     public String getAppMarker() {
         return appMarker;
+    }
+
+    public String getClientIdSignature() {
+        return clientIdSignature;
     }
 
     @Override

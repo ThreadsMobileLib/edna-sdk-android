@@ -134,7 +134,7 @@ public class MainActivity extends AppCompatActivity implements AddCardDialog.Add
             PermissionChecker.requestPermissionsAndInit(CHAT_PERMISSIONS_REQUEST_CODE, this);
         } else {
             if (currentCard.getUserId() != null) {
-                ChatBuilderHelper.buildChatStyle(this, currentCard.getAppMarker(), currentCard.getUserId(), currentCard.getUserName(),
+                ChatBuilderHelper.buildChatStyle(this, currentCard.getAppMarker(), currentCard.getUserId(), currentCard.getClientIdSignature(), currentCard.getUserName(),
                         "", getCurrentDesign());
                 startActivity(new Intent(this, ChatActivity.class));
             } else {
@@ -153,7 +153,8 @@ public class MainActivity extends AppCompatActivity implements AddCardDialog.Add
     private void showChatAsFragment() {
         Card currentCard = getCurrentCard();
         if (currentCard.getUserId() != null) {
-            startActivity(BottomNavigationActivity.createIntent(this, currentCard.getAppMarker(), currentCard.getUserId(),
+            startActivity(BottomNavigationActivity.createIntent(this, currentCard.getAppMarker(),
+                    currentCard.getUserId(), currentCard.getClientIdSignature(),
                     currentCard.getUserName(), getCurrentDesign()));
         } else {
             displayError(R.string.error_empty_userid);

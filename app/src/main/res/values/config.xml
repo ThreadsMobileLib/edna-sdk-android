@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+    <string name="serverBaseUrl" translatable="false">SERVER_BASE_URL</string>
 </resources>
