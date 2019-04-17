@@ -206,7 +206,9 @@ public class BottomNavigationActivity extends AppCompatActivity {
                     chatFragment = ChatFragment.newInstance();
                 }
                 // configuring chat
-                ChatBuilderHelper.buildChatStyle(this, appMarker, clientId, clientIdSignature, userName, "", chatDesign);
+                String data = "{\"phone\": \"+7-999-999-99-99\",\"email\": \"e@mail.com\"}";
+                ChatBuilderHelper.buildChatStyle(this, appMarker, clientId,
+                        clientIdSignature, userName, data, chatDesign);
                 // creating chat fragment
                 fragment = chatFragment;
                 break;
