@@ -172,6 +172,7 @@ public class BottomNavigationActivity extends AppCompatActivity {
         super.onNewIntent(intent);
         if (intent.getBooleanExtra(ARG_NEEDS_SHOW_CHAT, false)) {
             bottomNavigationView.setSelectedItemId(TabItem.TAB_CHAT.getMenuId());
+            ChatController.reloadHistory(this);//Reload history if was opened from push
         }
     }
 
