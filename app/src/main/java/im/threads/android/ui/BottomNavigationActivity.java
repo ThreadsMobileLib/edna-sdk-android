@@ -275,41 +275,38 @@ public class BottomNavigationActivity extends AppCompatActivity {
     }
 
     public ChatController.PendingIntentCreator chatWithFragmentPendingIntentCreator() {
-        return new ChatController.PendingIntentCreator() {
-            @Override
-            public PendingIntent createPendingIntent(Context context, String appMarker) {
+        return (context, appMarker) -> {
 
-                if (!TextUtils.isEmpty(appMarker)) {
-                    //This is an exaple of creating pending intent for multichat app
+            if (!TextUtils.isEmpty(appMarker)) {
+                //This is an example of creating pending intent for multi-chat app
 
-                    List<Card> clientCards = PrefUtils.getCards(context);
-                    Card pushClientCard = null;
+                List<Card> clientCards = PrefUtils.getCards(context);
+                Card pushClientCard = null;
 
-                    for (Card clientCard : clientCards) {
-                        if (appMarker.equalsIgnoreCase(clientCard.getAppMarker())) {
-                            pushClientCard = clientCard;
-                        }
-                    }
-
-                    if (pushClientCard != null) {
-
-                        ChatBuilderHelper.ChatDesign chatDesign = ChatBuilderHelper.ChatDesign.BLUE;
-                        if (appMarker.endsWith("CRG")) {
-                            chatDesign = ChatBuilderHelper.ChatDesign.GREEN;
-                        }
-
-                        return BottomNavigationActivity.createPendingIntent(context, true,
-                                pushClientCard.getUserId(), pushClientCard.getUserName(),
-                                pushClientCard.getAppMarker(), pushClientCard.getClientIdSignature(), chatDesign);
+                for (Card clientCard : clientCards) {
+                    if (appMarker.equalsIgnoreCase(clientCard.getAppMarker())) {
+                        pushClientCard = clientCard;
                     }
                 }
 
-                //This is an exaple of creating pending intent for single chat app
-                return BottomNavigationActivity.createPendingIntent(context, true,
-                        clientId, userName,
-                        BottomNavigationActivity.this.appMarker, clientIdSignature, chatDesign);
+                if (pushClientCard != null) {
 
+                    ChatBuilderHelper.ChatDesign chatDesign = ChatBuilderHelper.ChatDesign.BLUE;
+                    if (appMarker.endsWith("CRG")) {
+                        chatDesign = ChatBuilderHelper.ChatDesign.GREEN;
+                    }
+
+                    return createPendingIntent(context, true,
+                            pushClientCard.getUserId(), pushClientCard.getUserName(),
+                            pushClientCard.getAppMarker(), pushClientCard.getClientIdSignature(), chatDesign);
+                }
             }
+
+            //This is an example of creating pending intent for single-chat app
+            return createPendingIntent(context, true,
+                    clientId, userName,
+                    BottomNavigationActivity.this.appMarker, clientIdSignature, chatDesign);
+
         };
     }
 

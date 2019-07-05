@@ -16,7 +16,7 @@ android {
         targetSdkVersion 27
 
         versionCode 86
-        versionName "2.48.5"
+        versionName "2.48.6"
         project.ext.set("archivesBaseName", "Threads-app " + defaultConfig.versionName)
         vectorDrawables.useSupportLibrary = true
         multiDexEnabled = true
@@ -72,8 +72,8 @@ dependencies {
 
     implementation 'com.squareup.okhttp3:logging-interceptor:3.10.0'
 
-    def final rxbindingVersion = "3.0.0-alpha2"
-    implementation "com.jakewharton.rxbinding3:rxbinding:$rxbindingVersion"
+    def final rxbindingVersion = "2.2.0"
+    implementation "com.jakewharton.rxbinding2:rxbinding:$rxbindingVersion"
 
     /*
     * Threads depends on:

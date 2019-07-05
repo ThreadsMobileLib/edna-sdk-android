@@ -65,4 +65,9 @@
     <string name="alt_threads_input_hint">Введите Ваше сообщение</string>
     <string name="get_signature_error">Не удалось получить подпись clientId</string>
 
+    <string name="send_text_message">Отправить сообщение</string>
+    <string name="send_text_message_success">Сообщение отправлено успешно!</string>
+    <string name="send_text_message_error">Ошибка отправки сообщения!</string>
+    <string name="test_message">Тестовое сообщение</string>
+
 </resources>
