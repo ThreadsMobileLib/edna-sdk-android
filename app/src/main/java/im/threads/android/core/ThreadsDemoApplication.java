@@ -1,6 +1,5 @@
 package im.threads.android.core;
 
-import android.app.PendingIntent;
 import android.content.Context;
 import android.text.TextUtils;
 
@@ -25,50 +24,38 @@ public class ThreadsDemoApplication extends MultiDexApplication {
     public void onCreate() {
         super.onCreate();
         appContext = getApplicationContext();
-
-        ChatController.setPendingIntentCreator(new ChatController.PendingIntentCreator() {
-            @Override
-            public PendingIntent createPendingIntent(Context context, String appMarker) {
-                if (!TextUtils.isEmpty(appMarker)) {
-                    //This is an exaple of creating pending intent for multichat app
-
-                    List<Card> clientCards = PrefUtils.getCards(context);
-                    Card pushClientCard = null;
-
-                    for (Card clientCard : clientCards) {
-                        if (appMarker.equalsIgnoreCase(clientCard.getAppMarker())) {
-                            pushClientCard = clientCard;
-                        }
-                    }
-
-                    if (pushClientCard != null) {
-
-                        ChatBuilderHelper.ChatDesign chatDesign = ChatBuilderHelper.ChatDesign.BLUE;
-                        if (appMarker.endsWith("CRG")) {
-                            chatDesign = ChatBuilderHelper.ChatDesign.GREEN;
-                        }
-
-                        return BottomNavigationActivity.createPendingIntent(context, true,
-                                pushClientCard.getUserId(), pushClientCard.getUserName(),
-                                pushClientCard.getAppMarker(), pushClientCard.getClientIdSignature(),
-                                chatDesign);
-                    }
-                } else {
-                    //This is an exaple of creating pending intent for single chat app
-                    List<Card> clientCards = PrefUtils.getCards(context);
-
-                    if (!clientCards.isEmpty()) {
-                        Card pushClientCard = clientCards.get(0);
-
-                        return BottomNavigationActivity.createPendingIntent(context, true,
-                                pushClientCard.getUserId(), pushClientCard.getUserName(),
-                                pushClientCard.getAppMarker(), pushClientCard.getClientIdSignature(),
-                                ChatBuilderHelper.ChatDesign.GREEN);
+        ChatController.setPendingIntentCreator((context, appMarker) -> {
+            if (!TextUtils.isEmpty(appMarker)) {
+                //This is an example of creating pending intent for multi-chat app
+                List<Card> clientCards = PrefUtils.getCards(context);
+                Card pushClientCard = null;
+                for (Card clientCard : clientCards) {
+                    if (appMarker.equalsIgnoreCase(clientCard.getAppMarker())) {
+                        pushClientCard = clientCard;
                     }
                 }
-
-                return null;
+                if (pushClientCard != null) {
+                    ChatBuilderHelper.ChatDesign chatDesign = ChatBuilderHelper.ChatDesign.BLUE;
+                    if (appMarker.endsWith("CRG")) {
+                        chatDesign = ChatBuilderHelper.ChatDesign.GREEN;
+                    }
+                    return BottomNavigationActivity.createPendingIntent(context, true,
+                            pushClientCard.getUserId(), pushClientCard.getUserName(),
+                            pushClientCard.getAppMarker(), pushClientCard.getClientIdSignature(),
+                            chatDesign);
+                }
+            } else {
+                //This is an example of creating pending intent for single-chat app
+                List<Card> clientCards = PrefUtils.getCards(context);
+                if (!clientCards.isEmpty()) {
+                    Card pushClientCard = clientCards.get(0);
+                    return BottomNavigationActivity.createPendingIntent(context, true,
+                            pushClientCard.getUserId(), pushClientCard.getUserName(),
+                            pushClientCard.getAppMarker(), pushClientCard.getClientIdSignature(),
+                            ChatBuilderHelper.ChatDesign.GREEN);
+                }
             }
+            return null;
         });
     }
 }

@@ -74,62 +74,54 @@ public class AddCardDialog extends DialogFragment {
             }
         });
 
-        binding.addButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(final View v) {
-
-                String clientId = binding.clientId.getText().toString();
-                String clientIdSignature = binding.clientIdSignature.getText().toString();
-
-                if (TextUtils.isEmpty(clientId)) {
-                    binding.clientIdInputLayout.setErrorEnabled(true);
-                    binding.clientIdInputLayout.setError("ClientId is empty");
-
-                } else {
-                    binding.clientIdInputLayout.setErrorEnabled(false);
-                    binding.clientIdInputLayout.setError(null);
-
-                    if (TextUtils.isEmpty(clientIdSignature)) {
-
-                        if (signatureDisposable != null && !signatureDisposable.isDisposed()) {
-                            signatureDisposable.dispose();
-                        }
-
-                        signatureDisposable = AuthProvider.getSignature(clientId)
-                                .subscribeOn(Schedulers.io())
-                                .observeOn(AndroidSchedulers.mainThread())
-                                .subscribe(
-                                        signature -> {
-                                            Card newCard = new Card(binding.clientId.getText().toString(),
-                                                    binding.clientName.getText().toString(),
-                                                    binding.appMarker.getText().toString(),
-                                                    signature);
-                                            addButtonClicked(newCard);
-                                            dismiss();
-                                        },
-                                        throwable -> {
-                                            showError(R.string.get_signature_error);
-                                            Card newCard = new Card(binding.clientId.getText().toString(),
-                                                    binding.clientName.getText().toString(),
-                                                    binding.appMarker.getText().toString(),
-                                                    "");
-                                            addButtonClicked(newCard);
-                                            dismiss();
-                                        });
-
-                    } else {
-                        Card newCard = new Card(binding.clientId.getText().toString(),
-                                binding.clientName.getText().toString(),
-                                binding.appMarker.getText().toString(),
-                                clientIdSignature);
-                        addButtonClicked(newCard);
-                        dismiss();
+        binding.addButton.setOnClickListener(v -> {
+            String clientId = binding.clientId.getText().toString();
+            String clientIdSignature = binding.clientIdSignature.getText().toString();
+            if (TextUtils.isEmpty(clientId)) {
+                binding.clientIdInputLayout.setErrorEnabled(true);
+                binding.clientIdInputLayout.setError("ClientId is empty");
+            } else {
+                binding.clientIdInputLayout.setErrorEnabled(false);
+                binding.clientIdInputLayout.setError(null);
+                if (TextUtils.isEmpty(clientIdSignature)) {
+                    if (signatureDisposable != null && !signatureDisposable.isDisposed()) {
+                        signatureDisposable.dispose();
                     }
 
+                    signatureDisposable = AuthProvider.getSignature(clientId)
+                            .subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe(
+                                    signature -> {
+                                        Card newCard = new Card(binding.clientId.getText().toString(),
+                                                binding.clientName.getText().toString(),
+                                                binding.appMarker.getText().toString(),
+                                                signature);
+                                        addButtonClicked(newCard);
+                                        dismiss();
+                                    },
+                                    throwable -> {
+                                        showError(R.string.get_signature_error);
+                                        Card newCard = new Card(binding.clientId.getText().toString(),
+                                                binding.clientName.getText().toString(),
+                                                binding.appMarker.getText().toString(),
+                                                "");
+                                        addButtonClicked(newCard);
+                                        dismiss();
+                                    });
+
+                } else {
+                    Card newCard = new Card(binding.clientId.getText().toString(),
+                            binding.clientName.getText().toString(),
+                            binding.appMarker.getText().toString(),
+                            clientIdSignature);
+                    addButtonClicked(newCard);
+                    dismiss();
                 }
 
-
             }
+
+
         });
 
         binding.cancelButton.setOnClickListener(new View.OnClickListener() {

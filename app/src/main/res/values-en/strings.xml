@@ -1,0 +1,6 @@
+<resources>
+    <string name="send_text_message">Send message</string>
+    <string name="send_text_message_success">Message was successfully sent!</string>
+    <string name="send_text_message_error">Error sending message!</string>
+    <string name="test_message">Test message</string>
+</resources>
