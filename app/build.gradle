@@ -7,16 +7,15 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-    compileSdkVersion 27
-    buildToolsVersion '27.0.3'
+    compileSdkVersion 28
 
     defaultConfig {
         applicationId "im.threads.android"
         minSdkVersion 17
-        targetSdkVersion 27
+        targetSdkVersion 28
 
         versionCode 86
-        versionName "2.48.6"
+        versionName "2.48.7"
         project.ext.set("archivesBaseName", "Threads-app " + defaultConfig.versionName)
         vectorDrawables.useSupportLibrary = true
         multiDexEnabled = true
@@ -32,11 +31,17 @@ android {
     }
 
     buildTypes {
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
+            debuggable = true
         }
-
     }
 
     lintOptions {
@@ -52,7 +57,7 @@ android {
 }
 
 dependencies {
-    def final supportVersion = "27.1.1"
+    def final supportVersion = "28.0.0"
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':threads')
@@ -61,6 +66,7 @@ dependencies {
     implementation 'com.android.support:multidex:1.0.3'
 
     implementation "com.android.support:appcompat-v7:$supportVersion"
+    implementation "com.android.support:support-v4:$supportVersion"
     implementation "com.android.support:design:$supportVersion"
     implementation "com.android.support:support-vector-drawable:$supportVersion"
     implementation "com.android.support:support-media-compat:$supportVersion"
@@ -72,8 +78,7 @@ dependencies {
 
     implementation 'com.squareup.okhttp3:logging-interceptor:3.10.0'
 
-    def final rxbindingVersion = "2.2.0"
-    implementation "com.jakewharton.rxbinding2:rxbinding:$rxbindingVersion"
+    implementation "com.jakewharton.rxbinding2:rxbinding:2.2.0"
 
     /*
     * Threads depends on:
