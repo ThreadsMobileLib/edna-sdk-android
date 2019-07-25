@@ -39,7 +39,7 @@ public class ServerAPI {
                     .setLevel(HttpLoggingInterceptor.Level.BODY));
         }
 
-        httpClient.connectTimeout(30, TimeUnit.SECONDS);
+        httpClient.connectTimeout(2, TimeUnit.SECONDS);
         builder.client(httpClient.build());
 
         Retrofit retrofit = builder.build();

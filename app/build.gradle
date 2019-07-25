@@ -15,7 +15,7 @@ android {
         targetSdkVersion 28
 
         versionCode 86
-        versionName "2.48.6"
+        versionName "2.48.7"
         project.ext.set("archivesBaseName", "Threads-app " + defaultConfig.versionName)
         vectorDrawables.useSupportLibrary = true
         multiDexEnabled = true
@@ -31,11 +31,17 @@ android {
     }
 
     buildTypes {
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
+            debuggable = true
         }
-
     }
 
     lintOptions {
@@ -72,8 +78,7 @@ dependencies {
 
     implementation 'com.squareup.okhttp3:logging-interceptor:3.10.0'
 
-    def final rxbindingVersion = "3.0.0-alpha2"
-    implementation "com.jakewharton.rxbinding3:rxbinding:$rxbindingVersion"
+    implementation "com.jakewharton.rxbinding2:rxbinding:2.2.0"
 
     /*
     * Threads depends on:
@@ -84,7 +89,7 @@ dependencies {
     */
     implementation 'com.google.code.gson:gson:2.8.2'
 
-    implementation 'com.azoft.carousellayoutmanager:carousel:1.2.4'
+    implementation 'com.azoft.carousellayoutmanager:carousel:1.2.1'
 
     debugImplementation 'com.mfms.android:push-lite-debug:2.6.21'
     releaseImplementation 'com.mfms.android:push-lite-release:2.6.21'
