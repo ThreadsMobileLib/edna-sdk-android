@@ -58,6 +58,11 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.ViewHolder>{
         notifyDataSetChanged();
     }
 
+    public List<Card> getCards() {
+        //return copy to prevent inconsistency if array modified outside of adapter
+        return new ArrayList<>(cards);
+    }
+
     public Card getCard(int position) {
         return cards != null && position < cards.size() ? cards.get(position) : null;
     }

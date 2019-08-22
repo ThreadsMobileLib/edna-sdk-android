@@ -1,5 +1,8 @@
 package im.threads.android.network;
 
+import android.text.TextUtils;
+import android.util.Log;
+
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 import java.util.concurrent.TimeUnit;
@@ -14,20 +17,29 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ServerAPI {
 
+    private static String LOG_TAG = ServerAPI.class.getSimpleName();
     private static IServerAPI serverAPI;
 
     public static IServerAPI getAPI() {
-        if (serverAPI == null) {
-            serverAPI = createServerAPI();
-        }
 
-        return serverAPI;
+        String serverBaseUrl = ThreadsDemoApplication.getAppContext().getString(R.string.serverBaseUrl);
+
+        if (TextUtils.isEmpty(serverBaseUrl)) {
+            Log.w(LOG_TAG, "Server base url is empty");
+            return null;
+
+        } else {
+            if (serverAPI == null) {
+                serverAPI = createServerAPI(serverBaseUrl);
+            }
+            return serverAPI;
+        }
     }
 
-    private static IServerAPI createServerAPI() {
+    private static IServerAPI createServerAPI(String serverBaseUrl) {
 
         Retrofit.Builder builder = new Retrofit.Builder()
-                .baseUrl(ThreadsDemoApplication.getAppContext().getString(R.string.serverBaseUrl))
+                .baseUrl(serverBaseUrl)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create());
 

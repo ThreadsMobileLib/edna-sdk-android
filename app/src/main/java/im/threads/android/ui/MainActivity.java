@@ -27,6 +27,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import im.threads.activities.ChatActivity;
@@ -82,28 +83,26 @@ public class MainActivity extends AppCompatActivity implements AddCardDialog.Add
         });
         binding.cardsView.setAdapter(cardsAdapter);
 
-        updateViews();
+        showCards(PrefUtils.getCards(this));
 
         // Отслеживание Push-уведомлений, нераспознанных чатом.
         ChatController.setFullPushListener(new CustomFullPushListener());
         ChatController.setShortPushListener(new CustomShortPushListener());
     }
 
-    private void updateViews() {
-        updateViews(PrefUtils.getCards(this));
-    }
+    private void showCards(List<Card> cards) {
 
-    private void updateViews(List<Card> cards) {
         boolean hasCards = cards != null && !cards.isEmpty();
-        binding.cardsView.setVisibility(hasCards ? View.VISIBLE : View.GONE);
+
         binding.addCard.setVisibility(!hasCards ? View.VISIBLE : View.GONE);
         binding.addCardHint.setVisibility(!hasCards ? View.VISIBLE : View.GONE);
+
+        binding.cardsView.setVisibility(hasCards ? View.VISIBLE : View.GONE);
         binding.chatActivityButton.setVisibility(hasCards ? View.VISIBLE : View.GONE);
         binding.chatFragmentButton.setVisibility(hasCards ? View.VISIBLE : View.GONE);
+        binding.sendMessageButton.setVisibility(hasCards ? View.VISIBLE : View.GONE);
 
-        if (hasCards) {
-            cardsAdapter.setCards(cards);
-        }
+        cardsAdapter.setCards(hasCards ? cards : new ArrayList<>());
     }
 
     /**
@@ -161,7 +160,23 @@ public class MainActivity extends AppCompatActivity implements AddCardDialog.Add
         } catch (FileNotFoundException ignored) {
         } catch (IOException ignored) {
         }
-        if (ChatController.sendMessage(this, getString(R.string.test_message), imageFile)) {
+
+        Card currentCard = getCurrentCard();
+        String data = "{\"phone\": \"+7-999-999-99-99\",\"email\": \"e@mail.com\"}";
+        boolean messageSent = false;
+        if (currentCard.getUserId() != null) {
+            ChatBuilderHelper.buildChatStyle(this,
+                    currentCard.getAppMarker(),
+                    currentCard.getUserId(),
+                    currentCard.getClientIdSignature(),
+                    currentCard.getUserName(),
+                    data,
+                    getCurrentDesign());
+
+            messageSent = ChatController.sendMessage(this, getString(R.string.test_message), imageFile);
+        }
+
+        if (messageSent) {
             Toast.makeText(this, R.string.send_text_message_success, Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(this, R.string.send_text_message_error, Toast.LENGTH_SHORT).show();
@@ -207,12 +222,14 @@ public class MainActivity extends AppCompatActivity implements AddCardDialog.Add
 
     @Override
     public void onCardAdded(Card newCard) {
-        List<Card> cards = PrefUtils.getCards(this);
+
+        List<Card> cards = cardsAdapter.getCards();
+
         if (cards.contains(newCard)) {
             Toast.makeText(this, R.string.client_id_already_exist, Toast.LENGTH_LONG).show();
         } else {
             cards.add(newCard);
-            updateViews(cards);
+            showCards(cards);
             PrefUtils.storeCards(this, cards);
         }
     }
@@ -224,10 +241,13 @@ public class MainActivity extends AppCompatActivity implements AddCardDialog.Add
 
     @Override
     public void onOkClicked(final int requestCode) {
-        List<Card> cards = PrefUtils.getCards(this);
+
+        List<Card> cards = cardsAdapter.getCards();
+
         if (cards.contains(cardForDelete)) {
             cards.remove(cardForDelete);
-            updateViews(cards);
+
+            showCards(cards);
             PrefUtils.storeCards(this, cards);
 
             ChatController.logoutClient(this, cardForDelete.getUserId());

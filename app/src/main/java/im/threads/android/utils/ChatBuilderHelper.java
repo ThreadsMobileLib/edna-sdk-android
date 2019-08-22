@@ -160,7 +160,8 @@ public class ChatBuilderHelper {
                         R.color.alt_threads_survey_selected_icon_tint,
                         R.color.alt_threads_survey_unselected_icon_tint,
                         R.color.alt_threads_chat_system_message,
-                        R.color.alt_threads_survey_choices_text);
+                        R.color.alt_threads_survey_choices_text,
+                        2000);
 
     }
 }
