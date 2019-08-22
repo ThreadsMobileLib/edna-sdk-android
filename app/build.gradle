@@ -15,7 +15,7 @@ android {
         targetSdkVersion 28
 
         versionCode 86
-        versionName "2.48.7"
+        versionName "2.48.8"
         project.ext.set("archivesBaseName", "Threads-app " + defaultConfig.versionName)
         vectorDrawables.useSupportLibrary = true
         multiDexEnabled = true
