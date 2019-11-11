@@ -1,14 +1,12 @@
 package im.threads.android.utils;
 
-import android.app.Activity;
 import android.content.Context;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
+import im.threads.ChatStyle;
 import im.threads.android.R;
-import im.threads.model.ChatStyle;
 
-public class ChatBuilderHelper {
+public class ChatStyleBuilderHelper {
 
     private static final String LATO_BOLD_FONT_PATH = "fonts/lato-bold.ttf";
     private static final String LATO_LIGHT_FONT_PATH = "fonts/lato-light.ttf";
@@ -39,44 +37,35 @@ public class ChatBuilderHelper {
         }
     }
 
-    public static ChatStyle buildChatStyle(final @NonNull Activity activity, final String appMarker, final @NonNull String clientId, String clientIdSignature, String userName, final String data, ChatDesign design) {
-        ChatStyle.ChatStyleBuilder builder = ChatStyle.ChatStyleBuilder
-                .getBuilder(activity, clientId)
-                .setClientIdSignature(clientIdSignature)
-                .setUserName(userName)
-                .setData(data) // в этом параметре в виде строки можно передать любую дополнительную информацию, напр. "{balance:"1000.00", fio:"Vasya Pupkin"}"
-                .setAppMarker(appMarker)
+    public static ChatStyle getChatStyle(ChatDesign design) {
+        ChatStyle chatStyle = new ChatStyle()
                 .setDefaultFontBold(LATO_BOLD_FONT_PATH)
                 .setDefaultFontLight(LATO_LIGHT_FONT_PATH)
                 .setDefaultFontRegular(LATO_REGULAR_FONT_PATH)
                 .showChatBackButton(true)// показывать кнопку назад
                 .setShowConsultSearching(true) //показывать загрузку при поиске консультанта
                 .setUseExternalCameraApp(true)
-                .setScrollChatToEndIfUserTyping(false) // не прокручивать чат к последнему сообщению, если пользователь начал ввод
-                .setDebugLoggingEnabled(true);
-
+                .setScrollChatToEndIfUserTyping(false);
         switch (design) {
             case GREEN: {
-                configureGreenDesign(builder);
+                configureGreenDesign(chatStyle);
                 break;
             }
             case BLUE: {
-                configureBlueDesign(builder);
+                configureBlueDesign(chatStyle);
                 break;
             }
         }
-
-        return builder.build();
+        return chatStyle;
     }
 
-    private static void configureGreenDesign(ChatStyle.ChatStyleBuilder builder) {
-        builder.setChatSubtitleShowConsultOrgUnit(true);
+    private static void configureGreenDesign(ChatStyle chatStyle) {
+        chatStyle.setChatSubtitleShowConsultOrgUnit(true);
         //Do nothing, using default threads design
     }
 
-    private static void configureBlueDesign(ChatStyle.ChatStyleBuilder builder) {
-
-        builder
+    private static void configureBlueDesign(ChatStyle chatStyle) {
+        chatStyle
                 .setWelcomeScreenStyle(R.drawable.alt_threads_welcome_logo,
                         R.string.alt_threads_welcome_screen_title_text,
                         R.string.alt_threads_welcome_screen_subtitle_text,
@@ -160,8 +149,6 @@ public class ChatBuilderHelper {
                         R.color.alt_threads_survey_selected_icon_tint,
                         R.color.alt_threads_survey_unselected_icon_tint,
                         R.color.alt_threads_chat_system_message,
-                        R.color.alt_threads_survey_choices_text,
-                        2000);
-
+                        R.color.alt_threads_survey_choices_text);
     }
 }

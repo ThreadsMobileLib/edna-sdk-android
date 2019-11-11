@@ -17,13 +17,12 @@ import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import im.threads.android.R;
 
-
 /**
  * Диалог с вопросом и кнопками Да, Нет
  */
 public class YesNoDialog extends DialogFragment {
 
-    public static final String TAG = "MessageDialog";
+    private static final String TAG = "MessageDialog";
 
     public static final String ARG_TEXT = "ARG_TEXT";
     public static final String ARG_REQUEST_CODE = "ARG_REQUEST_CODE";
@@ -38,60 +37,47 @@ public class YesNoDialog extends DialogFragment {
             window.requestFeature(Window.FEATURE_NO_TITLE);
             window.setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         }
-
         View view = inflater.inflate(R.layout.dialog_yes_no, container, false);
-
         ((TextView) view.findViewById(R.id.text)).setText(
                 Html.fromHtml(getArguments().getString(ARG_TEXT, ""))
         );
-
         ((Button) view.findViewById(R.id.yesButton)).setText(
                 Html.fromHtml(getArguments().getString(ARG_REQUEST_YES_CODE, ""))
         );
-
         ((Button) view.findViewById(R.id.noButton)).setText(
                 Html.fromHtml(getArguments().getString(ARG_REQUEST_NO_CODE, ""))
         );
-
         setCancelable(false);
-        view.findViewById(R.id.yesButton).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(final View v) {
-                Fragment targetFragment = getTargetFragment();
-                if (targetFragment != null) {
-                    Fragment fragment = getTargetFragment();
-                    if (fragment instanceof YesNoDialogActionListener) {
-                        ((YesNoDialogActionListener) fragment).onOkClicked(getArguments().getInt(ARG_REQUEST_CODE));
-                    }
-                } else {
-                    Activity activity = getActivity();
-                    if (activity instanceof YesNoDialogActionListener) {
-                        ((YesNoDialogActionListener) activity).onOkClicked(getArguments().getInt(ARG_REQUEST_CODE));
-                    }
+        view.findViewById(R.id.yesButton).setOnClickListener(v -> {
+            Fragment targetFragment = getTargetFragment();
+            if (targetFragment != null) {
+                Fragment fragment = getTargetFragment();
+                if (fragment instanceof YesNoDialogActionListener) {
+                    ((YesNoDialogActionListener) fragment).onOkClicked(getArguments().getInt(ARG_REQUEST_CODE));
                 }
-                dismiss();
-            }
-        });
-
-        view.findViewById(R.id.noButton).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(final View v) {
-                Fragment targetFragment = getTargetFragment();
-                if (targetFragment != null) {
-                    Fragment fragment = getTargetFragment();
-                    if (fragment instanceof YesNoDialogActionListener) {
-                        ((YesNoDialogActionListener) fragment).onCancelClicked(getArguments().getInt(ARG_REQUEST_CODE));
-                    }
-                } else {
-                    Activity activity = getActivity();
-                    if (activity instanceof YesNoDialogActionListener) {
-                        ((YesNoDialogActionListener) activity).onCancelClicked(getArguments().getInt(ARG_REQUEST_CODE));
-                    }
+            } else {
+                Activity activity = getActivity();
+                if (activity instanceof YesNoDialogActionListener) {
+                    ((YesNoDialogActionListener) activity).onOkClicked(getArguments().getInt(ARG_REQUEST_CODE));
                 }
-                dismiss();
             }
+            dismiss();
         });
-
+        view.findViewById(R.id.noButton).setOnClickListener(v -> {
+            Fragment targetFragment = getTargetFragment();
+            if (targetFragment != null) {
+                Fragment fragment = getTargetFragment();
+                if (fragment instanceof YesNoDialogActionListener) {
+                    ((YesNoDialogActionListener) fragment).onCancelClicked(getArguments().getInt(ARG_REQUEST_CODE));
+                }
+            } else {
+                Activity activity = getActivity();
+                if (activity instanceof YesNoDialogActionListener) {
+                    ((YesNoDialogActionListener) activity).onCancelClicked(getArguments().getInt(ARG_REQUEST_CODE));
+                }
+            }
+            dismiss();
+        });
         return view;
     }
 
@@ -102,12 +88,6 @@ public class YesNoDialog extends DialogFragment {
 
     public static void open(AppCompatActivity activity, String text, String yesButton, String noButton, int requestCode) {
         newInstance(text, yesButton, noButton, requestCode).show(activity.getSupportFragmentManager(), TAG);
-    }
-
-    public static void open(Fragment fragment, String text, String yesButton, String noButton, int requestCode) {
-        YesNoDialog dialog = newInstance(text, yesButton, noButton, requestCode);
-        dialog.setTargetFragment(fragment, requestCode);
-        dialog.show(fragment.getActivity().getSupportFragmentManager(), TAG);
     }
 
     protected static YesNoDialog newInstance(String text, String yesButton, String noButton, int requestCode) {

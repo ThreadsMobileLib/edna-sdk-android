@@ -29,19 +29,13 @@ import io.reactivex.schedulers.Schedulers;
  */
 public class AddCardDialog extends DialogFragment {
 
-    public static final String TAG = "AddCardDialog";
+    private static final String TAG = "AddCardDialog";
 
     DialogAddCardBinding binding;
     private Disposable signatureDisposable;
 
     public static void open(AppCompatActivity activity) {
         new AddCardDialog().show(activity.getSupportFragmentManager(), TAG);
-    }
-
-    public static void open(Fragment fragment, int requestCode) {
-        AddCardDialog dialog = new AddCardDialog();
-        dialog.setTargetFragment(fragment, requestCode);
-        dialog.show(fragment.getActivity().getSupportFragmentManager(), TAG);
     }
 
     @Override
@@ -52,20 +46,16 @@ public class AddCardDialog extends DialogFragment {
             window.setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
             window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         }
-
         binding = DialogAddCardBinding.inflate(inflater);
-
         setCancelable(false);
         updateAddButtonEnabled();
         binding.clientId.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(final CharSequence s, final int start, final int count, final int after) {
-
             }
 
             @Override
             public void onTextChanged(final CharSequence s, final int start, final int before, final int count) {
-
             }
 
             @Override
@@ -87,7 +77,6 @@ public class AddCardDialog extends DialogFragment {
                     if (signatureDisposable != null && !signatureDisposable.isDisposed()) {
                         signatureDisposable.dispose();
                     }
-
                     signatureDisposable = AuthProvider.getSignature(clientId)
                             .subscribeOn(Schedulers.io())
                             .observeOn(AndroidSchedulers.mainThread())
@@ -118,20 +107,12 @@ public class AddCardDialog extends DialogFragment {
                     addButtonClicked(newCard);
                     dismiss();
                 }
-
-            }
-
-
-        });
-
-        binding.cancelButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(final View v) {
-                cancelButtonClicked();
-                dismiss();
             }
         });
-
+        binding.cancelButton.setOnClickListener(v -> {
+            cancelButtonClicked();
+            dismiss();
+        });
         return binding.getRoot();
     }
 

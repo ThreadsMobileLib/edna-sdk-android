@@ -95,7 +95,6 @@
     <color name="alt_threads_outgoing_message_image_received_icon">@color/lighter_blue</color>
     <color name="alt_threads_outgoing_message_image_not_send_icon">@color/threads_red_f44336</color>
 
-
     <!-- Экран истории файлов -->
     <color name="alt_threads_files_medias_screen_background">@color/threads_blue_grey_607d8b</color>
     <color name="alt_threads_files_list">@color/threads_blue</color>
