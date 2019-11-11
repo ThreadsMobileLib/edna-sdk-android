@@ -6,7 +6,7 @@ import retrofit2.http.Query;
 
 public interface IServerAPI {
 
-    public static String API = "/api";
+    String API = "/api";
 
     @GET(API + "/auth/getSignature")
     Observable<SignatureResponse> getSignature(

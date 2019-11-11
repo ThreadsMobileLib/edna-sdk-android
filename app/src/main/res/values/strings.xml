@@ -6,7 +6,6 @@
     <string name="title_activity_bottom_navigation">BottomNavigationActivity</string>
     <string name="title_home">Главная</string>
     <string name="title_chat">Чат</string>
-    <string name="title_notifications">Notifications</string>
     <string name="unread_messages_count">Количество непрочитанных сообщений:&#032;</string>
 
     <string name="lib_version">lib v.%s</string>

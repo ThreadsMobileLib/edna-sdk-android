@@ -5,29 +5,18 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.StringRes;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.TextUtils;
-import android.view.MenuItem;
-import android.widget.Toast;
 
-import com.mfms.android.push_lite.PushController;
-
-import java.util.List;
-
+import im.threads.ThreadsLib;
+import im.threads.UserInfoBuilder;
 import im.threads.android.R;
-import im.threads.android.data.Card;
-import im.threads.android.utils.ChatBuilderHelper;
-import im.threads.android.utils.PrefUtils;
-import im.threads.controllers.ChatController;
-import im.threads.fragments.ChatFragment;
-import im.threads.utils.PermissionChecker;
+import im.threads.android.utils.ChatStyleBuilderHelper;
+import im.threads.view.ChatFragment;
 
 /**
  * Пример активности с нижней навигацией,
@@ -53,18 +42,15 @@ public class BottomNavigationActivity extends AppCompatActivity {
     public static final String ARG_NEEDS_SHOW_CHAT = "needsShowChat";
     private static final String ARG_CHAT_DESIGN = "chatDesign";
 
-    private static final int PERM_REQUEST_CODE_CLICK = 1;
-
     private String clientId;
     private String clientIdSignature;
     private String userName;
     private String appMarker;
-    private ChatBuilderHelper.ChatDesign chatDesign;
+    private ChatStyleBuilderHelper.ChatDesign chatDesign;
 
     private BottomNavigationView bottomNavigationView;
     private TabItem selectedTab;
 
-    private boolean showChatAfterGrantPermission;
     private BottomNavigationHomeFragment homeFragment;
     private ChatFragment chatFragment;
 
@@ -87,9 +73,12 @@ public class BottomNavigationActivity extends AppCompatActivity {
      * @return intent для открытия BottomNavigationActivity
      * с передачей clientId и userName.
      */
-    public static Intent createIntent(Activity activity, String appMarker, String clientId, String clientIdSignature,
-                                      String userName, ChatBuilderHelper.ChatDesign chatDesign) {
-
+    public static Intent createIntent(Activity activity,
+                                      String appMarker,
+                                      String clientId,
+                                      String clientIdSignature,
+                                      String userName,
+                                      ChatStyleBuilderHelper.ChatDesign chatDesign) {
         Intent intent = new Intent(activity, BottomNavigationActivity.class);
         intent.putExtra(ARG_APP_MARKER, appMarker);
         intent.putExtra(ARG_CLIENT_ID, clientId);
@@ -99,53 +88,50 @@ public class BottomNavigationActivity extends AppCompatActivity {
         return intent;
     }
 
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+    public static PendingIntent createPendingIntent(Context context,
+                                                    String clientId,
+                                                    String userName,
+                                                    String appMarker,
+                                                    String clientIdSignature,
+                                                    ChatStyleBuilderHelper.ChatDesign chatDesign) {
+        Intent i = new Intent(context, BottomNavigationActivity.class);
+        i.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        i.putExtra(ARG_NEEDS_SHOW_CHAT, true);
+        i.putExtra(ARG_CLIENT_ID, clientId);
+        i.putExtra(ARG_USER_NAME, userName);
+        i.putExtra(ARG_APP_MARKER, appMarker);
+        i.putExtra(ARG_CLIENT_ID_SIGNATURE, clientIdSignature);
+        i.putExtra(ARG_CHAT_DESIGN, chatDesign);
+        return PendingIntent.getActivity(context, 0, i, PendingIntent.FLAG_CANCEL_CURRENT);
+    }
 
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            switch (item.getItemId()) {
-                case R.id.navigation_home:
-                    selectTab(TabItem.TAB_HOME);
-                    return true;
-                case R.id.navigation_chat:
-
-                    if (!PermissionChecker.checkPermissions(BottomNavigationActivity.this)) {
-                        PermissionChecker.requestPermissionsAndInit(PERM_REQUEST_CODE_CLICK, BottomNavigationActivity.this);
-                        return false;
-
-                    } else {
-                        selectTab(TabItem.TAB_CHAT);
-                        return true;
-                    }
-            }
-            return false;
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener = item -> {
+        switch (item.getItemId()) {
+            case R.id.navigation_home:
+                selectTab(TabItem.TAB_HOME);
+                return true;
+            case R.id.navigation_chat:
+                selectTab(TabItem.TAB_CHAT);
+                return true;
         }
+        return false;
     };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bottom_navigation);
-
-        // Перед работой с чатом нужно инициализировать библиотеку пушей.
-        PushController.getInstance(this).init();
-
-        // При использовании чата в виде фрагмента нужно настроить логику открытия приложения
-        // из пуш уведомления, так как по умолчанию открывается ChatActivity.
-        ChatController.setPendingIntentCreator(chatWithFragmentPendingIntentCreator());
-
         Intent intent = getIntent();
         clientId = intent.getStringExtra(ARG_CLIENT_ID);
         userName = intent.getStringExtra(ARG_USER_NAME);
         appMarker = intent.getStringExtra(ARG_APP_MARKER);
         clientIdSignature = intent.getStringExtra(ARG_CLIENT_ID_SIGNATURE);
-        chatDesign = (ChatBuilderHelper.ChatDesign) intent.getSerializableExtra(ARG_CHAT_DESIGN);
+        chatDesign = (ChatStyleBuilderHelper.ChatDesign) intent.getSerializableExtra(ARG_CHAT_DESIGN);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigation);
+        bottomNavigationView = findViewById(R.id.navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         // При открытии экрана из пуш уведомления нужно сразу открыть чат,
@@ -172,7 +158,6 @@ public class BottomNavigationActivity extends AppCompatActivity {
         super.onNewIntent(intent);
         if (intent.getBooleanExtra(ARG_NEEDS_SHOW_CHAT, false)) {
             bottomNavigationView.setSelectedItemId(TabItem.TAB_CHAT.getMenuId());
-            ChatController.reloadHistory(this);//Reload history if was opened from push
         }
     }
 
@@ -180,20 +165,15 @@ public class BottomNavigationActivity extends AppCompatActivity {
         if (newTabItem == null) {
             return;
         }
-
         showActionBar(newTabItem);
-
         final FragmentManager fm = getSupportFragmentManager();
         final Fragment currentFragment = fm.findFragmentById(R.id.content);
         if (currentFragment != null && selectedTab == newTabItem) {
             // не показываем повторно текущую вкладку
             return;
         }
-
         selectedTab = newTabItem;
-
         Fragment fragment = null;
-
         switch (newTabItem) {
             case TAB_HOME:
                 if (homeFragment == null) {
@@ -206,15 +186,17 @@ public class BottomNavigationActivity extends AppCompatActivity {
                 if (chatFragment == null) {
                     chatFragment = ChatFragment.newInstance();
                 }
-                // configuring chat
-                String data = "{\"phone\": \"+7-999-999-99-99\",\"email\": \"e@mail.com\"}";
-                ChatBuilderHelper.buildChatStyle(this, appMarker, clientId,
-                        clientIdSignature, userName, data, chatDesign);
-                // creating chat fragment
+                ThreadsLib.getInstance().initUser(
+                        new UserInfoBuilder(clientId)
+                                .setClientIdSignature(clientIdSignature)
+                                .setUserName(userName)
+                                .setData("{\"phone\": \"+7-999-999-99-99\",\"email\": \"e@mail.com\"}")
+                                .setAppMarker(appMarker)
+                );
+                ThreadsLib.getInstance().applyChatStyle(ChatStyleBuilderHelper.getChatStyle(chatDesign));
                 fragment = chatFragment;
                 break;
         }
-
         // добавляем фрагмент в контейнер
         if (fragment != null) {
             fm.beginTransaction()
@@ -263,78 +245,6 @@ public class BottomNavigationActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == PERM_REQUEST_CODE_CLICK) {
-            if (PermissionChecker.checkGrantResult(grantResults)) {
-                showChatAfterGrantPermission = true;
-            } else {
-                Toast.makeText(this, "Without that permissions, application may not work properly", Toast.LENGTH_SHORT).show();
-            }
-        }
-    }
-
-    public ChatController.PendingIntentCreator chatWithFragmentPendingIntentCreator() {
-        return (context, appMarker) -> {
-
-            if (!TextUtils.isEmpty(appMarker)) {
-                //This is an example of creating pending intent for multi-chat app
-
-                List<Card> clientCards = PrefUtils.getCards(context);
-                Card pushClientCard = null;
-
-                for (Card clientCard : clientCards) {
-                    if (appMarker.equalsIgnoreCase(clientCard.getAppMarker())) {
-                        pushClientCard = clientCard;
-                    }
-                }
-
-                if (pushClientCard != null) {
-
-                    ChatBuilderHelper.ChatDesign chatDesign = ChatBuilderHelper.ChatDesign.BLUE;
-                    if (appMarker.endsWith("CRG")) {
-                        chatDesign = ChatBuilderHelper.ChatDesign.GREEN;
-                    }
-
-                    return createPendingIntent(context, true,
-                            pushClientCard.getUserId(), pushClientCard.getUserName(),
-                            pushClientCard.getAppMarker(), pushClientCard.getClientIdSignature(), chatDesign);
-                }
-            }
-
-            //This is an example of creating pending intent for single-chat app
-            return createPendingIntent(context, true,
-                    clientId, userName,
-                    BottomNavigationActivity.this.appMarker, clientIdSignature, chatDesign);
-
-        };
-    }
-
-    public static PendingIntent createPendingIntent(Context context, boolean needsShowChat, String clientId,
-                                                    String userName, String appMarker, String clientIdSignature,
-                                                    ChatBuilderHelper.ChatDesign chatDesign) {
-
-        Intent i = new Intent(context, BottomNavigationActivity.class);
-        i.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        i.putExtra(ARG_NEEDS_SHOW_CHAT, true);
-        i.putExtra(ARG_CLIENT_ID, clientId);
-        i.putExtra(ARG_USER_NAME, userName);
-        i.putExtra(ARG_APP_MARKER, appMarker);
-        i.putExtra(ARG_CLIENT_ID_SIGNATURE, clientIdSignature);
-        i.putExtra(ARG_CHAT_DESIGN, chatDesign);
-        return PendingIntent.getActivity(context, 0, i, PendingIntent.FLAG_CANCEL_CURRENT);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        if (showChatAfterGrantPermission) {
-            bottomNavigationView.setSelectedItemId(TabItem.TAB_CHAT.getMenuId());
-            showChatAfterGrantPermission = false;
-        }
-    }
-
-    @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
         super.onSaveInstanceState(savedInstanceState);
         savedInstanceState.putSerializable("selectedTab", selectedTab);
@@ -343,9 +253,5 @@ public class BottomNavigationActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-    }
-
-    private void showError(@StringRes int errorMessageResId) {
-        Toast.makeText(this, errorMessageResId, Toast.LENGTH_SHORT).show();
     }
 }

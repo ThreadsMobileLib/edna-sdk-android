@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="im.threads.android">
+          xmlns:tools="http://schemas.android.com/tools"
+          package="im.threads.android">
 
     <permission
         android:name="${applicationId}.permission.pushserver.RECEIVE"
-        android:protectionLevel="signature" />
+        android:protectionLevel="signature"/>
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="${applicationId}.permission.pushserver.RECEIVE" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="${applicationId}.permission.pushserver.RECEIVE"/>
 
     <application
         android:name=".core.ThreadsDemoApplication"
@@ -23,29 +23,33 @@
             android:name=".ui.MainActivity"
             android:windowSoftInputMode="stateAlwaysHidden">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
 
         <activity
             android:name=".ui.BottomNavigationActivity"
             android:label="@string/title_activity_bottom_navigation"
-            android:theme="@style/BottomNavigationTheme" />
+            android:theme="@style/BottomNavigationTheme"/>
 
+        <!-- Default implementation can be used instead (see im.threads.push.ThreadsPushBroadcastReceiver) -->
         <receiver
-            android:name="im.threads.broadcastReceivers.MainPBReceiver"
+            android:name="im.threads.android.broadcastReceivers.CustomPushBroadcastReceiver"
             android:exported="false"
             android:permission="${applicationId}.permission.pushserver.RECEIVE">
             <intent-filter>
-                <action android:name="com.pushserver.android.NEW_PUSH_MESSAGE_EVENT" />
-                <action android:name="com.pushserver.android.RECEIVER_CHANGED_EVENT" />
-                <action android:name="com.pushserver.android.DEVICE_ADDRESS_CHANGED_EVENT" />
-                <action android:name="com.pushserver.android.HAS_SECURED_MESSAGE" />
-                <action android:name="com.pushserver.android.ERROR_EVENT" />
+                <action android:name="com.pushserver.android.NEW_PUSH_MESSAGE_EVENT"/>
+                <action android:name="com.pushserver.android.RECEIVER_CHANGED_EVENT"/>
+                <action android:name="com.pushserver.android.DEVICE_ADDRESS_CHANGED_EVENT"/>
+                <action android:name="com.pushserver.android.HAS_SECURED_MESSAGE"/>
+                <action android:name="com.pushserver.android.ERROR_EVENT"/>
             </intent-filter>
         </receiver>
+
+        <service
+            android:name="im.threads.android.services.CustomPushServerIntentService"
+            android:exported="false"/>
 
         <meta-data
             android:name="com.pushserver.android.providerUid"
@@ -55,9 +59,10 @@
             android:name="im.threads.getServerUrl"
             android:value="YOUR_DATASTORE_URL"/>
 
+        <!-- Default implementation can be used instead (see im.threads.push.ThreadsPushServerIntentService) -->
         <meta-data
             android:name="com.pushserver.android.service"
-            android:value="im.threads.services.IncomingMessagesIntentService" />
+            android:value="im.threads.android.services.CustomPushServerIntentService"/>
 
         <meta-data
             android:name="com.pushserver.android.logs"
