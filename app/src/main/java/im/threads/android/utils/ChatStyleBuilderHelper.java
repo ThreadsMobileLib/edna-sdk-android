@@ -45,6 +45,7 @@ public class ChatStyleBuilderHelper {
                 .showChatBackButton(true)// показывать кнопку назад
                 .setShowConsultSearching(true) //показывать загрузку при поиске консультанта
                 .setUseExternalCameraApp(true)
+                .setSelfieEnabled(false)
                 .setScrollChatToEndIfUserTyping(false);
         switch (design) {
             case GREEN: {
