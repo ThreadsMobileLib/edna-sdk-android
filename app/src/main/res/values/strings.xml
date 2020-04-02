@@ -8,13 +8,14 @@
     <string name="title_chat">Чат</string>
     <string name="unread_messages_count">Количество непрочитанных сообщений:&#032;</string>
 
-    <string name="lib_version">lib v.%s</string>
+    <string name="lib_version">lib v.%s %s</string>
     <string name="client_id_hint">Client ID *</string>
     <string name="client_name_hint">Client name</string>
     <string name="app_marker_hint">App Marker</string>
     <string name="client_id_signature_hint">Signature (if empty - will load from server)</string>
     <string name="no_cards">Добавьте клиента</string>
     <string name="client_id_already_exist">Такой client_id уже существует</string>
+    <string name="error_empty_user">Пустой пользователь</string>
     <string name="error_empty_userid">Пустой id пользователя</string>
 
     <string name="card_delete_text">Выдействительно хотите удалить клиента?</string>

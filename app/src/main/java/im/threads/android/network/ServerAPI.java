@@ -15,11 +15,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 class ServerAPI {
 
-    private static String TAG = ServerAPI.class.getSimpleName();
+    private static final String TAG = ServerAPI.class.getSimpleName();
     private static IServerAPI serverAPI;
 
     static IServerAPI getAPI() {
-        String serverBaseUrl = ThreadsDemoApplication.getAppContext().getString(R.string.serverBaseUrl);
+        String serverBaseUrl = ThreadsDemoApplication.getAppContext().getString(R.string.server_base_url);
         if (TextUtils.isEmpty(serverBaseUrl)) {
             Log.w(TAG, "Server base url is empty");
             return null;

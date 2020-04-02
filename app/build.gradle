@@ -14,20 +14,11 @@ android {
         minSdkVersion 17
         targetSdkVersion 28
 
-        versionCode 88
-        versionName "3.1.0"
+        versionCode 89
+        versionName "3.2.0"
         project.ext.set("archivesBaseName", "Threads-app " + defaultConfig.versionName)
         vectorDrawables.useSupportLibrary = true
         multiDexEnabled = true
-    }
-
-    signingConfigs {
-        debug {
-            keyAlias 'androiddebugkey'
-            keyPassword 'android'
-            storePassword 'android'
-            storeFile file('debug.keystore')
-        }
     }
 
     buildTypes {
@@ -43,7 +34,6 @@ android {
             debuggable = true
         }
     }
-
     lintOptions {
         abortOnError false
     }
@@ -62,10 +52,10 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':threads')
 
-    implementation 'com.google.firebase:firebase-messaging:17.3.1'
     implementation 'com.android.support:multidex:1.0.3'
 
     implementation "com.android.support:appcompat-v7:$supportVersion"
+    implementation "com.android.support:preference-v7:$supportVersion"
     implementation "com.android.support:support-v4:$supportVersion"
     implementation "com.android.support:design:$supportVersion"
     implementation "com.android.support:support-vector-drawable:$supportVersion"
@@ -83,11 +73,9 @@ dependencies {
 
     implementation "com.jakewharton.rxbinding2:rxbinding:2.2.0"
 
-    implementation 'com.google.code.gson:gson:2.8.2'
+    implementation 'com.google.code.gson:gson:2.8.6'
 
-    implementation 'com.azoft.carousellayoutmanager:carousel:1.2.1'
-
-    debugImplementation 'com.mfms.android:push-lite-debug:2.6.21'
-    releaseImplementation 'com.mfms.android:push-lite-release:2.6.21'
+    debugImplementation 'com.mfms.android:push-lite-debug:2.8.7'
+    releaseImplementation 'com.mfms.android:push-lite-release:2.8.7'
 }
 apply plugin: 'com.google.gms.google-services'

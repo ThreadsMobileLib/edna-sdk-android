@@ -3,13 +3,6 @@
           xmlns:tools="http://schemas.android.com/tools"
           package="im.threads.android">
 
-    <permission
-        android:name="${applicationId}.permission.pushserver.RECEIVE"
-        android:protectionLevel="signature"/>
-
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="${applicationId}.permission.pushserver.RECEIVE"/>
-
     <application
         android:name=".core.ThreadsDemoApplication"
         android:allowBackup="true"
@@ -34,23 +27,6 @@
             android:theme="@style/BottomNavigationTheme"/>
 
         <!-- Default implementation can be used instead (see im.threads.push.ThreadsPushBroadcastReceiver) -->
-        <receiver
-            android:name="im.threads.android.broadcastReceivers.CustomPushBroadcastReceiver"
-            android:exported="false"
-            android:permission="${applicationId}.permission.pushserver.RECEIVE">
-            <intent-filter>
-                <action android:name="com.pushserver.android.NEW_PUSH_MESSAGE_EVENT"/>
-                <action android:name="com.pushserver.android.RECEIVER_CHANGED_EVENT"/>
-                <action android:name="com.pushserver.android.DEVICE_ADDRESS_CHANGED_EVENT"/>
-                <action android:name="com.pushserver.android.HAS_SECURED_MESSAGE"/>
-                <action android:name="com.pushserver.android.ERROR_EVENT"/>
-            </intent-filter>
-        </receiver>
-
-        <service
-            android:name="im.threads.android.services.CustomPushServerIntentService"
-            android:exported="false"/>
-
         <meta-data
             android:name="com.pushserver.android.providerUid"
             android:value="YOUR_PROVIDER_ID"/>
@@ -59,15 +35,54 @@
             android:name="im.threads.getServerUrl"
             android:value="YOUR_DATASTORE_URL"/>
 
-        <!-- Default implementation can be used instead (see im.threads.push.ThreadsPushServerIntentService) -->
+        <meta-data
+            android:name="im.threads.threadsGateUrl"
+            android:value="YOUR_THREADS_GATE_URL" />
+
+        <meta-data
+            android:name="im.threads.threadsGateProviderUid"
+            android:value="YOUR_THREADS_GATE_PROVIDER_UID" />
+
+        <meta-data
+            android:name="im.threads.threadsTransportType"
+            android:value="@string/transport_type"
+            tools:replace="android:value" />
+
         <meta-data
             android:name="com.pushserver.android.service"
-            android:value="im.threads.android.services.CustomPushServerIntentService"/>
+            android:value="im.threads.android.services.CustomPushServerIntentService"
+            tools:replace="android:value" />
 
         <meta-data
             android:name="com.pushserver.android.logs"
             android:value="false" />
 
+        <!-- Default implementation can be used instead (see im.threads.push.ThreadsPushServerIntentService) -->
+        <receiver
+            android:name="im.threads.android.broadcastReceivers.CustomPushBroadcastReceiver"
+            android:exported="false"
+            android:permission="${applicationId}.permission.pushserver.RECEIVE">
+            <intent-filter>
+                <action android:name="com.pushserver.android.NEW_PUSH_MESSAGE_EVENT" />
+                <action android:name="com.pushserver.android.RECEIVER_CHANGED_EVENT" />
+                <action android:name="com.pushserver.android.DEVICE_ADDRESS_CHANGED_EVENT" />
+                <action android:name="com.pushserver.android.HAS_SECURED_MESSAGE" />
+                <action android:name="com.pushserver.android.ERROR_EVENT" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name="im.threads.android.services.CustomPushServerIntentService"
+            android:exported="false" />
+
     </application>
+
+    <permission
+        android:name="${applicationId}.permission.pushserver.RECEIVE"
+        android:protectionLevel="signature" />
+    <uses-permission android:name="${applicationId}.permission.pushserver.RECEIVE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

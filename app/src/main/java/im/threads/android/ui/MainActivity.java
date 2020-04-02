@@ -5,17 +5,16 @@ import android.databinding.DataBindingUtil;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.azoft.carousellayoutmanager.CarouselLayoutManager;
-import com.azoft.carousellayoutmanager.CarouselZoomPostLayoutListener;
-import com.azoft.carousellayoutmanager.CenterScrollListener;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -29,6 +28,8 @@ import im.threads.UserInfoBuilder;
 import im.threads.android.R;
 import im.threads.android.data.Card;
 import im.threads.android.databinding.ActivityMainBinding;
+import im.threads.android.utils.CardsLinearLayoutManager;
+import im.threads.android.utils.CardsSnapHelper;
 import im.threads.android.utils.ChatStyleBuilderHelper;
 import im.threads.android.utils.PrefUtils;
 import im.threads.view.ChatActivity;
@@ -43,6 +44,7 @@ public class MainActivity extends AppCompatActivity implements AddCardDialog.Add
     private static final int YES_NO_DIALOG_REQUEST_CODE = 323;
 
     private CardsAdapter cardsAdapter;
+    private CardsSnapHelper cardsSnapHelper;
     private Card cardForDelete;
 
     ActivityMainBinding binding;
@@ -53,12 +55,11 @@ public class MainActivity extends AppCompatActivity implements AddCardDialog.Add
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         binding.setViewModel(this);
         TextView versionView = findViewById(R.id.version_name);
-        versionView.setText(getString(R.string.lib_version, ThreadsLib.getLibVersion()));
-        final CarouselLayoutManager layoutManager = new CarouselLayoutManager(CarouselLayoutManager.HORIZONTAL);
-        layoutManager.setPostLayoutListener(new CarouselZoomPostLayoutListener());
-        binding.cardsView.setLayoutManager(layoutManager);
+        versionView.setText(getString(R.string.lib_version, ThreadsLib.getLibVersion(), getString(R.string.transport_type)));
+        cardsSnapHelper = new CardsSnapHelper();
+        cardsSnapHelper.attachToRecyclerView(binding.cardsView);
+        binding.cardsView.setLayoutManager(new CardsLinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         binding.cardsView.setHasFixedSize(true);
-        binding.cardsView.addOnScrollListener(new CenterScrollListener());
         cardsAdapter = new CardsAdapter();
         cardsAdapter.setRemoveCardListener(card -> {
             cardForDelete = card;
@@ -91,19 +92,23 @@ public class MainActivity extends AppCompatActivity implements AddCardDialog.Add
      */
     public void navigateToChatActivity() {
         Card currentCard = getCurrentCard();
-        if (currentCard.getUserId() != null) {
-            ThreadsLib.getInstance().initUser(
-                    new UserInfoBuilder(currentCard.getUserId())
-                            .setClientIdSignature(currentCard.getClientIdSignature())
-                            .setUserName(currentCard.getUserName())
-                            .setData("{\"phone\": \"+7-999-999-99-99\",\"email\": \"e@mail.com\"}")
-                            .setAppMarker(currentCard.getAppMarker())
-            );
-            ThreadsLib.getInstance().applyChatStyle(ChatStyleBuilderHelper.getChatStyle(getCurrentDesign()));
-            startActivity(new Intent(this, ChatActivity.class));
-        } else {
-            displayError(R.string.error_empty_userid);
+        if (currentCard == null) {
+            displayError(R.string.error_empty_user);
+            return;
         }
+        if (currentCard.getUserId() == null) {
+            displayError(R.string.error_empty_userid);
+            return;
+        }
+        ThreadsLib.getInstance().initUser(
+                new UserInfoBuilder(currentCard.getUserId())
+                        .setClientIdSignature(currentCard.getClientIdSignature())
+                        .setUserName(currentCard.getUserName())
+                        .setData("{\"phone\": \"+7-999-999-99-99\",\"email\": \"e@mail.com\"}")
+                        .setAppMarker(currentCard.getAppMarker())
+        );
+        ThreadsLib.getInstance().applyChatStyle(ChatStyleBuilderHelper.getChatStyle(getCurrentDesign()));
+        startActivity(new Intent(this, ChatActivity.class));
     }
 
     /**
@@ -111,13 +116,17 @@ public class MainActivity extends AppCompatActivity implements AddCardDialog.Add
      */
     public void navigateToBottomNavigationActivity() {
         Card currentCard = getCurrentCard();
-        if (currentCard.getUserId() != null) {
-            startActivity(BottomNavigationActivity.createIntent(this, currentCard.getAppMarker(),
-                    currentCard.getUserId(), currentCard.getClientIdSignature(),
-                    currentCard.getUserName(), getCurrentDesign()));
-        } else {
-            displayError(R.string.error_empty_userid);
+        if (currentCard == null) {
+            displayError(R.string.error_empty_user);
+            return;
         }
+        if (currentCard.getUserId() == null) {
+            displayError(R.string.error_empty_userid);
+            return;
+        }
+        startActivity(BottomNavigationActivity.createIntent(this, currentCard.getAppMarker(),
+                currentCard.getUserId(), currentCard.getClientIdSignature(),
+                currentCard.getUserName(), getCurrentDesign()));
     }
 
     public void showAddCardDialog() {
@@ -137,16 +146,21 @@ public class MainActivity extends AppCompatActivity implements AddCardDialog.Add
         } catch (IOException ignored) {
         }
         Card currentCard = getCurrentCard();
-        boolean messageSent = false;
-        if (currentCard.getUserId() != null) {
-            UserInfoBuilder userInfoBuilder = new UserInfoBuilder(currentCard.getUserId())
-                    .setClientIdSignature(currentCard.getClientIdSignature())
-                    .setUserName(currentCard.getUserName())
-                    .setData("{\"phone\": \"+7-999-999-99-99\",\"email\": \"e@mail.com\"}")
-                    .setAppMarker(currentCard.getAppMarker());
-            ThreadsLib.getInstance().initUser(userInfoBuilder);
-            messageSent = ThreadsLib.getInstance().sendMessage(getString(R.string.test_message), imageFile);
+        if (currentCard == null) {
+            displayError(R.string.error_empty_user);
+            return;
         }
+        if (currentCard.getUserId() == null) {
+            displayError(R.string.error_empty_userid);
+            return;
+        }
+        UserInfoBuilder userInfoBuilder = new UserInfoBuilder(currentCard.getUserId())
+                .setClientIdSignature(currentCard.getClientIdSignature())
+                .setUserName(currentCard.getUserName())
+                .setData("{\"phone\": \"+7-999-999-99-99\",\"email\": \"e@mail.com\"}")
+                .setAppMarker(currentCard.getAppMarker());
+        ThreadsLib.getInstance().initUser(userInfoBuilder);
+        boolean messageSent = ThreadsLib.getInstance().sendMessage(getString(R.string.test_message), imageFile);
         if (messageSent) {
             Toast.makeText(this, R.string.send_text_message_success, Toast.LENGTH_SHORT).show();
         } else {
@@ -158,9 +172,16 @@ public class MainActivity extends AppCompatActivity implements AddCardDialog.Add
         return ChatStyleBuilderHelper.ChatDesign.enumOf(this, (String) binding.designSpinner.getSelectedItem());
     }
 
+    @Nullable
     private Card getCurrentCard() {
-        final CarouselLayoutManager layoutManager = (CarouselLayoutManager) binding.cardsView.getLayoutManager();
-        return cardsAdapter.getCard(layoutManager.getCenterItemPosition());
+        RecyclerView.LayoutManager layoutManager = binding.cardsView.getLayoutManager();
+        if (layoutManager != null) {
+            View centerView = cardsSnapHelper.findSnapView(layoutManager);
+            if (centerView != null) {
+                return cardsAdapter.getCard(layoutManager.getPosition(centerView));
+            }
+        }
+        return null;
     }
 
     @Override
@@ -199,12 +220,9 @@ public class MainActivity extends AppCompatActivity implements AddCardDialog.Add
 
     @Override
     public void onOkClicked(final int requestCode) {
-
         List<Card> cards = cardsAdapter.getCards();
-
         if (cards.contains(cardForDelete)) {
             cards.remove(cardForDelete);
-
             showCards(cards);
             PrefUtils.storeCards(this, cards);
             ThreadsLib.getInstance().logoutClient(cardForDelete.getUserId());
