@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="serverBaseUrl" translatable="false">SERVER_BASE_URL</string>
+    <string name="server_base_url" translatable="false">YOUR_SERVER_BASE_URL</string>
+    <string name="transport_type" translatable="false">YOUR_TRANSPORT_TYPE</string>
 </resources>

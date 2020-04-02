@@ -8,12 +8,14 @@
 
     <LinearLayout
         android:orientation="vertical"
-        android:layout_width="240dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="16dp"
         android:paddingRight="8dp"
         android:paddingTop="8dp"
         android:paddingBottom="16dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
         android:background="@drawable/rounded_green_background">
 
         <ImageView

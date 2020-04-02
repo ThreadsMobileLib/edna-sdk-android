@@ -14,20 +14,11 @@ android {
         minSdkVersion 17
         targetSdkVersion 28
 
-        versionCode 88
-        versionName "3.1.0"
+        versionCode 89
+        versionName "3.2.0"
         project.ext.set("archivesBaseName", "Threads-app " + defaultConfig.versionName)
         vectorDrawables.useSupportLibrary = true
         multiDexEnabled = true
-    }
-
-    signingConfigs {
-        debug {
-            keyAlias 'androiddebugkey'
-            keyPassword 'android'
-            storePassword 'android'
-            storeFile file('debug.keystore')
-        }
     }
 
     buildTypes {
@@ -43,7 +34,6 @@ android {
             debuggable = true
         }
     }
-
     lintOptions {
         abortOnError false
     }
@@ -62,11 +52,11 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':threads')
 
-    implementation 'com.google.firebase:firebase-messaging:17.3.1'
     implementation 'com.android.support:multidex:1.0.3'
 
     implementation "androidx.appcompat:appcompat:$androidXVersion"
     implementation "com.google.android.material:material:$androidXVersion"
+    implementation "androidx.preference:preference:$androidXVersion"
     implementation "androidx.legacy:legacy-support-v4:$androidXVersion"
     implementation "androidx.vectordrawable:vectordrawable:$androidXVersion"
     implementation "androidx.media:media:$androidXVersion"
@@ -77,18 +67,13 @@ dependencies {
 
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
     implementation "io.reactivex.rxjava2:rxjava:2.2.11"
-
     implementation "com.jakewharton.rxbinding3:rxbinding:3.0.0"
 
     implementation 'com.squareup.okhttp3:logging-interceptor:3.10.0'
 
-    implementation "com.jakewharton.rxbinding2:rxbinding:2.2.0"
+    implementation 'com.google.code.gson:gson:2.8.6'
 
-    implementation 'com.google.code.gson:gson:2.8.2'
-
-    implementation 'com.azoft.carousellayoutmanager:carousel:1.2.1'
-
-    debugImplementation 'com.mfms.android:push-lite-debug:2.6.21'
-    releaseImplementation 'com.mfms.android:push-lite-release:2.6.21'
+    debugImplementation 'com.mfms.android:push-lite-debug:2.8.7'
+    releaseImplementation 'com.mfms.android:push-lite-release:2.8.7'
 }
 apply plugin: 'com.google.gms.google-services'
