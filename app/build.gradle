@@ -7,18 +7,27 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-    compileSdkVersion 28
+    compileSdkVersion 29
 
     defaultConfig {
-        applicationId "im.threads.android"
+        applicationId "com.sequenia.appwithchat.polarbear"
         minSdkVersion 17
-        targetSdkVersion 28
+        targetSdkVersion 29
 
         versionCode 89
-        versionName "3.2.0"
+        versionName "$version"
         project.ext.set("archivesBaseName", "Threads-app " + defaultConfig.versionName)
         vectorDrawables.useSupportLibrary = true
         multiDexEnabled = true
+    }
+
+    signingConfigs {
+        debug {
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
+            storePassword 'android'
+            storeFile file('debug.keystore')
+        }
     }
 
     buildTypes {
@@ -47,35 +56,13 @@ android {
 }
 
 dependencies {
-    def final supportVersion = "28.0.0"
+    def final retrofitVersion = "2.4.0"
 
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation project(':threads')
+    releaseImplementation "im.threads:threads-release:$version"
+    debugImplementation "im.threads:threads-debug:$version"
 
-    implementation 'com.android.support:multidex:1.0.3'
-
-    implementation "com.android.support:appcompat-v7:$supportVersion"
-    implementation "com.android.support:preference-v7:$supportVersion"
-    implementation "com.android.support:support-v4:$supportVersion"
-    implementation "com.android.support:design:$supportVersion"
-    implementation "com.android.support:support-vector-drawable:$supportVersion"
-    implementation "com.android.support:support-media-compat:$supportVersion"
-
-    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
-    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
-
-    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
-    implementation "io.reactivex.rxjava2:rxjava:2.2.11"
-    implementation "com.jakewharton.rxbinding2:rxbinding:2.2.0"
-
-    implementation 'com.squareup.okhttp3:logging-interceptor:3.10.0'
-
-    implementation "com.jakewharton.rxbinding2:rxbinding:2.2.0"
-
-    implementation 'com.google.code.gson:gson:2.8.6'
-
-    debugImplementation 'com.mfms.android:push-lite-debug:2.8.7'
-    releaseImplementation 'com.mfms.android:push-lite-release:2.8.7'
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
 }
 apply plugin: 'com.google.gms.google-services'

@@ -1,12 +1,12 @@
 package im.threads.android.ui;
 
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.recyclerview.widget.RecyclerView;
 import im.threads.android.data.Card;
 import im.threads.android.databinding.ItemCardBinding;
 

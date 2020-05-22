@@ -1,8 +1,9 @@
 package im.threads.android.utils;
 
-import android.support.v7.widget.LinearSnapHelper;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
+
+import androidx.recyclerview.widget.LinearSnapHelper;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class CardsSnapHelper extends LinearSnapHelper {
 

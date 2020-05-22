@@ -26,4 +26,13 @@
         <item name="android:textColor">@android:color/holo_blue_light</item>
     </style>
 
+    <style name="QuickReplyButton" parent="@style/Widget.AppCompat.Button.Borderless">
+        <item name="android:background">@drawable/threads_quick_reply_button_background</item>
+        <item name="android:textColor">@color/threads_quick_reply_button_text</item>
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingRight">16dp</item>
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:paddingBottom">4dp</item>
+    </style>
+
 </resources>

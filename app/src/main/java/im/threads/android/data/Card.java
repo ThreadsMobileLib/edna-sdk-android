@@ -1,8 +1,8 @@
 package im.threads.android.data;
 
-import android.support.v4.util.ObjectsCompat;
-
 import java.io.Serializable;
+
+import androidx.core.util.ObjectsCompat;
 
 public class Card implements Serializable {
     private String userId;

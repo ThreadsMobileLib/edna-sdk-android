@@ -2,11 +2,11 @@ package im.threads.android.core;
 
 import android.app.PendingIntent;
 import android.content.Context;
-import android.support.multidex.MultiDexApplication;
 import android.text.TextUtils;
 
 import java.util.List;
 
+import androidx.multidex.MultiDexApplication;
 import im.threads.ConfigBuilder;
 import im.threads.ThreadsLib;
 import im.threads.android.data.Card;

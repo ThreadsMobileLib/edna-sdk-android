@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="server_base_url" translatable="false">YOUR_SERVER_BASE_URL</string>
-    <string name="transport_type" translatable="false">YOUR_TRANSPORT_TYPE</string>
+    <string name="datastore_url" translatable="false">https://polarbearstore.threads.im/</string>
+    <string name="serverBaseUrl" translatable="false">https://polarbear.threads.im</string>
+    <string name="threadsGateUrl" translatable="false">https://polarbear.threads.im/socket</string>
+    <string name="threadsGateProviderUid" translatable="false">3a3c6a5f-06d3-4251-a12a-e69062ab14ff</string>
+    <string name="transport_type" translatable="false">THREADS_GATE</string>
 </resources>

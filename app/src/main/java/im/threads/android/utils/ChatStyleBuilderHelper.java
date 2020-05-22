@@ -1,8 +1,8 @@
 package im.threads.android.utils;
 
 import android.content.Context;
-import android.support.annotation.StringRes;
 
+import androidx.annotation.StringRes;
 import im.threads.ChatStyle;
 import im.threads.android.R;
 

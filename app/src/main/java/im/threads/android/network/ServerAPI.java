@@ -19,7 +19,7 @@ class ServerAPI {
     private static IServerAPI serverAPI;
 
     static IServerAPI getAPI() {
-        String serverBaseUrl = ThreadsDemoApplication.getAppContext().getString(R.string.server_base_url);
+        String serverBaseUrl = ThreadsDemoApplication.getAppContext().getString(R.string.serverBaseUrl);
         if (TextUtils.isEmpty(serverBaseUrl)) {
             Log.w(TAG, "Server base url is empty");
             return null;
