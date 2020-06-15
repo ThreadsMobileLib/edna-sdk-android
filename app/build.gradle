@@ -15,7 +15,7 @@ android {
         targetSdkVersion 29
 
         versionCode 89
-        versionName "$version"
+        versionName "3.4.0"
         project.ext.set("archivesBaseName", "Threads-app " + defaultConfig.versionName)
         vectorDrawables.useSupportLibrary = true
         multiDexEnabled = true
@@ -58,8 +58,8 @@ android {
 dependencies {
     def final retrofitVersion = "2.4.0"
 
-    releaseImplementation "im.threads:threads-release:$version"
-    debugImplementation "im.threads:threads-debug:$version"
+    releaseImplementation "im.threads:threads-release:3.4.0"
+    debugImplementation "im.threads:threads-debug:3.4.0"
 
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"

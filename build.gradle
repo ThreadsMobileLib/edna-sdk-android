@@ -6,7 +6,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.6.3'
+        classpath 'com.android.tools.build:gradle:4.0.0'
         classpath 'com.google.gms:google-services:4.3.3'
         classpath 'net.researchgate:gradle-release:2.8.1'
     }
@@ -16,7 +16,7 @@ allprojects {
     repositories {
         google()
         jcenter()
-        maven {url 'https://maven-pub.mfms.ru/repository/maven-releases/' }
+        maven {url 'https://maven-pub.mfms.ru/repository/maven-public/' }
     }
 }
 
