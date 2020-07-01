@@ -3,6 +3,7 @@ package im.threads.android.utils;
 import android.content.Context;
 
 import androidx.annotation.StringRes;
+
 import im.threads.ChatStyle;
 import im.threads.android.R;
 
@@ -130,7 +131,7 @@ public class ChatStyleBuilderHelper {
                         R.color.alt_threads_nougat_push_accent,
                         R.color.alt_threads_quick_reply_message_background,
                         R.color.alt_threads_quick_reply_message_text_color)
-                .setImagesGalleryStyle(R.color.alt_threads_attachments_toolbar,
+                .setImagesGalleryStyle(
                         R.color.alt_threads_attachments_background,
                         R.color.alt_threads_attachments_author_text_color,
                         R.color.alt_threads_attachments_date_text_color,

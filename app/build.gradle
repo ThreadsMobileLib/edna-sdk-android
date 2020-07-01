@@ -15,19 +15,10 @@ android {
         targetSdkVersion 29
 
         versionCode 89
-        versionName "3.4.0"
+        versionName "3.4.1"
         project.ext.set("archivesBaseName", "Threads-app " + defaultConfig.versionName)
         vectorDrawables.useSupportLibrary = true
         multiDexEnabled = true
-    }
-
-    signingConfigs {
-        debug {
-            keyAlias 'androiddebugkey'
-            keyPassword 'android'
-            storePassword 'android'
-            storeFile file('debug.keystore')
-        }
     }
 
     buildTypes {
@@ -58,8 +49,8 @@ android {
 dependencies {
     def final retrofitVersion = "2.4.0"
 
-    releaseImplementation "im.threads:threads-release:3.4.0"
-    debugImplementation "im.threads:threads-debug:3.4.0"
+    releaseImplementation "im.threads:threads-release:3.4.1"
+    debugImplementation "im.threads:threads-debug:3.4.1"
 
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"

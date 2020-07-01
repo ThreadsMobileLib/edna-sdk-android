@@ -100,7 +100,8 @@
     <color name="alt_threads_files_list">@color/threads_blue</color>
 
     <!-- Экран просмотра файлов -->
-    <color name="alt_threads_attachments_toolbar">@color/threads_blue</color>
+    <color name="threads_attachments_toolbar_background">@color/colorPrimary</color>
+    <color name="threads_attachments_toolbar_text">@color/threads_white</color>
     <color name="alt_threads_attachments_background">@color/threads_blue_grey_607d8b</color>
     <color name="alt_threads_attachments_author_text_color">@color/lighter_blue</color>
     <color name="alt_threads_attachments_date_text_color">@color/lighter_blue</color>
