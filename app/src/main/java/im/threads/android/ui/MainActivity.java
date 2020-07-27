@@ -125,6 +125,13 @@ public class MainActivity extends AppCompatActivity implements AddCardDialog.Add
             displayError(R.string.error_empty_userid);
             return;
         }
+        ThreadsLib.getInstance().initUser(
+                new UserInfoBuilder(currentCard.getUserId())
+                        .setClientIdSignature(currentCard.getClientIdSignature())
+                        .setUserName(currentCard.getUserName())
+                        .setData("{\"phone\": \"+7-999-999-99-99\",\"email\": \"e@mail.com\"}")
+                        .setAppMarker(currentCard.getAppMarker())
+        );
         startActivity(BottomNavigationActivity.createIntent(this, currentCard.getAppMarker(),
                 currentCard.getUserId(), currentCard.getClientIdSignature(),
                 currentCard.getUserName(), getCurrentDesign()));
