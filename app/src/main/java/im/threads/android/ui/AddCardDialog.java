@@ -82,28 +82,34 @@ public class AddCardDialog extends DialogFragment {
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribe(
                                     signature -> {
-                                        Card newCard = new Card(binding.clientId.getText().toString(),
-                                                binding.clientName.getText().toString(),
+                                        Card newCard = new Card(
+                                                binding.clientId.getText().toString(),
+                                                binding.clientData.getText().toString(),
                                                 binding.appMarker.getText().toString(),
-                                                signature);
+                                                signature
+                                        );
                                         addButtonClicked(newCard);
                                         dismiss();
                                     },
                                     throwable -> {
                                         showError(R.string.get_signature_error);
-                                        Card newCard = new Card(binding.clientId.getText().toString(),
-                                                binding.clientName.getText().toString(),
+                                        Card newCard = new Card(
+                                                binding.clientId.getText().toString(),
+                                                binding.clientData.getText().toString(),
                                                 binding.appMarker.getText().toString(),
-                                                "");
+                                                ""
+                                        );
                                         addButtonClicked(newCard);
                                         dismiss();
                                     });
 
                 } else {
-                    Card newCard = new Card(binding.clientId.getText().toString(),
-                            binding.clientName.getText().toString(),
+                    Card newCard = new Card(
+                            binding.clientId.getText().toString(),
+                            binding.clientData.getText().toString(),
                             binding.appMarker.getText().toString(),
-                            clientIdSignature);
+                            clientIdSignature
+                    );
                     addButtonClicked(newCard);
                     dismiss();
                 }

@@ -28,7 +28,7 @@ android {
             signingConfig signingConfigs.debug
         }
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.debug
             debuggable = true
@@ -49,8 +49,8 @@ android {
 dependencies {
     def final retrofitVersion = "2.4.0"
 
-    releaseImplementation "im.threads:threads-release:$version"
     debugImplementation "im.threads:threads-debug:$version"
+    releaseImplementation "im.threads:threads-release:$version"
 
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"

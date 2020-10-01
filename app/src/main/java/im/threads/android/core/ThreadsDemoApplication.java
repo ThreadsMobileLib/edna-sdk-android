@@ -59,20 +59,28 @@ public class ThreadsDemoApplication extends MultiDexApplication {
                     if (appMarker.endsWith("CRG")) {
                         chatDesign = ChatStyleBuilderHelper.ChatDesign.GREEN;
                     }
-                    return BottomNavigationActivity.createPendingIntent(context,
-                            pushClientCard.getUserId(), pushClientCard.getUserName(),
-                            pushClientCard.getAppMarker(), pushClientCard.getClientIdSignature(),
-                            chatDesign);
+                    return BottomNavigationActivity.createPendingIntent(
+                            context,
+                            pushClientCard.getUserId(),
+                            pushClientCard.getClientData(),
+                            pushClientCard.getAppMarker(),
+                            pushClientCard.getClientIdSignature(),
+                            chatDesign
+                    );
                 }
             } else {
                 //This is an example of creating pending intent for single-chat app
                 List<Card> clientCards = PrefUtils.getCards(context);
                 if (!clientCards.isEmpty()) {
                     Card pushClientCard = clientCards.get(0);
-                    return BottomNavigationActivity.createPendingIntent(context,
-                            pushClientCard.getUserId(), pushClientCard.getUserName(),
-                            pushClientCard.getAppMarker(), pushClientCard.getClientIdSignature(),
-                            ChatStyleBuilderHelper.ChatDesign.GREEN);
+                    return BottomNavigationActivity.createPendingIntent(
+                            context,
+                            pushClientCard.getUserId(),
+                            pushClientCard.getClientData(),
+                            pushClientCard.getAppMarker(),
+                            pushClientCard.getClientIdSignature(),
+                            ChatStyleBuilderHelper.ChatDesign.GREEN
+                    );
                 }
             }
             return null;

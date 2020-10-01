@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import im.threads.android.data.Card;
 import im.threads.android.databinding.ItemCardBinding;
@@ -24,8 +25,9 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.ViewHolder> 
         }
     }
 
+    @NonNull
     @Override
-    public CardsAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public CardsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         ItemCardBinding binding = ItemCardBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
         return new ViewHolder(binding);
     }
@@ -34,7 +36,7 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.ViewHolder> 
     public void onBindViewHolder(ViewHolder holder, int position) {
         final Card card = cards.get(position);
         holder.binding.clientId.setText(card.getUserId());
-        holder.binding.clientName.setText(card.getUserName());
+        holder.binding.clientData.setText(card.getClientData());
         holder.binding.appMarker.setText(card.getAppMarker());
         holder.binding.clientIdSignature.setText(card.getClientIdSignature());
         holder.binding.removeCard.setOnClickListener(v -> removeCardListener.onRemoved(card));

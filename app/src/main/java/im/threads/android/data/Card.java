@@ -5,14 +5,14 @@ import java.io.Serializable;
 import androidx.core.util.ObjectsCompat;
 
 public class Card implements Serializable {
-    private String userId;
-    private String userName;
-    private String appMarker;
-    private String clientIdSignature;
+    private final String userId;
+    private final String clientData;
+    private final String appMarker;
+    private final String clientIdSignature;
 
-    public Card(final String userId, final String userName, String appMarker, String clientIdSignature) {
+    public Card(final String userId, String clientData, final String appMarker, final String clientIdSignature) {
         this.userId = userId;
-        this.userName = userName;
+        this.clientData = clientData;
         this.appMarker = appMarker;
         this.clientIdSignature = clientIdSignature;
     }
@@ -21,8 +21,8 @@ public class Card implements Serializable {
         return userId;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getClientData() {
+        return clientData;
     }
 
     public String getAppMarker() {
@@ -41,11 +41,8 @@ public class Card implements Serializable {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-
         final Card card = (Card) o;
-
         return ObjectsCompat.equals(userId, card.userId);
-
     }
 
     @Override
