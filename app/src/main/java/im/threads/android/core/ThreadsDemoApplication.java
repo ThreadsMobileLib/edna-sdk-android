@@ -4,9 +4,10 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.text.TextUtils;
 
+import androidx.multidex.MultiDexApplication;
+
 import java.util.List;
 
-import androidx.multidex.MultiDexApplication;
 import im.threads.ConfigBuilder;
 import im.threads.ThreadsLib;
 import im.threads.android.data.Card;
@@ -21,6 +22,14 @@ public class ThreadsDemoApplication extends MultiDexApplication {
 
     private static BehaviorSubject<Integer> unreadMessagesSubject = BehaviorSubject.create();
 
+    public static Context getAppContext() {
+        return appContext;
+    }
+
+    public static BehaviorSubject<Integer> getUnreadMessagesSubject() {
+        return unreadMessagesSubject;
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -32,14 +41,6 @@ public class ThreadsDemoApplication extends MultiDexApplication {
                 .historyLoadingCount(50)
                 .isDebugLoggingEnabled(true);
         ThreadsLib.init(configBuilder);
-    }
-
-    public static Context getAppContext() {
-        return appContext;
-    }
-
-    public static BehaviorSubject<Integer> getUnreadMessagesSubject() {
-        return unreadMessagesSubject;
     }
 
     private static class CustomPendingIntentCreator implements ThreadsLib.PendingIntentCreator {
