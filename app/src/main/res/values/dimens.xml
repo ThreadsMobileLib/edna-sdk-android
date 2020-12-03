@@ -20,4 +20,7 @@
 
     <dimen name="alt_threads_attachments_author_text_size">18sp</dimen>
     <dimen name="alt_threads_attachments_date_text_size">18sp</dimen>
+
+    <dimen name="alt_threads_system_message_text_size">18sp</dimen>
+    <dimen name="alt_threads_system_message_left_right_padding">24dp</dimen>
 </resources>

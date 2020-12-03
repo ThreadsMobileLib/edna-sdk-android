@@ -1,6 +1,7 @@
 package im.threads.android.utils;
 
 import android.content.Context;
+import android.view.Gravity;
 
 import androidx.annotation.StringRes;
 import im.threads.ChatStyle;
@@ -151,6 +152,14 @@ public class ChatStyleBuilderHelper {
                         R.color.alt_threads_survey_unselected_icon_tint,
                         R.color.alt_threads_chat_system_message,
                         R.color.alt_threads_survey_choices_text)
-                .setInputEnabledDuringQuickReplies(true);
+                .setInputEnabledDuringQuickReplies(true)
+                .setSystemMessageStyle(
+                        null,
+                        R.dimen.alt_threads_system_message_text_size,
+                        R.color.alt_threads_chat_new_system_message,
+                        R.dimen.alt_threads_system_message_left_right_padding,
+                        Gravity.START,
+                        R.color.alt_threads_system_message_link
+                );
     }
 }

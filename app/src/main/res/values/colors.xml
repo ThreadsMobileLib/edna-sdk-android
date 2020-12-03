@@ -131,4 +131,8 @@
     <color name="alt_threads_quick_reply_message_background">@color/lighter_blue</color>
     <color name="alt_threads_quick_reply_message_text_color">@color/threads_blue_grey_607d8b</color>
 
+    <!-- System messages -->
+    <color name="alt_threads_chat_new_system_message">@color/threads_black</color>
+    <color name="alt_threads_system_message_link">@color/threads_blue_0F87FF</color>
+
 </resources>
