@@ -4,5 +4,5 @@ edna Android SDK libraries and Demo project
 [Documentation and Guides](../../wiki)
 
 Contacts:  
-https://threads.im  
+https://edna.ru/ 
 support@edna.ru
