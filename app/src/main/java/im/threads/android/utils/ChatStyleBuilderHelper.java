@@ -74,7 +74,9 @@ public class ChatStyleBuilderHelper {
                         R.color.alt_threads_welcome_screen_title,
                         R.color.alt_threads_welcome_screen_subtitle,
                         R.dimen.alt_threads_welcome_screen_title,
-                        R.dimen.alt_threads_welcome_screen_subtitle)
+                        R.dimen.alt_threads_welcome_screen_subtitle,
+                        R.dimen.alt_threads_welcome_screen_width,
+                        R.dimen.alt_threads_welcome_screen_height)
                 .setChatBodyStyle(R.color.alt_threads_chat_background,
                         R.color.alt_threads_chat_highlighting,
                         R.color.alt_threads_chat_incoming_message_bubble,
@@ -104,10 +106,7 @@ public class ChatStyleBuilderHelper {
                         R.drawable.alt_threads_image_placeholder,
                         R.style.AltFileDialogStyleTransparent,
                         false,
-                        false,
-                        R.drawable.alt_threads_scroll_down_btn_back,
-                        R.color.alt_threads_chat_unread_msg_sticker_background,
-                        R.color.alt_threads_chat_unread_msg_count_text)
+                        false)
                 .setChatInputStyle(R.color.alt_threads_input_hint,
                         R.color.alt_threads_input_background,
                         R.color.alt_threads_input_text,
@@ -120,6 +119,7 @@ public class ChatStyleBuilderHelper {
                 .setChatTitleStyle(R.string.alt_threads_contact_center,
                         R.string.alt_threads_operator_subtitle,
                         R.color.alt_threads_chat_toolbar,
+                        R.color.alt_threads_chat_context_menu,
                         R.color.alt_threads_chat_toolbar_text,
                         R.color.alt_threads_chat_status_bar,
                         R.color.alt_threads_chat_toolbar_menu_item,
@@ -160,6 +160,18 @@ public class ChatStyleBuilderHelper {
                         R.dimen.alt_threads_system_message_left_right_padding,
                         Gravity.START,
                         R.color.alt_threads_system_message_link
-                );
+                )
+                .setSwipeRefreshColors(R.array.alt_threads_swipe_refresh_colors)
+                .setScrollDownButtonStyle(
+                        R.drawable.alt_threads_scroll_down_icon,
+                        R.drawable.alt_threads_scroll_down_background,
+                        R.dimen.alt_threads_scroll_down_button_width,
+                        R.dimen.alt_threads_scroll_down_button_height,
+                        R.dimen.alt_threads_scroll_down_button_margin,
+                        R.dimen.alt_threads_scroll_down_button_elevation,
+                        R.color.alt_threads_chat_unread_msg_sticker_background,
+                        R.color.alt_threads_chat_unread_msg_count_text
+                )
+        ;
     }
 }

@@ -14,6 +14,8 @@
 
     <dimen name="alt_threads_welcome_screen_title">20sp</dimen>
     <dimen name="alt_threads_welcome_screen_subtitle">16sp</dimen>
+    <dimen name="alt_threads_welcome_screen_width">150dp</dimen>
+    <dimen name="alt_threads_welcome_screen_height">150dp</dimen>
 
     <dimen name="alt_threads_operator_photo_size">55dp</dimen>
     <dimen name="alt_threads_system_operator_photo_size">55dp</dimen>
@@ -23,4 +25,9 @@
 
     <dimen name="alt_threads_system_message_text_size">18sp</dimen>
     <dimen name="alt_threads_system_message_left_right_padding">24dp</dimen>
+
+    <dimen name="alt_threads_scroll_down_button_width">40dp</dimen>
+    <dimen name="alt_threads_scroll_down_button_height">40dp</dimen>
+    <dimen name="alt_threads_scroll_down_button_elevation">3dp</dimen>
+    <dimen name="alt_threads_scroll_down_button_margin">16dp</dimen>
 </resources>

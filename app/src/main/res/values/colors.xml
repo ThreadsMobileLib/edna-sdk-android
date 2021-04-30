@@ -57,6 +57,7 @@
     <!-- Заголовок экрана чата -->
     <color name="alt_threads_chat_status_bar">@color/threads_blue_grey_607d8b</color>
     <color name="alt_threads_chat_toolbar">@color/threads_blue</color>
+    <color name="alt_threads_chat_context_menu">@color/white</color>
     <color name="alt_threads_chat_toolbar_text">@color/lighter_blue</color>
     <color name="alt_threads_chat_toolbar_menu_item">@color/threads_blue_0F87FF</color>
     <color name="alt_threads_chat_toolbar_hint">@color/lighter_blue</color>
@@ -134,5 +135,11 @@
     <!-- System messages -->
     <color name="alt_threads_chat_new_system_message">@color/threads_black</color>
     <color name="alt_threads_system_message_link">@color/threads_blue_0F87FF</color>
+
+    <array name="alt_threads_swipe_refresh_colors">
+        <item>@color/threads_blue</item>
+        <item>@color/threads_blue_transparent_700F87FF</item>
+        <item>@color/threads_blue_grey_607d8b</item>
+    </array>
 
 </resources>
