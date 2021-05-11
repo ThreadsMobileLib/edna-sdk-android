@@ -101,6 +101,7 @@ public class MainActivity extends AppCompatActivity implements AddCardDialog.Add
         }
         ThreadsLib.getInstance().initUser(
                 new UserInfoBuilder(currentCard.getUserId())
+                        .setAuthData(currentCard.getAuthToken(), currentCard.getAuthSchema())
                         .setClientData(currentCard.getClientData())
                         .setClientIdSignature(currentCard.getClientIdSignature())
                         .setAppMarker(currentCard.getAppMarker())
@@ -124,6 +125,7 @@ public class MainActivity extends AppCompatActivity implements AddCardDialog.Add
         }
         ThreadsLib.getInstance().initUser(
                 new UserInfoBuilder(currentCard.getUserId())
+                        .setAuthData(currentCard.getAuthToken(), currentCard.getAuthSchema())
                         .setClientData(currentCard.getClientData())
                         .setClientIdSignature(currentCard.getClientIdSignature())
                         .setAppMarker(currentCard.getAppMarker())
@@ -134,6 +136,8 @@ public class MainActivity extends AppCompatActivity implements AddCardDialog.Add
                 currentCard.getUserId(),
                 currentCard.getClientData(),
                 currentCard.getClientIdSignature(),
+                currentCard.getAuthToken(),
+                currentCard.getAuthSchema(),
                 getCurrentDesign())
         );
     }
@@ -165,6 +169,7 @@ public class MainActivity extends AppCompatActivity implements AddCardDialog.Add
         }
         UserInfoBuilder userInfoBuilder =
                 new UserInfoBuilder(currentCard.getUserId())
+                        .setAuthData(currentCard.getAuthToken(), currentCard.getAuthSchema())
                         .setClientData(currentCard.getClientData())
                         .setClientIdSignature(currentCard.getClientIdSignature())
                         .setAppMarker(currentCard.getAppMarker());

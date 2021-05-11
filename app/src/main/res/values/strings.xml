@@ -14,6 +14,8 @@
     <string name="app_marker_hint">App Marker</string>
     <string name="client_data_hint">Client data</string>
     <string name="client_id_signature_hint">Signature (if empty - will load from server)</string>
+    <string name="auth_token_hint">Authorization header</string>
+    <string name="auth_schema_hint">X-Auth-Schema header (retail | corp)</string>
     <string name="no_cards">Добавьте клиента</string>
     <string name="client_id_already_exist">Такой client_id уже существует</string>
     <string name="error_empty_user">Пустой пользователь</string>

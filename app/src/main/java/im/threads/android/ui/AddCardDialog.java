@@ -86,7 +86,9 @@ public class AddCardDialog extends DialogFragment {
                                                 binding.clientId.getText().toString(),
                                                 binding.clientData.getText().toString(),
                                                 binding.appMarker.getText().toString(),
-                                                signature
+                                                signature,
+                                                binding.authToken.getText().toString(),
+                                                binding.authSchema.getText().toString()
                                         );
                                         addButtonClicked(newCard);
                                         dismiss();
@@ -97,7 +99,9 @@ public class AddCardDialog extends DialogFragment {
                                                 binding.clientId.getText().toString(),
                                                 binding.clientData.getText().toString(),
                                                 binding.appMarker.getText().toString(),
-                                                ""
+                                                "",
+                                                binding.authToken.getText().toString(),
+                                                binding.authSchema.getText().toString()
                                         );
                                         addButtonClicked(newCard);
                                         dismiss();
@@ -108,7 +112,9 @@ public class AddCardDialog extends DialogFragment {
                             binding.clientId.getText().toString(),
                             binding.clientData.getText().toString(),
                             binding.appMarker.getText().toString(),
-                            clientIdSignature
+                            clientIdSignature,
+                            binding.authToken.getText().toString(),
+                            binding.authSchema.getText().toString()
                     );
                     addButtonClicked(newCard);
                     dismiss();

@@ -42,12 +42,16 @@ public class BottomNavigationActivity extends AppCompatActivity {
     public static final String ARG_APP_MARKER = "appMarker";
     public static final String ARG_CLIENT_DATA = "clientData";
     public static final String ARG_CLIENT_ID_SIGNATURE = "clientIdSignature";
+    public static final String ARG_AUTH_TOKEN = "authToken";
+    public static final String ARG_AUTH_SCHEMA = "authSchema";
     public static final String ARG_NEEDS_SHOW_CHAT = "needsShowChat";
     private static final String ARG_CHAT_DESIGN = "chatDesign";
 
     private String clientId;
     private String clientData;
     private String clientIdSignature;
+    private String authToken;
+    private String authSchema;
     private String appMarker;
     private ChatStyleBuilderHelper.ChatDesign chatDesign;
 
@@ -81,12 +85,16 @@ public class BottomNavigationActivity extends AppCompatActivity {
                                       String clientId,
                                       String clientData,
                                       String clientIdSignature,
+                                      String authToken,
+                                      String authSchema,
                                       ChatStyleBuilderHelper.ChatDesign chatDesign) {
         Intent intent = new Intent(activity, BottomNavigationActivity.class);
         intent.putExtra(ARG_APP_MARKER, appMarker);
         intent.putExtra(ARG_CLIENT_ID, clientId);
         intent.putExtra(ARG_CLIENT_DATA, clientData);
         intent.putExtra(ARG_CLIENT_ID_SIGNATURE, clientIdSignature);
+        intent.putExtra(ARG_AUTH_TOKEN, authToken);
+        intent.putExtra(ARG_AUTH_SCHEMA, authSchema);
         intent.putExtra(ARG_CHAT_DESIGN, chatDesign);
         return intent;
     }
@@ -96,16 +104,20 @@ public class BottomNavigationActivity extends AppCompatActivity {
                                                     String clientData,
                                                     String appMarker,
                                                     String clientIdSignature,
+                                                    String authToken,
+                                                    String authSchema,
                                                     ChatStyleBuilderHelper.ChatDesign chatDesign) {
-        Intent i = new Intent(context, BottomNavigationActivity.class);
-        i.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        i.putExtra(ARG_NEEDS_SHOW_CHAT, true);
-        i.putExtra(ARG_CLIENT_ID, clientId);
-        i.putExtra(ARG_CLIENT_DATA, clientData);
-        i.putExtra(ARG_APP_MARKER, appMarker);
-        i.putExtra(ARG_CLIENT_ID_SIGNATURE, clientIdSignature);
-        i.putExtra(ARG_CHAT_DESIGN, chatDesign);
-        return PendingIntent.getActivity(context, 0, i, PendingIntent.FLAG_CANCEL_CURRENT);
+        Intent intent = new Intent(context, BottomNavigationActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.putExtra(ARG_NEEDS_SHOW_CHAT, true);
+        intent.putExtra(ARG_CLIENT_ID, clientId);
+        intent.putExtra(ARG_CLIENT_DATA, clientData);
+        intent.putExtra(ARG_APP_MARKER, appMarker);
+        intent.putExtra(ARG_CLIENT_ID_SIGNATURE, clientIdSignature);
+        intent.putExtra(ARG_AUTH_TOKEN, authToken);
+        intent.putExtra(ARG_AUTH_SCHEMA, authSchema);
+        intent.putExtra(ARG_CHAT_DESIGN, chatDesign);
+        return PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener = item -> {
@@ -129,6 +141,8 @@ public class BottomNavigationActivity extends AppCompatActivity {
         appMarker = intent.getStringExtra(ARG_APP_MARKER);
         clientData = intent.getStringExtra(ARG_CLIENT_DATA);
         clientIdSignature = intent.getStringExtra(ARG_CLIENT_ID_SIGNATURE);
+        authToken = intent.getStringExtra(ARG_AUTH_TOKEN);
+        authSchema = intent.getStringExtra(ARG_AUTH_SCHEMA);
         chatDesign = (ChatStyleBuilderHelper.ChatDesign) intent.getSerializableExtra(ARG_CHAT_DESIGN);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -191,6 +205,7 @@ public class BottomNavigationActivity extends AppCompatActivity {
                 }
                 ThreadsLib.getInstance().initUser(
                         new UserInfoBuilder(clientId)
+                                .setAuthData(authToken, authSchema)
                                 .setClientIdSignature(clientIdSignature)
                                 .setClientData(clientData)
                                 .setAppMarker(appMarker)

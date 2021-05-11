@@ -66,6 +66,8 @@ public class ThreadsDemoApplication extends MultiDexApplication {
                             pushClientCard.getClientData(),
                             pushClientCard.getAppMarker(),
                             pushClientCard.getClientIdSignature(),
+                            pushClientCard.getAuthToken(),
+                            pushClientCard.getAuthSchema(),
                             chatDesign
                     );
                 }
@@ -80,6 +82,8 @@ public class ThreadsDemoApplication extends MultiDexApplication {
                             pushClientCard.getClientData(),
                             pushClientCard.getAppMarker(),
                             pushClientCard.getClientIdSignature(),
+                            pushClientCard.getAuthToken(),
+                            pushClientCard.getAuthSchema(),
                             ChatStyleBuilderHelper.ChatDesign.GREEN
                     );
                 }

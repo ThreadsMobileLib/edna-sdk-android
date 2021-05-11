@@ -9,12 +9,16 @@ public class Card implements Serializable {
     private final String clientData;
     private final String appMarker;
     private final String clientIdSignature;
+    private final String authToken;
+    private final String authSchema;
 
-    public Card(final String userId, String clientData, final String appMarker, final String clientIdSignature) {
+    public Card(final String userId, String clientData, final String appMarker, final String clientIdSignature, final String authToken, final String authSchema) {
         this.userId = userId;
         this.clientData = clientData;
         this.appMarker = appMarker;
         this.clientIdSignature = clientIdSignature;
+        this.authToken = authToken;
+        this.authSchema = authSchema;
     }
 
     public String getUserId() {
@@ -31,6 +35,14 @@ public class Card implements Serializable {
 
     public String getClientIdSignature() {
         return clientIdSignature;
+    }
+
+    public String getAuthToken() {
+        return authToken;
+    }
+
+    public String getAuthSchema() {
+        return authSchema;
     }
 
     @Override
