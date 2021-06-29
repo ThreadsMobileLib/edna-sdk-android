@@ -1,14 +1,14 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar.Bridge">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="BottomNavigationTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="BottomNavigationTheme" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
@@ -22,7 +22,7 @@
     </style>
 
     <!--Alternative Design-->
-    <style name="AltFileDialogStyleTransparent" parent="Theme.AppCompat.Light.Dialog">
+    <style name="AltFileDialogStyleTransparent" parent="Theme.MaterialComponents.Light.Dialog.Bridge">
         <item name="android:textColor">@android:color/holo_blue_light</item>
     </style>
 
@@ -33,6 +33,18 @@
         <item name="android:paddingRight">16dp</item>
         <item name="android:paddingTop">4dp</item>
         <item name="android:paddingBottom">4dp</item>
+    </style>
+
+    <style name="ThemeOverlay.ChatCenter.Slider.User" parent="">
+        <item name="colorPrimary">@color/threads_white</item>
+    </style>
+
+    <style name="ThemeOverlay.ChatCenter.Slider.Consult" parent="">
+        <item name="colorPrimary">@color/colorPrimary</item>
+    </style>
+
+    <style name="ThemeOverlay.ChatCenter.Slider.Preview" parent="">
+        <item name="colorPrimary">@color/threads_black</item>
     </style>
 
 </resources>

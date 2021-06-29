@@ -47,6 +47,7 @@ public class ChatStyleBuilderHelper {
                 .setShowConsultSearching(true) //показывать загрузку при поиске консультанта
                 .setUseExternalCameraApp(true)
                 .setSelfieEnabled(false)
+                .setVoiceMessageEnabled(true)
                 .setScrollChatToEndIfUserTyping(false);
         switch (design) {
             case GREEN: {
@@ -172,6 +173,19 @@ public class ChatStyleBuilderHelper {
                         R.color.alt_threads_chat_unread_msg_sticker_background,
                         R.color.alt_threads_chat_unread_msg_count_text
                 )
-        ;
+                .setRecordButtonStyle(
+                        R.drawable.alt_threads_record_button_background,
+                        R.color.alt_threads_record_button_background,
+                        R.drawable.alt_threads_record_button_icon,
+                        R.color.alt_threads_record_button_icon,
+                        R.color.alt_threads_record_button_small_mic
+                )
+                .setPlayPauseButtonStyle(
+                        R.color.alt_threads_incoming_play_pause_button,
+                        R.color.alt_threads_outgoing_play_pause_button,
+                        R.color.alt_threads_preview_play_pause_button,
+                        R.drawable.alt_threads_voice_message_play,
+                        R.drawable.alt_threads_voice_message_pause
+                );
     }
 }

@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
 
 android {
 
@@ -46,11 +47,16 @@ android {
     }
 }
 
+repositories {
+    mavenCentral()
+}
+
 dependencies {
     debugImplementation "im.threads:threads-debug:$version"
     releaseImplementation "im.threads:threads-release:$version"
 
-    implementation "androidx.preference:preference:$rootProject.androidXPreferenceVersion"
+    implementation "androidx.preference:preference-ktx:$rootProject.androidXPreferenceVersion"
+    implementation "androidx.core:core-ktx:$rootProject.androidXCoreVersion"
     implementation "androidx.multidex:multidex:$rootProject.androidXMultidexVersion"
     implementation "com.google.android.material:material:$rootProject.materialComponentsVersion"
 
@@ -69,6 +75,7 @@ dependencies {
     implementation "com.google.code.gson:gson:$rootProject.gsonVersion"
 
     implementation "com.mfms.android:push-lite-release:$rootProject.pushVersion"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 
 apply plugin: 'com.google.gms.google-services'

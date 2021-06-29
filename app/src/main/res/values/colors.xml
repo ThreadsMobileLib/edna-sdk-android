@@ -47,7 +47,13 @@
     <color name="threads_outgoing_message_link">@color/lighter_blue</color>
     <color name="threads_incoming_message_link">@color/threads_blue_0F87FF</color>
 
+    <color name="threads_incoming_play_pause_button">@color/colorAccent</color>
+    <color name="threads_outgoing_play_pause_button">@color/white</color>
+    <color name="threads_preview_play_pause_button">@color/colorAccent</color>
 
+    <color name="threads_record_button_background">@color/colorPrimary</color>
+    <color name="threads_record_button_icon">@color/threads_white</color>
+    <color name="threads_record_button_small_mic">#c2185b</color>
 
     <!--Alternative design-->
     <!-- Приветственный экран -->
@@ -141,5 +147,13 @@
         <item>@color/threads_blue_transparent_700F87FF</item>
         <item>@color/threads_blue_grey_607d8b</item>
     </array>
+
+    <color name="alt_threads_record_button_background">@color/threads_blue</color>
+    <color name="alt_threads_record_button_icon">@color/lighter_blue</color>
+    <color name="alt_threads_record_button_small_mic">#c2185b</color>
+
+    <color name="alt_threads_incoming_play_pause_button">@color/lighter_blue</color>
+    <color name="alt_threads_outgoing_play_pause_button">@color/lighter_blue</color>
+    <color name="alt_threads_preview_play_pause_button">@color/threads_blue</color>
 
 </resources>
