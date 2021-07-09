@@ -74,6 +74,21 @@
             android:value="@string/transport_type"
             tools:replace="android:value" />
 
+        <meta-data
+            android:name="im.threads.clientIdIgnoreEnabled"
+            tools:replace="android:value"
+            android:value="@bool/client_id_ignore_enabled"/>
+
+        <meta-data
+            android:name="im.threads.newChatCenterApi"
+            tools:replace="android:value"
+            android:value="@bool/new_chat_center_api"/>
+
+        <meta-data
+            android:name="im.threads.attachmentEnabled"
+            tools:replace="android:value"
+            android:value="@bool/attachment_enabled"/>
+
         <!-- Default implementation can be used instead (see im.threads.push.ThreadsPushServerIntentService) -->
         <meta-data
             android:name="com.pushserver.android.service"

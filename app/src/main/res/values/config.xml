@@ -2,4 +2,7 @@
 <resources>
     <string name="server_base_url" translatable="false">YOUR_SERVER_BASE_URL</string>
     <string name="transport_type" translatable="false">YOUR_TRANSPORT_TYPE</string>
+    <bool name="client_id_ignore_enabled">false</bool>
+    <bool name="new_chat_center_api">false</bool>
+    <bool name="attachment_enabled">true</bool>
 </resources>
