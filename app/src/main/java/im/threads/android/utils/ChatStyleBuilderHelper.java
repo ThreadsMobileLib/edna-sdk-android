@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.Gravity;
 
 import androidx.annotation.StringRes;
+
 import im.threads.ChatStyle;
 import im.threads.android.R;
 
@@ -12,31 +13,6 @@ public class ChatStyleBuilderHelper {
     private static final String LATO_BOLD_FONT_PATH = "fonts/lato-bold.ttf";
     private static final String LATO_LIGHT_FONT_PATH = "fonts/lato-light.ttf";
     private static final String LATO_REGULAR_FONT_PATH = "fonts/lato-regular.ttf";
-
-    public enum ChatDesign {
-        GREEN(R.string.design_green_enum),
-        BLUE(R.string.design_blue_enum);
-
-        @StringRes
-        private int nameResId;
-
-        ChatDesign(@StringRes int nameResId) {
-            this.nameResId = nameResId;
-        }
-
-        public String getName(Context context) {
-            return context.getString(nameResId);
-        }
-
-        public static ChatDesign enumOf(Context context, String name) {
-            for (ChatDesign design : ChatDesign.values()) {
-                if (design.getName(context).equalsIgnoreCase(name)) {
-                    return design;
-                }
-            }
-            return GREEN;
-        }
-    }
 
     public static ChatStyle getChatStyle(ChatDesign design) {
         ChatStyle chatStyle = new ChatStyle()
@@ -47,7 +23,6 @@ public class ChatStyleBuilderHelper {
                 .setShowConsultSearching(true) //показывать загрузку при поиске консультанта
                 .setUseExternalCameraApp(true)
                 .setSelfieEnabled(false)
-                .setVoiceMessageEnabled(true)
                 .setScrollChatToEndIfUserTyping(false);
         switch (design) {
             case GREEN: {
@@ -63,7 +38,8 @@ public class ChatStyleBuilderHelper {
     }
 
     private static void configureGreenDesign(ChatStyle chatStyle) {
-        chatStyle.setChatSubtitleShowConsultOrgUnit(true);
+        chatStyle.setChatSubtitleShowConsultOrgUnit(true)
+                .setVoiceMessageEnabled(true);
         //Do nothing, using default threads design
     }
 
@@ -186,6 +162,36 @@ public class ChatStyleBuilderHelper {
                         R.color.alt_threads_preview_play_pause_button,
                         R.drawable.alt_threads_voice_message_play,
                         R.drawable.alt_threads_voice_message_pause
+                )
+                .setEmptyStateStyle(
+                        R.color.alt_threads_empty_state_background,
+                        R.color.alt_threads_empty_state_progress,
+                        R.color.alt_threads_empty_state_hint
                 );
+    }
+
+    public enum ChatDesign {
+        GREEN(R.string.design_green_enum),
+        BLUE(R.string.design_blue_enum);
+
+        @StringRes
+        private int nameResId;
+
+        ChatDesign(@StringRes int nameResId) {
+            this.nameResId = nameResId;
+        }
+
+        public static ChatDesign enumOf(Context context, String name) {
+            for (ChatDesign design : ChatDesign.values()) {
+                if (design.getName(context).equalsIgnoreCase(name)) {
+                    return design;
+                }
+            }
+            return GREEN;
+        }
+
+        public String getName(Context context) {
+            return context.getString(nameResId);
+        }
     }
 }

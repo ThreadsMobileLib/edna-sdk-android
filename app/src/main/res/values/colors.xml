@@ -147,7 +147,6 @@
         <item>@color/threads_blue_transparent_700F87FF</item>
         <item>@color/threads_blue_grey_607d8b</item>
     </array>
-
     <color name="alt_threads_record_button_background">@color/threads_blue</color>
     <color name="alt_threads_record_button_icon">@color/lighter_blue</color>
     <color name="alt_threads_record_button_small_mic">#c2185b</color>
@@ -156,4 +155,8 @@
     <color name="alt_threads_outgoing_play_pause_button">@color/lighter_blue</color>
     <color name="alt_threads_preview_play_pause_button">@color/threads_blue</color>
 
+    <!-- Empty state -->
+    <color name="alt_threads_empty_state_background">@color/threads_blue_grey_607d8b</color>
+    <color name="alt_threads_empty_state_progress">@color/threads_blue_0F87FF</color>
+    <color name="alt_threads_empty_state_hint">@color/threads_white</color>
 </resources>

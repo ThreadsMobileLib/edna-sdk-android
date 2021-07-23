@@ -123,13 +123,15 @@ public class MainActivity extends AppCompatActivity implements AddCardDialog.Add
             displayError(R.string.error_empty_userid);
             return;
         }
-        ThreadsLib.getInstance().initUser(
-                new UserInfoBuilder(currentCard.getUserId())
-                        .setAuthData(currentCard.getAuthToken(), currentCard.getAuthSchema())
-                        .setClientData(currentCard.getClientData())
-                        .setClientIdSignature(currentCard.getClientIdSignature())
-                        .setAppMarker(currentCard.getAppMarker())
-        );
+        if (ThreadsLib.getInstance().isUserInitialized()) {
+            ThreadsLib.getInstance().initUser(
+                    new UserInfoBuilder(currentCard.getUserId())
+                            .setAuthData(currentCard.getAuthToken(), currentCard.getAuthSchema())
+                            .setClientData(currentCard.getClientData())
+                            .setClientIdSignature(currentCard.getClientIdSignature())
+                            .setAppMarker(currentCard.getAppMarker())
+            );
+        }
         startActivity(BottomNavigationActivity.createIntent(
                 this,
                 currentCard.getAppMarker(),

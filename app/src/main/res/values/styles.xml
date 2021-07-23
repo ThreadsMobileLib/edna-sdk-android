@@ -47,4 +47,8 @@
         <item name="colorPrimary">@color/threads_black</item>
     </style>
 
+    <style name="ThemeOverlay.Threads.Toolbar" parent="">
+        <item name="android:textColorSecondary">@color/threads_white</item>
+    </style>
+
 </resources>

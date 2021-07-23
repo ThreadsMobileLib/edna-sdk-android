@@ -19,7 +19,7 @@ allprojects {
         google()
         jcenter()
         maven { url "https://jitpack.io" }
-        maven { url 'https://maven-pub.mfms.ru/repository/maven-public/' }
+        maven { url 'https://maven-pub.edna.ru/repository/maven-public/' }
     }
 }
 
@@ -47,7 +47,7 @@ ext {
     rxjava2Version = '2.2.21'
     rxAndroidVersion = '2.1.1'
     gsonVersion = '2.8.6'
-    pushVersion = '2.8.7'
+    pushVersion = '3.3.0'
     picassoVersion = '2.8'
     recordViewVersion = '3.0.2'
     androidAudioConverterVersion = '0.0.8'

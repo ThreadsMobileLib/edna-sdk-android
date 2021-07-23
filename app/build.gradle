@@ -57,6 +57,7 @@ dependencies {
 
     implementation "androidx.preference:preference-ktx:$rootProject.androidXPreferenceVersion"
     implementation "androidx.core:core-ktx:$rootProject.androidXCoreVersion"
+
     implementation "androidx.multidex:multidex:$rootProject.androidXMultidexVersion"
     implementation "com.google.android.material:material:$rootProject.materialComponentsVersion"
 
@@ -74,8 +75,10 @@ dependencies {
 
     implementation "com.google.code.gson:gson:$rootProject.gsonVersion"
 
-    implementation "com.mfms.android:push-lite-release:$rootProject.pushVersion"
+    implementation "com.edna.android:push-lite-release:$rootProject.pushVersion"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.7'
 }
 
 apply plugin: 'com.google.gms.google-services'

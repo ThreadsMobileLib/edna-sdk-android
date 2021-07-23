@@ -46,12 +46,10 @@
                 <action android:name="com.pushserver.android.DEVICE_ADDRESS_CHANGED_EVENT" />
                 <action android:name="com.pushserver.android.HAS_SECURED_MESSAGE" />
                 <action android:name="com.pushserver.android.ERROR_EVENT" />
+                <action android:name="com.pushserver.android.LONG_MESSAGES_RECEIVED" />
+                <action android:name="com.pushserver.android.MESSAGES_WERE_READ" />
             </intent-filter>
         </receiver>
-
-        <service
-            android:name="im.threads.android.services.CustomPushServerIntentService"
-            android:exported="false" />
 
         <meta-data
             android:name="com.pushserver.android.providerUid"
@@ -88,12 +86,6 @@
             android:name="im.threads.attachmentEnabled"
             tools:replace="android:value"
             android:value="@bool/attachment_enabled"/>
-
-        <!-- Default implementation can be used instead (see im.threads.push.ThreadsPushServerIntentService) -->
-        <meta-data
-            android:name="com.pushserver.android.service"
-            android:value="im.threads.android.services.CustomPushServerIntentService"
-            tools:replace="android:value" />
 
         <meta-data
             android:name="com.pushserver.android.logs"
