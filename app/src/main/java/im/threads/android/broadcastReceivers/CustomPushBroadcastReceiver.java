@@ -3,14 +3,12 @@ package im.threads.android.broadcastReceivers;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
-
-import com.edna.android.push_lite.repo.push.remote.model.PushMessage;
-
-import java.util.List;
-
 import androidx.annotation.Nullable;
+import com.edna.android.push_lite.repo.push.remote.model.PushMessage;
 import im.threads.BuildConfig;
 import im.threads.push.ThreadsPushBroadcastReceiver;
+
+import java.util.List;
 
 public class CustomPushBroadcastReceiver extends ThreadsPushBroadcastReceiver {
 

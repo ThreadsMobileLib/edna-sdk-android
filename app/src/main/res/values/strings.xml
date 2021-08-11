@@ -26,6 +26,7 @@
     <string name="card_delete_no">Нет</string>
 
     <string name="card_add_button">Добавить</string>
+    <string name="card_save_button">Сохранить</string>
     <string name="card_cancel_button">Отменить</string>
 
     <string name="chat_activity_button_label">В чат (Activity)</string>
@@ -74,5 +75,11 @@
     <string name="test_message">Тестовое сообщение</string>
 
     <string name="login">Залогиниться</string>
+
+    <string name="edit_transport_config">Настройки транспорта</string>
+    <string translatable="false" name="edit_transport_config_base_url">Server base url</string>
+    <string translatable="false" name="edit_transport_config_type">Transport type (THREADS_GATE|MFMS_PUSH)</string>
+    <string translatable="false" name="edit_transport_config_threads_gate_url">Threads gate url</string>
+    <string translatable="false" name="edit_transport_config_threads_gate_provider_uid">Threads gate provider uid</string>
 
 </resources>

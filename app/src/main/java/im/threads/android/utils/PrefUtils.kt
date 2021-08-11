@@ -1,0 +1,69 @@
+package im.threads.android.utils
+
+import android.content.Context
+import android.util.Log
+import androidx.preference.PreferenceManager
+import com.google.gson.reflect.TypeToken
+import im.threads.ConfigBuilder
+import im.threads.android.data.Card
+import im.threads.android.data.TransportConfig
+import im.threads.internal.Config
+import java.util.ArrayList
+
+object PrefUtils {
+    private const val TAG = "DemoAppPrefUtils "
+    private const val PREF_CARDS_LIST = "PREF_CARDS_LIST"
+    private const val PREF_SERVER_BASE_URL = "PREF_SERVER_BASE_URL"
+    private const val PREF_TRANSPORT_TYPE = "PREF_TRANSPORT_TYPE"
+    private const val PREF_THREADS_GATE_URL = "PREF_THREADS_GATE_URL"
+    private const val PREF_THREADS_GATE_PROVIDER_UID = "PREF_THREADS_GATE_PROVIDER_UID"
+    @JvmStatic
+    fun storeCards(ctx: Context?, cards: List<Card?>?) {
+        if (ctx == null || cards == null) {
+            Log.i(TAG, "storeCards: ctx or bundle is null")
+            return
+        }
+        val editor = PreferenceManager.getDefaultSharedPreferences(ctx).edit()
+        editor.putString(PREF_CARDS_LIST, Config.instance.gson.toJson(cards))
+        editor.commit()
+    }
+
+    @JvmStatic
+    fun getCards(ctx: Context?): List<Card> {
+        var cards: List<Card>? = null
+        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(ctx)
+        if (sharedPreferences.getString(PREF_CARDS_LIST, null) != null) {
+            val sharedPreferencesString = sharedPreferences.getString(PREF_CARDS_LIST, null)
+            cards = Config.instance.gson.fromJson(
+                sharedPreferencesString,
+                object : TypeToken<List<Card>?>() {}.type
+            )
+        }
+        return cards ?: ArrayList()
+    }
+
+    fun saveTransportConfig(ctx: Context, transportConfig: TransportConfig) {
+        val editor = PreferenceManager.getDefaultSharedPreferences(ctx).edit()
+        editor.putString(PREF_SERVER_BASE_URL, transportConfig.baseUrl)
+        editor.putString(PREF_TRANSPORT_TYPE, transportConfig.transportType.toString())
+        editor.putString(PREF_THREADS_GATE_URL, transportConfig.threadsGateUrl)
+        editor.putString(PREF_THREADS_GATE_PROVIDER_UID, transportConfig.threadsGateProviderUid)
+        editor.commit()
+    }
+
+    @JvmStatic
+    fun getTransportConfig(ctx: Context?): TransportConfig? {
+        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(ctx)
+        val baseUrl = sharedPreferences.getString(PREF_SERVER_BASE_URL, null) ?: return null
+        val transportTypeString = sharedPreferences.getString(PREF_TRANSPORT_TYPE, null) ?: return null
+        val transportType = ConfigBuilder.TransportType.fromString(transportTypeString)
+        val threadsGateUrl = sharedPreferences.getString(PREF_THREADS_GATE_URL, null) ?: return null
+        val threadsGateProviderUid = sharedPreferences.getString(PREF_THREADS_GATE_PROVIDER_UID, null) ?: return null
+        return TransportConfig(
+            baseUrl,
+            transportType,
+            threadsGateUrl,
+            threadsGateProviderUid
+        )
+    }
+}

@@ -2,9 +2,6 @@ package im.threads.android.network;
 
 import android.text.TextUtils;
 import android.util.Log;
-
-import java.util.concurrent.TimeUnit;
-
 import im.threads.android.R;
 import im.threads.android.core.ThreadsDemoApplication;
 import okhttp3.OkHttpClient;
@@ -12,6 +9,8 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
+
+import java.util.concurrent.TimeUnit;
 
 class ServerAPI {
 

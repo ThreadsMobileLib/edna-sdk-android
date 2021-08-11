@@ -3,18 +3,17 @@ package im.threads.android.core;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.text.TextUtils;
-
 import androidx.multidex.MultiDexApplication;
-
-import java.util.List;
-
 import im.threads.ConfigBuilder;
 import im.threads.ThreadsLib;
 import im.threads.android.data.Card;
+import im.threads.android.data.TransportConfig;
 import im.threads.android.ui.BottomNavigationActivity;
 import im.threads.android.utils.ChatStyleBuilderHelper;
 import im.threads.android.utils.PrefUtils;
 import io.reactivex.subjects.BehaviorSubject;
+
+import java.util.List;
 
 public class ThreadsDemoApplication extends MultiDexApplication {
 
@@ -40,6 +39,13 @@ public class ThreadsDemoApplication extends MultiDexApplication {
                 .surveyCompletionDelay(2000)
                 .historyLoadingCount(50)
                 .isDebugLoggingEnabled(true);
+        TransportConfig transportConfig = PrefUtils.getTransportConfig(this);
+        if (transportConfig != null) {
+            configBuilder.serverBaseUrl(transportConfig.getBaseUrl())
+                    .transportType(transportConfig.getTransportType())
+                    .threadsGateUrl(transportConfig.getThreadsGateUrl())
+                    .threadsGateProviderUid(transportConfig.getThreadsGateProviderUid());
+        }
         ThreadsLib.init(configBuilder);
     }
 

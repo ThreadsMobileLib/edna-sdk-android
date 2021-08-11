@@ -4,4 +4,9 @@
     <string name="send_text_message_error">Error sending message!</string>
     <string name="test_message">Test message</string>
     <string name="login">Login</string>
+    <string name="edit_transport_config">Transport config</string>
+
+    <string name="card_add_button">Add</string>
+    <string name="card_save_button">Save</string>
+    <string name="card_cancel_button">Cancel</string>
 </resources>

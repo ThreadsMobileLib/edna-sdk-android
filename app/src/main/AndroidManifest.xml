@@ -7,9 +7,8 @@
         android:name="${applicationId}.permission.pushserver.RECEIVE"
         android:protectionLevel="signature" />
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="${applicationId}.permission.pushserver.RECEIVE" />
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="${applicationId}.permission.pushserver.RECEIVE"/>
 
     <application
         android:name=".core.ThreadsDemoApplication"
@@ -23,6 +22,7 @@
 
         <activity
             android:name=".ui.MainActivity"
+            android:exported="true"
             android:windowSoftInputMode="stateAlwaysHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
