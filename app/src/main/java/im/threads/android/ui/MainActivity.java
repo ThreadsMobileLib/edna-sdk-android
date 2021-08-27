@@ -148,6 +148,10 @@ public class MainActivity extends AppCompatActivity implements AddCardDialog.Add
         AddCardDialog.open(this);
     }
 
+    public void showEditTransportConfigDialog() {
+        EditTransportConfigDialog.Companion.open(this);
+    }
+
     public void sendExampleMessage() {
         View view = findViewById(android.R.id.content);
         view.setDrawingCacheEnabled(true);
@@ -202,7 +206,7 @@ public class MainActivity extends AppCompatActivity implements AddCardDialog.Add
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.add_card, menu);
+        getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
@@ -213,14 +217,16 @@ public class MainActivity extends AppCompatActivity implements AddCardDialog.Add
             showAddCardDialog();
             return true;
         }
+        if (id == R.id.edit_transport_config) {
+            showEditTransportConfigDialog();
+            return true;
+        }
         return super.onOptionsItemSelected(item);
     }
 
     @Override
     public void onCardAdded(Card newCard) {
-
         List<Card> cards = cardsAdapter.getCards();
-
         if (cards.contains(newCard)) {
             Toast.makeText(this, R.string.client_id_already_exist, Toast.LENGTH_LONG).show();
         } else {

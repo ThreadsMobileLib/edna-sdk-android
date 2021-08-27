@@ -7,27 +7,25 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import java.util.concurrent.TimeUnit;
-
 import im.threads.ThreadsLib;
 import im.threads.UserInfoBuilder;
 import im.threads.android.R;
 import im.threads.android.utils.ChatStyleBuilderHelper;
 import im.threads.view.ChatFragment;
+import im.threads.view.OpenWay;
 import io.reactivex.Completable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * Пример активности с нижней навигацией,
@@ -65,6 +63,7 @@ public class BottomNavigationActivity extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigationView;
     private TabItem selectedTab;
+    private Intent intent;
 
     private final BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener = item -> {
         if (item.getItemId() == R.id.navigation_home) {
@@ -126,7 +125,7 @@ public class BottomNavigationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bottom_navigation);
-        Intent intent = getIntent();
+        this.intent = getIntent();
         clientId = intent.getStringExtra(ARG_CLIENT_ID);
         appMarker = intent.getStringExtra(ARG_APP_MARKER);
         clientData = intent.getStringExtra(ARG_CLIENT_DATA);
@@ -163,6 +162,7 @@ public class BottomNavigationActivity extends AppCompatActivity {
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
+        this.intent = intent;
         if (intent.getBooleanExtra(ARG_NEEDS_SHOW_CHAT, false)) {
             bottomNavigationView.setSelectedItemId(TabItem.TAB_CHAT.getMenuId());
         }
@@ -191,7 +191,10 @@ public class BottomNavigationActivity extends AppCompatActivity {
         showActionBar(newTabItem);
         final FragmentManager fm = getSupportFragmentManager();
         final Fragment currentFragment = fm.findFragmentById(R.id.content);
-        if (currentFragment != null && selectedTab == newTabItem) {
+        boolean needToShowChat = intent.getBooleanExtra(ARG_NEEDS_SHOW_CHAT, false);
+        if (currentFragment != null &&
+                selectedTab == newTabItem &&
+                !needToShowChat) {
             // не показываем повторно текущую вкладку
             return;
         }
@@ -203,7 +206,7 @@ public class BottomNavigationActivity extends AppCompatActivity {
                 break;
             case TAB_CHAT:
                 ThreadsLib.getInstance().applyChatStyle(ChatStyleBuilderHelper.getChatStyle(chatDesign));
-                fragment = ChatFragment.newInstance();
+                fragment = ChatFragment.newInstance(needToShowChat ? OpenWay.FROM_PUSH : OpenWay.DEFAULT);
                 break;
         }
         // добавляем фрагмент в контейнер
