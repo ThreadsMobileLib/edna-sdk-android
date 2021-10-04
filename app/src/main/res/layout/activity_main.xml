@@ -44,21 +44,24 @@
                     android:id="@+id/cards_view"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:clipToPadding="false"
+                    android:overScrollMode="never"
                     android:paddingLeft="16dp"
                     android:paddingRight="16dp"
-                    android:clipToPadding="false"
-                    android:overScrollMode="never" />
+                    tools:listitem="@layout/item_card" />
 
                 <ImageView
                     android:id="@+id/add_card"
+                    tools:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:layout_above="@+id/add_card_hint"
-                    android:onClickListener="@{v -> viewModel.showAddCardDialog()}"
+                    android:onClickListener="@{v -> viewModel.showEditCardDialog()}"
                     app:srcCompat="@drawable/ic_add_card" />
 
                 <TextView
                     android:id="@+id/add_card_hint"
+                    tools:visibility="gone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"

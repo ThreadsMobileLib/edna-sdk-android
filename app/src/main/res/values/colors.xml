@@ -87,7 +87,8 @@
     <color name="alt_threads_chat_connection_message">@color/lighter_blue</color>
 
     <color name="alt_threads_icon_and_separators_color">@color/threads_blue_grey_607d8b</color>
-    <color name="alt_threads_outgoing_time_underlay">@color/threads_blue_transparent_700F87FF</color>
+    <color name="alt_threads_outgoing_time_underlay">@color/threads_blue_transparent_700F87FF
+    </color>
     <color name="alt_threads_outgoing_message_time">@color/lighter_blue</color>
     <color name="alt_threads_incoming_time_underlay">@color/threads_blue_transparent</color>
     <color name="alt_threads_incoming_message_time">@color/lighter_blue</color>

@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data/>
+    <data />
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -17,51 +17,70 @@
         android:background="@drawable/rounded_green_background">
 
         <ImageView
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/remove_card"
+            android:id="@+id/iv_edit"
+            android:padding="8dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:srcCompat="@drawable/ic_baseline_edit_24" />
+
+        <ImageView
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             android:id="@+id/remove_card"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginBottom="8dp"
-            android:layout_gravity="right"
-            app:srcCompat="@drawable/ic_delete"/>
+            android:padding="8dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:srcCompat="@drawable/ic_delete" />
 
         <TextView
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             android:id="@+id/client_id"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingBottom="8dp"
             android:textColor="@color/white"
             android:textSize="18sp"
             android:textStyle="bold"
             android:lines="1"
-            tools:text = "client_id"/>
+            tools:text="client_id" />
 
         <TextView
+            app:layout_constraintTop_toBottomOf="@+id/client_id"
+            app:layout_constraintStart_toStartOf="parent"
             android:id="@+id/client_data"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/white"
             android:textSize="14sp"
-            tools:text = "client_data"/>
+            tools:text="client_data" />
 
         <TextView
+            app:layout_constraintTop_toBottomOf="@+id/client_data"
+            app:layout_constraintStart_toStartOf="parent"
             android:id="@+id/app_marker"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/threads_blue"
             android:textSize="14sp"
             android:ellipsize="middle"
             android:singleLine="true"
-            tools:text = "polarbear.threads.im/appMarker/1"/>
+            tools:text="polarbear.threads.im/appMarker/1" />
 
         <TextView
+            app:layout_constraintTop_toBottomOf="@+id/app_marker"
+            app:layout_constraintStart_toStartOf="parent"
             android:id="@+id/client_id_signature"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/lighter_green"
             android:textSize="14sp"
             android:ellipsize="middle"
             android:singleLine="true"
-            tools:text = "EXJVNWEY#CG@!F#E$#T"/>
+            tools:text="EXJVNWEY#CG@!F#E$#T" />
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>

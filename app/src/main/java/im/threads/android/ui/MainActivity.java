@@ -40,7 +40,7 @@ import im.threads.view.ChatActivity;
  * - в виде новой Активности
  * - в виде активности, где чат выступает в качестве фрагмента
  */
-public class MainActivity extends AppCompatActivity implements AddCardDialog.AddCardDialogActionsListener, YesNoDialog.YesNoDialogActionListener {
+public class MainActivity extends AppCompatActivity implements EditCardDialog.EditCardDialogActionsListener, YesNoDialog.YesNoDialogActionListener {
 
     private static final int YES_NO_DIALOG_REQUEST_CODE = 323;
     ActivityMainBinding binding;
@@ -60,13 +60,20 @@ public class MainActivity extends AppCompatActivity implements AddCardDialog.Add
         binding.cardsView.setLayoutManager(new CardsLinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         binding.cardsView.setHasFixedSize(true);
         cardsAdapter = new CardsAdapter();
-        cardsAdapter.setRemoveCardListener(card -> {
-            cardForDelete = card;
-            YesNoDialog.open(MainActivity.this, getString(R.string.card_delete_text),
-                    getString(R.string.card_delete_yes),
-                    getString(R.string.card_delete_no),
-                    YES_NO_DIALOG_REQUEST_CODE);
+        cardsAdapter.setCardActionListener(new CardsAdapter.CardActionListener() {
+            @Override
+            public void onDelete(Card card) {
+                cardForDelete = card;
+                YesNoDialog.open(MainActivity.this, getString(R.string.card_delete_text),
+                        getString(R.string.card_delete_yes),
+                        getString(R.string.card_delete_no),
+                        YES_NO_DIALOG_REQUEST_CODE);
+            }
 
+            @Override
+            public void onEdit(Card card) {
+                showEditCardDialog(card);
+            }
         });
         binding.cardsView.setAdapter(cardsAdapter);
         showCards(PrefUtils.getCards(this));
@@ -95,10 +102,7 @@ public class MainActivity extends AppCompatActivity implements AddCardDialog.Add
             displayError(R.string.error_empty_user);
             return;
         }
-        if (currentCard.getUserId() == null) {
-            displayError(R.string.error_empty_userid);
-            return;
-        }
+        currentCard.getUserId();
         ThreadsLib.getInstance().initUser(
                 new UserInfoBuilder(currentCard.getUserId())
                         .setAuthData(currentCard.getAuthToken(), currentCard.getAuthSchema())
@@ -119,10 +123,7 @@ public class MainActivity extends AppCompatActivity implements AddCardDialog.Add
             displayError(R.string.error_empty_user);
             return;
         }
-        if (currentCard.getUserId() == null) {
-            displayError(R.string.error_empty_userid);
-            return;
-        }
+        currentCard.getUserId();
         if (ThreadsLib.getInstance().isUserInitialized()) {
             ThreadsLib.getInstance().initUser(
                     new UserInfoBuilder(currentCard.getUserId())
@@ -144,8 +145,12 @@ public class MainActivity extends AppCompatActivity implements AddCardDialog.Add
         );
     }
 
-    public void showAddCardDialog() {
-        AddCardDialog.open(this);
+    public void showEditCardDialog() {
+        EditCardDialog.open(this);
+    }
+
+    public void showEditCardDialog(Card card) {
+        EditCardDialog.open(this, card);
     }
 
     public void showEditTransportConfigDialog() {
@@ -214,7 +219,7 @@ public class MainActivity extends AppCompatActivity implements AddCardDialog.Add
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.add_card) {
-            showAddCardDialog();
+            showEditCardDialog();
             return true;
         }
         if (id == R.id.edit_transport_config) {
@@ -225,15 +230,17 @@ public class MainActivity extends AppCompatActivity implements AddCardDialog.Add
     }
 
     @Override
-    public void onCardAdded(Card newCard) {
+    public void onCardSaved(Card newCard) {
         List<Card> cards = cardsAdapter.getCards();
-        if (cards.contains(newCard)) {
-            Toast.makeText(this, R.string.client_id_already_exist, Toast.LENGTH_LONG).show();
+        final int indexOf = cards.indexOf(newCard);
+        if (indexOf != -1) {
+            cards.set(indexOf, newCard);
+            Toast.makeText(this, R.string.client_info_updated, Toast.LENGTH_LONG).show();
         } else {
             cards.add(newCard);
-            showCards(cards);
-            PrefUtils.storeCards(this, cards);
         }
+        PrefUtils.storeCards(this, cards);
+        showCards(cards);
     }
 
     @Override

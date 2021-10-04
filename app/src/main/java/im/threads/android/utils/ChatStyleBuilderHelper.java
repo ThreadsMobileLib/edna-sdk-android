@@ -99,6 +99,7 @@ public class ChatStyleBuilderHelper {
                         R.color.alt_threads_chat_context_menu,
                         R.color.alt_threads_chat_toolbar_text,
                         R.color.alt_threads_chat_status_bar,
+                        R.bool.alt_threads_chat_is_light_status_bar,
                         R.color.alt_threads_chat_toolbar_menu_item,
                         R.color.alt_threads_chat_toolbar_hint,
                         false)
