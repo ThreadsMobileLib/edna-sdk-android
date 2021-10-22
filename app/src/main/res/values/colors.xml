@@ -160,4 +160,6 @@
     <color name="alt_threads_empty_state_background">@color/threads_blue_grey_607d8b</color>
     <color name="alt_threads_empty_state_progress">@color/threads_blue_0F87FF</color>
     <color name="alt_threads_empty_state_hint">@color/threads_white</color>
+
+    <color name="alt_threads_quick_reply_text_color">@color/threads_blue_grey_607d8b</color>
 </resources>

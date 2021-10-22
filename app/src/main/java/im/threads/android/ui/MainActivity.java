@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -53,6 +54,22 @@ public class MainActivity extends AppCompatActivity implements EditCardDialog.Ed
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         binding.setViewModel(this);
+
+        binding.designSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+                String theme = binding.designSpinner.getSelectedItem().toString();
+                ChatStyleBuilderHelper.ChatDesign.setTheme(MainActivity.this, ChatStyleBuilderHelper.ChatDesign.enumOf(MainActivity.this, theme));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+
+            }
+
+        });
+
         TextView versionView = findViewById(R.id.version_name);
         versionView.setText(getString(R.string.lib_version, ThreadsLib.getLibVersion(), getString(R.string.transport_type)));
         cardsSnapHelper = new CardsSnapHelper();
@@ -110,12 +127,12 @@ public class MainActivity extends AppCompatActivity implements EditCardDialog.Ed
                         .setClientIdSignature(currentCard.getClientIdSignature())
                         .setAppMarker(currentCard.getAppMarker())
         );
-        ThreadsLib.getInstance().applyChatStyle(ChatStyleBuilderHelper.getChatStyle(getCurrentDesign()));
+        ThreadsLib.getInstance().applyChatStyle(ChatStyleBuilderHelper.getChatStyle(PrefUtils.getTheme(this)));
         startActivity(new Intent(this, ChatActivity.class));
     }
 
     /**
-     * Пример открытя чата в виде фрагмента
+     * Пример открытия чата в виде фрагмента
      */
     public void navigateToBottomNavigationActivity() {
         Card currentCard = getCurrentCard();
@@ -141,7 +158,7 @@ public class MainActivity extends AppCompatActivity implements EditCardDialog.Ed
                 currentCard.getClientIdSignature(),
                 currentCard.getAuthToken(),
                 currentCard.getAuthSchema(),
-                getCurrentDesign())
+                PrefUtils.getTheme(this))
         );
     }
 
@@ -191,10 +208,6 @@ public class MainActivity extends AppCompatActivity implements EditCardDialog.Ed
         } else {
             Toast.makeText(this, R.string.send_text_message_error, Toast.LENGTH_SHORT).show();
         }
-    }
-
-    private ChatStyleBuilderHelper.ChatDesign getCurrentDesign() {
-        return ChatStyleBuilderHelper.ChatDesign.enumOf(this, (String) binding.designSpinner.getSelectedItem());
     }
 
     @Nullable

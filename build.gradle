@@ -30,9 +30,9 @@ task clean(type: Delete) {
 }
 
 ext {
-    compileSdkVersion = 31
+    compileSdkVersion = 30
     minSdkVersion = 17
-    targetSdkVersion = 31
+    targetSdkVersion = 30
 
     androidXCoreVersion = '1.6.0'
     androidXMultidexVersion = '2.0.1'
@@ -54,6 +54,7 @@ ext {
     androidAudioConverterVersion = '0.0.8'
     streamVersion = '1.2.1'
     processPhoenixVersion = '2.0.0'
+    flexboxVersion = '3.0.0'
 
     robolectricVersion = '4.5.1'
     androidXJunitVersion = '1.1.3'

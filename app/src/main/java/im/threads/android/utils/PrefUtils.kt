@@ -8,7 +8,6 @@ import im.threads.ConfigBuilder
 import im.threads.android.data.Card
 import im.threads.android.data.TransportConfig
 import im.threads.internal.Config
-import java.util.ArrayList
 
 object PrefUtils {
     private const val TAG = "DemoAppPrefUtils "
@@ -17,6 +16,8 @@ object PrefUtils {
     private const val PREF_TRANSPORT_TYPE = "PREF_TRANSPORT_TYPE"
     private const val PREF_THREADS_GATE_URL = "PREF_THREADS_GATE_URL"
     private const val PREF_THREADS_GATE_PROVIDER_UID = "PREF_THREADS_GATE_PROVIDER_UID"
+    private const val PREF_THEME = "PREF_THEME"
+
     @JvmStatic
     fun storeCards(ctx: Context?, cards: List<Card?>?) {
         if (ctx == null || cards == null) {
@@ -35,8 +36,8 @@ object PrefUtils {
         if (sharedPreferences.getString(PREF_CARDS_LIST, null) != null) {
             val sharedPreferencesString = sharedPreferences.getString(PREF_CARDS_LIST, null)
             cards = Config.instance.gson.fromJson(
-                sharedPreferencesString,
-                object : TypeToken<List<Card>?>() {}.type
+                    sharedPreferencesString,
+                    object : TypeToken<List<Card>?>() {}.type
             )
         }
         return cards ?: ArrayList()
@@ -55,15 +56,32 @@ object PrefUtils {
     fun getTransportConfig(ctx: Context?): TransportConfig? {
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(ctx)
         val baseUrl = sharedPreferences.getString(PREF_SERVER_BASE_URL, null) ?: return null
-        val transportTypeString = sharedPreferences.getString(PREF_TRANSPORT_TYPE, null) ?: return null
+        val transportTypeString = sharedPreferences.getString(PREF_TRANSPORT_TYPE, null)
+                ?: return null
         val transportType = ConfigBuilder.TransportType.fromString(transportTypeString)
         val threadsGateUrl = sharedPreferences.getString(PREF_THREADS_GATE_URL, null) ?: return null
-        val threadsGateProviderUid = sharedPreferences.getString(PREF_THREADS_GATE_PROVIDER_UID, null) ?: return null
+        val threadsGateProviderUid = sharedPreferences.getString(PREF_THREADS_GATE_PROVIDER_UID, null)
+                ?: return null
         return TransportConfig(
-            baseUrl,
-            transportType,
-            threadsGateUrl,
-            threadsGateProviderUid
+                baseUrl,
+                transportType,
+                threadsGateUrl,
+                threadsGateProviderUid
         )
     }
+
+    @JvmStatic
+    fun storeTheme(ctx: Context, theme: ChatStyleBuilderHelper.ChatDesign) {
+        val editor = PreferenceManager.getDefaultSharedPreferences(ctx).edit()
+        editor.putString(PREF_THEME, theme.getName(ctx))
+        editor.commit()
+    }
+
+    @JvmStatic
+    fun getTheme(ctx: Context): ChatStyleBuilderHelper.ChatDesign {
+        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(ctx)
+        val theme = sharedPreferences.getString(PREF_THEME, null) ?: ""
+        return ChatStyleBuilderHelper.ChatDesign.enumOf(ctx, theme)
+    }
+
 }

@@ -9,7 +9,6 @@ import im.threads.ThreadsLib;
 import im.threads.android.data.Card;
 import im.threads.android.data.TransportConfig;
 import im.threads.android.ui.BottomNavigationActivity;
-import im.threads.android.utils.ChatStyleBuilderHelper;
 import im.threads.android.utils.PrefUtils;
 import io.reactivex.subjects.BehaviorSubject;
 
@@ -62,10 +61,6 @@ public class ThreadsDemoApplication extends MultiDexApplication {
                     }
                 }
                 if (pushClientCard != null) {
-                    ChatStyleBuilderHelper.ChatDesign chatDesign = ChatStyleBuilderHelper.ChatDesign.BLUE;
-                    if (appMarker.endsWith("CRG")) {
-                        chatDesign = ChatStyleBuilderHelper.ChatDesign.GREEN;
-                    }
                     return BottomNavigationActivity.createPendingIntent(
                             context,
                             pushClientCard.getUserId(),
@@ -74,7 +69,7 @@ public class ThreadsDemoApplication extends MultiDexApplication {
                             pushClientCard.getClientIdSignature(),
                             pushClientCard.getAuthToken(),
                             pushClientCard.getAuthSchema(),
-                            chatDesign
+                            PrefUtils.getTheme(context)
                     );
                 }
             } else {
@@ -90,7 +85,7 @@ public class ThreadsDemoApplication extends MultiDexApplication {
                             pushClientCard.getClientIdSignature(),
                             pushClientCard.getAuthToken(),
                             pushClientCard.getAuthSchema(),
-                            ChatStyleBuilderHelper.ChatDesign.GREEN
+                            PrefUtils.getTheme(context)
                     );
                 }
             }

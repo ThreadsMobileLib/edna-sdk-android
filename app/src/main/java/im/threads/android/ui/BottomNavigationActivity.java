@@ -4,8 +4,12 @@ import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -13,23 +17,26 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import java.util.concurrent.TimeUnit;
-
+import im.threads.ChatStyle;
 import im.threads.ThreadsLib;
 import im.threads.UserInfoBuilder;
 import im.threads.android.R;
 import im.threads.android.utils.ChatStyleBuilderHelper;
+import im.threads.internal.utils.ColorsHelper;
 import im.threads.view.ChatFragment;
 import im.threads.view.OpenWay;
 import io.reactivex.Completable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * Пример активности с нижней навигацией,
@@ -144,6 +151,22 @@ public class BottomNavigationActivity extends AppCompatActivity {
         bottomNavigationView = findViewById(R.id.navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
+        ChatStyle style = ChatStyleBuilderHelper.getChatStyle(chatDesign);
+        ColorsHelper.setStatusBarColor(this, style.chatStatusBarColorResId, style.windowLightStatusBarResId);
+
+        ColorStateList iconColorStates = new ColorStateList(
+                new int[][]{
+                        new int[]{-android.R.attr.state_checked},
+                        new int[]{android.R.attr.state_checked}
+                },
+                new int[]{
+                        ContextCompat.getColor(this, style.chatDisabledTextColor),
+                        ContextCompat.getColor(this, style.chatBodyIconsTint)
+                });
+
+        bottomNavigationView.setItemIconTintList(iconColorStates);
+        bottomNavigationView.setItemTextColor(iconColorStates);
+
         // При открытии экрана из пуш уведомления нужно сразу открыть чат,
         // а не главную страницу
         if (intent.getBooleanExtra(ARG_NEEDS_SHOW_CHAT, false)) {
@@ -228,6 +251,11 @@ public class BottomNavigationActivity extends AppCompatActivity {
     private void showActionBar(final TabItem tabItem) {
         final ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
+            ChatStyle style = ChatStyleBuilderHelper.getChatStyle(chatDesign);
+            actionBar.setBackgroundDrawable(getResources().getDrawable(style.chatToolbarColorResId));
+            Spannable text = new SpannableString(actionBar.getTitle());
+            text.setSpan(new ForegroundColorSpan(getResources().getColor(style.chatToolbarTextColorResId)), 0, text.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+            actionBar.setTitle(text);
             switch (tabItem) {
                 case TAB_HOME:
                     actionBar.show();
