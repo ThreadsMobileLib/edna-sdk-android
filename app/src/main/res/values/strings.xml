@@ -81,5 +81,6 @@
     <string translatable="false" name="edit_transport_config_type">Transport type (THREADS_GATE|MFMS_PUSH)</string>
     <string translatable="false" name="edit_transport_config_threads_gate_url">Threads gate url</string>
     <string translatable="false" name="edit_transport_config_threads_gate_provider_uid">Threads gate provider uid</string>
+    <string name="alt_loading">Загрузка чата...</string>
 
 </resources>

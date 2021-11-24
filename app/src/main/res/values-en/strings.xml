@@ -10,4 +10,5 @@
     <string name="card_add_button">Add</string>
     <string name="card_save_button">Save</string>
     <string name="card_cancel_button">Cancel</string>
+    <string name="alt_loading">Loading chat...</string>
 </resources>
