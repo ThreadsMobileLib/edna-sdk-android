@@ -7,6 +7,7 @@
         android:name="${applicationId}.permission.pushserver.RECEIVE"
         android:protectionLevel="signature" />
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="${applicationId}.permission.pushserver.RECEIVE"/>
 
@@ -27,6 +28,27 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="sogaz"
+                    android:host="forms" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".ui.WebViewActivity"
+            android:exported="true"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            android:theme="@style/ThreadsStyle">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="webview"
+                    android:host="*" />
             </intent-filter>
         </activity>
 

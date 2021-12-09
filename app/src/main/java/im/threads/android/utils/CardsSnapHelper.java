@@ -5,7 +5,7 @@ import android.view.View;
 import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class CardsSnapHelper extends LinearSnapHelper {
+public final class CardsSnapHelper extends LinearSnapHelper {
 
     @Override
     public int findTargetSnapPosition(RecyclerView.LayoutManager layoutManager, int velocityX, int velocityY) {
