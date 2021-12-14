@@ -4,13 +4,14 @@ buildscript {
     ext.kotlin_version = '1.6.0'
     repositories {
         google()
-        jcenter()
+        maven { url 'https://plugins.gradle.org/m2/' }
+        maven { url 'https://developer.huawei.com/repo/' }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.0.3'
+        classpath 'com.android.tools.build:gradle:7.0.4'
         classpath 'com.google.gms:google-services:4.3.10'
-        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.8.0'
         classpath 'net.researchgate:gradle-release:2.8.1'
+        classpath 'com.huawei.agconnect:agcp:1.6.0.300'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
@@ -18,8 +19,8 @@ buildscript {
 allprojects {
     repositories {
         google()
-        jcenter()
         maven { url "https://jitpack.io" }
+        maven { url 'https://developer.huawei.com/repo' }
         maven { url 'https://maven-pub.edna.ru/repository/maven-public/' }
     }
 }
@@ -39,9 +40,6 @@ ext {
     androidXPreferenceVersion = '1.1.1'
     androidXSwiperefreshlayout = '1.1.0'
     materialComponentsVersion = '1.4.0'
-
-    firebaseAnalyticsVersion = '19.0.0'
-    firebaseCrashlyticsVersion = '18.2.0'
 
     okhttpVersion = '3.12.3'
     retrofitVersion = '2.6.4'
