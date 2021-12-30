@@ -23,20 +23,21 @@ import androidx.fragment.app.FragmentManager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.concurrent.TimeUnit;
+
 import im.threads.ChatStyle;
 import im.threads.ThreadsLib;
 import im.threads.UserInfoBuilder;
 import im.threads.android.R;
 import im.threads.android.utils.ChatStyleBuilderHelper;
 import im.threads.internal.utils.ColorsHelper;
+import im.threads.internal.utils.ThreadsLogger;
 import im.threads.view.ChatFragment;
 import im.threads.view.OpenWay;
 import io.reactivex.Completable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
-
-import java.util.concurrent.TimeUnit;
 
 /**
  * Пример активности с нижней навигацией,
@@ -62,6 +63,7 @@ public class BottomNavigationActivity extends AppCompatActivity {
     public static final String ARG_AUTH_TOKEN = "authToken";
     public static final String ARG_AUTH_SCHEMA = "authSchema";
     public static final String ARG_NEEDS_SHOW_CHAT = "needsShowChat";
+    private static final String TAG = BottomNavigationActivity.class.getSimpleName();
     private static final String ARG_CHAT_DESIGN = "chatDesign";
 
     private String clientId;
@@ -129,7 +131,11 @@ public class BottomNavigationActivity extends AppCompatActivity {
         intent.putExtra(ARG_AUTH_TOKEN, authToken);
         intent.putExtra(ARG_AUTH_SCHEMA, authSchema);
         intent.putExtra(ARG_CHAT_DESIGN, chatDesign);
-        return PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+        int flags = PendingIntent.FLAG_CANCEL_CURRENT;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            flags |= PendingIntent.FLAG_IMMUTABLE;
+        }
+        return PendingIntent.getActivity(context, 0, intent, flags);
     }
 
     @Override
@@ -316,7 +322,8 @@ public class BottomNavigationActivity extends AppCompatActivity {
                                                 .setClientIdSignature(clientIdSignature)
                                                 .setClientData(clientData)
                                                 .setAppMarker(appMarker)
-                                )
+                                ),
+                                throwable -> ThreadsLogger.e(TAG, "login: " + throwable)
                         )
         );
     }

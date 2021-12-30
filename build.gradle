@@ -1,7 +1,7 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-    ext.kotlin_version = '1.6.0'
+    ext.kotlin_version = '1.6.10'
     repositories {
         google()
         maven { url 'https://plugins.gradle.org/m2/' }
@@ -11,7 +11,7 @@ buildscript {
         classpath 'com.android.tools.build:gradle:7.0.4'
         classpath 'com.google.gms:google-services:4.3.10'
         classpath 'net.researchgate:gradle-release:2.8.1'
-        classpath 'com.huawei.agconnect:agcp:1.6.0.300'
+        classpath 'com.huawei.agconnect:agcp:1.6.2.300'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
@@ -32,8 +32,8 @@ task clean(type: Delete) {
 
 ext {
     compileSdkVersion = 31
-    minSdkVersion = 17
-    targetSdkVersion = 30
+    minSdkVersion = 21
+    targetSdkVersion = 31
 
     androidXCoreVersion = '1.7.0'
     androidXMultidexVersion = '2.0.1'
@@ -41,12 +41,12 @@ ext {
     androidXSwiperefreshlayout = '1.1.0'
     materialComponentsVersion = '1.4.0'
 
-    okhttpVersion = '3.12.3'
-    retrofitVersion = '2.6.4'
+    okhttpVersion = '4.9.3'
+    retrofitVersion = '2.9.0'
     rxjava2Version = '2.2.21'
     rxAndroidVersion = '2.1.1'
     gsonVersion = '2.8.6'
-    pushVersion = '3.3.0'
+    pushVersion = '3.5.0'
     picassoVersion = '2.8'
     recordViewVersion = '3.0.2'
     androidAudioConverterVersion = '0.0.8'

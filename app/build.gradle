@@ -19,12 +19,12 @@ android {
         jvmTarget = '11'
     }
 
-    compileSdkVersion 31
+    compileSdk rootProject.compileSdkVersion
 
     defaultConfig {
+        minSdk rootProject.minSdkVersion
+        targetSdk rootProject.targetSdkVersion
         applicationId "com.sequenia.appwithchat.polarbear"
-        minSdkVersion 17
-        targetSdkVersion 30
 
         versionCode 89
         versionName "$version"
@@ -76,6 +76,7 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxAndroidVersion"
     implementation "io.reactivex.rxjava2:rxjava:$rootProject.rxjava2Version"
 
+    implementation "com.squareup.okhttp3:okhttp:$rootProject.okhttpVersion"
     implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.okhttpVersion"
 
     implementation "com.google.code.gson:gson:$rootProject.gsonVersion"
