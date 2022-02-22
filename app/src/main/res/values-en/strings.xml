@@ -11,4 +11,7 @@
     <string name="card_save_button">Save</string>
     <string name="card_cancel_button">Cancel</string>
     <string name="alt_loading">Loading chat...</string>
+
+    <string name="threads_no_media_and_files_alt_header">File list is empty</string>
+    <string name="threads_no_media_and_files_alt_description">Add new ones on the chat screen</string>
 </resources>

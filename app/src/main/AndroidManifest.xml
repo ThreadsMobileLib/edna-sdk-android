@@ -57,21 +57,21 @@
             android:label="@string/title_activity_bottom_navigation"
             android:theme="@style/BottomNavigationTheme" />
 
-        <!-- Default implementation can be used instead (see im.threads.push.ThreadsPushBroadcastReceiver) -->
-        <receiver
-            android:name="im.threads.android.broadcastReceivers.CustomPushBroadcastReceiver"
-            android:exported="false"
-            android:permission="${applicationId}.permission.pushserver.RECEIVE">
+
+        <service android:name=".push.CustomPushFcmIntentService"
+            android:exported="false">
             <intent-filter>
-                <action android:name="com.pushserver.android.NEW_PUSH_MESSAGE_EVENT" />
-                <action android:name="com.pushserver.android.RECEIVER_CHANGED_EVENT" />
-                <action android:name="com.pushserver.android.DEVICE_ADDRESS_CHANGED_EVENT" />
-                <action android:name="com.pushserver.android.HAS_SECURED_MESSAGE" />
-                <action android:name="com.pushserver.android.ERROR_EVENT" />
-                <action android:name="com.pushserver.android.LONG_MESSAGES_RECEIVED" />
-                <action android:name="com.pushserver.android.MESSAGES_WERE_READ" />
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
-        </receiver>
+        </service>
+
+        <service
+            android:name=".push.CustomPushHcmIntentService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.huawei.push.action.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
 
         <meta-data
             android:name="com.pushserver.android.providerUid"
@@ -94,11 +94,6 @@
             android:value="YOUR_THREADS_GATE_HCM_PROVIDER_UID"/>
 
         <meta-data
-            android:name="im.threads.threadsTransportType"
-            android:value="@string/transport_type"
-            tools:replace="android:value" />
-
-        <meta-data
             android:name="im.threads.clientIdIgnoreEnabled"
             tools:replace="android:value"
             android:value="@bool/client_id_ignore_enabled"/>
@@ -112,6 +107,11 @@
             android:name="im.threads.attachmentEnabled"
             tools:replace="android:value"
             android:value="@bool/attachment_enabled"/>
+
+        <meta-data
+            android:name="im.threads.filesAndMediaMenuItemEnabled"
+            tools:replace="android:value"
+            android:value="@bool/files_and_media_menu_item_enabled"/>
 
         <meta-data
             android:name="com.pushserver.android.logs"

@@ -20,6 +20,8 @@
     <dimen name="alt_threads_operator_photo_size">55dp</dimen>
     <dimen name="alt_threads_system_operator_photo_size">55dp</dimen>
 
+    <dimen name="alt_threads_attachments_no_files_header_text_size">20sp</dimen>
+    <dimen name="alt_threads_attachments_no_files_description_text_size">18sp</dimen>
     <dimen name="alt_threads_attachments_author_text_size">18sp</dimen>
     <dimen name="alt_threads_attachments_date_text_size">18sp</dimen>
 
@@ -30,4 +32,14 @@
     <dimen name="alt_threads_scroll_down_button_height">40dp</dimen>
     <dimen name="alt_threads_scroll_down_button_elevation">3dp</dimen>
     <dimen name="alt_threads_scroll_down_button_margin">16dp</dimen>
+
+    <dimen name="alt_bubbleOutgoingPaddingLeft">25dp</dimen>
+    <dimen name="alt_bubbleOutgoingPaddingTop">15dp</dimen>
+    <dimen name="alt_bubbleOutgoingPaddingRight">25dp</dimen>
+    <dimen name="alt_bubbleOutgoingPaddingBottom">15dp</dimen>
+
+    <dimen name="alt_bubbleIncomingPaddingLeft">25dp</dimen>
+    <dimen name="alt_bubbleIncomingPaddingTop">15dp</dimen>
+    <dimen name="alt_bubbleIncomingPaddingRight">25dp</dimen>
+    <dimen name="alt_bubbleIncomingPaddingBottom">15dp</dimen>
 </resources>

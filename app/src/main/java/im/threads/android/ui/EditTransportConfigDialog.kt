@@ -11,7 +11,6 @@ import android.view.Window
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.DialogFragment
 import com.jakewharton.processphoenix.ProcessPhoenix
-import im.threads.ConfigBuilder
 import im.threads.android.data.TransportConfig
 import im.threads.android.databinding.DialogEditTransportConfigBinding
 import im.threads.android.utils.PrefUtils
@@ -40,10 +39,9 @@ class EditTransportConfigDialog : DialogFragment() {
             saveButton.setOnClickListener {
                 PrefUtils.saveTransportConfig(
                     requireContext(), TransportConfig(
-                        baseUrl.text.toString(),
-                        ConfigBuilder.TransportType.fromString(type.text.toString()),
-                        threadsGateUrl.text.toString(),
-                        threadsGateProviderUid.text.toString()
+                        baseUrl = baseUrl.text.toString(),
+                        threadsGateUrl = threadsGateUrl.text.toString(),
+                        threadsGateProviderUid = threadsGateProviderUid.text.toString()
                     )
                 )
                 ProcessPhoenix.triggerRebirth(
@@ -57,12 +55,10 @@ class EditTransportConfigDialog : DialogFragment() {
             val transportConfig = PrefUtils.getTransportConfig(requireContext())
             if (transportConfig != null) {
                 baseUrl.setText(transportConfig.baseUrl)
-                type.setText(transportConfig.transportType.toString())
                 threadsGateUrl.setText(transportConfig.threadsGateUrl)
                 threadsGateProviderUid.setText(transportConfig.threadsGateProviderUid)
             } else {
                 baseUrl.setText(MetaDataUtils.getDatastoreUrl(requireContext()))
-                type.setText(MetaDataUtils.getThreadsTransportType(requireContext()))
                 threadsGateUrl.setText(MetaDataUtils.getThreadsGateUrl(requireContext()))
                 threadsGateProviderUid.setText(
                     MetaDataUtils.getThreadsGateProviderUid(

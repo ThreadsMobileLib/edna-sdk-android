@@ -8,7 +8,7 @@
     <string name="title_chat">Чат</string>
     <string name="unread_messages_count">Количество непрочитанных сообщений:&#032;</string>
 
-    <string name="lib_version">lib v.%s %s</string>
+    <string name="lib_version">lib v.%s</string>
     <string name="client_id_hint">Client ID *</string>
     <string name="client_name_hint">Client name</string>
     <string name="app_marker_hint">App Marker</string>
@@ -33,6 +33,8 @@
     <string name="chat_fragmetn_button_label">В чат (Fragment)</string>
 
     <!-- Тексты для кастомизации -->
+    <string name="threads_no_media_and_files_alt_header">Список файлов пуст</string>
+    <string name="threads_no_media_and_files_alt_description">Добавьте новые на экране чата</string>
     <string name="threads_welcome_screen_title_text">Добро пожаловать в контактный центр</string>
     <string name="threads_welcome_screen_subtitle_text">Отправьте ваш вопрос, первый освободившийся оператор на него ответит</string>
     <string name="threads_contact_center">Контакт центр</string>

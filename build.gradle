@@ -40,6 +40,7 @@ ext {
     androidXPreferenceVersion = '1.1.1'
     androidXSwiperefreshlayout = '1.1.0'
     materialComponentsVersion = '1.4.0'
+    fcmVersion = '23.0.0'
 
     okhttpVersion = '4.9.3'
     retrofitVersion = '2.9.0'
@@ -53,6 +54,7 @@ ext {
     streamVersion = '1.2.1'
     processPhoenixVersion = '2.0.0'
     flexboxVersion = '3.0.0'
+    work_version = "2.7.1"
 
     robolectricVersion = '4.6.1'
     androidXJunitVersion = '1.1.3'
