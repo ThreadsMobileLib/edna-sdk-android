@@ -126,7 +126,7 @@
     <color name="alt_threads_input_hint">@color/threads_blue_grey_607d8b</color>
 
     <!-- Сообщения о расписании -->
-    <color name="alt_threads_schedule_text">@color/threads_blue_grey_607d8b</color>
+    <color name="alt_threads_schedule_text">@color/lighter_blue</color>
 
     <!-- Пуш нотификации -->
     <color name="alt_threads_push_background">@color/threads_blue</color>

@@ -65,16 +65,16 @@ object PrefUtils {
     }
 
     @JvmStatic
-    fun storeTheme(ctx: Context, theme: ChatStyleBuilderHelper.ChatDesign) {
+    fun storeTheme(ctx: Context, theme: ChatDesign) {
         val editor = PreferenceManager.getDefaultSharedPreferences(ctx).edit()
         editor.putString(PREF_THEME, theme.getName(ctx))
         editor.commit()
     }
 
     @JvmStatic
-    fun getTheme(ctx: Context): ChatStyleBuilderHelper.ChatDesign {
+    fun getTheme(ctx: Context): ChatDesign {
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(ctx)
         val theme = sharedPreferences.getString(PREF_THEME, null) ?: ""
-        return ChatStyleBuilderHelper.ChatDesign.enumOf(ctx, theme)
+        return ChatDesign.enumOf(ctx, theme)
     }
 }

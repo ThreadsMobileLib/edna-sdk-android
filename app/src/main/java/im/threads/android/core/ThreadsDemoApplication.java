@@ -8,6 +8,7 @@ import com.edna.android.push_lite.PushController;
 
 import java.util.List;
 
+import androidx.multidex.MultiDex;
 import androidx.multidex.MultiDexApplication;
 import im.threads.ConfigBuilder;
 import im.threads.ThreadsLib;

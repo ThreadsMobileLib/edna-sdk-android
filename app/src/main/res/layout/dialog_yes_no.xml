@@ -10,7 +10,7 @@
 
     <TextView
         android:id="@+id/text"
-        tools:text="@string/card_delete_text"
+        tools:text="@string/demo_card_delete_text"
         android:textColor="@color/gray"
         android:textSize="16sp"
         android:layout_width="wrap_content"
@@ -28,7 +28,7 @@
             android:layout_weight="1"
             android:layout_marginTop="20dp"
             android:layout_marginRight="4dp"
-            android:text="@string/card_delete_yes"
+            android:text="@string/demo_yes"
             style="@style/ChatButtonStyle"/>
 
         <Button
@@ -38,7 +38,7 @@
             android:layout_marginLeft="4dp"
             android:layout_weight="1"
             android:layout_marginTop="20dp"
-            android:text="@string/card_delete_no"
+            android:text="@string/demo_no"
             style="@style/ChatButtonStyle"/>
 
     </LinearLayout>

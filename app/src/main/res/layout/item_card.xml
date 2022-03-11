@@ -67,7 +67,7 @@
             android:textSize="14sp"
             android:ellipsize="middle"
             android:singleLine="true"
-            tools:text="polarbear.threads.im/appMarker/1" />
+            tools:text="dte.chc.mobile1.android/appMarker/1" />
 
         <TextView
             app:layout_constraintTop_toBottomOf="@+id/app_marker"

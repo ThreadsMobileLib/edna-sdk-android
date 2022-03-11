@@ -2,87 +2,64 @@
     <string name="app_name1">AppWithChat</string>
 
     <string name="default_title">ThreadsApp</string>
-
     <string name="title_activity_bottom_navigation">BottomNavigationActivity</string>
-    <string name="title_home">Главная</string>
-    <string name="title_chat">Чат</string>
-    <string name="unread_messages_count">Количество непрочитанных сообщений:&#032;</string>
 
-    <string name="lib_version">lib v.%s</string>
-    <string name="client_id_hint">Client ID *</string>
-    <string name="client_name_hint">Client name</string>
-    <string name="app_marker_hint">App Marker</string>
-    <string name="client_data_hint">Client data</string>
-    <string name="client_id_signature_hint">Signature (if empty - will load from server)</string>
-    <string name="auth_token_hint">Authorization header</string>
-    <string name="auth_schema_hint">X-Auth-Schema header (retail | corp)</string>
-    <string name="no_cards">Добавьте клиента</string>
-    <string name="client_info_updated">Информация о клиенте была обновлена</string>
-    <string name="error_empty_user">Пустой пользователь</string>
-    <string name="error_empty_userid">Пустой id пользователя</string>
+    <string name="demo_continue">Continue</string>
+    <string name="demo_skip">Skip</string>
+    <string name="demo_yes">Yes</string>
+    <string name="demo_no">No</string>
+    <string name="demo_add">Add</string>
+    <string name="demo_save">Save</string>
+    <string name="demo_cancel">Cancel</string>
 
-    <string name="card_delete_text">Выдействительно хотите удалить клиента?</string>
-    <string name="card_delete_yes">Да</string>
-    <string name="card_delete_no">Нет</string>
+    <string name="demo_title_home">Home</string>
+    <string name="demo_title_chat">Chat</string>
 
-    <string name="card_add_button">Добавить</string>
-    <string name="card_save_button">Сохранить</string>
-    <string name="card_cancel_button">Отменить</string>
+    <string name="demo_auth_token_hint">Authorization header</string>
+    <string name="demo_auth_schema_hint">X-Auth-Schema header (retail | corp)</string>
+    <string name="demo_add_client">Add a client</string>
+    <string name="demo_client_id_hint">Client ID</string>
+    <string name="demo_client_name_hint">Client name</string>
+    <string name="demo_client_data_hint">Client data</string>
+    <string name="demo_app_marker_hint">App Marker</string>
+    <string name="demo_client_id_signature_hint">Signature (if empty - will load from server)</string>
+    <string name="demo_edit_transport_config">Transport config</string>
+    <string name="demo_get_signature_error">Failed to get client ID signature</string>
+    <string name="demo_error_empty_user">Empty user</string>
+    <string name="demo_error_empty_user_id">Empty user ID</string>
+    <string name="demo_card_delete_text">Are you sure you want to delete the client?</string>
+    <string name="demo_client_info_updated">Client info was updated</string>
 
-    <string name="chat_activity_button_label">В чат (Activity)</string>
-    <string name="chat_fragmetn_button_label">В чат (Fragment)</string>
+    <string name="demo_chat_activity_button_label">To chat (Activity)</string>
+    <string name="demo_chat_fragment_button_label">To chat (Fragment)</string>
 
-    <!-- Тексты для кастомизации -->
-    <string name="threads_no_media_and_files_alt_header">Список файлов пуст</string>
-    <string name="threads_no_media_and_files_alt_description">Добавьте новые на экране чата</string>
-    <string name="threads_welcome_screen_title_text">Добро пожаловать в контактный центр</string>
-    <string name="threads_welcome_screen_subtitle_text">Отправьте ваш вопрос, первый освободившийся оператор на него ответит</string>
-    <string name="threads_contact_center">Контакт центр</string>
+    <string name="demo_unread_messages_count">Unread message counts:&#032;</string>
 
-    <string name="threads_input_hint">Введите сообщение</string>
-
-    <string name="threads_request_to_resolve_thread">Специалист ответил на все ваши вопросы, продолжить консультацию?</string>
-    <string name="threads_request_to_resolve_thread_close">Нет</string>
-    <string name="threads_request_to_resolve_thread_open">Да</string>
-
-    <string name="threads_push_title">@string/app_name1</string>
-
-    <string-array name="designs">
-        <item>@string/design_green_enum</item>
-        <item>@string/design_blue_enum</item>
+    <string-array name="demo_designs">
+        <item>@string/demo_design_green_style</item>
+        <item>@string/demo_design_blue_style</item>
     </string-array>
-    <string name="design_green_enum">Green</string>
-    <string name="design_blue_enum">Blue</string>
+    <string name="demo_design_green_style">Green style</string>
+    <string name="demo_design_blue_style">Blue style</string>
 
+    <string name="send_text_message">Send message</string>
+    <string name="send_text_message_success">Message was successfully sent!</string>
+    <string name="send_text_message_error">Error sending message!</string>
+    <string name="test_message">Test message</string>
+    <string name="login">Login</string>
+    <string name="alt_loading">Loading chat…</string>
+
+    <string name="threads_no_media_and_files_alt_header">File list is empty</string>
+    <string name="threads_no_media_and_files_alt_description">Add new ones on the chat screen</string>
 
     <!--Alternative Design -->
-
-    <string name="alt_threads_push_title">Тредс</string>
-
-    <string name="alt_threads_contact_center">VIP Чат</string>
-    <string name="alt_threads_operator_subtitle">Ваш персональный менеджер всегда с вами и рад ответить на любые ваши вопросы</string>
-
-    <string name="alt_threads_request_to_resolve_thread">У вас еще остались вопросы?</string>
-    <string name="alt_threads_request_to_resolve_thread_close">Все решено</string>
-    <string name="alt_threads_request_to_resolve_thread_open">Еще вопрос</string>
-
-    <string name="alt_threads_welcome_screen_title_text">Рады помочь Вам в VIP Чат</string>
-    <string name="alt_threads_welcome_screen_subtitle_text">Отправьте ваш вопрос, и ваш персональный менеджер на него сразу ответит</string>
-    <string name="alt_threads_input_hint">Введите Ваше сообщение</string>
-    <string name="get_signature_error">Не удалось получить подпись clientId</string>
-
-    <string name="send_text_message">Отправить сообщение</string>
-    <string name="send_text_message_success">Сообщение отправлено успешно!</string>
-    <string name="send_text_message_error">Ошибка отправки сообщения!</string>
-    <string name="test_message">Тестовое сообщение</string>
-
-    <string name="login">Залогиниться</string>
-
-    <string name="edit_transport_config">Настройки транспорта</string>
-    <string translatable="false" name="edit_transport_config_base_url">Server base url</string>
-    <string translatable="false" name="edit_transport_config_type">Transport type (THREADS_GATE|MFMS_PUSH)</string>
-    <string translatable="false" name="edit_transport_config_threads_gate_url">Threads gate url</string>
-    <string translatable="false" name="edit_transport_config_threads_gate_provider_uid">Threads gate provider uid</string>
-    <string name="alt_loading">Загрузка чата...</string>
-
+    <string name="demo_alt_threads_push_title">Threads</string>
+    <string name="demo_alt_threads_contact_center">VIP Chat</string>
+    <string name="demo_alt_threads_operator_subtitle">Your personal manager is always with you and happy to answer any of your questions</string>
+    <string name="demo_alt_threads_request_to_resolve_thread">Do you still have questions?</string>
+    <string name="demo_alt_threads_request_to_resolve_thread_close">All is decided</string>
+    <string name="demo_alt_threads_request_to_resolve_thread_open">Another question</string>
+    <string name="demo_alt_threads_welcome_screen_title_text">Happy to help you in VIP chat</string>
+    <string name="demo_alt_threads_welcome_screen_subtitle_text">Send your question and your personal manager will immediately answer it</string>
+    <string name="demo_alt_threads_input_hint">Enter your message</string>
 </resources>

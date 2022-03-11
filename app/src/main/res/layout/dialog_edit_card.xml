@@ -21,7 +21,7 @@
                 android:id="@+id/client_id"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/client_id_hint" />
+                android:hint="@string/demo_client_id_hint" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -33,7 +33,7 @@
                 android:id="@+id/client_data"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/client_data_hint" />
+                android:hint="@string/demo_client_data_hint" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -45,7 +45,7 @@
                 android:id="@+id/app_marker"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/app_marker_hint" />
+                android:hint="@string/demo_app_marker_hint" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -57,7 +57,7 @@
                 android:id="@+id/client_id_signature"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/client_id_signature_hint" />
+                android:hint="@string/demo_client_id_signature_hint" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -69,7 +69,7 @@
                 android:id="@+id/auth_token"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/auth_token_hint" />
+                android:hint="@string/demo_auth_token_hint" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -81,7 +81,7 @@
                 android:id="@+id/auth_schema"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/auth_schema_hint" />
+                android:hint="@string/demo_auth_schema_hint" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -91,7 +91,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="@string/card_save_button" />
+            android:text="@string/demo_save" />
 
         <TextView
             android:id="@+id/cancelButton"
@@ -100,7 +100,7 @@
             android:gravity="center"
             android:paddingTop="@dimen/activity_horizontal_margin"
             android:paddingBottom="@dimen/activity_horizontal_margin"
-            android:text="@string/card_cancel_button"
+            android:text="@string/demo_cancel"
             android:textColor="@color/colorAccent"
             android:textSize="16sp" />
 

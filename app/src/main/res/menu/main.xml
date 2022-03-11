@@ -5,13 +5,13 @@
     <item
         android:id="@+id/add_card"
         android:icon="@drawable/ic_add_card_white"
-        android:title="@string/title_home"
+        android:title="@string/demo_title_home"
         app:showAsAction="always" />
 
     <item
         android:id="@+id/edit_transport_config"
         android:icon="@drawable/ic_baseline_settings_24"
-        android:title="@string/edit_transport_config"
+        android:title="@string/demo_edit_transport_config"
         app:showAsAction="always" />
 
 </menu>

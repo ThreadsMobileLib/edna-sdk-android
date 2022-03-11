@@ -6,7 +6,7 @@
     android:padding="@dimen/activity_horizontal_margin">
 
     <TextView
-        android:text="@string/unread_messages_count"
+        android:text="@string/demo_unread_messages_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="8dp"/>

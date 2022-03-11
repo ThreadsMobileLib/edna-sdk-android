@@ -29,9 +29,12 @@ import im.threads.ChatStyle;
 import im.threads.ThreadsLib;
 import im.threads.UserInfoBuilder;
 import im.threads.android.R;
+import im.threads.android.utils.ChatDesign;
 import im.threads.android.utils.ChatStyleBuilderHelper;
+import im.threads.android.utils.PermissionDescriptionDialogStyleBuilderHelper;
 import im.threads.internal.utils.ColorsHelper;
 import im.threads.internal.utils.ThreadsLogger;
+import im.threads.styles.permissions.PermissionDescriptionType;
 import im.threads.view.ChatFragment;
 import im.threads.view.OpenWay;
 import io.reactivex.Completable;
@@ -72,7 +75,7 @@ public class BottomNavigationActivity extends AppCompatActivity {
     private String authToken;
     private String authSchema;
     private String appMarker;
-    private ChatStyleBuilderHelper.ChatDesign chatDesign;
+    private ChatDesign chatDesign;
 
     private BottomNavigationView bottomNavigationView;
     private TabItem selectedTab;
@@ -101,7 +104,7 @@ public class BottomNavigationActivity extends AppCompatActivity {
                                       String clientIdSignature,
                                       String authToken,
                                       String authSchema,
-                                      ChatStyleBuilderHelper.ChatDesign chatDesign) {
+                                      ChatDesign chatDesign) {
         Intent intent = new Intent(activity, BottomNavigationActivity.class);
         intent.putExtra(ARG_APP_MARKER, appMarker);
         intent.putExtra(ARG_CLIENT_ID, clientId);
@@ -120,7 +123,7 @@ public class BottomNavigationActivity extends AppCompatActivity {
                                                     String clientIdSignature,
                                                     String authToken,
                                                     String authSchema,
-                                                    ChatStyleBuilderHelper.ChatDesign chatDesign) {
+                                                    ChatDesign chatDesign) {
         Intent intent = new Intent(context, BottomNavigationActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.putExtra(ARG_NEEDS_SHOW_CHAT, true);
@@ -149,7 +152,7 @@ public class BottomNavigationActivity extends AppCompatActivity {
         clientIdSignature = intent.getStringExtra(ARG_CLIENT_ID_SIGNATURE);
         authToken = intent.getStringExtra(ARG_AUTH_TOKEN);
         authSchema = intent.getStringExtra(ARG_AUTH_SCHEMA);
-        chatDesign = (ChatStyleBuilderHelper.ChatDesign) intent.getSerializableExtra(ARG_CHAT_DESIGN);
+        chatDesign = (ChatDesign) intent.getSerializableExtra(ARG_CHAT_DESIGN);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -238,7 +241,7 @@ public class BottomNavigationActivity extends AppCompatActivity {
                 fragment = BottomNavigationHomeFragment.newInstance();
                 break;
             case TAB_CHAT:
-                ThreadsLib.getInstance().applyChatStyle(ChatStyleBuilderHelper.getChatStyle(chatDesign));
+                applyChatStyles(chatDesign);
                 fragment = ChatFragment.newInstance(needToShowChat ? OpenWay.FROM_PUSH : OpenWay.DEFAULT);
                 break;
         }
@@ -247,6 +250,28 @@ public class BottomNavigationActivity extends AppCompatActivity {
                 .replace(R.id.content, fragment)
                 .commit();
         fm.executePendingTransactions();
+    }
+
+    private void applyChatStyles(@NonNull ChatDesign chatDesign) {
+        ThreadsLib.getInstance().applyChatStyle(ChatStyleBuilderHelper.getChatStyle(chatDesign));
+        ThreadsLib.getInstance().applyStoragePermissionDescriptionDialogStyle(
+                PermissionDescriptionDialogStyleBuilderHelper.getDialogStyle(
+                        chatDesign,
+                        PermissionDescriptionType.STORAGE
+                )
+        );
+        ThreadsLib.getInstance().applyRecordAudioPermissionDescriptionDialogStyle(
+                PermissionDescriptionDialogStyleBuilderHelper.getDialogStyle(
+                        chatDesign,
+                        PermissionDescriptionType.RECORD_AUDIO
+                )
+        );
+        ThreadsLib.getInstance().applyCameraPermissionDescriptionDialogStyle(
+                PermissionDescriptionDialogStyleBuilderHelper.getDialogStyle(
+                        chatDesign,
+                        PermissionDescriptionType.CAMERA
+                )
+        );
     }
 
     /**

@@ -18,8 +18,9 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name1"
         android:theme="@style/AppTheme"
-        tools:ignore="GoogleAppIndexingWarning"
-        tools:replace="android:label">
+        android:usesCleartextTraffic="true"
+        tools:replace="android:label"
+        tools:ignore="GoogleAppIndexingWarning">
 
         <activity
             android:name=".ui.MainActivity"

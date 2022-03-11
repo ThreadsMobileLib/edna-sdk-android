@@ -23,11 +23,14 @@ import im.threads.android.ui.EditCardDialog.EditCardDialogActionsListener
 import im.threads.android.ui.YesNoDialog.YesNoDialogActionListener
 import im.threads.android.utils.CardsLinearLayoutManager
 import im.threads.android.utils.CardsSnapHelper
+import im.threads.android.utils.ChatDesign
 import im.threads.android.utils.ChatStyleBuilderHelper
+import im.threads.android.utils.PermissionDescriptionDialogStyleBuilderHelper
 import im.threads.android.utils.PrefUtils.getCards
 import im.threads.android.utils.PrefUtils.getTheme
 import im.threads.android.utils.PrefUtils.storeCards
 import im.threads.internal.utils.ThreadsLogger
+import im.threads.styles.permissions.PermissionDescriptionType
 import im.threads.view.ChatActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -59,9 +62,9 @@ class MainActivity : AppCompatActivity(), EditCardDialogActionsListener, YesNoDi
         binding.designSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(arg0: AdapterView<*>?, arg1: View?, arg2: Int, arg3: Long) {
                 val theme = binding.designSpinner.selectedItem.toString()
-                ChatStyleBuilderHelper.ChatDesign.setTheme(
+                ChatDesign.setTheme(
                         this@MainActivity,
-                        ChatStyleBuilderHelper.ChatDesign.enumOf(this@MainActivity, theme)
+                        ChatDesign.enumOf(this@MainActivity, theme)
                 )
             }
 
@@ -81,9 +84,9 @@ class MainActivity : AppCompatActivity(), EditCardDialogActionsListener, YesNoDi
             override fun onDelete(card: Card) {
                 cardForDelete = card
                 YesNoDialog.open(
-                        this@MainActivity, getString(R.string.card_delete_text),
-                        getString(R.string.card_delete_yes),
-                        getString(R.string.card_delete_no),
+                        this@MainActivity, getString(R.string.demo_card_delete_text),
+                        getString(R.string.demo_yes),
+                        getString(R.string.demo_no),
                         YES_NO_DIALOG_REQUEST_CODE
                 )
             }
@@ -123,7 +126,7 @@ class MainActivity : AppCompatActivity(), EditCardDialogActionsListener, YesNoDi
 
         val currentCard = currentCard
         if (currentCard == null) {
-            displayError(R.string.error_empty_user)
+            displayError(R.string.demo_error_empty_user)
             return
         }
         currentCard.userId
@@ -134,8 +137,31 @@ class MainActivity : AppCompatActivity(), EditCardDialogActionsListener, YesNoDi
                         .setClientIdSignature(currentCard.clientIdSignature)
                         .setAppMarker(currentCard.appMarker)
         )
-        ThreadsLib.getInstance().applyChatStyle(ChatStyleBuilderHelper.getChatStyle(getTheme(this)))
+        applyChatStyles()
         startActivity(Intent(this, ChatActivity::class.java))
+    }
+
+    private fun applyChatStyles() {
+        val chatDesign = getTheme(this)
+        ThreadsLib.getInstance().applyChatStyle(ChatStyleBuilderHelper.getChatStyle(chatDesign))
+        ThreadsLib.getInstance().applyStoragePermissionDescriptionDialogStyle(
+            PermissionDescriptionDialogStyleBuilderHelper.getDialogStyle(
+                chatDesign,
+                PermissionDescriptionType.STORAGE
+            )
+        )
+        ThreadsLib.getInstance().applyRecordAudioPermissionDescriptionDialogStyle(
+            PermissionDescriptionDialogStyleBuilderHelper.getDialogStyle(
+                chatDesign,
+                PermissionDescriptionType.RECORD_AUDIO
+            )
+        )
+        ThreadsLib.getInstance().applyCameraPermissionDescriptionDialogStyle(
+            PermissionDescriptionDialogStyleBuilderHelper.getDialogStyle(
+                chatDesign,
+                PermissionDescriptionType.CAMERA
+            )
+        )
     }
 
     /**
@@ -145,7 +171,7 @@ class MainActivity : AppCompatActivity(), EditCardDialogActionsListener, YesNoDi
         subscribeOnSocketResponses()
         val currentCard = currentCard
         if (currentCard == null) {
-            displayError(R.string.error_empty_user)
+            displayError(R.string.demo_error_empty_user)
             return
         }
         currentCard.userId
@@ -219,7 +245,7 @@ class MainActivity : AppCompatActivity(), EditCardDialogActionsListener, YesNoDi
         }
         val currentCard = currentCard
         if (currentCard == null) {
-            displayError(R.string.error_empty_user)
+            displayError(R.string.demo_error_empty_user)
             return
         }
         val userInfoBuilder = UserInfoBuilder(currentCard.userId)
@@ -272,7 +298,7 @@ class MainActivity : AppCompatActivity(), EditCardDialogActionsListener, YesNoDi
         val indexOf = cards.indexOf(newCard)
         if (indexOf != -1) {
             cards[indexOf] = newCard
-            Toast.makeText(this, R.string.client_info_updated, Toast.LENGTH_LONG).show()
+            Toast.makeText(this, R.string.demo_client_info_updated, Toast.LENGTH_LONG).show()
         } else {
             cards.add(newCard)
         }

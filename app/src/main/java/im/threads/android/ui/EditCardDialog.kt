@@ -90,7 +90,7 @@ class EditCardDialog : DialogFragment() {
                                 dismiss()
                             }
                         ) {
-                            showError(R.string.get_signature_error)
+                            showError(R.string.demo_get_signature_error)
                             val newCard = Card(
                                 binding.clientId.text.toString(),
                                 binding.clientData.text.toString(),
