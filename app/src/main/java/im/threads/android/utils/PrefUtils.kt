@@ -14,6 +14,7 @@ object PrefUtils {
     private const val PREF_SERVER_BASE_URL = "PREF_SERVER_BASE_URL"
     private const val PREF_THREADS_GATE_URL = "PREF_THREADS_GATE_URL"
     private const val PREF_THREADS_GATE_PROVIDER_UID = "PREF_THREADS_GATE_PROVIDER_UID"
+    private const val PREF_THREADS_GATE_HCM_PROVIDER_UID = "PREF_THREADS_GATE_HCM_PROVIDER_UID"
     private const val PREF_THEME = "PREF_THEME"
 
     @JvmStatic
@@ -46,21 +47,29 @@ object PrefUtils {
         editor.putString(PREF_SERVER_BASE_URL, transportConfig.baseUrl)
         editor.putString(PREF_THREADS_GATE_URL, transportConfig.threadsGateUrl)
         editor.putString(PREF_THREADS_GATE_PROVIDER_UID, transportConfig.threadsGateProviderUid)
+        editor.putString(PREF_THREADS_GATE_HCM_PROVIDER_UID,
+            transportConfig.threadsGateHCMProviderUid)
         editor.commit()
     }
 
     @JvmStatic
     fun getTransportConfig(ctx: Context?): TransportConfig? {
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(ctx)
-        val baseUrl = sharedPreferences.getString(PREF_SERVER_BASE_URL, null) ?: return null
-        val threadsGateUrl = sharedPreferences.getString(PREF_THREADS_GATE_URL, null) ?: return null
+        val baseUrl = sharedPreferences.getString(PREF_SERVER_BASE_URL, null)
+            ?: return null
+        val threadsGateUrl = sharedPreferences.getString(PREF_THREADS_GATE_URL, null)
+            ?: return null
         val threadsGateProviderUid =
             sharedPreferences.getString(PREF_THREADS_GATE_PROVIDER_UID, null)
+                ?: return null
+        val threadsGateHCMProviderUid =
+            sharedPreferences.getString(PREF_THREADS_GATE_HCM_PROVIDER_UID, null)
                 ?: return null
         return TransportConfig(
             baseUrl = baseUrl,
             threadsGateUrl = threadsGateUrl,
-            threadsGateProviderUid = threadsGateProviderUid
+            threadsGateProviderUid = threadsGateProviderUid,
+            threadsGateHCMProviderUid = threadsGateHCMProviderUid
         )
     }
 

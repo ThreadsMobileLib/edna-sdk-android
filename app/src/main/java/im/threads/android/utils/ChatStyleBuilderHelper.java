@@ -19,8 +19,7 @@ public class ChatStyleBuilderHelper {
                 .showChatBackButton(true)// показывать кнопку назад
                 .setUseExternalCameraApp(true)
                 .setSelfieEnabled(false)
-                .setScrollChatToEndIfUserTyping(false)
-                .arePermissionDescriptionDialogsEnabled(true);
+                .setScrollChatToEndIfUserTyping(false);
         switch (design) {
             case GREEN: {
                 configureGreenDesign(chatStyle);
@@ -43,6 +42,7 @@ public class ChatStyleBuilderHelper {
 
     private static void configureBlueDesign(ChatStyle chatStyle) {
         chatStyle
+                .setArePermissionDescriptionDialogsEnabled(true)
                 .setWelcomeScreenStyle(R.drawable.alt_threads_welcome_logo,
                         R.string.demo_alt_threads_welcome_screen_title_text,
                         R.string.demo_alt_threads_welcome_screen_subtitle_text,
@@ -82,6 +82,13 @@ public class ChatStyleBuilderHelper {
                         R.style.AltFileDialogStyleTransparent,
                         false,
                         false)
+                .setChatBodyIconsTint(0)
+                .setChatToolbarInverseIconTintResId(R.color.alt_threads_chat_icons_tint)
+                .setQuoteClearIconTintResId(R.color.alt_threads_chat_icons_tint)
+                .setInputIconTintResId(R.color.alt_threads_chat_icons_tint)
+                .setAttachmentBottomSheetButtonTintResId(R.color.alt_threads_chat_icons_tint)
+                .setDownloadButtonTintResId(R.color.alt_threads_chat_icons_tint)
+                .setMediaAndFilesFileIconTintResId(R.color.alt_threads_chat_icons_tint)
                 .setChatInputStyle(R.color.alt_threads_input_hint,
                         R.color.alt_threads_input_background,
                         R.color.alt_threads_input_text,

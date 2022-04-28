@@ -50,8 +50,6 @@
     <string name="threads_request_to_resolve_thread_close">Нет</string>
     <string name="threads_request_to_resolve_thread_open">Да</string>
 
-    <string name="threads_push_title">@string/app_name1</string>
-
 
     <!-- Альтернативный дизайн -->
     <string name="demo_alt_threads_push_title">Тредс</string>
@@ -65,6 +63,7 @@
     <string name="demo_alt_threads_input_hint">Введите Ваше сообщение</string>
 
     <string name="send_text_message">Отправить сообщение</string>
+    <string name="to_chat_with_quote_text_message">В чат с цитатой</string>
     <string name="send_text_message_success">Сообщение отправлено успешно!</string>
     <string name="send_text_message_error">Ошибка отправки сообщения!</string>
     <string name="test_message">Тестовое сообщение</string>

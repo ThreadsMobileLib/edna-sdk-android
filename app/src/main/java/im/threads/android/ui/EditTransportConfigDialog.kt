@@ -41,7 +41,8 @@ class EditTransportConfigDialog : DialogFragment() {
                     requireContext(), TransportConfig(
                         baseUrl = baseUrl.text.toString(),
                         threadsGateUrl = threadsGateUrl.text.toString(),
-                        threadsGateProviderUid = threadsGateProviderUid.text.toString()
+                        threadsGateProviderUid = threadsGateProviderUid.text.toString(),
+                        threadsGateHCMProviderUid = threadsGateHcmProviderUid.text.toString()
                     )
                 )
                 ProcessPhoenix.triggerRebirth(
@@ -52,19 +53,19 @@ class EditTransportConfigDialog : DialogFragment() {
             cancelButton.setOnClickListener {
                 dismiss()
             }
-            val transportConfig = PrefUtils.getTransportConfig(requireContext())
+            val context = requireContext()
+            val transportConfig = PrefUtils.getTransportConfig(context)
             if (transportConfig != null) {
                 baseUrl.setText(transportConfig.baseUrl)
                 threadsGateUrl.setText(transportConfig.threadsGateUrl)
                 threadsGateProviderUid.setText(transportConfig.threadsGateProviderUid)
+                threadsGateHcmProviderUid.setText(transportConfig.threadsGateHCMProviderUid)
             } else {
-                baseUrl.setText(MetaDataUtils.getDatastoreUrl(requireContext()))
-                threadsGateUrl.setText(MetaDataUtils.getThreadsGateUrl(requireContext()))
-                threadsGateProviderUid.setText(
-                    MetaDataUtils.getThreadsGateProviderUid(
-                        requireContext()
-                    )
-                )
+                baseUrl.setText(MetaDataUtils.getDatastoreUrl(context))
+                threadsGateUrl.setText(MetaDataUtils.getThreadsGateUrl(context))
+                threadsGateProviderUid.setText(MetaDataUtils.getThreadsGateProviderUid(context))
+                val gateHcmProviderUid = MetaDataUtils.getThreadsGateHCMProviderUid(context)
+                threadsGateHcmProviderUid.setText(gateHcmProviderUid)
             }
         }
         return binding?.root

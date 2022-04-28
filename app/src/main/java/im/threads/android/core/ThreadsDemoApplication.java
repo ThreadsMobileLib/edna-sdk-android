@@ -4,14 +4,16 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.text.TextUtils;
 
+import androidx.multidex.MultiDexApplication;
+
 import com.edna.android.push_lite.PushController;
 
+import java.util.Collections;
 import java.util.List;
 
-import androidx.multidex.MultiDex;
-import androidx.multidex.MultiDexApplication;
 import im.threads.ConfigBuilder;
 import im.threads.ThreadsLib;
+import im.threads.android.R;
 import im.threads.android.data.Card;
 import im.threads.android.data.TransportConfig;
 import im.threads.android.push.HCMTokenRefresher;
@@ -25,10 +27,9 @@ import io.reactivex.subjects.BehaviorSubject;
 
 public class ThreadsDemoApplication extends MultiDexApplication {
 
+    private static final BehaviorSubject<Integer> unreadMessagesSubject = BehaviorSubject.create();
     private static Context appContext;
     private Disposable disposable;
-
-    private static BehaviorSubject<Integer> unreadMessagesSubject = BehaviorSubject.create();
 
     public static Context getAppContext() {
         return appContext;
@@ -52,17 +53,20 @@ public class ThreadsDemoApplication extends MultiDexApplication {
                         }
                 );
         PushController.getInstance(this).init();
+
         ConfigBuilder configBuilder = new ConfigBuilder(this)
                 .pendingIntentCreator(new CustomPendingIntentCreator())
-                .unreadMessagesCountListener(count -> unreadMessagesSubject.onNext(count))
+                .unreadMessagesCountListener(unreadMessagesSubject::onNext)
                 .surveyCompletionDelay(2000)
                 .historyLoadingCount(50)
-                .isDebugLoggingEnabled(true);
+                .isDebugLoggingEnabled(true)
+                .certificateRawResIds(Collections.singletonList(R.raw.edna));
         TransportConfig transportConfig = PrefUtils.getTransportConfig(this);
         if (transportConfig != null) {
             configBuilder.serverBaseUrl(transportConfig.getBaseUrl())
                     .threadsGateUrl(transportConfig.getThreadsGateUrl())
-                    .threadsGateProviderUid(transportConfig.getThreadsGateProviderUid());
+                    .threadsGateProviderUid(transportConfig.getThreadsGateProviderUid())
+                    .threadsGateHCMProviderUid(transportConfig.getThreadsGateHCMProviderUid());
         }
         ThreadsLib.init(configBuilder);
     }

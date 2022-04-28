@@ -163,6 +163,14 @@ public class BottomNavigationActivity extends AppCompatActivity {
         ChatStyle style = ChatStyleBuilderHelper.getChatStyle(chatDesign);
         ColorsHelper.setStatusBarColor(this, style.chatStatusBarColorResId, style.windowLightStatusBarResId);
 
+        int checkedColor;
+        if (style.chatBodyIconsTint != 0) {
+            checkedColor = style.chatBodyIconsTint;
+        } else if (style.chatToolbarColorResId != 0) {
+            checkedColor = style.chatToolbarColorResId;
+        } else {
+            checkedColor = R.color.threads_black;
+        }
         ColorStateList iconColorStates = new ColorStateList(
                 new int[][]{
                         new int[]{-android.R.attr.state_checked},
@@ -170,7 +178,7 @@ public class BottomNavigationActivity extends AppCompatActivity {
                 },
                 new int[]{
                         ContextCompat.getColor(this, style.chatDisabledTextColor),
-                        ContextCompat.getColor(this, style.chatBodyIconsTint)
+                        ContextCompat.getColor(this, checkedColor)
                 });
 
         bottomNavigationView.setItemIconTintList(iconColorStates);

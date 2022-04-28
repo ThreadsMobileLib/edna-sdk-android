@@ -5,7 +5,6 @@ import android.os.Build
 import android.os.Bundle
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import androidx.appcompat.content.res.AppCompatResources
 import androidx.databinding.DataBindingUtil
 import im.threads.android.R
 import im.threads.android.databinding.ActivityWebviewBinding
@@ -32,12 +31,12 @@ class WebViewActivity : BaseActivity() {
     }
 
     private fun initView() {
+        val chatStyle = Config.instance.chatStyle
         binding = DataBindingUtil.setContentView(this, R.layout.activity_webview)
         binding.backButton.setOnClickListener { finish() }
 
-        val d = AppCompatResources.getDrawable(this, R.drawable.ic_arrow_back_white_24dp)?.mutate()
-        ColorsHelper.setDrawableColor(this, d, Config.instance.chatStyle.chatToolbarTextColorResId)
-        binding.backButton.setImageDrawable(d)
+        binding.backButton.setImageResource(R.drawable.ic_arrow_back_white_24dp)
+        ColorsHelper.setTint(this, binding.backButton, chatStyle.chatToolbarTextColorResId)
 
         ColorsHelper.setBackgroundColor(
             this,
@@ -48,18 +47,18 @@ class WebViewActivity : BaseActivity() {
         ColorsHelper.setBackgroundColor(
             this,
             binding.webView,
-            Config.instance.chatStyle.chatBackgroundColor
+            chatStyle.chatBackgroundColor
         )
         ColorsHelper.setTextColor(
             this,
             binding.title,
-            Config.instance.chatStyle.chatToolbarTextColorResId
+            chatStyle.chatToolbarTextColorResId
         )
 
         ColorsHelper.setStatusBarColor(
             this,
-            Config.instance.chatStyle.chatStatusBarColorResId,
-            Config.instance.chatStyle.windowLightStatusBarResId
+            chatStyle.chatStatusBarColorResId,
+            chatStyle.windowLightStatusBarResId
         )
 
         binding.webView.settings.javaScriptEnabled = true
@@ -72,7 +71,7 @@ class WebViewActivity : BaseActivity() {
     }
 
     private fun extractLink(url: Uri?): String? {
-        return if(url == null) {
+        return if (url == null) {
             url
         } else {
             url.toString().replaceFirst(Regex("webview://"), "https://")

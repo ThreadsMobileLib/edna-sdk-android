@@ -43,6 +43,7 @@
     <string name="demo_design_blue_style">Blue style</string>
 
     <string name="send_text_message">Send message</string>
+    <string name="to_chat_with_quote_text_message">To chat with quote</string>
     <string name="send_text_message_success">Message was successfully sent!</string>
     <string name="send_text_message_error">Error sending message!</string>
     <string name="test_message">Test message</string>

@@ -25,7 +25,6 @@
     <color name="threads_chat_highlighting">#3083B144</color>
     <color name="threads_chat_incoming_message_bubble">@color/white</color>
     <color name="threads_chat_outgoing_message_bubble">@color/colorPrimary</color>
-    <color name="threads_chat_icons_tint">@color/colorPrimary</color>
     <color name="threads_chat_connection_message">#333333</color>
 
     <color name="threads_files_medias_screen_background">@color/white</color>

@@ -18,6 +18,7 @@ import im.threads.UserInfoBuilder
 import im.threads.android.R
 import im.threads.android.data.Card
 import im.threads.android.databinding.ActivityMainBinding
+import im.threads.android.ui.BottomNavigationActivity.ARG_NEEDS_SHOW_CHAT
 import im.threads.android.ui.CardsAdapter.CardActionListener
 import im.threads.android.ui.EditCardDialog.EditCardDialogActionsListener
 import im.threads.android.ui.YesNoDialog.YesNoDialogActionListener
@@ -29,6 +30,8 @@ import im.threads.android.utils.PermissionDescriptionDialogStyleBuilderHelper
 import im.threads.android.utils.PrefUtils.getCards
 import im.threads.android.utils.PrefUtils.getTheme
 import im.threads.android.utils.PrefUtils.storeCards
+import im.threads.internal.model.CampaignMessage
+import im.threads.internal.utils.PrefUtils
 import im.threads.internal.utils.ThreadsLogger
 import im.threads.styles.permissions.PermissionDescriptionType
 import im.threads.view.ChatActivity
@@ -40,6 +43,8 @@ import java.io.File
 import java.io.FileNotFoundException
 import java.io.FileOutputStream
 import java.io.IOException
+import java.util.Date
+
 
 /**
  * Активность с примерами открытия чата:
@@ -63,8 +68,8 @@ class MainActivity : AppCompatActivity(), EditCardDialogActionsListener, YesNoDi
             override fun onItemSelected(arg0: AdapterView<*>?, arg1: View?, arg2: Int, arg3: Long) {
                 val theme = binding.designSpinner.selectedItem.toString()
                 ChatDesign.setTheme(
-                        this@MainActivity,
-                        ChatDesign.enumOf(this@MainActivity, theme)
+                    this@MainActivity,
+                    ChatDesign.enumOf(this@MainActivity, theme)
                 )
             }
 
@@ -72,22 +77,22 @@ class MainActivity : AppCompatActivity(), EditCardDialogActionsListener, YesNoDi
         }
         val versionView = findViewById<TextView>(R.id.version_name)
         versionView.text = getString(
-                R.string.lib_version,
-                ThreadsLib.getLibVersion()
+            R.string.lib_version,
+            ThreadsLib.getLibVersion()
         )
         cardsSnapHelper.attachToRecyclerView(binding.cardsView)
         binding.cardsView.layoutManager =
-                CardsLinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+            CardsLinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         binding.cardsView.setHasFixedSize(true)
         cardsAdapter = CardsAdapter()
         cardsAdapter.setCardActionListener(object : CardActionListener {
             override fun onDelete(card: Card) {
                 cardForDelete = card
                 YesNoDialog.open(
-                        this@MainActivity, getString(R.string.demo_card_delete_text),
-                        getString(R.string.demo_yes),
-                        getString(R.string.demo_no),
-                        YES_NO_DIALOG_REQUEST_CODE
+                    this@MainActivity, getString(R.string.demo_card_delete_text),
+                    getString(R.string.demo_yes),
+                    getString(R.string.demo_no),
+                    YES_NO_DIALOG_REQUEST_CODE
                 )
             }
 
@@ -106,21 +111,19 @@ class MainActivity : AppCompatActivity(), EditCardDialogActionsListener, YesNoDi
         val hasCards = cards != null && cards.isNotEmpty()
         binding.addCard.visibility = if (!hasCards) View.VISIBLE else View.GONE
         binding.addCardHint.visibility =
-                if (!hasCards) View.VISIBLE else View.GONE
+            if (!hasCards) View.VISIBLE else View.GONE
         binding.cardsView.visibility =
-                if (hasCards) View.VISIBLE else View.GONE
+            if (hasCards) View.VISIBLE else View.GONE
         binding.chatActivityButton.visibility =
-                if (hasCards) View.VISIBLE else View.GONE
+            if (hasCards) View.VISIBLE else View.GONE
         binding.chatFragmentButton.visibility =
-                if (hasCards) View.VISIBLE else View.GONE
+            if (hasCards) View.VISIBLE else View.GONE
         binding.sendMessageButton.visibility =
-                if (hasCards) View.VISIBLE else View.GONE
+            if (hasCards) View.VISIBLE else View.GONE
         cardsAdapter.cards = if (hasCards) cards else ArrayList()
     }
 
-    /**
-     * Пример открытия чата в виде Активности
-     */
+    /** Пример открытия чата в виде Активности */
     fun navigateToChatActivity() {
         subscribeOnSocketResponses()
 
@@ -131,11 +134,11 @@ class MainActivity : AppCompatActivity(), EditCardDialogActionsListener, YesNoDi
         }
         currentCard.userId
         ThreadsLib.getInstance().initUser(
-                UserInfoBuilder(currentCard.userId)
-                        .setAuthData(currentCard.authToken, currentCard.authSchema)
-                        .setClientData(currentCard.clientData)
-                        .setClientIdSignature(currentCard.clientIdSignature)
-                        .setAppMarker(currentCard.appMarker)
+            UserInfoBuilder(currentCard.userId)
+                .setAuthData(currentCard.authToken, currentCard.authSchema)
+                .setClientData(currentCard.clientData)
+                .setClientIdSignature(currentCard.clientIdSignature)
+                .setAppMarker(currentCard.appMarker)
         )
         applyChatStyles()
         startActivity(Intent(this, ChatActivity::class.java))
@@ -164,9 +167,7 @@ class MainActivity : AppCompatActivity(), EditCardDialogActionsListener, YesNoDi
         )
     }
 
-    /**
-     * Пример открытия чата в виде фрагмента
-     */
+    /** Пример открытия чата в виде фрагмента */
     fun navigateToBottomNavigationActivity() {
         subscribeOnSocketResponses()
         val currentCard = currentCard
@@ -177,38 +178,38 @@ class MainActivity : AppCompatActivity(), EditCardDialogActionsListener, YesNoDi
         currentCard.userId
         if (ThreadsLib.getInstance().isUserInitialized) {
             ThreadsLib.getInstance().initUser(
-                    UserInfoBuilder(currentCard.userId)
-                            .setAuthData(currentCard.authToken, currentCard.authSchema)
-                            .setClientData(currentCard.clientData)
-                            .setClientIdSignature(currentCard.clientIdSignature)
-                            .setAppMarker(currentCard.appMarker)
+                UserInfoBuilder(currentCard.userId)
+                    .setAuthData(currentCard.authToken, currentCard.authSchema)
+                    .setClientData(currentCard.clientData)
+                    .setClientIdSignature(currentCard.clientIdSignature)
+                    .setAppMarker(currentCard.appMarker)
             )
         }
         startActivity(
-                BottomNavigationActivity.createIntent(
-                        this,
-                        currentCard.appMarker,
-                        currentCard.userId,
-                        currentCard.clientData,
-                        currentCard.clientIdSignature,
-                        currentCard.authToken,
-                        currentCard.authSchema,
-                        getTheme(this)
-                )
+            BottomNavigationActivity.createIntent(
+                this,
+                currentCard.appMarker,
+                currentCard.userId,
+                currentCard.clientData,
+                currentCard.clientIdSignature,
+                currentCard.authToken,
+                currentCard.authSchema,
+                getTheme(this)
+            )
         )
     }
 
     private fun subscribeOnSocketResponses() {
         if (!::socketResponseDisposable.isInitialized || socketResponseDisposable.isDisposed) {
             socketResponseDisposable = ThreadsLib.getInstance().socketResponseMapProcessor
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .onBackpressureDrop()
-                    .subscribe({ responseMap ->
-                        ThreadsLogger.i(TAG_SOCKET_RESPONSE, responseMap.toString())
-                    }, { error ->
-                        ThreadsLogger.e(TAG_SOCKET_RESPONSE, error.message)
-                    })
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .onBackpressureDrop()
+                .subscribe({ responseMap ->
+                    ThreadsLogger.i(TAG_SOCKET_RESPONSE, responseMap.toString())
+                }, { error ->
+                    ThreadsLogger.e(TAG_SOCKET_RESPONSE, error.message)
+                })
             compositeDisposable.add(socketResponseDisposable)
         }
     }
@@ -235,9 +236,9 @@ class MainActivity : AppCompatActivity(), EditCardDialogActionsListener, YesNoDi
         try {
             FileOutputStream(imageFile).use { fos ->
                 icon.compress(
-                        Bitmap.CompressFormat.JPEG,
-                        80,
-                        fos
+                    Bitmap.CompressFormat.JPEG,
+                    80,
+                    fos
                 )
             }
         } catch (ignored: FileNotFoundException) {
@@ -249,18 +250,62 @@ class MainActivity : AppCompatActivity(), EditCardDialogActionsListener, YesNoDi
             return
         }
         val userInfoBuilder = UserInfoBuilder(currentCard.userId)
-                .setAuthData(currentCard.authToken, currentCard.authSchema)
-                .setClientData(currentCard.clientData)
-                .setClientIdSignature(currentCard.clientIdSignature)
-                .setAppMarker(currentCard.appMarker)
+            .setAuthData(currentCard.authToken, currentCard.authSchema)
+            .setClientData(currentCard.clientData)
+            .setClientIdSignature(currentCard.clientIdSignature)
+            .setAppMarker(currentCard.appMarker)
         ThreadsLib.getInstance().initUser(userInfoBuilder)
         val messageSent =
-                ThreadsLib.getInstance().sendMessage(getString(R.string.test_message), imageFile)
+            ThreadsLib.getInstance().sendMessage(getString(R.string.test_message), imageFile)
         if (messageSent) {
             Toast.makeText(this, R.string.send_text_message_success, Toast.LENGTH_SHORT).show()
         } else {
             Toast.makeText(this, R.string.send_text_message_error, Toast.LENGTH_SHORT).show()
         }
+    }
+
+    fun prepareBottomNavigationActivityIntent(appMarker: String): Intent? {
+        val clientCards: List<Card> = getCards(this)
+        var pushClientCard: Card? = null
+        for (clientCard in clientCards) {
+            if (appMarker.lowercase().equals(clientCard.appMarker))
+                pushClientCard = clientCard
+        }
+        if (pushClientCard == null)
+            pushClientCard = currentCard
+
+        return BottomNavigationActivity.createIntent(
+            this,
+            appMarker,
+            pushClientCard?.userId,
+            pushClientCard?.clientData,
+            pushClientCard?.clientIdSignature,
+            pushClientCard?.authToken,
+            pushClientCard?.authSchema,
+            getTheme(this)
+        )
+    }
+
+    fun goToChatWithQuote() {
+        val campaignMessage = getTestCampaignMessage()
+        PrefUtils.setCampaignMessage(campaignMessage)
+        var intent = prepareBottomNavigationActivityIntent("dte.chc.mobile3.android")
+        intent?.putExtra(ARG_NEEDS_SHOW_CHAT, true);
+        startActivity(intent)
+    }
+
+    fun getTestCampaignMessage(): CampaignMessage {
+        return CampaignMessage(
+            "Test push message",
+            "Push sender",
+            Date(System.currentTimeMillis()),
+            "f3859319-"+System.currentTimeMillis(),
+            9109820901,
+            Date(System.currentTimeMillis() + 1000000000),
+            0,
+            "",
+            0,
+        )
     }
 
     private val currentCard: Card?
