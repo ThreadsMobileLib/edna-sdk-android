@@ -47,7 +47,7 @@ ext {
     rxjava2Version = '2.2.21'
     rxAndroidVersion = '2.1.1'
     gsonVersion = '2.8.6'
-    pushVersion = '3.5.0'
+    pushVersion = '3.5.2'
     picassoVersion = '2.8'
     recordViewVersion = '3.0.2'
     androidAudioConverterVersion = '0.0.8'

@@ -10,6 +10,7 @@ import im.threads.android.core.ThreadsDemoApplication;
 import im.threads.config.HttpClientSettings;
 import im.threads.internal.Config;
 import im.threads.internal.model.SslSocketFactoryConfig;
+import im.threads.internal.utils.SSLCertificateInterceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -47,6 +48,9 @@ class ServerAPI {
                 .connectTimeout(httpSettings.getConnectTimeoutMillis(), TimeUnit.MILLISECONDS)
                 .readTimeout(httpSettings.getReadTimeoutMillis(), TimeUnit.MILLISECONDS)
                 .writeTimeout(httpSettings.getWriteTimeoutMillis(), TimeUnit.MILLISECONDS);
+        if (Config.instance.isDebugLoggingEnabled) {
+            httpClientBuilder.addInterceptor(new SSLCertificateInterceptor());
+        }
         SslSocketFactoryConfig sslSocketFactoryConfig = config.sslSocketFactoryConfig;
         if (sslSocketFactoryConfig != null) {
             httpClientBuilder.sslSocketFactory(
