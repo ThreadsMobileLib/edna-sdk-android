@@ -38,7 +38,8 @@ class EditTransportConfigDialog : DialogFragment() {
         binding?.apply {
             saveButton.setOnClickListener {
                 PrefUtils.saveTransportConfig(
-                    requireContext(), TransportConfig(
+                    requireContext(),
+                    TransportConfig(
                         baseUrl = baseUrl.text.toString(),
                         threadsGateUrl = threadsGateUrl.text.toString(),
                         threadsGateProviderUid = threadsGateProviderUid.text.toString(),

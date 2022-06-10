@@ -6,4 +6,5 @@
     <bool name="new_chat_center_api">false</bool>
     <bool name="attachment_enabled">true</bool>
     <bool name="files_and_media_menu_item_enabled">true</bool>
+    <bool name="use_ssl">false</bool>
 </resources>

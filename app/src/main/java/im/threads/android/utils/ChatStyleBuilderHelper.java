@@ -35,6 +35,7 @@ public class ChatStyleBuilderHelper {
 
     private static void configureGreenDesign(ChatStyle chatStyle) {
         chatStyle.setChatSubtitleShowConsultOrgUnit(true)
+                .setVisibleChatTitleShadow(R.bool.alt_threads_chat_title_shadow_is_visible)
                 .setShowConsultSearching(true)
                 .setVoiceMessageEnabled(true);
         //Do nothing, using default threads design
@@ -190,8 +191,23 @@ public class ChatStyleBuilderHelper {
                         R.dimen.alt_bubbleIncomingPaddingRight,
                         R.dimen.alt_bubbleIncomingPaddingBottom
                 )
+                .setInputFieldPadding(
+                        R.dimen.alt_input_field_padding_left,
+                        R.dimen.alt_input_field_padding_top,
+                        R.dimen.alt_input_field_padding_right,
+                        R.dimen.alt_input_field_padding_bottom
+                )
+                .setInputFieldMargin(
+                        R.dimen.alt_input_field_margin_left,
+                        R.dimen.alt_input_field_margin_top,
+                        R.dimen.alt_input_field_margin_right,
+                        R.dimen.alt_input_field_margin_bottom
+                )
 
+                .setOutgoingTimeTextSize(R.dimen.text_small)
+                .setIncomingTimeTextSize(R.dimen.text_big)
                 .setFixedChatTitle(R.bool.alt_threads_chat_fixed_chat_title)
+                .setVisibleChatSubtitle(R.bool.alt_threads_chat_subtitle_is_visible)
                 .setMaxGalleryImagesCount(R.integer.alt_max_count_attached_images)
                 .setLoaderTextResId(R.string.alt_loading)
                 .setMediaAndFilesWindowLightStatusBarResId(R.bool.alt_threads_chat_is_light_status_bar)
@@ -208,6 +224,10 @@ public class ChatStyleBuilderHelper {
                 .setEmptyMediaAndFilesDescriptionTextResId(R.string.threads_no_media_and_files_alt_description)
                 .setEmptyMediaAndFilesDescriptionFontPath(LATO_LIGHT_FONT_PATH)
                 .setEmptyMediaAndFilesDescriptionTextSize(R.dimen.alt_threads_attachments_no_files_description_text_size)
-                .setEmptyMediaAndFilesDescriptionTextColor(R.color.white);
+                .setEmptyMediaAndFilesDescriptionTextColor(R.color.white)
+                .setChatBodyIconsColorStateTint(
+                        R.color.threads_icon_and_separators_color,
+                        R.color.alt_threads_chat_icons_tint,
+                        R.color.threads_input_text);
     }
 }

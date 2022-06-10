@@ -47,4 +47,15 @@
     <dimen name="alt_bubbleIncomingPaddingTop">15dp</dimen>
     <dimen name="alt_bubbleIncomingPaddingRight">25dp</dimen>
     <dimen name="alt_bubbleIncomingPaddingBottom">15dp</dimen>
+
+    <dimen name="alt_input_field_padding_left">30dp</dimen>
+    <dimen name="alt_input_field_padding_top">15dp</dimen>
+    <dimen name="alt_input_field_padding_right">30dp</dimen>
+    <dimen name="alt_input_field_padding_bottom">15dp</dimen>
+
+    <dimen name="alt_input_field_margin_left">5dp</dimen>
+    <dimen name="alt_input_field_margin_top">0dp</dimen>
+    <dimen name="alt_input_field_margin_right">20dp</dimen>
+    <dimen name="alt_input_field_margin_bottom">0dp</dimen>
+
 </resources>

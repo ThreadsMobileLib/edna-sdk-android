@@ -24,7 +24,7 @@ android {
     defaultConfig {
         minSdk rootProject.minSdkVersion
         targetSdk rootProject.targetSdkVersion
-        applicationId "com.sequenia.appwithchat.polarbear"
+        applicationId "dte.chc.mobile1.android"
 
         versionCode 89
         versionName "$version"
@@ -46,6 +46,7 @@ android {
             debuggable = true
         }
     }
+
     lintOptions {
         abortOnError false
     }
@@ -60,6 +61,7 @@ repositories {
 }
 
 dependencies {
+
     debugImplementation "im.threads:threads-debug:$version"
     releaseImplementation "im.threads:threads-release:$version"
 
@@ -86,6 +88,5 @@ dependencies {
     releaseImplementation "com.edna.android:push-lite-release:$pushVersion"
     releaseImplementation "com.edna.android:push-lite-huawei-release:$pushVersion"
     implementation "com.jakewharton:process-phoenix:$rootProject.processPhoenixVersion"
-
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.7'
 }

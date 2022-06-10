@@ -2,6 +2,7 @@ package im.threads.android.core;
 
 import android.app.PendingIntent;
 import android.content.Context;
+import android.os.Bundle;
 import android.text.TextUtils;
 
 import androidx.multidex.MultiDexApplication;
@@ -19,6 +20,7 @@ import im.threads.android.data.TransportConfig;
 import im.threads.android.push.HCMTokenRefresher;
 import im.threads.android.ui.BottomNavigationActivity;
 import im.threads.android.utils.PrefUtils;
+import im.threads.internal.utils.MetaDataUtils;
 import io.reactivex.Completable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
@@ -26,6 +28,8 @@ import io.reactivex.schedulers.Schedulers;
 import io.reactivex.subjects.BehaviorSubject;
 
 public class ThreadsDemoApplication extends MultiDexApplication {
+
+    public static final String USE_SSL = "im.threads.android.useSSL";
 
     private static final BehaviorSubject<Integer> unreadMessagesSubject = BehaviorSubject.create();
     private static Context appContext;
@@ -59,8 +63,7 @@ public class ThreadsDemoApplication extends MultiDexApplication {
                 .unreadMessagesCountListener(unreadMessagesSubject::onNext)
                 .surveyCompletionDelay(2000)
                 .historyLoadingCount(50)
-                .isDebugLoggingEnabled(true)
-                .certificateRawResIds(Collections.singletonList(R.raw.edna));
+                .isDebugLoggingEnabled(true);
         TransportConfig transportConfig = PrefUtils.getTransportConfig(this);
         if (transportConfig != null) {
             configBuilder.serverBaseUrl(transportConfig.getBaseUrl())
@@ -68,7 +71,19 @@ public class ThreadsDemoApplication extends MultiDexApplication {
                     .threadsGateProviderUid(transportConfig.getThreadsGateProviderUid())
                     .threadsGateHCMProviderUid(transportConfig.getThreadsGateHCMProviderUid());
         }
+        if (isUseSSL()) {
+            configBuilder.certificateRawResIds(Collections.singletonList(R.raw.edna));
+        }
         ThreadsLib.init(configBuilder);
+    }
+
+
+    private boolean isUseSSL() {
+        Bundle metaData = MetaDataUtils.getMetaData(this);
+        if (metaData != null && metaData.containsKey(USE_SSL)) {
+            return metaData.getBoolean(USE_SSL);
+        }
+        return false;
     }
 
     @Override

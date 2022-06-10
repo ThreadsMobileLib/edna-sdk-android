@@ -45,7 +45,6 @@ import java.io.FileOutputStream
 import java.io.IOException
 import java.util.Date
 
-
 /**
  * Активность с примерами открытия чата:
  * - в виде новой Активности
@@ -288,9 +287,9 @@ class MainActivity : AppCompatActivity(), EditCardDialogActionsListener, YesNoDi
 
     fun goToChatWithQuote() {
         val campaignMessage = getTestCampaignMessage()
-        PrefUtils.setCampaignMessage(campaignMessage)
-        var intent = prepareBottomNavigationActivityIntent("dte.chc.mobile3.android")
-        intent?.putExtra(ARG_NEEDS_SHOW_CHAT, true);
+        PrefUtils.campaignMessage = campaignMessage
+        val intent = prepareBottomNavigationActivityIntent("dte.chc.mobile3.android")
+        intent?.putExtra(ARG_NEEDS_SHOW_CHAT, true)
         startActivity(intent)
     }
 
@@ -299,7 +298,7 @@ class MainActivity : AppCompatActivity(), EditCardDialogActionsListener, YesNoDi
             "Test push message",
             "Push sender",
             Date(System.currentTimeMillis()),
-            "f3859319-"+System.currentTimeMillis(),
+            "f3859319-" + System.currentTimeMillis(),
             9109820901,
             Date(System.currentTimeMillis() + 1000000000),
             0,

@@ -47,8 +47,10 @@ object PrefUtils {
         editor.putString(PREF_SERVER_BASE_URL, transportConfig.baseUrl)
         editor.putString(PREF_THREADS_GATE_URL, transportConfig.threadsGateUrl)
         editor.putString(PREF_THREADS_GATE_PROVIDER_UID, transportConfig.threadsGateProviderUid)
-        editor.putString(PREF_THREADS_GATE_HCM_PROVIDER_UID,
-            transportConfig.threadsGateHCMProviderUid)
+        editor.putString(
+            PREF_THREADS_GATE_HCM_PROVIDER_UID,
+            transportConfig.threadsGateHCMProviderUid
+        )
         editor.commit()
     }
 

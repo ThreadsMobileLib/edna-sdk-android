@@ -19,8 +19,8 @@
         android:label="@string/app_name1"
         android:theme="@style/AppTheme"
         android:networkSecurityConfig="@xml/network_security_config"
-        tools:replace="android:label"
-        tools:ignore="GoogleAppIndexingWarning">
+        tools:ignore="GoogleAppIndexingWarning"
+        tools:replace="android:label,android:fullBackupContent">
 
         <activity
             android:name=".ui.MainActivity"
@@ -113,6 +113,11 @@
             android:name="im.threads.filesAndMediaMenuItemEnabled"
             tools:replace="android:value"
             android:value="@bool/files_and_media_menu_item_enabled"/>
+
+        <meta-data
+            android:name="im.threads.android.useSSL"
+            tools:replace="android:value"
+            android:value="@bool/use_ssl"/>
 
         <meta-data
             android:name="com.pushserver.android.logs"
