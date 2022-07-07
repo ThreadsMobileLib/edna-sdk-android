@@ -1,0 +1,15 @@
+<resources>
+    <style name="AppBarTheme" parent="DarkTheme" />
+
+    <style name="DarkTheme" parent="Theme.MaterialComponents.NoActionBar">
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorSecondary">@color/white</item>
+    </style>
+
+    <style name="DebugMenuTheme" parent="Theme.MaterialComponents.NoActionBar">
+        <item name="colorPrimary">@color/light_green</item>
+        <item name="colorAccent">@color/lighter_blue</item>
+        <item name="materialButtonStyle">@style/ChatButtonStyle</item>
+    </style>
+
+</resources>

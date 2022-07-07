@@ -2,7 +2,7 @@
     <string name="app_name1">AppWithChat</string>
 
     <string name="default_title">ThreadsApp</string>
-    <string name="title_activity_bottom_navigation">BottomNavigationActivity</string>
+    <string name="title_activity_bottom_navigation" translatable="false">BottomNavigationActivity</string>
 
     <string name="demo_continue">Continue</string>
     <string name="demo_skip">Skip</string>
@@ -35,6 +35,11 @@
 
     <string name="demo_unread_messages_count">Unread message counts:&#032;</string>
 
+    <string name="about_app">"About app"</string>
+    <string name="demo_server_selection">Server selection</string>
+    <string name="demo_server">Server</string>
+    <string name="demo_restart_app_for_server_apply">The application will be restarted to apply the settings</string>
+
     <string-array name="demo_designs">
         <item>@string/demo_design_green_style</item>
         <item>@string/demo_design_blue_style</item>
@@ -63,4 +68,8 @@
     <string name="demo_alt_threads_welcome_screen_title_text">Happy to help you in VIP chat</string>
     <string name="demo_alt_threads_welcome_screen_subtitle_text">Send your question and your personal manager will immediately answer it</string>
     <string name="demo_alt_threads_input_hint">Enter your message</string>
+    <string name="demo_select_server">Select server</string>
+    <string name="demo_add_server">Add server</string>
+    <string name="demo_activate_server">Activate server</string>
+    <string name="demo_change_current_server">Change server</string>
 </resources>

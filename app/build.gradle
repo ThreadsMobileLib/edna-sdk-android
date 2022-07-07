@@ -3,10 +3,8 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-parcelize'
     id 'kotlin-kapt'
-    //you need to uncomment these lines to enable push notifications
-    //but you need to provide google-services.json and/or agconnect-services.json
-    //id 'com.google.gms.google-services'
-    //id 'com.huawei.agconnect'
+    id 'com.google.gms.google-services'
+    id 'org.jetbrains.kotlin.plugin.serialization' version '1.6.21'
 }
 
 android {
@@ -22,9 +20,10 @@ android {
     compileSdk rootProject.compileSdkVersion
 
     defaultConfig {
+        applicationId "io.edna.threads.demo"
         minSdk rootProject.minSdkVersion
         targetSdk rootProject.targetSdkVersion
-        applicationId "dte.chc.mobile1.android"
+        applicationId "io.edna.threads.demo"
 
         versionCode 89
         versionName "$version"
@@ -51,8 +50,9 @@ android {
         abortOnError false
     }
 
-    dataBinding {
-        enabled = true
+    buildFeatures {
+        dataBinding = true
+        viewBinding true
     }
 }
 
@@ -83,10 +83,21 @@ dependencies {
 
     implementation "com.google.code.gson:gson:$rootProject.gsonVersion"
 
+    //Beagle
+    implementation "io.github.pandulapeter.beagle:ui-bottom-sheet:$beagleVersion"
+    debugImplementation "io.github.pandulapeter.beagle:log-crash-noop:$beagleVersion"
+    releaseImplementation  "io.github.pandulapeter.beagle:log-crash:$beagleVersion"
+    api "io.github.pandulapeter.beagle:log-okhttp:$beagleVersion"
+
+    //Push lite
     debugImplementation "com.edna.android:push-lite-debug:$pushVersion"
     debugImplementation "com.edna.android:push-lite-huawei-debug:$pushVersion"
     releaseImplementation "com.edna.android:push-lite-release:$pushVersion"
     releaseImplementation "com.edna.android:push-lite-huawei-release:$pushVersion"
+
+    // Koin main features for Android
+    implementation "io.insert-koin:koin-android:$koin_version"
+
     implementation "com.jakewharton:process-phoenix:$rootProject.processPhoenixVersion"
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.7'
 }

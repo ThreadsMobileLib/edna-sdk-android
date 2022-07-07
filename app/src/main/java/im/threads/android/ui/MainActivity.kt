@@ -13,6 +13,7 @@ import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.pandulapeter.beagle.Beagle
 import im.threads.ThreadsLib
 import im.threads.UserInfoBuilder
 import im.threads.android.R
@@ -22,14 +23,16 @@ import im.threads.android.ui.BottomNavigationActivity.ARG_NEEDS_SHOW_CHAT
 import im.threads.android.ui.CardsAdapter.CardActionListener
 import im.threads.android.ui.EditCardDialog.EditCardDialogActionsListener
 import im.threads.android.ui.YesNoDialog.YesNoDialogActionListener
+import im.threads.android.use_cases.developer_options.DebugMenuUseCase
 import im.threads.android.utils.CardsLinearLayoutManager
 import im.threads.android.utils.CardsSnapHelper
 import im.threads.android.utils.ChatDesign
 import im.threads.android.utils.ChatStyleBuilderHelper
 import im.threads.android.utils.PermissionDescriptionDialogStyleBuilderHelper
-import im.threads.android.utils.PrefUtils.getCards
-import im.threads.android.utils.PrefUtils.getTheme
-import im.threads.android.utils.PrefUtils.storeCards
+import im.threads.android.utils.PrefUtilsApp
+import im.threads.android.utils.PrefUtilsApp.getCards
+import im.threads.android.utils.PrefUtilsApp.getTheme
+import im.threads.android.utils.PrefUtilsApp.storeCards
 import im.threads.internal.model.CampaignMessage
 import im.threads.internal.utils.PrefUtils
 import im.threads.internal.utils.ThreadsLogger
@@ -39,6 +42,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
+import org.koin.android.ext.android.inject
 import java.io.File
 import java.io.FileNotFoundException
 import java.io.FileOutputStream
@@ -55,6 +59,7 @@ class MainActivity : AppCompatActivity(), EditCardDialogActionsListener, YesNoDi
     private lateinit var cardsAdapter: CardsAdapter
     private val cardsSnapHelper: CardsSnapHelper = CardsSnapHelper()
     private var cardForDelete: Card? = null
+    private val serverSelectionUseCase: DebugMenuUseCase by inject()
 
     private val compositeDisposable = CompositeDisposable()
     private lateinit var socketResponseDisposable: Disposable
@@ -100,9 +105,18 @@ class MainActivity : AppCompatActivity(), EditCardDialogActionsListener, YesNoDi
             }
         })
         binding.cardsView.adapter = cardsAdapter
+        checkIsServerChanged()
         showCards(getCards(this))
         intent?.data?.let {
             Toast.makeText(this, "intent contains data: $it", Toast.LENGTH_SHORT).show()
+        }
+        serverSelectionUseCase.addUiDependedModulesToDebugMenu(this)
+    }
+
+    private fun checkIsServerChanged() {
+        if (PrefUtilsApp.getIsServerChanged(applicationContext)) {
+            storeCards(applicationContext, listOf())
+            PrefUtilsApp.setIsServerChanged(applicationContext, false)
         }
     }
 
@@ -221,10 +235,6 @@ class MainActivity : AppCompatActivity(), EditCardDialogActionsListener, YesNoDi
         EditCardDialog.open(this, card)
     }
 
-    private fun showEditTransportConfigDialog() {
-        EditTransportConfigDialog.open(this)
-    }
-
     fun sendExampleMessage() {
         val view = findViewById<View>(android.R.id.content)
         view.isDrawingCacheEnabled = true
@@ -263,7 +273,7 @@ class MainActivity : AppCompatActivity(), EditCardDialogActionsListener, YesNoDi
         }
     }
 
-    fun prepareBottomNavigationActivityIntent(appMarker: String): Intent? {
+    private fun prepareBottomNavigationActivityIntent(appMarker: String): Intent? {
         val clientCards: List<Card> = getCards(this)
         var pushClientCard: Card? = null
         for (clientCard in clientCards) {
@@ -293,7 +303,7 @@ class MainActivity : AppCompatActivity(), EditCardDialogActionsListener, YesNoDi
         startActivity(intent)
     }
 
-    fun getTestCampaignMessage(): CampaignMessage {
+    private fun getTestCampaignMessage(): CampaignMessage {
         return CampaignMessage(
             "Test push message",
             "Push sender",
@@ -330,8 +340,10 @@ class MainActivity : AppCompatActivity(), EditCardDialogActionsListener, YesNoDi
             showEditCardDialog()
             return true
         }
-        if (id == R.id.edit_transport_config) {
-            showEditTransportConfigDialog()
+        if (id == R.id.open_settings) {
+            if (!Beagle.hide()) {
+                Beagle.show()
+            }
             return true
         }
         return super.onOptionsItemSelected(item)

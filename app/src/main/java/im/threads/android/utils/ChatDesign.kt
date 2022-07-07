@@ -3,7 +3,7 @@ package im.threads.android.utils
 import android.content.Context
 import androidx.annotation.StringRes
 import im.threads.android.R
-import im.threads.android.utils.PrefUtils.storeTheme
+import im.threads.android.utils.PrefUtilsApp.storeTheme
 
 /**
  * Варианты дизайна демо-приложения чата.

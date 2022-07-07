@@ -8,5 +8,5 @@ data class TransportConfig(
     val transportType: ConfigBuilder.TransportType = ConfigBuilder.TransportType.THREADS_GATE,
     val threadsGateUrl: String,
     val threadsGateProviderUid: String,
-    val threadsGateHCMProviderUid: String
+    val threadsGateHCMProviderUid: String? = null
 )

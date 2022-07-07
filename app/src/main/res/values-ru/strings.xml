@@ -22,13 +22,18 @@
     <string name="demo_get_signature_error">Не удалось получить подпись client ID</string>
     <string name="demo_error_empty_user">Пустой пользователь</string>
     <string name="demo_error_empty_user_id">Пустой id пользователя</string>
-    <string name="demo_card_delete_text">Выдействительно хотите удалить клиента?</string>
+    <string name="demo_card_delete_text">Вы действительно хотите удалить клиента?</string>
     <string name="demo_client_info_updated">Информация о клиенте была обновлена</string>
 
     <string name="demo_chat_activity_button_label">В чат (Activity)</string>
     <string name="demo_chat_fragment_button_label">В чат (Fragment)</string>
 
     <string name="demo_unread_messages_count">Количество непрочитанных сообщений:&#032;</string>
+
+    <string name="about_app">"О приложении"</string>
+    <string name="demo_server_selection">Выбор сервера</string>
+    <string name="demo_server">Сервер</string>
+    <string name="demo_restart_app_for_server_apply">Приложение будет перезапущено для применения настроек</string>
 
     <string-array name="demo_designs">
         <item>@string/demo_design_green_style</item>
@@ -50,6 +55,7 @@
     <string name="threads_request_to_resolve_thread_close">Нет</string>
     <string name="threads_request_to_resolve_thread_open">Да</string>
 
+    <string name="threads_push_title">Edna Threads Demo</string>
 
     <!-- Альтернативный дизайн -->
     <string name="demo_alt_threads_push_title">Тредс</string>
@@ -71,5 +77,9 @@
     <string name="login">Залогиниться</string>
 
     <string name="alt_loading">Загрузка чата…</string>
+    <string name="demo_select_server">Выберите сервер</string>
+    <string name="demo_add_server">Добавить сервер</string>
+    <string name="demo_activate_server">Применить сервер</string>
+    <string name="demo_change_current_server">Изменить сервер</string>
 
 </resources>

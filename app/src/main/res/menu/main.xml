@@ -9,7 +9,7 @@
         app:showAsAction="always" />
 
     <item
-        android:id="@+id/edit_transport_config"
+        android:id="@+id/open_settings"
         android:icon="@drawable/ic_baseline_settings_24"
         android:title="@string/demo_edit_transport_config"
         app:showAsAction="always" />

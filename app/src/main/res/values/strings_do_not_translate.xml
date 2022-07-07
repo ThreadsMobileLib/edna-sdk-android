@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string translatable="false" name="lib_version">lib v.%s</string>
-    <string translatable="false" name="edit_transport_config_base_url">Server base url</string>
-    <string translatable="false" name="edit_transport_config_threads_gate_url">Threads gate url</string>
-    <string translatable="false" name="edit_transport_config_type">Transport type (THREADS_GATE|MFMS_PUSH)</string>
-    <string translatable="false" name="edit_transport_config_threads_gate_provider_uid">Threads gate provider uid</string>
-    <string translatable="false" name="edit_transport_config_threads_gate_provider_uid_hcm">Threads gate huawei provider uid</string>
+    <string translatable="false" name="server_name">Server name</string>
+    <string translatable="false" name="datastore_url">Datastore url</string>
+    <string translatable="false" name="files_and_media_menu_enabled">Files and media menu item enabled</string>
+    <string translatable="false" name="new_chat_center_api">New chat center api</string>
+    <string translatable="false" name="fill_all_inputs">Please fill all input fields</string>
+    <string translatable="false" name="transport_config_base_url">Server base url</string>
+    <string translatable="false" name="transport_config_threads_gate_url">Threads gate url</string>
+    <string translatable="false" name="transport_config_threads_gate_provider_uid">Threads gate provider uid</string>
 </resources>
