@@ -153,8 +153,8 @@
     <color name="alt_threads_record_button_icon">@color/lighter_blue</color>
     <color name="alt_threads_record_button_small_mic">#c2185b</color>
 
-    <color name="alt_threads_incoming_play_pause_button">@color/lighter_blue</color>
-    <color name="alt_threads_outgoing_play_pause_button">@color/lighter_blue</color>
+    <color name="alt_threads_incoming_play_pause_button">@color/threads_blue</color>
+    <color name="alt_threads_outgoing_play_pause_button">@color/threads_blue</color>
     <color name="alt_threads_preview_play_pause_button">@color/threads_blue</color>
 
     <!-- Empty state -->

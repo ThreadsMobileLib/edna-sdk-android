@@ -81,6 +81,8 @@ public class BottomNavigationActivity extends AppCompatActivity {
     private TabItem selectedTab;
     private Intent intent;
 
+    private Fragment homeFragment, chatFragment;
+
     private final BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener = item -> {
         if (item.getItemId() == R.id.navigation_home) {
             selectTab(TabItem.TAB_HOME);
@@ -246,11 +248,17 @@ public class BottomNavigationActivity extends AppCompatActivity {
         Fragment fragment = null;
         switch (newTabItem) {
             case TAB_HOME:
-                fragment = BottomNavigationHomeFragment.newInstance();
+                if (homeFragment == null) {
+                    homeFragment = BottomNavigationHomeFragment.newInstance();
+                }
+                fragment = homeFragment;
                 break;
             case TAB_CHAT:
                 applyChatStyles(chatDesign);
-                fragment = ChatFragment.newInstance(needToShowChat ? OpenWay.FROM_PUSH : OpenWay.DEFAULT);
+                if (chatFragment == null) {
+                    chatFragment = ChatFragment.newInstance(needToShowChat ? OpenWay.FROM_PUSH : OpenWay.DEFAULT);
+                }
+                fragment = chatFragment;
                 break;
         }
         // добавляем фрагмент в контейнер

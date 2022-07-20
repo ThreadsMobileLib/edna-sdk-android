@@ -95,8 +95,10 @@ class DebugMenuInteractor(private val context: Context) : DebugMenuUseCase {
             context,
             TransportConfig(
                 currentServerConfig.serverBaseUrl,
+                currentServerConfig.datastoreUrl,
                 threadsGateUrl = currentServerConfig.threadsGateUrl,
-                threadsGateProviderUid = currentServerConfig.threadsGateProviderUid
+                threadsGateProviderUid = currentServerConfig.threadsGateProviderUid,
+                isNewChatCenterApi = currentServerConfig.newChatCenterApi
             )
         )
     }
@@ -122,8 +124,10 @@ class DebugMenuInteractor(private val context: Context) : DebugMenuUseCase {
                 context,
                 TransportConfig(
                     serverConfig.serverBaseUrl,
+                    serverConfig.datastoreUrl,
                     threadsGateUrl = serverConfig.threadsGateUrl,
-                    threadsGateProviderUid = serverConfig.threadsGateProviderUid
+                    threadsGateProviderUid = serverConfig.threadsGateProviderUid,
+                    isNewChatCenterApi = serverConfig.newChatCenterApi
                 )
             )
             PrefUtilsApp.setCurrentServer(context, serverName)

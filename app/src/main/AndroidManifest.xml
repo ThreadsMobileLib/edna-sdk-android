@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="im.threads.android">
+          xmlns:tools="http://schemas.android.com/tools"
+          package="im.threads.android">
 
     <permission
         android:name="${applicationId}.permission.pushserver.RECEIVE"
-        android:protectionLevel="signature" />
+        android:protectionLevel="signature"/>
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET"/>
@@ -27,8 +27,8 @@
             android:exported="true"
             android:windowSoftInputMode="stateAlwaysHidden">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -56,7 +56,7 @@
         <activity
             android:name=".ui.BottomNavigationActivity"
             android:label="@string/title_activity_bottom_navigation"
-            android:theme="@style/BottomNavigationTheme" />
+            android:theme="@style/BottomNavigationTheme"/>
 
         <service android:name=".push.CustomPushFcmIntentService"
             android:exported="false">
@@ -79,17 +79,7 @@
 
         <meta-data
             android:name="im.threads.getServerUrl"
-            android:value="YOUR_DATASTORE_URL" />
-
-        <meta-data
-            android:name="im.threads.clientIdIgnoreEnabled"
-            tools:replace="android:value"
-            android:value="@bool/client_id_ignore_enabled"/>
-
-        <meta-data
-            android:name="im.threads.newChatCenterApi"
-            tools:replace="android:value"
-            android:value="@bool/new_chat_center_api"/>
+            android:value="@string/datastore_url" />
 
         <meta-data
             android:name="im.threads.attachmentEnabled"
@@ -102,13 +92,8 @@
             android:value="@bool/files_and_media_menu_item_enabled"/>
 
         <meta-data
-            android:name="im.threads.android.useSSL"
-            tools:replace="android:value"
-            android:value="@bool/use_ssl"/>
-
-        <meta-data
             android:name="com.pushserver.android.logs"
-            android:value="false" />
+            android:value="false"/>
 
     </application>
 
