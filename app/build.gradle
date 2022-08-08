@@ -26,7 +26,7 @@ android {
         applicationId "io.edna.threads.demo"
 
         versionCode 89
-        versionName "${version}"
+        versionName "$version"
         project.ext.set("archivesBaseName", "Threads-app " + defaultConfig.versionName)
         vectorDrawables.useSupportLibrary = true
         multiDexEnabled = true

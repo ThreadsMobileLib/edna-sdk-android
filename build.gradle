@@ -9,7 +9,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:7.0.4'
-        classpath 'com.google.gms:google-services:4.3.10'
+        classpath 'com.google.gms:google-services:4.3.13'
         classpath 'net.researchgate:gradle-release:2.8.1'
         classpath 'com.huawei.agconnect:agcp:1.6.4.300'
         classpath "org.jlleitschuh.gradle:ktlint-gradle:10.3.0"
@@ -51,7 +51,7 @@ ext {
     androidXPreferenceVersion = '1.1.1'
     androidXSwiperefreshlayout = '1.1.0'
     materialComponentsVersion = '1.4.0'
-    fcmVersion = '23.0.0'
+    fcmVersion = '23.0.6'
 
     okhttpVersion = '4.9.3'
     retrofitVersion = '2.9.0'
@@ -59,7 +59,6 @@ ext {
     rxAndroidVersion = '2.1.1'
     gsonVersion = '2.8.6'
     pushVersion = '3.5.2'
-    picassoVersion = '2.8'
     recordViewVersion = '3.0.2'
     androidAudioConverterVersion = '0.0.8'
     streamVersion = '1.2.1'
@@ -83,6 +82,8 @@ ext {
     ffmpeg = '0.3.2'
 
     koin_version = '3.2.0'
+    picasso_version = '2.8'
+    webserver_version = '2.33.2'
     singlelivedata_version = '1.3.0'
     mockitoVersion = '3.12.4'
     mockitoInlineVersion = '2.21.0'

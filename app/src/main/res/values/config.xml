@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="serverBaseUrl" translatable="false">SERVER_BASE_URL</string>
     <bool name="new_chat_center_api">false</bool>
     <bool name="attachment_enabled">true</bool>
     <bool name="files_and_media_menu_item_enabled">true</bool>
