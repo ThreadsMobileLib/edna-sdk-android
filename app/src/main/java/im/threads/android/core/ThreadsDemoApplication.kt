@@ -18,6 +18,8 @@ import im.threads.android.use_cases.developer_options.DebugMenuUseCase
 import im.threads.android.utils.PrefUtilsApp.getCards
 import im.threads.android.utils.PrefUtilsApp.getTheme
 import im.threads.android.utils.PrefUtilsApp.getTransportConfig
+import im.threads.internal.domain.logger.LoggerConfig
+import im.threads.internal.domain.logger.LoggerRetentionPolicy
 import io.reactivex.Completable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
@@ -27,6 +29,7 @@ import okhttp3.Interceptor
 import org.koin.android.ext.android.inject
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
+import java.io.File
 
 class ThreadsDemoApplication : MultiDexApplication() {
     private var disposable: Disposable? = null
@@ -50,6 +53,13 @@ class ThreadsDemoApplication : MultiDexApplication() {
 
         PushController.getInstance(this).init()
 
+        val loggerConfig = LoggerConfig.Builder(this)
+            .logToFile()
+            .dir(File(this.filesDir, "logs"))
+            .retentionPolicy(LoggerRetentionPolicy.TOTAL_SIZE)
+            .maxTotalSize(5242880)
+            .build()
+
         val configBuilder = ConfigBuilder(this)
             .pendingIntentCreator(CustomPendingIntentCreator())
             .unreadMessagesCountListener(object : ThreadsLib.UnreadMessagesCountListener {
@@ -64,6 +74,7 @@ class ThreadsDemoApplication : MultiDexApplication() {
             .isDebugLoggingEnabled(true)
             .certificateRawResIds(listOf(R.raw.edna))
             .networkInterceptor((BeagleOkHttpLogger.logger as? Interceptor?))
+            .enableLogging(loggerConfig)
 
         val transportConfig = getTransportConfig(this)
         if (transportConfig != null) {

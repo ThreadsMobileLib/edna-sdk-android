@@ -87,4 +87,5 @@ ext {
     singlelivedata_version = '1.3.0'
     mockitoVersion = '3.12.4'
     mockitoInlineVersion = '2.21.0'
+    playServiceVersion = '20.0.0'
 }

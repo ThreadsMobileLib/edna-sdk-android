@@ -1,15 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="im.threads.android">
+          xmlns:tools="http://schemas.android.com/tools"
+          package="im.threads.android">
 
     <permission
         android:name="${applicationId}.permission.pushserver.RECEIVE"
-        android:protectionLevel="signature" />
+        android:protectionLevel="signature"/>
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="${applicationId}.permission.pushserver.RECEIVE"/>
+
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="*" />
+        </intent>
+    </queries>
 
     <application
         android:name=".core.ThreadsDemoApplication"
@@ -27,8 +36,8 @@
             android:exported="true"
             android:windowSoftInputMode="stateAlwaysHidden">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -56,7 +65,7 @@
         <activity
             android:name=".ui.BottomNavigationActivity"
             android:label="@string/title_activity_bottom_navigation"
-            android:theme="@style/BottomNavigationTheme" />
+            android:theme="@style/BottomNavigationTheme"/>
 
         <service android:name=".push.CustomPushFcmIntentService"
             android:exported="false">
@@ -73,13 +82,17 @@
             </intent-filter>
         </service>
 
-        <meta-data
-            android:name="com.pushserver.android.providerUid"
-            android:value="YOUR_PROVIDER_ID" />
+        <receiver
+            android:name=".utils.LocationBroadcastReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.android.gms.location.action.ACTION_PROCESS_UPDATES" />
+            </intent-filter>
+        </receiver>
 
         <meta-data
-            android:name="im.threads.getServerUrl"
-            android:value="YOUR_DATASTORE_URL" />
+            android:name="im.threads.threadsGateHCMProviderUid"
+            android:value="QHJIMzpGRCxdK0A6WEYzQDtdVXJEZVdgN0BWJ1hp"/>
 
         <meta-data
             android:name="im.threads.attachmentEnabled"
@@ -93,7 +106,7 @@
 
         <meta-data
             android:name="com.pushserver.android.logs"
-            android:value="false" />
+            android:value="true"/>
 
     </application>
 

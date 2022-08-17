@@ -1,8 +1,6 @@
 <resources>
-    <string name="app_name1">AppWithChat</string>
-
-    <string name="default_title">ThreadsApp</string>
     <string name="title_activity_bottom_navigation" translatable="false">BottomNavigationActivity</string>
+    <string name="app_name" translatable="false">Edna Threads Demo</string>
 
     <string name="demo_continue">Continue</string>
     <string name="demo_skip">Skip</string>

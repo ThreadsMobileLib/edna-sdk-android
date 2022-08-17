@@ -1,7 +1,6 @@
 package im.threads.android.utils
 
 import android.content.Context
-import android.util.Log
 import androidx.preference.PreferenceManager
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -9,10 +8,10 @@ import im.threads.android.data.Card
 import im.threads.android.data.ServerConfig
 import im.threads.android.data.TransportConfig
 import im.threads.internal.Config
+import im.threads.internal.domain.logger.LoggerEdna
 import java.io.File
 
 object PrefUtilsApp {
-    private const val TAG = "DemoAppPrefUtils "
     private const val PREF_CARDS_LIST = "PREF_CARDS_LIST"
     private const val PREF_SERVER_BASE_URL = "PREF_SERVER_BASE_URL"
     private const val PREF_DATASTORE_URL = "PREF_DATASTORE_URL"
@@ -30,7 +29,7 @@ object PrefUtilsApp {
     @JvmStatic
     fun storeCards(ctx: Context?, cards: List<Card?>?) {
         if (ctx == null || cards == null) {
-            Log.i(TAG, "storeCards: ctx or bundle is null")
+            LoggerEdna.info("storeCards: ctx or bundle is null")
             return
         }
         val editor = PreferenceManager.getDefaultSharedPreferences(ctx).edit()
@@ -178,7 +177,7 @@ object PrefUtilsApp {
                 }
             }
         } catch (exception: Exception) {
-            Log.e(TAG, "Error when deleting preference file", exception)
+            LoggerEdna.error("Error when deleting preference file", exception)
         }
     }
 }

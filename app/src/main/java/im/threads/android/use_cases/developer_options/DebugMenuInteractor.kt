@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.Gson
@@ -44,12 +43,12 @@ import im.threads.android.ui.add_server_dialog.AddServerDialogActions
 import im.threads.android.utils.PrefUtilsApp
 import im.threads.android.utils.fromJson
 import im.threads.android.utils.toJson
+import im.threads.internal.domain.logger.LoggerEdna
 import im.threads.internal.secureDatabase.DatabaseHolder
 import java.io.FileOutputStream
 import java.io.InputStream
 
 class DebugMenuInteractor(private val context: Context) : DebugMenuUseCase {
-    private val TAG = "DeveloperOptions"
     private var isServersListInitialized = false
     private var currentServerName = ""
     private var servers = listOf<ServerMenuItem>()
@@ -131,7 +130,7 @@ class DebugMenuInteractor(private val context: Context) : DebugMenuUseCase {
                 )
             )
             PrefUtilsApp.setCurrentServer(context, serverName)
-        } ?: Log.e(TAG, "Cannot set server!")
+        } ?: LoggerEdna.error("Cannot set server!")
     }
 
     override fun getServers(): List<ServerConfig> {

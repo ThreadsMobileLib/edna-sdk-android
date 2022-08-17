@@ -1,5 +1,6 @@
 plugins {
     id 'com.android.application'
+    id 'com.huawei.agconnect'
     id 'kotlin-android'
     id 'kotlin-parcelize'
     id 'kotlin-kapt'
@@ -23,10 +24,9 @@ android {
         applicationId "io.edna.threads.demo"
         minSdk rootProject.minSdkVersion
         targetSdk rootProject.targetSdkVersion
-        applicationId "io.edna.threads.demo"
 
         versionCode 89
-        versionName "$version"
+        versionName "${version}"
         project.ext.set("archivesBaseName", "Threads-app " + defaultConfig.versionName)
         vectorDrawables.useSupportLibrary = true
         multiDexEnabled = true
@@ -66,6 +66,8 @@ dependencies {
     debugImplementation "im.threads:threads-debug:$version"
     releaseImplementation "im.threads:threads-release:$version"
 
+    implementation "com.google.android.gms:play-services-location:$playServiceVersion"
+
     implementation "androidx.preference:preference-ktx:$rootProject.androidXPreferenceVersion"
     implementation "androidx.core:core-ktx:$rootProject.androidXCoreVersion"
 
@@ -76,8 +78,8 @@ dependencies {
     implementation "com.squareup.retrofit2:adapter-rxjava2:$rootProject.retrofitVersion"
     implementation "com.squareup.retrofit2:converter-gson:$rootProject.retrofitVersion"
 
-    implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxAndroidVersion"
     implementation "io.reactivex.rxjava2:rxjava:$rootProject.rxjava2Version"
+    implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxAndroidVersion"
 
     implementation "com.squareup.okhttp3:okhttp:$rootProject.okhttpVersion"
     implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.okhttpVersion"

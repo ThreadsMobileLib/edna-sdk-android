@@ -1,12 +1,12 @@
 package im.threads.android.network
 
 import android.text.TextUtils
-import android.util.Log
 import com.pandulapeter.beagle.logOkHttp.BeagleOkHttpLogger
 import im.threads.android.core.ThreadsDemoApplication.Companion.appContext
 import im.threads.android.use_cases.developer_options.DebugMenuInteractor
 import im.threads.android.use_cases.developer_options.DebugMenuUseCase
 import im.threads.internal.Config
+import im.threads.internal.domain.logger.LoggerEdna
 import im.threads.internal.utils.SSLCertificateInterceptor
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient.Builder
@@ -19,7 +19,6 @@ import javax.net.ssl.HostnameVerifier
 import javax.net.ssl.SSLSession
 
 internal object ServerAPI {
-    private val TAG = ServerAPI::class.java.simpleName
     private var serverAPI: IServerAPI? = null
 
     private val developerOptions: DebugMenuUseCase = DebugMenuInteractor(appContext)
@@ -29,7 +28,7 @@ internal object ServerAPI {
         get() {
             val serverBaseUrl = developerOptions.getCurrentServer().serverBaseUrl
             return if (TextUtils.isEmpty(serverBaseUrl)) {
-                Log.w(TAG, "Server base url is empty")
+                LoggerEdna.warning("Server base url is empty")
                 null
             } else {
                 if (serverAPI == null) {

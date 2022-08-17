@@ -57,6 +57,7 @@
 
     <string name="threads_push_title">Edna Threads Demo</string>
 
+
     <!-- Альтернативный дизайн -->
     <string name="demo_alt_threads_push_title">Тредс</string>
     <string name="demo_alt_threads_contact_center">VIP Чат</string>

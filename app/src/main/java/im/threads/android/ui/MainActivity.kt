@@ -1,7 +1,11 @@
 package im.threads.android.ui
 
+import android.Manifest.permission.ACCESS_COARSE_LOCATION
+import android.Manifest.permission.ACCESS_FINE_LOCATION
 import android.content.Intent
+import android.content.pm.PackageManager.PERMISSION_GRANTED
 import android.graphics.Bitmap
+import android.os.Build
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -11,6 +15,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.pandulapeter.beagle.Beagle
@@ -28,14 +33,15 @@ import im.threads.android.utils.CardsLinearLayoutManager
 import im.threads.android.utils.CardsSnapHelper
 import im.threads.android.utils.ChatDesign
 import im.threads.android.utils.ChatStyleBuilderHelper
+import im.threads.android.utils.LocationManager
 import im.threads.android.utils.PermissionDescriptionDialogStyleBuilderHelper
 import im.threads.android.utils.PrefUtilsApp
 import im.threads.android.utils.PrefUtilsApp.getCards
 import im.threads.android.utils.PrefUtilsApp.getTheme
 import im.threads.android.utils.PrefUtilsApp.storeCards
+import im.threads.internal.domain.logger.LoggerEdna
 import im.threads.internal.model.CampaignMessage
 import im.threads.internal.utils.PrefUtils
-import im.threads.internal.utils.ThreadsLogger
 import im.threads.styles.permissions.PermissionDescriptionType
 import im.threads.view.ChatActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -63,9 +69,11 @@ class MainActivity : AppCompatActivity(), EditCardDialogActionsListener, YesNoDi
 
     private val compositeDisposable = CompositeDisposable()
     private lateinit var socketResponseDisposable: Disposable
+    private var locationManager: LocationManager? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        locationManager = LocationManager(application)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         binding.viewModel = this
         binding.designSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -113,6 +121,11 @@ class MainActivity : AppCompatActivity(), EditCardDialogActionsListener, YesNoDi
         serverSelectionUseCase.addUiDependedModulesToDebugMenu(this)
     }
 
+    override fun onResume() {
+        super.onResume()
+        locationManager?.stopLocationUpdates()
+    }
+
     private fun checkIsServerChanged() {
         if (PrefUtilsApp.getIsServerChanged(applicationContext)) {
             storeCards(applicationContext, listOf())
@@ -137,9 +150,9 @@ class MainActivity : AppCompatActivity(), EditCardDialogActionsListener, YesNoDi
     }
 
     /** Пример открытия чата в виде Активности */
-    fun navigateToChatActivity() {
+    private fun goToChatActivity() {
         subscribeOnSocketResponses()
-
+        locationManager?.startLocationUpdates()
         val currentCard = currentCard
         if (currentCard == null) {
             displayError(R.string.demo_error_empty_user)
@@ -155,6 +168,35 @@ class MainActivity : AppCompatActivity(), EditCardDialogActionsListener, YesNoDi
         )
         applyChatStyles()
         startActivity(Intent(this, ChatActivity::class.java))
+    }
+
+    fun navigateToChatActivity() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            val fineLocationGranted = ContextCompat.checkSelfPermission(this, ACCESS_FINE_LOCATION)
+            val coarseLocationGranted =
+                ContextCompat.checkSelfPermission(this, ACCESS_COARSE_LOCATION)
+            if (fineLocationGranted != PERMISSION_GRANTED || coarseLocationGranted != PERMISSION_GRANTED) {
+                requestPermissions(
+                    arrayOf(ACCESS_FINE_LOCATION, ACCESS_COARSE_LOCATION),
+                    PERMISSIONS_REQUEST_CODE_LOCATION
+                )
+            } else {
+                goToChatActivity()
+            }
+        } else {
+            goToChatActivity()
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == PERMISSIONS_REQUEST_CODE_LOCATION) {
+            goToChatActivity()
+        }
     }
 
     private fun applyChatStyles() {
@@ -219,9 +261,9 @@ class MainActivity : AppCompatActivity(), EditCardDialogActionsListener, YesNoDi
                 .observeOn(AndroidSchedulers.mainThread())
                 .onBackpressureDrop()
                 .subscribe({ responseMap ->
-                    ThreadsLogger.i(TAG_SOCKET_RESPONSE, responseMap.toString())
+                    LoggerEdna.info(TAG_SOCKET_RESPONSE, responseMap.toString())
                 }, { error ->
-                    ThreadsLogger.e(TAG_SOCKET_RESPONSE, error.message)
+                    LoggerEdna.error(TAG_SOCKET_RESPONSE, error.message, error)
                 })
             compositeDisposable.add(socketResponseDisposable)
         }
@@ -391,5 +433,6 @@ class MainActivity : AppCompatActivity(), EditCardDialogActionsListener, YesNoDi
     companion object {
         private const val TAG_SOCKET_RESPONSE = "SocketResponse"
         private const val YES_NO_DIALOG_REQUEST_CODE = 323
+        private const val PERMISSIONS_REQUEST_CODE_LOCATION = 323
     }
 }

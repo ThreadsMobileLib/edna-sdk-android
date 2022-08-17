@@ -11,15 +11,13 @@ import androidx.annotation.Nullable;
 
 import im.threads.android.R;
 import im.threads.android.core.ThreadsDemoApplication;
-import im.threads.internal.utils.ThreadsLogger;
+import im.threads.internal.domain.logger.LoggerEdna;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 
 /**
  * Пустой фрагмент для примера использования чата в качестве фрагмента в нижней навигации
  */
 public class BottomNavigationHomeFragment extends BaseFragment {
-
-    private static final String TAG = BottomNavigationHomeFragment.class.getSimpleName();
     private TextView unreadMessagesCount;
 
     public static BottomNavigationHomeFragment newInstance() {
@@ -35,9 +33,8 @@ public class BottomNavigationHomeFragment extends BaseFragment {
                 ThreadsDemoApplication.getUnreadMessagesSubject()
                         .subscribeOn(AndroidSchedulers.mainThread())
                         .subscribe(count -> unreadMessagesCount.setText(String.valueOf(count)),
-                                error -> ThreadsLogger.e(TAG, "onCreateView: " + error.getMessage())
+                                error -> LoggerEdna.error("onCreateView: ", error)
                         )
-
         );
         return view;
     }

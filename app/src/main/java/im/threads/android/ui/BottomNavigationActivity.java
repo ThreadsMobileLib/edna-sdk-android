@@ -32,8 +32,8 @@ import im.threads.android.R;
 import im.threads.android.utils.ChatDesign;
 import im.threads.android.utils.ChatStyleBuilderHelper;
 import im.threads.android.utils.PermissionDescriptionDialogStyleBuilderHelper;
+import im.threads.internal.domain.logger.LoggerEdna;
 import im.threads.internal.utils.ColorsHelper;
-import im.threads.internal.utils.ThreadsLogger;
 import im.threads.styles.permissions.PermissionDescriptionType;
 import im.threads.view.ChatFragment;
 import im.threads.view.OpenWay;
@@ -66,7 +66,6 @@ public class BottomNavigationActivity extends AppCompatActivity {
     public static final String ARG_AUTH_TOKEN = "authToken";
     public static final String ARG_AUTH_SCHEMA = "authSchema";
     public static final String ARG_NEEDS_SHOW_CHAT = "needsShowChat";
-    private static final String TAG = BottomNavigationActivity.class.getSimpleName();
     private static final String ARG_CHAT_DESIGN = "chatDesign";
 
     private String clientId;
@@ -364,7 +363,7 @@ public class BottomNavigationActivity extends AppCompatActivity {
                                                 .setClientData(clientData)
                                                 .setAppMarker(appMarker)
                                 ),
-                                throwable -> ThreadsLogger.e(TAG, "login: " + throwable)
+                                throwable -> LoggerEdna.error("login: ", throwable)
                         )
         );
     }
