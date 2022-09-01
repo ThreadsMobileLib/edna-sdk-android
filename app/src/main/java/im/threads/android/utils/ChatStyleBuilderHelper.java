@@ -18,7 +18,6 @@ public class ChatStyleBuilderHelper {
                 .setDefaultFontRegular(LATO_REGULAR_FONT_PATH)
                 .showChatBackButton(true)// показывать кнопку назад
                 .setUseExternalCameraApp(true)
-                .setSelfieEnabled(false)
                 .setScrollChatToEndIfUserTyping(false);
         switch (design) {
             case GREEN: {
@@ -90,6 +89,9 @@ public class ChatStyleBuilderHelper {
                 .setAttachmentBottomSheetButtonTintResId(R.color.alt_threads_chat_icons_tint)
                 .setDownloadButtonTintResId(R.color.alt_threads_chat_icons_tint)
                 .setMediaAndFilesFileIconTintResId(R.color.alt_threads_chat_icons_tint)
+                .setQuoteAttachmentIconResId(R.drawable.ic_quote_attachment_24)
+                .setIncomingMessageLoaderColorResId(R.color.alt_threads_chat_icons_tint)
+                .setOutgoingMessageLoaderColorResId(R.color.alt_threads_outgoing_time_underlay)
                 .setChatInputStyle(R.color.alt_threads_input_hint,
                         R.color.alt_threads_input_background,
                         R.color.alt_threads_input_text,

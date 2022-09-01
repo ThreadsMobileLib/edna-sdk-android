@@ -28,7 +28,7 @@ import im.threads.android.ui.BottomNavigationActivity.ARG_NEEDS_SHOW_CHAT
 import im.threads.android.ui.CardsAdapter.CardActionListener
 import im.threads.android.ui.EditCardDialog.EditCardDialogActionsListener
 import im.threads.android.ui.YesNoDialog.YesNoDialogActionListener
-import im.threads.android.use_cases.developer_options.DebugMenuUseCase
+import im.threads.android.useCases.developerOptions.DebugMenuUseCase
 import im.threads.android.utils.CardsLinearLayoutManager
 import im.threads.android.utils.CardsSnapHelper
 import im.threads.android.utils.ChatDesign
@@ -39,8 +39,8 @@ import im.threads.android.utils.PrefUtilsApp
 import im.threads.android.utils.PrefUtilsApp.getCards
 import im.threads.android.utils.PrefUtilsApp.getTheme
 import im.threads.android.utils.PrefUtilsApp.storeCards
-import im.threads.internal.domain.logger.LoggerEdna
-import im.threads.internal.model.CampaignMessage
+import im.threads.business.logger.LoggerEdna
+import im.threads.business.models.CampaignMessage
 import im.threads.internal.utils.PrefUtils
 import im.threads.styles.permissions.PermissionDescriptionType
 import im.threads.view.ChatActivity
@@ -101,7 +101,8 @@ class MainActivity : AppCompatActivity(), EditCardDialogActionsListener, YesNoDi
             override fun onDelete(card: Card) {
                 cardForDelete = card
                 YesNoDialog.open(
-                    this@MainActivity, getString(R.string.demo_card_delete_text),
+                    this@MainActivity,
+                    getString(R.string.demo_card_delete_text),
                     getString(R.string.demo_yes),
                     getString(R.string.demo_no),
                     YES_NO_DIALOG_REQUEST_CODE
@@ -319,11 +320,13 @@ class MainActivity : AppCompatActivity(), EditCardDialogActionsListener, YesNoDi
         val clientCards: List<Card> = getCards(this)
         var pushClientCard: Card? = null
         for (clientCard in clientCards) {
-            if (appMarker.lowercase().equals(clientCard.appMarker))
+            if (appMarker.lowercase().equals(clientCard.appMarker)) {
                 pushClientCard = clientCard
+            }
         }
-        if (pushClientCard == null)
+        if (pushClientCard == null) {
             pushClientCard = currentCard
+        }
 
         return BottomNavigationActivity.createIntent(
             this,
@@ -355,7 +358,7 @@ class MainActivity : AppCompatActivity(), EditCardDialogActionsListener, YesNoDi
             Date(System.currentTimeMillis() + 1000000000),
             0,
             "",
-            0,
+            0
         )
     }
 

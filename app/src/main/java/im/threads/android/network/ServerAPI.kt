@@ -3,10 +3,10 @@ package im.threads.android.network
 import android.text.TextUtils
 import com.pandulapeter.beagle.logOkHttp.BeagleOkHttpLogger
 import im.threads.android.core.ThreadsDemoApplication.Companion.appContext
-import im.threads.android.use_cases.developer_options.DebugMenuInteractor
-import im.threads.android.use_cases.developer_options.DebugMenuUseCase
+import im.threads.android.useCases.developerOptions.DebugMenuInteractor
+import im.threads.android.useCases.developerOptions.DebugMenuUseCase
+import im.threads.business.logger.LoggerEdna
 import im.threads.internal.Config
-import im.threads.internal.domain.logger.LoggerEdna
 import im.threads.internal.utils.SSLCertificateInterceptor
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient.Builder
@@ -15,7 +15,6 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
-import javax.net.ssl.HostnameVerifier
 import javax.net.ssl.SSLSession
 
 internal object ServerAPI {
@@ -61,7 +60,7 @@ internal object ServerAPI {
                 sslSocketFactoryConfig.sslSocketFactory,
                 sslSocketFactoryConfig.trustManager
             )
-            httpClientBuilder.hostnameVerifier(HostnameVerifier { hostname: String?, session: SSLSession? -> true })
+            httpClientBuilder.hostnameVerifier { _: String?, _: SSLSession? -> true }
         }
         builder.client(httpClientBuilder.build())
         val retrofit = builder.build()

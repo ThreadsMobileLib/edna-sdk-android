@@ -71,11 +71,7 @@ class WebViewActivity : BaseActivity() {
     }
 
     private fun extractLink(url: Uri?): String? {
-        return if (url == null) {
-            url
-        } else {
-            url.toString().replaceFirst(Regex("webview://"), "https://")
-        }
+        return url?.toString()?.replaceFirst(Regex("webview://"), "https://")
     }
 
     override fun onBackPressed() {

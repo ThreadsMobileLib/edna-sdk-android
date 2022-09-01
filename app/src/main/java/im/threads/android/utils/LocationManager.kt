@@ -7,7 +7,7 @@ import android.os.Build
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationServices
-import im.threads.internal.domain.logger.LoggerEdna
+import im.threads.business.logger.LoggerEdna
 import java.util.concurrent.TimeUnit
 
 class LocationManager(private val context: Context) {
