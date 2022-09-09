@@ -328,8 +328,9 @@ public class BottomNavigationActivity extends AppCompatActivity {
                 bottomNavigationView.setSelectedItemId(TabItem.TAB_HOME.getMenuId());
             }
         } else {
-            if (Build.VERSION.SDK_INT == Build.VERSION_CODES.Q
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q
                     && isTaskRoot()
+                    && getSupportFragmentManager().getPrimaryNavigationFragment() != null
                     && getSupportFragmentManager().getPrimaryNavigationFragment().getChildFragmentManager().getBackStackEntryCount() == 0
                     && getSupportFragmentManager().getBackStackEntryCount() == 0
             ) {
