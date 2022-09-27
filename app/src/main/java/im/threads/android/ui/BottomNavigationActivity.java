@@ -23,20 +23,21 @@ import androidx.fragment.app.FragmentManager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.lang.ref.WeakReference;
 import java.util.concurrent.TimeUnit;
 
 import im.threads.ChatStyle;
-import im.threads.ThreadsLib;
 import im.threads.UserInfoBuilder;
 import im.threads.android.R;
 import im.threads.android.utils.ChatDesign;
 import im.threads.android.utils.ChatStyleBuilderHelper;
 import im.threads.android.utils.PermissionDescriptionDialogStyleBuilderHelper;
+import im.threads.business.annotation.OpenWay;
 import im.threads.business.logger.LoggerEdna;
-import im.threads.internal.utils.ColorsHelper;
-import im.threads.styles.permissions.PermissionDescriptionType;
+import im.threads.ui.core.ThreadsLib;
+import im.threads.ui.styles.permissions.PermissionDescriptionType;
+import im.threads.ui.utils.ColorsHelper;
 import im.threads.view.ChatFragment;
-import im.threads.view.OpenWay;
 import io.reactivex.Completable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -139,7 +140,8 @@ public class BottomNavigationActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             flags |= PendingIntent.FLAG_IMMUTABLE;
         }
-        return PendingIntent.getActivity(context, 0, intent, flags);
+        int requestCode = (int)System.currentTimeMillis();
+        return PendingIntent.getActivity(context, requestCode, intent, flags);
     }
 
     @Override
@@ -162,7 +164,7 @@ public class BottomNavigationActivity extends AppCompatActivity {
         bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         ChatStyle style = ChatStyleBuilderHelper.getChatStyle(chatDesign);
-        ColorsHelper.setStatusBarColor(this, style.chatStatusBarColorResId, style.windowLightStatusBarResId);
+        ColorsHelper.setStatusBarColor(new WeakReference<>(this), style.chatStatusBarColorResId, style.windowLightStatusBarResId);
 
         int checkedColor;
         if (style.chatBodyIconsTint != 0) {
@@ -214,7 +216,7 @@ public class BottomNavigationActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(@NonNull Menu menu) {
         getMenuInflater().inflate(R.menu.login, menu);
         return true;
     }
@@ -298,7 +300,7 @@ public class BottomNavigationActivity extends AppCompatActivity {
         final ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             ChatStyle style = ChatStyleBuilderHelper.getChatStyle(chatDesign);
-            actionBar.setBackgroundDrawable(getResources().getDrawable(style.chatToolbarColorResId));
+            actionBar.setBackgroundDrawable(ContextCompat.getDrawable(getBaseContext(), style.chatToolbarColorResId));
             Spannable text = new SpannableString(actionBar.getTitle());
             text.setSpan(new ForegroundColorSpan(getResources().getColor(style.chatToolbarTextColorResId)), 0, text.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
             actionBar.setTitle(text);

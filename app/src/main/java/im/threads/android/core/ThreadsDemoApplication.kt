@@ -6,9 +6,6 @@ import android.text.TextUtils
 import androidx.multidex.MultiDexApplication
 import com.edna.android.push_lite.PushController
 import com.pandulapeter.beagle.logOkHttp.BeagleOkHttpLogger
-import im.threads.ConfigBuilder
-import im.threads.ThreadsLib
-import im.threads.ThreadsLib.PendingIntentCreator
 import im.threads.android.R
 import im.threads.android.data.Card
 import im.threads.android.di.appModule
@@ -18,8 +15,12 @@ import im.threads.android.useCases.developerOptions.DebugMenuUseCase
 import im.threads.android.utils.PrefUtilsApp.getCards
 import im.threads.android.utils.PrefUtilsApp.getTheme
 import im.threads.android.utils.PrefUtilsApp.getTransportConfig
+import im.threads.business.core.UnreadMessagesCountListener
 import im.threads.business.logger.LoggerConfig
 import im.threads.business.logger.LoggerRetentionPolicy
+import im.threads.ui.config.ConfigBuilder
+import im.threads.ui.core.PendingIntentCreator
+import im.threads.ui.core.ThreadsLib
 import io.reactivex.Completable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
@@ -62,7 +63,7 @@ class ThreadsDemoApplication : MultiDexApplication() {
 
         val configBuilder = ConfigBuilder(this)
             .pendingIntentCreator(CustomPendingIntentCreator())
-            .unreadMessagesCountListener(object : ThreadsLib.UnreadMessagesCountListener {
+            .unreadMessagesCountListener(object : UnreadMessagesCountListener {
                 override fun onUnreadMessagesCountChanged(count: Int) {
                     unreadMessagesSubject.onNext(
                         count
