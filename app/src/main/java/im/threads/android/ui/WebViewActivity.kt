@@ -8,9 +8,10 @@ import android.webkit.WebViewClient
 import androidx.databinding.DataBindingUtil
 import im.threads.android.R
 import im.threads.android.databinding.ActivityWebviewBinding
-import im.threads.internal.Config
-import im.threads.internal.activities.BaseActivity
-import im.threads.internal.utils.ColorsHelper
+import im.threads.ui.activities.BaseActivity
+import im.threads.ui.config.Config
+import im.threads.ui.utils.ColorsHelper
+import java.lang.ref.WeakReference
 
 /**
  * Активность для открытия ссылок вида : webview://www.mail.ru
@@ -31,7 +32,7 @@ class WebViewActivity : BaseActivity() {
     }
 
     private fun initView() {
-        val chatStyle = Config.instance.chatStyle
+        val chatStyle = Config.getInstance().getChatStyle()
         binding = DataBindingUtil.setContentView(this, R.layout.activity_webview)
         binding.backButton.setOnClickListener { finish() }
 
@@ -41,7 +42,7 @@ class WebViewActivity : BaseActivity() {
         ColorsHelper.setBackgroundColor(
             this,
             binding.toolbar,
-            Config.instance.chatStyle.chatToolbarColorResId
+            chatStyle.chatToolbarColorResId
         )
 
         ColorsHelper.setBackgroundColor(
@@ -56,7 +57,7 @@ class WebViewActivity : BaseActivity() {
         )
 
         ColorsHelper.setStatusBarColor(
-            this,
+            WeakReference(this),
             chatStyle.chatStatusBarColorResId,
             chatStyle.windowLightStatusBarResId
         )

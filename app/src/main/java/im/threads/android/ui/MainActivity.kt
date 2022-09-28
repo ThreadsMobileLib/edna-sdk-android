@@ -19,7 +19,6 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.pandulapeter.beagle.Beagle
-import im.threads.ThreadsLib
 import im.threads.UserInfoBuilder
 import im.threads.android.R
 import im.threads.android.data.Card
@@ -41,9 +40,9 @@ import im.threads.android.utils.PrefUtilsApp.getTheme
 import im.threads.android.utils.PrefUtilsApp.storeCards
 import im.threads.business.logger.LoggerEdna
 import im.threads.business.models.CampaignMessage
-import im.threads.internal.utils.PrefUtils
-import im.threads.styles.permissions.PermissionDescriptionType
-import im.threads.view.ChatActivity
+import im.threads.ui.activities.ChatActivity
+import im.threads.ui.core.ThreadsLib
+import im.threads.ui.styles.permissions.PermissionDescriptionType
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
@@ -342,7 +341,7 @@ class MainActivity : AppCompatActivity(), EditCardDialogActionsListener, YesNoDi
 
     fun goToChatWithQuote() {
         val campaignMessage = getTestCampaignMessage()
-        PrefUtils.campaignMessage = campaignMessage
+        ThreadsLib.getInstance().setCampaignMessage(campaignMessage)
         val intent = prepareBottomNavigationActivityIntent("dte.chc.mobile3.android")
         intent?.putExtra(ARG_NEEDS_SHOW_CHAT, true)
         startActivity(intent)

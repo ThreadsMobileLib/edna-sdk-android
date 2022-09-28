@@ -1,9 +1,9 @@
 package im.threads.android.utils
 
 import im.threads.android.R
-import im.threads.styles.permissions.ContentGravity
-import im.threads.styles.permissions.PermissionDescriptionDialogStyle
-import im.threads.styles.permissions.PermissionDescriptionType
+import im.threads.ui.styles.permissions.ContentGravity
+import im.threads.ui.styles.permissions.PermissionDescriptionDialogStyle
+import im.threads.ui.styles.permissions.PermissionDescriptionType
 
 /**
  *  Вспомогательный класс для настройки стиля диалога описания запроса доступов.

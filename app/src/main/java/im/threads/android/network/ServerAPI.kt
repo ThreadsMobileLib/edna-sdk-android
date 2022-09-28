@@ -5,9 +5,9 @@ import com.pandulapeter.beagle.logOkHttp.BeagleOkHttpLogger
 import im.threads.android.core.ThreadsDemoApplication.Companion.appContext
 import im.threads.android.useCases.developerOptions.DebugMenuInteractor
 import im.threads.android.useCases.developerOptions.DebugMenuUseCase
+import im.threads.business.config.BaseConfig
 import im.threads.business.logger.LoggerEdna
-import im.threads.internal.Config
-import im.threads.internal.utils.SSLCertificateInterceptor
+import im.threads.business.utils.SSLCertificateInterceptor
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient.Builder
 import okhttp3.logging.HttpLoggingInterceptor
@@ -38,7 +38,7 @@ internal object ServerAPI {
         }
 
     private fun createServerAPI(serverBaseUrl: String): IServerAPI {
-        val config = Config.instance
+        val config = BaseConfig.instance
         val (connectTimeoutMillis, readTimeoutMillis, writeTimeoutMillis) =
             config.requestConfig.authHttpClientSettings
         val builder = Retrofit.Builder()
@@ -51,11 +51,12 @@ internal object ServerAPI {
             .connectTimeout(connectTimeoutMillis.toLong(), TimeUnit.MILLISECONDS)
             .readTimeout(readTimeoutMillis.toLong(), TimeUnit.MILLISECONDS)
             .writeTimeout(writeTimeoutMillis.toLong(), TimeUnit.MILLISECONDS)
-        if (Config.instance.isDebugLoggingEnabled) {
-            httpClientBuilder.addInterceptor(SSLCertificateInterceptor())
-        }
         val sslSocketFactoryConfig = config.sslSocketFactoryConfig
         if (sslSocketFactoryConfig != null) {
+            if (config.isDebugLoggingEnabled) {
+                httpClientBuilder.addInterceptor(SSLCertificateInterceptor())
+            }
+
             httpClientBuilder.sslSocketFactory(
                 sslSocketFactoryConfig.sslSocketFactory,
                 sslSocketFactoryConfig.trustManager

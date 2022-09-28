@@ -7,8 +7,8 @@ import com.google.gson.reflect.TypeToken
 import im.threads.android.data.Card
 import im.threads.android.data.ServerConfig
 import im.threads.android.data.TransportConfig
+import im.threads.business.config.BaseConfig
 import im.threads.business.logger.LoggerEdna
-import im.threads.internal.Config
 import java.io.File
 
 object PrefUtilsApp {
@@ -33,7 +33,7 @@ object PrefUtilsApp {
             return
         }
         val editor = PreferenceManager.getDefaultSharedPreferences(ctx).edit()
-        editor.putString(PREF_CARDS_LIST, Config.instance.gson.toJson(cards))
+        editor.putString(PREF_CARDS_LIST, BaseConfig.instance.gson.toJson(cards))
         editor.commit()
     }
 
@@ -43,7 +43,7 @@ object PrefUtilsApp {
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(ctx)
         if (sharedPreferences.getString(PREF_CARDS_LIST, null) != null) {
             val sharedPreferencesString = sharedPreferences.getString(PREF_CARDS_LIST, null)
-            cards = Config.instance.gson.fromJson(
+            cards = BaseConfig.instance.gson.fromJson(
                 sharedPreferencesString,
                 object : TypeToken<List<Card>?>() {}.type
             )
