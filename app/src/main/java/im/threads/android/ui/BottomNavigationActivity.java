@@ -26,8 +26,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.lang.ref.WeakReference;
 import java.util.concurrent.TimeUnit;
 
-import im.threads.ChatStyle;
-import im.threads.UserInfoBuilder;
+import im.threads.ui.ChatStyle;
+import im.threads.business.UserInfoBuilder;
 import im.threads.android.R;
 import im.threads.android.utils.ChatDesign;
 import im.threads.android.utils.ChatStyleBuilderHelper;
@@ -35,9 +35,9 @@ import im.threads.android.utils.PermissionDescriptionDialogStyleBuilderHelper;
 import im.threads.business.annotation.OpenWay;
 import im.threads.business.logger.LoggerEdna;
 import im.threads.ui.core.ThreadsLib;
+import im.threads.ui.fragments.ChatFragment;
 import im.threads.ui.styles.permissions.PermissionDescriptionType;
 import im.threads.ui.utils.ColorsHelper;
-import im.threads.view.ChatFragment;
 import io.reactivex.Completable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -353,6 +353,8 @@ public class BottomNavigationActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         unsubscribeAll();
+        homeFragment = null;
+        chatFragment = null;
     }
 
     private void login() {

@@ -4,7 +4,6 @@ import android.Manifest.permission.ACCESS_COARSE_LOCATION
 import android.Manifest.permission.ACCESS_FINE_LOCATION
 import android.content.Intent
 import android.content.pm.PackageManager.PERMISSION_GRANTED
-import android.graphics.Bitmap
 import android.os.Build
 import android.os.Bundle
 import android.view.Menu
@@ -19,7 +18,6 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.pandulapeter.beagle.Beagle
-import im.threads.UserInfoBuilder
 import im.threads.android.R
 import im.threads.android.data.Card
 import im.threads.android.databinding.ActivityMainBinding
@@ -38,6 +36,7 @@ import im.threads.android.utils.PrefUtilsApp
 import im.threads.android.utils.PrefUtilsApp.getCards
 import im.threads.android.utils.PrefUtilsApp.getTheme
 import im.threads.android.utils.PrefUtilsApp.storeCards
+import im.threads.business.UserInfoBuilder
 import im.threads.business.logger.LoggerEdna
 import im.threads.business.models.CampaignMessage
 import im.threads.ui.activities.ChatActivity
@@ -48,10 +47,6 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import org.koin.android.ext.android.inject
-import java.io.File
-import java.io.FileNotFoundException
-import java.io.FileOutputStream
-import java.io.IOException
 import java.util.Date
 
 /**
@@ -143,8 +138,6 @@ class MainActivity : AppCompatActivity(), EditCardDialogActionsListener, YesNoDi
         binding.chatActivityButton.visibility =
             if (hasCards) View.VISIBLE else View.GONE
         binding.chatFragmentButton.visibility =
-            if (hasCards) View.VISIBLE else View.GONE
-        binding.sendMessageButton.visibility =
             if (hasCards) View.VISIBLE else View.GONE
         cardsAdapter.cards = if (hasCards) cards else ArrayList()
     }
@@ -275,44 +268,6 @@ class MainActivity : AppCompatActivity(), EditCardDialogActionsListener, YesNoDi
 
     fun showEditCardDialog(card: Card) {
         EditCardDialog.open(this, card)
-    }
-
-    fun sendExampleMessage() {
-        val view = findViewById<View>(android.R.id.content)
-        view.isDrawingCacheEnabled = true
-        view.buildDrawingCache()
-        val icon = Bitmap.createBitmap(view.drawingCache)
-        view.isDrawingCacheEnabled = false
-        val imageFile = File(filesDir, "screenshot.jpg")
-        try {
-            FileOutputStream(imageFile).use { fos ->
-                icon.compress(
-                    Bitmap.CompressFormat.JPEG,
-                    80,
-                    fos
-                )
-            }
-        } catch (ignored: FileNotFoundException) {
-        } catch (ignored: IOException) {
-        }
-        val currentCard = currentCard
-        if (currentCard == null) {
-            displayError(R.string.demo_error_empty_user)
-            return
-        }
-        val userInfoBuilder = UserInfoBuilder(currentCard.userId)
-            .setAuthData(currentCard.authToken, currentCard.authSchema)
-            .setClientData(currentCard.clientData)
-            .setClientIdSignature(currentCard.clientIdSignature)
-            .setAppMarker(currentCard.appMarker)
-        ThreadsLib.getInstance().initUser(userInfoBuilder)
-        val messageSent =
-            ThreadsLib.getInstance().sendMessage(getString(R.string.test_message), imageFile)
-        if (messageSent) {
-            Toast.makeText(this, R.string.send_text_message_success, Toast.LENGTH_SHORT).show()
-        } else {
-            Toast.makeText(this, R.string.send_text_message_error, Toast.LENGTH_SHORT).show()
-        }
     }
 
     private fun prepareBottomNavigationActivityIntent(appMarker: String): Intent? {

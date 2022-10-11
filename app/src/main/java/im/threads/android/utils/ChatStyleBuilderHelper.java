@@ -2,7 +2,7 @@ package im.threads.android.utils;
 
 import android.view.Gravity;
 
-import im.threads.ChatStyle;
+import im.threads.ui.ChatStyle;
 import im.threads.android.R;
 
 public class ChatStyleBuilderHelper {

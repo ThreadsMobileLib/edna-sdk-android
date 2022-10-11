@@ -102,19 +102,6 @@
             </LinearLayout>
 
             <Button
-                android:id="@+id/send_message_button"
-                style="@style/ChatButtonStyle"
-                android:layout_marginTop="@dimen/margin_big"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:paddingLeft="8dp"
-                android:paddingRight="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:onClickListener="@{v -> viewModel.sendExampleMessage()}"
-                android:text="@string/send_text_message" />
-
-            <Button
                 android:id="@+id/to_chat_with_quote_button"
                 style="@style/ChatButtonStyle"
                 android:layout_marginTop="@dimen/margin_big"

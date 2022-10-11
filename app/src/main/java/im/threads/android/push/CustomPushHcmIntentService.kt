@@ -3,7 +3,7 @@ package im.threads.android.push
 import com.edna.android.push_lite.huawei.HcmPushService
 import com.edna.android.push_lite.utils.CommonUtils
 import com.huawei.hms.push.RemoteMessage
-import im.threads.ChatCenterPushMessageHelper
+import im.threads.ui.ChatCenterPushMessageHelper
 
 class CustomPushHcmIntentService : HcmPushService() {
 

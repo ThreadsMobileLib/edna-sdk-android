@@ -2,7 +2,7 @@ package im.threads.android.push
 
 import com.edna.android.push_lite.fcm.FcmPushService
 import com.google.firebase.messaging.RemoteMessage
-import im.threads.ChatCenterPushMessageHelper
+import im.threads.ui.ChatCenterPushMessageHelper
 
 class CustomPushFcmIntentService : FcmPushService() {
     override fun onNewToken(token: String) {
