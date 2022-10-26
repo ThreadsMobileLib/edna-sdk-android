@@ -45,6 +45,7 @@ import im.threads.android.utils.fromJson
 import im.threads.android.utils.toJson
 import im.threads.business.logger.LoggerEdna
 import im.threads.business.secureDatabase.DatabaseHolder
+import im.threads.business.serviceLocator.core.inject
 import java.io.FileOutputStream
 import java.io.InputStream
 
@@ -53,6 +54,7 @@ class DebugMenuInteractor(private val context: Context) : DebugMenuUseCase {
     private var currentServerName = ""
     private var servers = listOf<ServerMenuItem>()
     private var isAddServerModuleAdded = false
+    private val database: DatabaseHolder by inject()
 
     override fun configureDebugMenu() {
         fetchServerNames()
@@ -268,7 +270,7 @@ class DebugMenuInteractor(private val context: Context) : DebugMenuUseCase {
     }
 
     private fun cleanHistory() {
-        DatabaseHolder.getInstance().cleanDatabase()
+        database.cleanDatabase()
     }
 
     private fun getString(resId: Int) = context.getString(resId)

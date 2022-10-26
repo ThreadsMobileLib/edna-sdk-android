@@ -48,6 +48,16 @@
     <dimen name="alt_bubbleIncomingPaddingRight">25dp</dimen>
     <dimen name="alt_bubbleIncomingPaddingBottom">15dp</dimen>
 
+    <dimen name="alt_bubbleOutgoingMarginLeft">5dp</dimen>
+    <dimen name="alt_bubbleOutgoingMarginTop">5dp</dimen>
+    <dimen name="alt_bubbleOutgoingMarginRight">5dp</dimen>
+    <dimen name="alt_bubbleOutgoingMarginBottom">5dp</dimen>
+
+    <dimen name="alt_bubbleIncomingMarginLeft">5dp</dimen>
+    <dimen name="alt_bubbleIncomingMarginTop">40dp</dimen>
+    <dimen name="alt_bubbleIncomingMarginRight">5dp</dimen>
+    <dimen name="alt_bubbleIncomingMarginBottom">40dp</dimen>
+
     <dimen name="alt_input_field_padding_left">30dp</dimen>
     <dimen name="alt_input_field_padding_top">15dp</dimen>
     <dimen name="alt_input_field_padding_right">30dp</dimen>

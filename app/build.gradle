@@ -32,6 +32,15 @@ android {
         multiDexEnabled = true
     }
 
+    signingConfigs {
+        debug {
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
+            storePassword 'android'
+            storeFile file('debug.keystore')
+        }
+    }
+
     buildTypes {
         debug {
             debuggable = true
@@ -62,9 +71,7 @@ repositories {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    debugImplementation "im.threads:threads-debug:$version"
-    releaseImplementation "im.threads:threads-release:$version"
+    implementation project(':threads')
 
     implementation "com.google.android.gms:play-services-location:$playServiceVersion"
 

@@ -4,7 +4,6 @@ import android.app.PendingIntent
 import android.content.Context
 import android.text.TextUtils
 import androidx.multidex.MultiDexApplication
-import com.edna.android.push_lite.PushController
 import com.pandulapeter.beagle.logOkHttp.BeagleOkHttpLogger
 import im.threads.android.R
 import im.threads.android.data.Card
@@ -52,7 +51,7 @@ class ThreadsDemoApplication : MultiDexApplication() {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({}) {}
 
-        PushController.getInstance(this).init()
+        // PushController.getInstance(this).init() - only for mailing
 
         val loggerConfig = LoggerConfig.Builder(this)
             .logToFile()

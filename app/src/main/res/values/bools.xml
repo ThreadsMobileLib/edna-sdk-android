@@ -4,4 +4,5 @@
     <bool name="alt_threads_chat_fixed_chat_title">false</bool>
     <bool name="alt_threads_chat_title_shadow_is_visible">false</bool>
     <bool name="alt_threads_chat_subtitle_is_visible">false</bool>
+    <bool name="alt_threads_chat_search_enabled">false</bool>
 </resources>

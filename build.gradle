@@ -65,7 +65,7 @@ ext {
     processPhoenixVersion = '2.0.0'
     flexboxVersion = '3.0.0'
     work_version = "2.7.1"
-    sqlcipher_version = "4.5.0@aar"
+    sqlcipher_version = "4.5.2@aar"
     sqlite_version = "2.0.1"
 
     robolectricVersion = '4.8.1'
@@ -84,7 +84,10 @@ ext {
     koin_version = '3.2.0'
     picasso_version = '2.8'
     webserver_version = '2.33.2'
+    okhttp_webserver_version = '4.10.0'
+    kaspresso_version = '1.4.1'
     singlelivedata_version = '1.3.0'
+    test_ext = '1.1.3'
     mockitoVersion = '3.12.4'
     mockitoInlineVersion = '2.21.0'
     playServiceVersion = '20.0.0'

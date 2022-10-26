@@ -193,6 +193,18 @@ public class ChatStyleBuilderHelper {
                         R.dimen.alt_bubbleIncomingPaddingRight,
                         R.dimen.alt_bubbleIncomingPaddingBottom
                 )
+                .setOutgoingMargin(
+                        R.dimen.alt_bubbleOutgoingMarginLeft,
+                        R.dimen.alt_bubbleOutgoingMarginTop,
+                        R.dimen.alt_bubbleOutgoingMarginRight,
+                        R.dimen.alt_bubbleOutgoingMarginBottom
+                )
+                .setIngoingMargin(
+                        R.dimen.alt_bubbleIncomingMarginLeft,
+                        R.dimen.alt_bubbleIncomingMarginTop,
+                        R.dimen.alt_bubbleIncomingMarginRight,
+                        R.dimen.alt_bubbleIncomingMarginBottom
+                )
                 .setInputFieldPadding(
                         R.dimen.alt_input_field_padding_left,
                         R.dimen.alt_input_field_padding_top,
@@ -208,6 +220,7 @@ public class ChatStyleBuilderHelper {
 
                 .setOutgoingTimeTextSize(R.dimen.text_small)
                 .setIncomingTimeTextSize(R.dimen.text_big)
+                .setSearchEnabled(R.bool.alt_threads_chat_search_enabled)
                 .setFixedChatTitle(R.bool.alt_threads_chat_fixed_chat_title)
                 .setVisibleChatSubtitle(R.bool.alt_threads_chat_subtitle_is_visible)
                 .setMaxGalleryImagesCount(R.integer.alt_max_count_attached_images)
