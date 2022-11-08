@@ -76,13 +76,16 @@ class ThreadsDemoApplication : MultiDexApplication() {
             .networkInterceptor((BeagleOkHttpLogger.logger as? Interceptor?))
             .enableLogging(loggerConfig)
 
+        if (developerOptions.getCurrentServer().isSSLPinningDisabled) {
+            configBuilder.disableSSLPinning()
+        }
+
         val transportConfig = getTransportConfig(this)
         if (transportConfig != null) {
             configBuilder.serverBaseUrl(transportConfig.baseUrl)
                 .datastoreUrl(transportConfig.datastoreUrl)
                 .threadsGateUrl(transportConfig.threadsGateUrl)
                 .threadsGateProviderUid(transportConfig.threadsGateProviderUid)
-                .threadsGateHCMProviderUid(transportConfig.threadsGateHCMProviderUid)
 
             if (transportConfig.isNewChatCenterApi) {
                 configBuilder.setNewChatCenterApi()

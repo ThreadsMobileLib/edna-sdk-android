@@ -91,10 +91,6 @@
         </receiver>
 
         <meta-data
-            android:name="im.threads.threadsGateHCMProviderUid"
-            android:value="QHJIMzpGRCxdK0A6WEYzQDtdVXJEZVdgN0BWJ1hp"/>
-
-        <meta-data
             android:name="im.threads.attachmentEnabled"
             tools:replace="android:value"
             android:value="@bool/attachment_enabled"/>

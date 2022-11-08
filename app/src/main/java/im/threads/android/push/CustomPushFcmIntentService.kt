@@ -1,11 +1,11 @@
 package im.threads.android.push
 
-import com.edna.android.push_lite.fcm.FcmPushService
+import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import im.threads.business.serviceLocator.core.inject
 import im.threads.ui.ChatCenterPushMessageHelper
 
-class CustomPushFcmIntentService : FcmPushService() {
+class CustomPushFcmIntentService : FirebaseMessagingService() {
     private val chatCenterPushMessageHelper: ChatCenterPushMessageHelper by inject()
 
     override fun onNewToken(token: String) {

@@ -5,6 +5,5 @@ data class TransportConfig(
     val datastoreUrl: String,
     val threadsGateUrl: String,
     val threadsGateProviderUid: String,
-    val threadsGateHCMProviderUid: String? = null,
     val isNewChatCenterApi: Boolean
 )
