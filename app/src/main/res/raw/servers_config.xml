@@ -1,4 +1,4 @@
 <?xml version='1.0' encoding='utf-8' standalone='yes' ?>
 <map>
-    <string name="Default">{&quot;datastoreUrl&quot;:&quot;http://datastore.mobile1.chc.dte/&quot;,&quot;filesAndMediaMenuItemEnabled&quot;:false,&quot;isFromApp&quot;:false,&quot;name&quot;:&quot;Mobile 1&quot;,&quot;newChatCenterApi&quot;:true,&quot;serverBaseUrl&quot;:&quot;http://arm.mobile1.chc.dte/&quot;,&quot;threadsGateProviderUid&quot;:&quot;MOBILE1_93jLrvripZeDXSKJzdRfEu9QpMMvIe5LKKHQl&quot;,&quot;threadsGateUrl&quot;:&quot;http://tg.mobile1.chc.dte/socket&quot;}</string>
+    <string name="Default">{&quot;datastoreUrl&quot;:&quot;http://datastore.mobile1.chc.dte/&quot;,&quot;filesAndMediaMenuItemEnabled&quot;:false,&quot;isFromApp&quot;:false,&quot;isSSLPinningDisabled&quot;:false,&quot;name&quot;:&quot;Mobile 1&quot;,&quot;newChatCenterApi&quot;:true,&quot;serverBaseUrl&quot;:&quot;http://arm.mobile1.chc.dte/&quot;,&quot;threadsGateProviderUid&quot;:&quot;MOBILE1_93jLrvripZeDXSKJzdRfEu9QpMMvIe5LKKHQl&quot;,&quot;threadsGateUrl&quot;:&quot;http://tg.mobile1.chc.dte/socket&quot;}</string>
 </map>

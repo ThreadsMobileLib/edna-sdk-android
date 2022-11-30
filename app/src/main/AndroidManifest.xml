@@ -91,11 +91,6 @@
         </receiver>
 
         <meta-data
-            android:name="im.threads.attachmentEnabled"
-            tools:replace="android:value"
-            android:value="@bool/attachment_enabled"/>
-
-        <meta-data
             android:name="im.threads.filesAndMediaMenuItemEnabled"
             tools:replace="android:value"
             android:value="@bool/files_and_media_menu_item_enabled"/>

@@ -43,10 +43,15 @@
     <dimen name="alt_bubbleOutgoingPaddingRight">25dp</dimen>
     <dimen name="alt_bubbleOutgoingPaddingBottom">15dp</dimen>
 
-    <dimen name="alt_bubbleIncomingPaddingLeft">25dp</dimen>
+    <dimen name="alt_bubbleIncomingPaddingLeft">35dp</dimen>
     <dimen name="alt_bubbleIncomingPaddingTop">15dp</dimen>
     <dimen name="alt_bubbleIncomingPaddingRight">25dp</dimen>
     <dimen name="alt_bubbleIncomingPaddingBottom">15dp</dimen>
+
+    <dimen name="alt_greenBubbleIncomingPaddingLeft">23dp</dimen>
+    <dimen name="alt_greenBubbleIncomingPaddingTop">8dp</dimen>
+    <dimen name="alt_greenBubbleIncomingPaddingRight">8dp</dimen>
+    <dimen name="alt_greenBubbleIncomingPaddingBottom">8dp</dimen>
 
     <dimen name="alt_bubbleOutgoingMarginLeft">5dp</dimen>
     <dimen name="alt_bubbleOutgoingMarginTop">5dp</dimen>
@@ -67,5 +72,14 @@
     <dimen name="alt_input_field_margin_top">0dp</dimen>
     <dimen name="alt_input_field_margin_right">20dp</dimen>
     <dimen name="alt_input_field_margin_bottom">0dp</dimen>
+
+    <dimen name="alt_incomingImageLeftBorderSize">22dp</dimen>
+    <dimen name="alt_incomingImageTopBorderSize">12dp</dimen>
+    <dimen name="alt_incomingImageRightBorderSize">12dp</dimen>
+    <dimen name="alt_incomingImageBottomBorderSize">12dp</dimen>
+    <dimen name="alt_outgoingImageLeftBorderSize">12dp</dimen>
+    <dimen name="alt_outgoingImageTopBorderSize">12dp</dimen>
+    <dimen name="alt_outgoingImageRightBorderSize">18dp</dimen>
+    <dimen name="alt_outgoingImageBottomBorderSize">12dp</dimen>
 
 </resources>

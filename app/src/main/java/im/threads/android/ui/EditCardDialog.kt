@@ -11,7 +11,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
-import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.DialogFragment
@@ -19,6 +18,7 @@ import im.threads.android.R
 import im.threads.android.data.Card
 import im.threads.android.databinding.DialogEditCardBinding
 import im.threads.android.network.AuthProvider
+import im.threads.business.utils.Balloon
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
@@ -158,7 +158,9 @@ class EditCardDialog : DialogFragment() {
     }
 
     private fun showError(@StringRes errorMessageResId: Int) {
-        Toast.makeText(context, errorMessageResId, Toast.LENGTH_SHORT).show()
+        context?.let {
+            Balloon.show(it, it.getString(errorMessageResId))
+        }
     }
 
     interface EditCardDialogActionsListener {

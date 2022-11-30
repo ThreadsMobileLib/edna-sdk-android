@@ -24,6 +24,8 @@ object PrefUtilsApp {
     private const val PREF_IMPORTED_FILE_SERVERS_NAME = "servers_config"
     private const val PREF_CURRENT_SERVER = "PREF_CURRENT_SERVER"
     private const val PREF_IS_SERVER_CHANGED = "PREF_IS_SERVER_CHANGED"
+    private const val PREF_DEBUG_NAME = "DEBUG_EDNA_PREFERENCES"
+    private const val PREF_IS_TITLE_CENTERED = "EDNA_PREF_IS_TITLE_CENTERED"
 
     @JvmStatic
     fun storeCards(ctx: Context?, cards: List<Card?>?) {
@@ -148,6 +150,20 @@ object PrefUtilsApp {
         val serversToSave = servers.associate { it.name to it.toJson() }
         addServers(context, serversToSave, true)
         deletePreferenceWithNameContains(context, PREF_IMPORTED_FILE_SERVERS_NAME)
+    }
+
+    @JvmStatic
+    fun setIsTitleCentered(context: Context, isCentered: Boolean) {
+        context.getSharedPreferences(PREF_DEBUG_NAME, Context.MODE_PRIVATE)
+            .edit()
+            .putBoolean(PREF_IS_TITLE_CENTERED, isCentered)
+            .apply()
+    }
+
+    @JvmStatic
+    fun getIsTitleCentered(context: Context): Boolean {
+        return context.getSharedPreferences(PREF_DEBUG_NAME, Context.MODE_PRIVATE)
+            .getBoolean(PREF_IS_TITLE_CENTERED, false)
     }
 
     @Suppress("UNCHECKED_CAST")

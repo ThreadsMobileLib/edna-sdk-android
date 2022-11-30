@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Handler
 import android.os.Looper
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.Gson
 import com.jakewharton.processphoenix.ProcessPhoenix
@@ -31,6 +30,7 @@ import com.pandulapeter.beagle.modules.NetworkLogListModule
 import com.pandulapeter.beagle.modules.PaddingModule
 import com.pandulapeter.beagle.modules.ScreenCaptureToolboxModule
 import com.pandulapeter.beagle.modules.SingleSelectionListModule
+import com.pandulapeter.beagle.modules.SwitchModule
 import com.pandulapeter.beagle.modules.TextModule
 import im.threads.android.BuildConfig
 import im.threads.android.R
@@ -46,6 +46,7 @@ import im.threads.android.utils.toJson
 import im.threads.business.logger.LoggerEdna
 import im.threads.business.secureDatabase.DatabaseHolder
 import im.threads.business.serviceLocator.core.inject
+import im.threads.business.utils.Balloon
 import java.io.FileOutputStream
 import java.io.InputStream
 
@@ -219,6 +220,9 @@ class DebugMenuInteractor(private val context: Context) : DebugMenuUseCase {
             TextModule("Debug", TextModule.Type.SECTION_HEADER),
             AnimationDurationSwitchModule(),
             KeylineOverlaySwitchModule(),
+            SwitchModule("Center chat title", PrefUtilsApp.getIsTitleCentered(context), onValueChanged = {
+                PrefUtilsApp.setIsTitleCentered(context, it)
+            }),
             DeviceInfoModule(),
             DeveloperOptionsButtonModule(),
             PaddingModule(size = PaddingModule.Size.LARGE),
@@ -233,11 +237,7 @@ class DebugMenuInteractor(private val context: Context) : DebugMenuUseCase {
                 currentServerName = it.name.toString()
                 setCurrentServer(it.name.toString())
                 cleanHistory()
-                Toast.makeText(
-                    context,
-                    getString(R.string.demo_restart_app_for_server_apply),
-                    Toast.LENGTH_SHORT
-                ).show()
+                Balloon.show(context, getString(R.string.demo_restart_app_for_server_apply))
                 Handler(Looper.getMainLooper()).postDelayed({
                     ProcessPhoenix.triggerRebirth(context, Intent(context, MainActivity::class.java))
                 }, 2000)

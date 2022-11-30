@@ -3,6 +3,7 @@ package im.threads.android.ui
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.databinding.DataBindingUtil
@@ -25,6 +26,7 @@ class WebViewActivity : BaseActivity() {
         initView()
 
         val url = extractLink(intent.data)
+        Log.d("URL_OPENING", url ?: "no url")
         if (url != null) {
             binding.webView.loadUrl(url)
             binding.title.text = url

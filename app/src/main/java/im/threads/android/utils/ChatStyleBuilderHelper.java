@@ -2,6 +2,7 @@ package im.threads.android.utils;
 
 import android.view.Gravity;
 
+import im.threads.android.core.ThreadsDemoApplication;
 import im.threads.ui.ChatStyle;
 import im.threads.android.R;
 
@@ -36,8 +37,33 @@ public class ChatStyleBuilderHelper {
         chatStyle.setChatSubtitleShowConsultOrgUnit(true)
                 .setVisibleChatTitleShadow(R.bool.alt_threads_chat_title_shadow_is_visible)
                 .setShowConsultSearching(true)
-                .setVoiceMessageEnabled(true);
-        //Do nothing, using default threads design
+                .setVoiceMessageEnabled(true)
+                .setIngoingPadding(
+                    R.dimen.alt_greenBubbleIncomingPaddingLeft,
+                    R.dimen.alt_greenBubbleIncomingPaddingTop,
+                    R.dimen.alt_greenBubbleIncomingPaddingRight,
+                    R.dimen.alt_greenBubbleIncomingPaddingBottom
+                )
+                .setIncomingImageBordersSize(
+                        R.dimen.alt_incomingImageLeftBorderSize,
+                        R.dimen.alt_incomingImageTopBorderSize,
+                        R.dimen.alt_incomingImageRightBorderSize,
+                        R.dimen.alt_incomingImageBottomBorderSize
+                )
+                .setOutgoingImageBordersSize(
+                        R.dimen.alt_outgoingImageLeftBorderSize,
+                        R.dimen.alt_outgoingImageTopBorderSize,
+                        R.dimen.alt_outgoingImageRightBorderSize,
+                        R.dimen.alt_outgoingImageBottomBorderSize
+                )
+                .setIncomingImageMask(R.drawable.alt_thread_incoming_image_mask)
+                .setOutgoingImageMask(R.drawable.alt_thread_outgoing_image_mask)
+                .setOutgoingBubbleMask(R.drawable.alt_thread_outgoing_bubble)
+                .setIncomingBubbleMask(R.drawable.alt_thread_incoming_bubble);
+
+        if (PrefUtilsApp.getIsTitleCentered(ThreadsDemoApplication.getAppContext())) {
+            chatStyle.centerToolbarText();
+        }
     }
 
     private static void configureBlueDesign(ChatStyle chatStyle) {
@@ -104,7 +130,6 @@ public class ChatStyleBuilderHelper {
                 .setChatTitleStyle(R.string.demo_alt_threads_contact_center,
                         R.string.demo_alt_threads_operator_subtitle,
                         R.color.alt_threads_chat_toolbar,
-                        R.color.alt_threads_chat_context_menu,
                         R.color.alt_threads_chat_toolbar_text,
                         R.color.alt_threads_chat_status_bar,
                         R.bool.alt_threads_chat_is_light_status_bar,
@@ -240,9 +265,18 @@ public class ChatStyleBuilderHelper {
                 .setEmptyMediaAndFilesDescriptionFontPath(LATO_LIGHT_FONT_PATH)
                 .setEmptyMediaAndFilesDescriptionTextSize(R.dimen.alt_threads_attachments_no_files_description_text_size)
                 .setEmptyMediaAndFilesDescriptionTextColor(R.color.white)
+                .setToastStyle(
+                        R.dimen.text_big,
+                        R.color.threads_record_button_small_mic,
+                        R.color.threads_chat_toolbar_hint
+                )
                 .setChatBodyIconsColorStateTint(
                         R.color.threads_icon_and_separators_color,
                         R.color.alt_threads_chat_icons_tint,
                         R.color.threads_input_text);
+
+        if (PrefUtilsApp.getIsTitleCentered(ThreadsDemoApplication.getAppContext())) {
+            chatStyle.centerToolbarText();
+        }
     }
 }

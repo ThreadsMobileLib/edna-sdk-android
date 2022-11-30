@@ -11,7 +11,6 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -39,6 +38,7 @@ import im.threads.android.utils.PrefUtilsApp.storeCards
 import im.threads.business.UserInfoBuilder
 import im.threads.business.logger.LoggerEdna
 import im.threads.business.models.CampaignMessage
+import im.threads.business.utils.Balloon
 import im.threads.ui.activities.ChatActivity
 import im.threads.ui.core.ThreadsLib
 import im.threads.ui.styles.permissions.PermissionDescriptionType
@@ -111,7 +111,7 @@ class MainActivity : AppCompatActivity(), EditCardDialogActionsListener, YesNoDi
         checkIsServerChanged()
         showCards(getCards(this))
         intent?.data?.let {
-            Toast.makeText(this, "intent contains data: $it", Toast.LENGTH_SHORT).show()
+            Balloon.show(this, "intent contains data: $it")
         }
         serverSelectionUseCase.addUiDependedModulesToDebugMenu(this)
     }
@@ -353,7 +353,7 @@ class MainActivity : AppCompatActivity(), EditCardDialogActionsListener, YesNoDi
         val indexOf = cards.indexOf(newCard)
         if (indexOf != -1) {
             cards[indexOf] = newCard
-            Toast.makeText(this, R.string.demo_client_info_updated, Toast.LENGTH_LONG).show()
+            Balloon.show(this, getString(R.string.demo_client_info_updated))
         } else {
             cards.add(newCard)
         }
@@ -369,7 +369,7 @@ class MainActivity : AppCompatActivity(), EditCardDialogActionsListener, YesNoDi
                 cards.remove(it)
                 showCards(cards)
                 storeCards(this, cards)
-                ThreadsLib.getInstance().logoutClient(it.userId)
+                ThreadsLib.getInstance().logoutClient()
             }
         }
         cardForDelete = null
@@ -384,7 +384,7 @@ class MainActivity : AppCompatActivity(), EditCardDialogActionsListener, YesNoDi
     }
 
     private fun displayError(errorText: String) {
-        Toast.makeText(this, errorText, Toast.LENGTH_SHORT).show()
+        Balloon.show(this, errorText)
     }
 
     companion object {

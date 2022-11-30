@@ -7,13 +7,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.DialogFragment
 import im.threads.android.R
 import im.threads.android.data.ServerConfig
 import im.threads.android.databinding.DialogAddServerBinding
 import im.threads.android.useCases.developerOptions.DebugMenuUseCase
+import im.threads.business.utils.Balloon
 import org.koin.android.ext.android.inject
 
 class AddServerDialog(private val callback: AddServerDialogActions) : DialogFragment() {
@@ -61,11 +61,7 @@ class AddServerDialog(private val callback: AddServerDialogActions) : DialogFrag
                     dismiss()
                 } else {
                     context?.let {
-                        Toast.makeText(
-                            it,
-                            getString(R.string.fill_all_inputs),
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        Balloon.show(it, getString(R.string.fill_all_inputs))
                     }
                 }
             }
