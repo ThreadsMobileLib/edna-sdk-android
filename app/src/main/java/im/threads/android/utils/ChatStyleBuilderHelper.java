@@ -130,6 +130,7 @@ public class ChatStyleBuilderHelper {
                 .setChatTitleStyle(R.string.demo_alt_threads_contact_center,
                         R.string.demo_alt_threads_operator_subtitle,
                         R.color.alt_threads_chat_toolbar,
+                        R.color.alt_threads_chat_context_menu,
                         R.color.alt_threads_chat_toolbar_text,
                         R.color.alt_threads_chat_status_bar,
                         R.bool.alt_threads_chat_is_light_status_bar,
