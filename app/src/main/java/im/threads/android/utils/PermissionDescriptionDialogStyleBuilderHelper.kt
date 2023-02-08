@@ -38,47 +38,47 @@ object PermissionDescriptionDialogStyleBuilderHelper {
     private fun configureBlueDesign(dialogStyle: PermissionDescriptionDialogStyle) {
         dialogStyle.apply {
             imageStyle.apply {
-                marginTopDpResId = R.dimen.margin_big
+                marginTopDpResId = R.dimen.ecc_margin_big
                 layoutGravity = ContentGravity.LEFT
             }
             titleStyle.apply {
                 fontPath = LATO_BOLD_FONT_PATH
-                textSizeSpResId = R.dimen.text_big
-                textColorResId = R.color.threads_blue
-                marginTopDpResId = R.dimen.margin_big
+                textSizeSpResId = R.dimen.ecc_text_big
+                textColorResId = R.color.ecc_blue
+                marginTopDpResId = R.dimen.ecc_margin_big
                 gravity = ContentGravity.LEFT
             }
             messageStyle.apply {
                 fontPath = LATO_LIGHT_FONT_PATH
-                textSizeSpResId = R.dimen.text_medium
-                textColorResId = R.color.threads_blue
-                marginTopDpResId = R.dimen.margin_material
+                textSizeSpResId = R.dimen.ecc_text_medium
+                textColorResId = R.color.ecc_blue
+                marginTopDpResId = R.dimen.ecc_margin_material
                 gravity = ContentGravity.LEFT
             }
             positiveButtonStyle.apply {
                 textResId = R.string.demo_continue
                 fontPath = LATO_REGULAR_FONT_PATH
-                textSizeSpResId = R.dimen.text_big
-                textColorResId = R.color.threads_white
-                marginTopDpResId = R.dimen.margin_material
+                textSizeSpResId = R.dimen.ecc_text_big
+                textColorResId = R.color.ecc_white
+                marginTopDpResId = R.dimen.ecc_margin_material
                 cornerRadiusDpResId = R.dimen.demo_radius_medium
-                backgroundColorResId = R.color.threads_blue_0F87FF
+                backgroundColorResId = R.color.ecc_blue_0f87ff
             }
             negativeButtonStyle.apply {
                 textResId = R.string.demo_skip
                 fontPath = LATO_REGULAR_FONT_PATH
-                textSizeSpResId = R.dimen.text_big
-                textColorResId = R.color.threads_white
-                marginTopDpResId = R.dimen.margin_quarter
-                marginBottomDpResId = R.dimen.margin_big
+                textSizeSpResId = R.dimen.ecc_text_big
+                textColorResId = R.color.ecc_white
+                marginTopDpResId = R.dimen.ecc_margin_quarter
+                marginBottomDpResId = R.dimen.ecc_margin_big
                 cornerRadiusDpResId = R.dimen.demo_radius_medium
-                backgroundColorResId = R.color.threads_blue_transparent
-                strokeColorResId = R.color.threads_blue
+                backgroundColorResId = R.color.ecc_blue_transparent
+                strokeColorResId = R.color.ecc_blue
             }
             backgroundStyle.apply {
                 cornerRadiusDpResId = R.dimen.demo_radius_medium
                 backgroundColorResId = R.color.lighter_blue
-                strokeColorResId = R.color.threads_blue
+                strokeColorResId = R.color.ecc_blue
                 strokeWidthDpResId = R.dimen.demo_stroke_width_medium
             }
         }

@@ -172,7 +172,7 @@ public class BottomNavigationActivity extends AppCompatActivity {
         } else if (style.chatToolbarColorResId != 0) {
             checkedColor = style.chatToolbarColorResId;
         } else {
-            checkedColor = R.color.threads_black;
+            checkedColor = R.color.ecc_black;
         }
         ColorStateList iconColorStates = new ColorStateList(
                 new int[][]{

@@ -195,8 +195,8 @@ public class ChatStyleBuilderHelper {
                         R.color.alt_threads_incoming_play_pause_button,
                         R.color.alt_threads_outgoing_play_pause_button,
                         R.color.alt_threads_preview_play_pause_button,
-                        R.drawable.alt_threads_voice_message_play,
-                        R.drawable.alt_threads_voice_message_pause
+                        R.drawable.alt_ecc_voice_message_play,
+                        R.drawable.alt_ecc__voice_message_pause
                 )
                 .setEmptyStateStyle(
                         R.color.alt_threads_empty_state_background,
@@ -244,8 +244,8 @@ public class ChatStyleBuilderHelper {
                         R.dimen.alt_input_field_margin_bottom
                 )
 
-                .setOutgoingTimeTextSize(R.dimen.text_small)
-                .setIncomingTimeTextSize(R.dimen.text_big)
+                .setOutgoingTimeTextSize(R.dimen.ecc_text_small)
+                .setIncomingTimeTextSize(R.dimen.ecc_text_big)
                 .setSearchEnabled(R.bool.alt_threads_chat_search_enabled)
                 .setFixedChatTitle(R.bool.alt_threads_chat_fixed_chat_title)
                 .setVisibleChatSubtitle(R.bool.alt_threads_chat_subtitle_is_visible)
@@ -267,14 +267,14 @@ public class ChatStyleBuilderHelper {
                 .setEmptyMediaAndFilesDescriptionTextSize(R.dimen.alt_threads_attachments_no_files_description_text_size)
                 .setEmptyMediaAndFilesDescriptionTextColor(R.color.white)
                 .setToastStyle(
-                        R.dimen.text_big,
-                        R.color.threads_record_button_small_mic,
-                        R.color.threads_chat_toolbar_hint
+                        R.dimen.ecc_text_big,
+                        R.color.ecc_record_button_small_mic,
+                        R.color.ecc_chat_toolbar_hint
                 )
                 .setChatBodyIconsColorStateTint(
-                        R.color.threads_icon_and_separators_color,
+                        R.color.ecc_icon_and_separators_color,
                         R.color.alt_threads_chat_icons_tint,
-                        R.color.threads_input_text);
+                        R.color.ecc_input_text);
 
         if (PrefUtilsApp.getIsTitleCentered(ThreadsDemoApplication.getAppContext())) {
             chatStyle.centerToolbarText();

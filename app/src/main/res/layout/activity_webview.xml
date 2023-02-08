@@ -14,7 +14,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="56dp"
-            android:background="@color/threads_chat_toolbar"
+            android:background="@color/ecc_chat_toolbar"
             app:contentInsetStart="0dp">
 
             <LinearLayout
@@ -30,20 +30,20 @@
                     android:background="?android:attr/selectableItemBackground"
                     android:paddingLeft="16dp"
                     android:paddingRight="16dp"
-                    app:srcCompat="@drawable/ic_arrow_back_white_24dp"/>
+                    app:srcCompat="@drawable/ecc_ic_arrow_back_white_24dp"/>
 
                 <im.threads.ui.widget.textView.ToolbarTitleTextView
                     android:id="@+id/title"
                     android:layout_width="wrap_content"
                     android:layout_height="26dp"
-                    android:layout_marginLeft="@dimen/margin_half"
-                    android:layout_marginTop="@dimen/margin_quarter"
-                    android:layout_marginBottom="@dimen/margin_quarter"
+                    android:layout_marginLeft="@dimen/ecc_margin_half"
+                    android:layout_marginTop="@dimen/ecc_margin_quarter"
+                    android:layout_marginBottom="@dimen/ecc_margin_quarter"
                     android:ellipsize="end"
                     android:gravity="center_vertical"
                     android:lines="1"
-                    android:textColor="@color/threads_chat_toolbar_text"
-                    android:textSize="@dimen/text_big" />
+                    android:textColor="@color/ecc_chat_toolbar_text"
+                    android:textSize="@dimen/ecc_text_big" />
             </LinearLayout>
 
         </androidx.appcompat.widget.Toolbar>

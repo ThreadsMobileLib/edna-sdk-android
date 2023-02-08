@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:theme="@style/ThemeOverlay.Threads.Toolbar"
         app:titleTextColor="@android:color/white"
-        android:background="@color/threads_chat_toolbar">
+        android:background="@color/ecc_chat_toolbar">
     </androidx.appcompat.widget.Toolbar>
 
     <FrameLayout

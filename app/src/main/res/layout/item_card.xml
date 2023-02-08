@@ -63,7 +63,7 @@
             android:id="@+id/app_marker"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/threads_blue"
+            android:textColor="@color/ecc_blue"
             android:textSize="14sp"
             android:ellipsize="middle"
             android:singleLine="true"

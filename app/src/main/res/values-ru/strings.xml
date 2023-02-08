@@ -45,17 +45,17 @@
     <!-- Тексты для кастомизации -->
     <string name="threads_no_media_and_files_alt_header">Список файлов пуст</string>
     <string name="threads_no_media_and_files_alt_description">Добавьте новые на экране чата</string>
-    <string name="threads_welcome_screen_title_text">Добро пожаловать в контактный центр</string>
-    <string name="threads_welcome_screen_subtitle_text">Отправьте ваш вопрос, первый освободившийся оператор на него ответит</string>
-    <string name="threads_contact_center">Контакт центр</string>
+    <string name="ecc_welcome_screen_title_text">Добро пожаловать в контактный центр</string>
+    <string name="ecc_welcome_screen_subtitle_text">Отправьте ваш вопрос, первый освободившийся оператор на него ответит</string>
+    <string name="ecc_contact_center">Контакт центр</string>
 
-    <string name="threads_input_hint">Введите сообщение</string>
+    <string name="ecc_input_hint">Введите сообщение</string>
 
-    <string name="threads_request_to_resolve_thread">Специалист ответил на все ваши вопросы, продолжить консультацию?</string>
-    <string name="threads_request_to_resolve_thread_close">Нет</string>
-    <string name="threads_request_to_resolve_thread_open">Да</string>
+    <string name="ecc_request_to_resolve_thread">Специалист ответил на все ваши вопросы, продолжить консультацию?</string>
+    <string name="ecc_request_to_resolve_thread_close">Нет</string>
+    <string name="ecc_request_to_resolve_thread_open">Да</string>
 
-    <string name="threads_push_title">Edna Threads Demo</string>
+    <string name="ecc_push_title">Edna Threads Demo</string>
 
 
     <!-- Альтернативный дизайн -->

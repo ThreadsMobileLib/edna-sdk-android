@@ -18,7 +18,7 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:background">@drawable/chat_button_background</item>
-        <item name="android:textColor">@color/threads_white</item>
+        <item name="android:textColor">@color/ecc_white</item>
     </style>
 
     <!--Alternative Design-->
@@ -27,7 +27,7 @@
     </style>
 
     <style name="ThemeOverlay.ChatCenter.Slider.User" parent="">
-        <item name="colorPrimary">@color/threads_white</item>
+        <item name="colorPrimary">@color/ecc_white</item>
     </style>
 
     <style name="ThemeOverlay.ChatCenter.Slider.Consult" parent="">
@@ -35,11 +35,11 @@
     </style>
 
     <style name="ThemeOverlay.ChatCenter.Slider.Preview" parent="">
-        <item name="colorPrimary">@color/threads_black</item>
+        <item name="colorPrimary">@color/ecc_black</item>
     </style>
 
     <style name="ThemeOverlay.Threads.Toolbar" parent="">
-        <item name="android:textColorSecondary">@color/threads_white</item>
+        <item name="android:textColorSecondary">@color/ecc_white</item>
     </style>
 
 </resources>

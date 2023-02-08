@@ -38,7 +38,7 @@ class WebViewActivity : BaseActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_webview)
         binding.backButton.setOnClickListener { finish() }
 
-        binding.backButton.setImageResource(R.drawable.ic_arrow_back_white_24dp)
+        binding.backButton.setImageResource(R.drawable.ecc_ic_arrow_back_white_24dp)
         ColorsHelper.setTint(this, binding.backButton, chatStyle.chatToolbarTextColorResId)
 
         ColorsHelper.setBackgroundColor(

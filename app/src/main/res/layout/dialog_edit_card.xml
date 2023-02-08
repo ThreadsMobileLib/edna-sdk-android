@@ -98,8 +98,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:paddingTop="@dimen/activity_horizontal_margin"
-            android:paddingBottom="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/ecc_activity_horizontal_margin"
+            android:paddingBottom="@dimen/ecc_activity_horizontal_margin"
             android:text="@string/demo_cancel"
             android:textColor="@color/colorAccent"
             android:textSize="16sp" />
