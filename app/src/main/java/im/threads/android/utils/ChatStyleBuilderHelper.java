@@ -3,6 +3,7 @@ package im.threads.android.utils;
 import android.view.Gravity;
 
 import im.threads.android.core.ThreadsDemoApplication;
+import im.threads.business.markdown.MarkdownConfig;
 import im.threads.ui.ChatStyle;
 import im.threads.android.R;
 
@@ -34,7 +35,11 @@ public class ChatStyleBuilderHelper {
     }
 
     private static void configureGreenDesign(ChatStyle chatStyle) {
+        MarkdownConfig markdownConfig = new MarkdownConfig();
+        markdownConfig.setLinkUnderlined(true);
         chatStyle.setChatSubtitleShowConsultOrgUnit(true)
+                .setIncomingMarkdownConfiguration(markdownConfig)
+                .setOutgoingMarkdownConfiguration(markdownConfig)
                 .setVisibleChatTitleShadow(R.bool.alt_threads_chat_title_shadow_is_visible)
                 .setShowConsultSearching(true)
                 .setVoiceMessageEnabled(true)

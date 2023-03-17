@@ -59,7 +59,7 @@ ext {
     rxAndroidVersion = '2.1.1'
     gsonVersion = '2.8.6'
     pushVersion = '3.5.2'
-    recordViewVersion = '3.0.2'
+    recordViewVersion = '3.1.3'
     androidAudioConverterVersion = '0.0.8'
     streamVersion = '1.2.1'
     processPhoenixVersion = '2.0.0'
@@ -78,7 +78,6 @@ ext {
     mockitoInlineVersion = '2.21.0'
     beagleVersion = "2.8.2"
 
-    crypto = '1.1.0-alpha03'
     ffmpeg = '0.3.2'
 
     koin_version = '3.2.0'
@@ -91,4 +90,5 @@ ext {
     mockitoVersion = '3.12.4'
     mockitoInlineVersion = '2.21.0'
     playServiceVersion = '20.0.0'
+    crypto_tink = '1.7.0'
 }
