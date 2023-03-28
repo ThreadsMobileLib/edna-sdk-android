@@ -14,6 +14,7 @@ import im.threads.android.useCases.developerOptions.DebugMenuUseCase
 import im.threads.android.utils.PrefUtilsApp.getCards
 import im.threads.android.utils.PrefUtilsApp.getTheme
 import im.threads.android.utils.PrefUtilsApp.getTransportConfig
+import im.threads.business.AuthMethod
 import im.threads.business.core.UnreadMessagesCountListener
 import im.threads.business.logger.LoggerConfig
 import im.threads.business.logger.LoggerRetentionPolicy
@@ -121,6 +122,7 @@ class ThreadsDemoApplication : MultiDexApplication() {
                         pushClientCard.clientIdSignature,
                         pushClientCard.authToken,
                         pushClientCard.authSchema,
+                        AuthMethod.HEADERS.toString(),
                         getTheme(context)
                     )
                 }
@@ -137,6 +139,7 @@ class ThreadsDemoApplication : MultiDexApplication() {
                         clientIdSignature,
                         authToken,
                         authSchema,
+                        AuthMethod.HEADERS.toString(),
                         getTheme(context)
                     )
                 }

@@ -35,6 +35,7 @@ import im.threads.android.utils.PrefUtilsApp
 import im.threads.android.utils.PrefUtilsApp.getCards
 import im.threads.android.utils.PrefUtilsApp.getTheme
 import im.threads.android.utils.PrefUtilsApp.storeCards
+import im.threads.business.AuthMethod
 import im.threads.business.UserInfoBuilder
 import im.threads.business.logger.LoggerEdna
 import im.threads.business.models.CampaignMessage
@@ -242,6 +243,7 @@ class MainActivity : AppCompatActivity(), EditCardDialogActionsListener, YesNoDi
                 currentCard.clientIdSignature,
                 currentCard.authToken,
                 currentCard.authSchema,
+                AuthMethod.HEADERS.toString(),
                 getTheme(this)
             )
         )
@@ -290,6 +292,7 @@ class MainActivity : AppCompatActivity(), EditCardDialogActionsListener, YesNoDi
             pushClientCard?.clientIdSignature,
             pushClientCard?.authToken,
             pushClientCard?.authSchema,
+            AuthMethod.HEADERS.toString(),
             getTheme(this)
         )
     }

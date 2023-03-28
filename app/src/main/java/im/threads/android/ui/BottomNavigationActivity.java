@@ -26,6 +26,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.lang.ref.WeakReference;
 import java.util.concurrent.TimeUnit;
 
+import im.threads.business.AuthMethod;
 import im.threads.ui.ChatStyle;
 import im.threads.business.UserInfoBuilder;
 import im.threads.android.R;
@@ -66,6 +67,7 @@ public class BottomNavigationActivity extends AppCompatActivity {
     public static final String ARG_CLIENT_ID_SIGNATURE = "clientIdSignature";
     public static final String ARG_AUTH_TOKEN = "authToken";
     public static final String ARG_AUTH_SCHEMA = "authSchema";
+    public static final String ARG_AUTH_METHOD = "authMethod";
     public static final String ARG_NEEDS_SHOW_CHAT = "needsShowChat";
     private static final String ARG_CHAT_DESIGN = "chatDesign";
 
@@ -74,6 +76,7 @@ public class BottomNavigationActivity extends AppCompatActivity {
     private String clientIdSignature;
     private String authToken;
     private String authSchema;
+    private String authMethod;
     private String appMarker;
     private ChatDesign chatDesign;
 
@@ -106,6 +109,7 @@ public class BottomNavigationActivity extends AppCompatActivity {
                                       String clientIdSignature,
                                       String authToken,
                                       String authSchema,
+                                      String authMethod,
                                       ChatDesign chatDesign) {
         Intent intent = new Intent(activity, BottomNavigationActivity.class);
         intent.putExtra(ARG_APP_MARKER, appMarker);
@@ -114,6 +118,7 @@ public class BottomNavigationActivity extends AppCompatActivity {
         intent.putExtra(ARG_CLIENT_ID_SIGNATURE, clientIdSignature);
         intent.putExtra(ARG_AUTH_TOKEN, authToken);
         intent.putExtra(ARG_AUTH_SCHEMA, authSchema);
+        intent.putExtra(ARG_AUTH_METHOD, authMethod);
         intent.putExtra(ARG_CHAT_DESIGN, chatDesign);
         return intent;
     }
@@ -125,6 +130,7 @@ public class BottomNavigationActivity extends AppCompatActivity {
                                                     String clientIdSignature,
                                                     String authToken,
                                                     String authSchema,
+                                                    String authMethod,
                                                     ChatDesign chatDesign) {
         Intent intent = new Intent(context, BottomNavigationActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -135,6 +141,7 @@ public class BottomNavigationActivity extends AppCompatActivity {
         intent.putExtra(ARG_CLIENT_ID_SIGNATURE, clientIdSignature);
         intent.putExtra(ARG_AUTH_TOKEN, authToken);
         intent.putExtra(ARG_AUTH_SCHEMA, authSchema);
+        intent.putExtra(ARG_AUTH_METHOD, authMethod);
         intent.putExtra(ARG_CHAT_DESIGN, chatDesign);
         int flags = PendingIntent.FLAG_CANCEL_CURRENT;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -155,6 +162,7 @@ public class BottomNavigationActivity extends AppCompatActivity {
         clientIdSignature = intent.getStringExtra(ARG_CLIENT_ID_SIGNATURE);
         authToken = intent.getStringExtra(ARG_AUTH_TOKEN);
         authSchema = intent.getStringExtra(ARG_AUTH_SCHEMA);
+        authMethod = intent.getStringExtra(ARG_AUTH_METHOD);
         chatDesign = (ChatDesign) intent.getSerializableExtra(ARG_CHAT_DESIGN);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -363,7 +371,7 @@ public class BottomNavigationActivity extends AppCompatActivity {
                         .subscribe(
                                 () -> ThreadsLib.getInstance().initUser(
                                         new UserInfoBuilder(clientId)
-                                                .setAuthData(authToken, authSchema)
+                                                .setAuthData(authToken, authSchema, AuthMethod.Companion.fromString(authMethod))
                                                 .setClientIdSignature(clientIdSignature)
                                                 .setClientData(clientData)
                                                 .setAppMarker(appMarker)
