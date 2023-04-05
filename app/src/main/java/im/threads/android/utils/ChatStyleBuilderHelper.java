@@ -276,6 +276,10 @@ public class ChatStyleBuilderHelper {
                         R.color.ecc_record_button_small_mic,
                         R.color.ecc_chat_toolbar_hint
                 )
+                .setQuoteTextColors(
+                        R.color.alt_threads_record_button_small_mic,
+                        R.color.white
+                )
                 .setChatBodyIconsColorStateTint(
                         R.color.ecc_icon_and_separators_color,
                         R.color.alt_threads_chat_icons_tint,
