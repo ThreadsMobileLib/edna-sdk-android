@@ -167,6 +167,7 @@ public class ChatStyleBuilderHelper {
                         R.drawable.alt_threads_options_survey_selected,
                         R.color.alt_threads_survey_selected_icon_tint,
                         R.color.alt_threads_survey_unselected_icon_tint,
+                        R.color.ecc_red_f44336,
                         R.color.alt_threads_chat_system_message,
                         R.color.alt_threads_survey_choices_text)
                 .setInputEnabledDuringQuickReplies(true)
@@ -248,7 +249,7 @@ public class ChatStyleBuilderHelper {
                         R.dimen.alt_input_field_margin_right,
                         R.dimen.alt_input_field_margin_bottom
                 )
-
+                .setErrorMessageTextColor(R.color.ecc_input_text)
                 .setOutgoingTimeTextSize(R.dimen.ecc_text_small)
                 .setIncomingTimeTextSize(R.dimen.ecc_text_big)
                 .setSearchEnabled(R.bool.alt_threads_chat_search_enabled)

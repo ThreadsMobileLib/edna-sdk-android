@@ -374,7 +374,8 @@ public class BottomNavigationActivity extends AppCompatActivity {
                                                 .setAuthData(authToken, authSchema, AuthMethod.Companion.fromString(authMethod))
                                                 .setClientIdSignature(clientIdSignature)
                                                 .setClientData(clientData)
-                                                .setAppMarker(appMarker)
+                                                .setAppMarker(appMarker),
+                                        false
                                 ),
                                 throwable -> LoggerEdna.error("login: ", throwable)
                         )
