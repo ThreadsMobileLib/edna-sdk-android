@@ -1,0 +1,379 @@
+{
+  "messages": [
+    {
+      "type": "MESSAGE",
+      "threadId": 182,
+      "providerIds": [],
+      "uuid": "8ea00dba-527d-4fd3-9321-01ce829304eb",
+      "text": "",
+      "receivedDate": "2023-04-05T10:29:43.666Z",
+      "attachments": [
+        {
+          "id": 70,
+          "result": "file:///android_asset/test_files/client_text1.ogg",
+          "optional": {
+            "size": 52095,
+            "name": "client_text1.ogg",
+            "type": "audio/ogg"
+          },
+          "state": "READY",
+          "name": "client_text1.ogg",
+          "type": "audio/ogg",
+          "size": 52095,
+          "wellDefined": true,
+          "url": "file:///android_asset/test_files/client_text1.ogg"
+        }
+      ],
+      "quotes": [],
+      "quickReplies": [],
+      "read": true,
+      "settings": {
+        "blockInput": false,
+        "masked": false
+      },
+      "authorized": true,
+      "massPushMessage": false,
+      "origin": "threads"
+    },
+    {
+      "type": "OPERATOR_JOINED",
+      "threadId": 182,
+      "providerIds": [],
+      "uuid": "0bbb66c3-fbf4-4190-a714-ea84ee570234",
+      "operator": {
+        "id": 4,
+        "name": "Оператор Елена",
+        "alias": null,
+        "status": null,
+        "photoUrl": null,
+        "gender": "FEMALE",
+        "organizationUnit": "Skill Credit",
+        "role": "OPERATOR"
+      },
+      "text": "Вам ответит Оператор Елена",
+      "receivedDate": "2023-04-05T10:29:44.364Z",
+      "display": true,
+      "authorized": true,
+      "massPushMessage": false,
+      "aps/sound": "default",
+      "origin": "threads"
+    },
+    {
+      "type": "MESSAGE",
+      "threadId": 182,
+      "providerIds": [],
+      "uuid": "1c1df1af-1a21-49be-9421-f2d846ae493c",
+      "operator": {
+        "id": 4,
+        "name": "Оператор Елена",
+        "alias": null,
+        "status": null,
+        "photoUrl": null,
+        "gender": "FEMALE",
+        "organizationUnit": "Skill Credit",
+        "role": "OPERATOR"
+      },
+      "text": "",
+      "receivedDate": "2023-04-05T10:36:12.443Z",
+      "attachments": [
+        {
+          "id": 71,
+          "result": "file:///android_asset/test_files/operator_text1.ogg",
+          "optional": {
+            "size": 31183,
+            "name": "operator_text1.ogg",
+            "type": "audio/ogg"
+          },
+          "state": "READY",
+          "name": "operator_text1.ogg",
+          "type": "audio/ogg",
+          "size": 31183,
+          "wellDefined": true,
+          "url": "file:///android_asset/test_files/operator_text1.ogg"
+        }
+      ],
+      "quotes": [],
+      "quickReplies": [],
+      "read": false,
+      "settings": {
+        "blockInput": false,
+        "masked": false
+      },
+      "authorized": true,
+      "massPushMessage": false,
+      "origin": "threads"
+    },
+    {
+      "type": "MESSAGE",
+      "threadId": 182,
+      "providerIds": [],
+      "uuid": "e13a6b3c-8686-4279-8256-4a521ee82e4e",
+      "text": "",
+      "receivedDate": "2023-04-05T10:36:18.153Z",
+      "attachments": [
+        {
+          "id": 72,
+          "result": "file:///android_asset/test_files/client_text2.ogg",
+          "optional": {
+            "size": 36792,
+            "name": "client_text2.ogg",
+            "type": "audio/ogg"
+          },
+          "state": "READY",
+          "name": "client_text2.ogg",
+          "type": "audio/ogg",
+          "size": 36792,
+          "wellDefined": true,
+          "url": "file:///android_asset/test_files/client_text2.ogg"
+        }
+      ],
+      "quotes": [],
+      "quickReplies": [],
+      "read": true,
+      "settings": {
+        "blockInput": false,
+        "masked": false
+      },
+      "authorized": true,
+      "massPushMessage": false,
+      "origin": "threads"
+    },
+    {
+      "type": "MESSAGE",
+      "threadId": 182,
+      "providerIds": [],
+      "uuid": "bd50a2a0-f3cf-48ec-a601-5b2318e75f54",
+      "operator": {
+        "id": 4,
+        "name": "Оператор Елена",
+        "alias": null,
+        "status": null,
+        "photoUrl": null,
+        "gender": "FEMALE",
+        "organizationUnit": "Skill Credit",
+        "role": "OPERATOR"
+      },
+      "text": "",
+      "receivedDate": "2023-04-05T10:36:38.903Z",
+      "attachments": [
+        {
+          "id": 73,
+          "result": "file:///android_asset/test_files/operator_text2.ogg",
+          "optional": {
+            "size": 33080,
+            "name": "operator_text2.ogg",
+            "type": "audio/ogg"
+          },
+          "state": "READY",
+          "name": "operator_text2.ogg",
+          "type": "audio/ogg",
+          "size": 33080,
+          "wellDefined": true,
+          "url": "file:///android_asset/test_files/operator_text2.ogg"
+        }
+      ],
+      "quotes": [],
+      "quickReplies": [],
+      "read": false,
+      "settings": {
+        "blockInput": false,
+        "masked": false
+      },
+      "authorized": true,
+      "massPushMessage": false,
+      "origin": "threads"
+    },
+    {
+      "type": "MESSAGE",
+      "threadId": 182,
+      "providerIds": [],
+      "uuid": "d37a57c7-840e-422a-9298-b52b91455a2b",
+      "text": "",
+      "receivedDate": "2023-04-05T10:36:48.650Z",
+      "attachments": [
+        {
+          "id": 74,
+          "result": "file:///android_asset/test_files/client_text3.ogg",
+          "optional": {
+            "size": 27039,
+            "name": "client_text3.ogg",
+            "type": "audio/ogg"
+          },
+          "state": "READY",
+          "name": "client_text3.ogg",
+          "type": "audio/ogg",
+          "size": 27039,
+          "wellDefined": true,
+          "url": "file:///android_asset/test_files/client_text3.ogg"
+        }
+      ],
+      "quotes": [],
+      "quickReplies": [],
+      "read": true,
+      "settings": {
+        "blockInput": false,
+        "masked": false
+      },
+      "authorized": true,
+      "massPushMessage": false,
+      "origin": "threads"
+    },
+    {
+      "type": "MESSAGE",
+      "threadId": 182,
+      "providerIds": [],
+      "uuid": "026372ab-8283-4d0a-9381-54bea4673d8e",
+      "operator": {
+        "id": 4,
+        "name": "Оператор Елена",
+        "alias": null,
+        "status": null,
+        "photoUrl": null,
+        "gender": "FEMALE",
+        "organizationUnit": "Skill Credit",
+        "role": "OPERATOR"
+      },
+      "text": "",
+      "receivedDate": "2023-04-05T10:37:05.134Z",
+      "attachments": [
+        {
+          "id": 75,
+          "result": "file:///android_asset/test_files/operator_text3.ogg",
+          "optional": {
+            "size": 44407,
+            "name": "operator_text3.ogg",
+            "type": "audio/ogg"
+          },
+          "state": "READY",
+          "name": "operator_text3.ogg",
+          "type": "audio/ogg",
+          "size": 44407,
+          "wellDefined": true,
+          "url": "file:///android_asset/test_files/operator_text3.ogg"
+        }
+      ],
+      "quotes": [],
+      "quickReplies": [],
+      "read": false,
+      "settings": {
+        "blockInput": false,
+        "masked": false
+      },
+      "authorized": true,
+      "massPushMessage": false,
+      "origin": "threads"
+    },
+    {
+      "type": "MESSAGE",
+      "threadId": 182,
+      "providerIds": [],
+      "uuid": "17277ece-4aa6-47a0-b7ae-8debb11faa20",
+      "text": "",
+      "receivedDate": "2023-04-05T10:37:13.421Z",
+      "attachments": [
+        {
+          "id": 76,
+          "result": "file:///android_asset/test_files/client_text4.ogg",
+          "optional": {
+            "size": 13279,
+            "name": "client_text4.ogg",
+            "type": "audio/ogg"
+          },
+          "state": "READY",
+          "name": "client_text4.ogg",
+          "type": "audio/ogg",
+          "size": 13279,
+          "wellDefined": true,
+          "url": "file:///android_asset/test_files/client_text4.ogg"
+        }
+      ],
+      "quotes": [],
+      "quickReplies": [],
+      "read": true,
+      "settings": {
+        "blockInput": false,
+        "masked": false
+      },
+      "authorized": true,
+      "massPushMessage": false,
+      "origin": "threads"
+    },
+    {
+      "type": "MESSAGE",
+      "threadId": 182,
+      "providerIds": [],
+      "uuid": "b5137fec-a101-449e-aee3-15f9c4a49550",
+      "operator": {
+        "id": 4,
+        "name": "Оператор Елена",
+        "alias": null,
+        "status": null,
+        "photoUrl": null,
+        "gender": "FEMALE",
+        "organizationUnit": "Skill Credit",
+        "role": "OPERATOR"
+      },
+      "text": "",
+      "receivedDate": "2023-04-05T10:37:31.277Z",
+      "attachments": [
+        {
+          "id": 77,
+          "result": "file:///android_asset/test_files/operator_text4.ogg",
+          "optional": {
+            "size": 15718,
+            "name": "operator_text4.ogg",
+            "type": "audio/ogg"
+          },
+          "state": "READY",
+          "name": "operator_text4.ogg",
+          "type": "audio/ogg",
+          "size": 15718,
+          "wellDefined": true,
+          "url": "file:///android_asset/test_files/operator_text4.ogg"
+        }
+      ],
+      "quotes": [],
+      "quickReplies": [],
+      "read": false,
+      "settings": {
+        "blockInput": false,
+        "masked": false
+      },
+      "authorized": true,
+      "massPushMessage": false,
+      "origin": "threads"
+    },
+    {
+      "type": "REQUEST_CLOSE_THREAD",
+      "threadId": 182,
+      "hideAfter": 13,
+      "providerIds": [],
+      "uuid": "fddd410a-f6b7-4530-b394-1737aaec391a",
+      "receivedDate": "2023-04-05T10:38:34.344Z",
+      "read": false,
+      "authorized": true,
+      "massPushMessage": false,
+      "aps/sound": "default",
+      "origin": "threads"
+    }
+  ],
+  "agentInfo": {
+    "action": "AGENT_JOINED",
+    "actionDate": "2023-04-05T10:39:21.522Z",
+    "thread": {
+      "id": 182,
+      "state": "WAITING"
+    },
+    "agent": {
+      "id": 4,
+      "name": "Оператор Елена",
+      "alias": null,
+      "status": null,
+      "photoUrl": null,
+      "gender": "FEMALE",
+      "organizationUnit": "Skill Credit",
+      "role": "OPERATOR"
+    }
+  },
+  "allowedToSendMessages": true
+}

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="io.edna.threads.demo.appCode.fragments.server.AddServerViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.activity.MainActivity">
+
+        <LinearLayout
+            android:id="@+id/toolbar"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/toolbar_height"
+            android:background="@color/black_color"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/backButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/margin_8"
+                android:layout_marginEnd="@dimen/margin_8"
+                android:onClick="@{viewModel::click}"
+                android:padding="@dimen/margin_12"
+                android:src="@drawable/ic_back" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/title"
+                style="@style/FragmentTitleTextStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:lines="1"
+                android:text="@string/server" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/okButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/margin_8"
+                android:layout_marginEnd="@dimen/margin_8"
+                android:onClick="@{viewModel::click}"
+                android:padding="@dimen/margin_12"
+                android:src="@drawable/ic_ok_selector" />
+
+        </LinearLayout>
+
+        <io.edna.threads.demo.appCode.views.InputField
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/common_app_margins"
+            android:layout_marginTop="@dimen/margin_16"
+            android:layout_marginEnd="@dimen/common_app_margins"
+            android:text="@{viewModel.serverConfigLiveData.name}"
+            app:error="@{viewModel.errorStringForServerNameFieldLiveData}"
+            app:hint="@string/name_hint"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar"
+            app:textChangedListener="@{viewModel.nameTextWatcher}" />
+
+        <io.edna.threads.demo.appCode.views.InputField
+            android:id="@+id/providerId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/common_app_margins"
+            android:layout_marginTop="@dimen/margin_16"
+            android:layout_marginEnd="@dimen/common_app_margins"
+            android:text="@{viewModel.serverConfigLiveData.threadsGateProviderUid}"
+            app:error="@{viewModel.errorStringForProviderIdFieldLiveData}"
+            app:hint="@string/threads_gate_provider_uid_hint"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/name"
+            app:textChangedListener="@{viewModel.providerIdTextWatcher}" />
+
+        <io.edna.threads.demo.appCode.views.InputField
+            android:id="@+id/baseUrl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/common_app_margins"
+            android:layout_marginTop="@dimen/margin_32"
+            android:layout_marginEnd="@dimen/common_app_margins"
+            android:text="@{viewModel.serverConfigLiveData.serverBaseUrl}"
+            app:error="@{viewModel.errorStringForBaseUrlFieldLiveData}"
+            app:hint="@string/server_base_url_hint"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/providerId"
+            app:textChangedListener="@{viewModel.baseUrlTextWatcher}" />
+
+        <io.edna.threads.demo.appCode.views.InputField
+            android:id="@+id/datastoreUrl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/common_app_margins"
+            android:layout_marginTop="@dimen/margin_16"
+            android:layout_marginEnd="@dimen/common_app_margins"
+            android:text="@{viewModel.serverConfigLiveData.datastoreUrl}"
+            app:error="@{viewModel.errorStringForDatastoreUrlFieldLiveData}"
+            app:hint="@string/datastore_url_hint"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/baseUrl"
+            app:textChangedListener="@{viewModel.datastoreUrlTextWatcher}" />
+
+        <io.edna.threads.demo.appCode.views.InputField
+            android:id="@+id/threadsGateUrl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/common_app_margins"
+            android:layout_marginTop="@dimen/margin_16"
+            android:layout_marginEnd="@dimen/common_app_margins"
+            android:text="@{viewModel.serverConfigLiveData.threadsGateUrl}"
+            app:error="@{viewModel.errorStringForThreadsGateUrlFieldLiveData}"
+            app:hint="@string/threads_gate_url_hint"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/datastoreUrl"
+            app:textChangedListener="@{viewModel.threadsGateUrlTextWatcher}" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

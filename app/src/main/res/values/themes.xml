@@ -1,15 +1,113 @@
-<resources>
-    <style name="AppBarTheme" parent="DarkTheme" />
-
-    <style name="DarkTheme" parent="Theme.MaterialComponents.NoActionBar">
-        <item name="colorPrimary">@color/white</item>
-        <item name="colorSecondary">@color/white</item>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Theme.EdnaChatCenter" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="colorPrimary">@android:color/white</item>
+        <item name="colorPrimaryVariant">@color/gray_color_f4</item>
+        <item name="colorOnPrimary">@color/gray_color</item>
+        <item name="colorSecondary">@color/gray_color_b7</item>
+        <item name="colorSecondaryVariant">@color/gray_color_8e</item>
+        <item name="colorOnSecondary">@color/black_color</item>
     </style>
 
-    <style name="DebugMenuTheme" parent="Theme.MaterialComponents.NoActionBar">
-        <item name="colorPrimary">@color/light_green</item>
-        <item name="colorAccent">@color/lighter_blue</item>
-        <item name="materialButtonStyle">@style/ChatButtonStyle</item>
+    <style name="Theme.EdnaChatCenter.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.EdnaChatCenter.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.EdnaChatCenter.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
+    <style name="LogoTitleTextStyle" parent="android:Widget.TextView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">@dimen/margin_16</item>
+        <item name="android:layout_marginRight">@dimen/margin_16</item>
+        <item name="android:textSize">@dimen/text_size_28</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:fontFamily">@font/roboto_medium</item>
+        <item name="android:lineSpacingExtra">3sp</item>
+        <item name="android:translationY">-1.59sp</item>
+    </style>
+
+    <style name="TextButtonsStyle" parent="android:Widget.TextView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/login_screen_buttons_height</item>
+        <item name="android:layout_marginLeft">@dimen/margin_16</item>
+        <item name="android:layout_marginRight">@dimen/margin_16</item>
+        <item name="android:paddingLeft">@dimen/margin_16</item>
+        <item name="android:paddingRight">@dimen/margin_19</item>
+        <item name="android:textSize">@dimen/text_size_16</item>
+        <item name="android:background">@drawable/text_button_bg_selector</item>
+        <item name="android:textColor">@color/black_color</item>
+        <item name="android:textColorHint">@drawable/text_button_text_color_selector</item>
+        <item name="android:drawableEnd">@drawable/ic_chevron_right</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:fontFamily">@font/roboto_medium</item>
+        <item name="android:lineSpacingExtra">5sp</item>
+    </style>
+
+    <style name="LabelTextStyle" parent="android:Widget.TextView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">@dimen/margin_16</item>
+        <item name="android:layout_marginRight">@dimen/margin_16</item>
+        <item name="android:textColor">@color/black_color</item>
+        <item name="android:textSize">@dimen/text_size_14</item>
+        <item name="android:fontFamily">@font/roboto_medium</item>
+        <item name="android:lineSpacingExtra">4sp</item>
+    </style>
+
+    <style name="LogoTextStyle" parent="android:Widget.TextView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">@dimen/margin_16</item>
+        <item name="android:layout_marginRight">@dimen/margin_16</item>
+        <item name="android:textSize">@dimen/text_size_12</item>
+        <item name="android:fontFamily">@font/roboto_medium</item>
+        <item name="android:lineSpacingExtra">2sp</item>
+        <item name="android:translationY">-0.97sp</item>
+    </style>
+
+    <style name="ButtonsStyle" parent="android:Widget.Button">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/login_screen_buttons_height</item>
+        <item name="android:layout_marginLeft">@dimen/margin_16</item>
+        <item name="android:layout_marginRight">@dimen/margin_16</item>
+        <item name="android:textColor">@drawable/buttons_text_color_selector</item>
+        <item name="android:background">@drawable/buttons_bg_selector</item>
+        <item name="android:textSize">@dimen/text_size_16</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:gravity">center_vertical|center_horizontal</item>
+        <item name="android:fontFamily">@font/roboto_medium</item>
+        <item name="android:lineSpacingExtra">4sp</item>
+    </style>
+
+    <style name="SecondaryButtonsStyle" parent="android:Widget.Button">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/login_screen_buttons_height</item>
+        <item name="android:layout_marginLeft">@dimen/margin_16</item>
+        <item name="android:layout_marginRight">@dimen/margin_16</item>
+        <item name="android:textColor">@drawable/secondary_buttons_text_color_selector</item>
+        <item name="android:background">@drawable/secondary_buttons_bg_selector</item>
+        <item name="android:textSize">@dimen/text_size_16</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:gravity">center_vertical|center_horizontal</item>
+        <item name="android:fontFamily">@font/roboto_medium</item>
+        <item name="android:lineSpacingExtra">4sp</item>
+    </style>
+
+    <style name="FragmentTitleTextStyle" parent="android:Widget.TextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">@dimen/text_size_22</item>
+        <item name="android:fontFamily">@font/roboto_medium</item>
+        <item name="android:lineSpacingExtra">2sp</item>
+    </style>
+
+    <style name="SplashTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash_background</item>
     </style>
 
 </resources>

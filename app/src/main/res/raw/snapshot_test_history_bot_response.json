@@ -1,0 +1,126 @@
+{
+  "messages": [
+    {
+      "type": "MESSAGE",
+      "threadId": 304,
+      "providerIds": [],
+      "uuid": "eda36c57-7286-4360-bb42-0cf3d7932113",
+      "operator": {
+        "id": 9,
+        "name": "Бот Edna",
+        "alias": null,
+        "status": null,
+        "photoUrl": null,
+        "gender": "FEMALE",
+        "organizationUnit": "Skill Debet",
+        "role": "OPERATOR"
+      },
+      "text": "",
+      "formattedText": "Добрый день! Я **Бот Edna**, и я готова Вам помочь! Вижу, у Вас проблемы с зачислением средств. Читали ли вы *наиболее частые причины* по [этой ссылке](https://edna.ru/)?",
+      "receivedDate": "2023-03-22T08:42:44.275Z",
+      "attachments": [],
+      "quotes": [],
+      "quickReplies": [],
+      "read": true,
+      "settings": {
+        "blockInput": false,
+        "masked": false
+      },
+      "authorized": true,
+      "massPushMessage": false,
+      "origin": "threads"
+    },
+    {
+      "type": "MESSAGE",
+      "clientId": "8766",
+      "threadId": 482,
+      "providerIds": [],
+      "uuid": "a6b9dc67-c9f6-4971-94a5-a4c4904b15db",
+      "operator": {
+        "id": 13,
+        "name": "Бот Edna",
+        "alias": null,
+        "status": null,
+        "photoUrl": null,
+        "gender": null,
+        "organizationUnit": null,
+        "role": "EXTERNAL_BOT"
+      },
+      "text": "Когда вы оформили карту? Давайте выберем один из вариантов",
+      "receivedDate": "2023-03-22T08:44:19.497Z",
+      "attachments": [],
+      "quotes": [],
+      "quickReplies": [
+        {
+          "id": 4858,
+          "type": "TEXT",
+          "text": "У меня нет карты банка",
+          "imageUrl": null,
+          "url": null,
+          "shown_text": null,
+          "callback_data": null,
+          "payload": null
+        },
+        {
+          "id": 4859,
+          "type": "TEXT",
+          "text": "Моя карта просрочена",
+          "imageUrl": null,
+          "url": null,
+          "shown_text": null,
+          "callback_data": null,
+          "payload": null
+        },
+        {
+          "id": 4860,
+          "type": "TEXT",
+          "text": "Моя карта оформлена в этом году",
+          "imageUrl": null,
+          "url": null,
+          "shown_text": null,
+          "callback_data": null,
+          "payload": null
+        },
+        {
+          "id": 4861,
+          "type": "TEXT",
+          "text": "Моя карта оформлена в прошлом году",
+          "imageUrl": null,
+          "url": null,
+          "shown_text": null,
+          "callback_data": null,
+          "payload": null
+        },
+        {
+          "id": 4862,
+          "type": "TEXT",
+          "text": "Нет нужного варианта",
+          "imageUrl": null,
+          "url": null,
+          "shown_text": null,
+          "callback_data": null,
+          "payload": null
+        }
+      ],
+      "read": false,
+      "settings": {
+        "blockInput": false,
+        "masked": false
+      },
+      "authorized": true,
+      "massPushMessage": false,
+      "externalClientId": "8766",
+      "origin": "threads"
+    }
+  ],
+  "agentInfo": {
+    "action": "AGENT_LOOKUP",
+    "actionDate": "2023-03-22T08:51:43.124Z",
+    "thread": {
+      "id": 304,
+      "state": "UNASSIGNED"
+    },
+    "agent": null
+  },
+  "allowedToSendMessages": true
+}

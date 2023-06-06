@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="io.edna.threads.demo.appCode.fragments.user.AddUserViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.activity.MainActivity">
+
+        <LinearLayout
+            android:id="@+id/toolbar"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/toolbar_height"
+            android:background="@color/black_color"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/backButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/margin_8"
+                android:layout_marginEnd="@dimen/margin_8"
+                android:onClick="@{viewModel::click}"
+                android:padding="@dimen/margin_12"
+                android:src="@drawable/ic_back" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/title"
+                style="@style/FragmentTitleTextStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:lines="1"
+                android:text="@string/user" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/okButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/margin_8"
+                android:layout_marginEnd="@dimen/margin_8"
+                android:onClick="@{viewModel::click}"
+                android:padding="@dimen/margin_12"
+                android:src="@drawable/ic_ok_selector" />
+
+        </LinearLayout>
+
+        <io.edna.threads.demo.appCode.views.InputField
+            android:id="@+id/nickName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/common_app_margins"
+            android:layout_marginTop="@dimen/margin_16"
+            android:layout_marginEnd="@dimen/common_app_margins"
+            android:text="@{viewModel.userLiveData.nickName}"
+            app:error="@{viewModel.errorStringForUserNameFieldLiveData}"
+            app:hint="@string/nick_name_hint"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar"
+            app:textChangedListener="@{viewModel.nickNameTextWatcher}" />
+
+        <io.edna.threads.demo.appCode.views.InputField
+            android:id="@+id/userId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/common_app_margins"
+            android:layout_marginTop="@dimen/margin_16"
+            android:layout_marginEnd="@dimen/common_app_margins"
+            android:text="@{viewModel.userLiveData.userId}"
+            app:error="@{viewModel.errorStringForUserIdFieldLiveData}"
+            app:hint="@string/user_id_hint"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nickName"
+            app:textChangedListener="@{viewModel.userIdTextWatcher}" />
+
+        <io.edna.threads.demo.appCode.views.InputField
+            android:id="@+id/userData"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/common_app_margins"
+            android:layout_marginTop="@dimen/margin_16"
+            android:layout_marginEnd="@dimen/common_app_margins"
+            android:text="@{viewModel.userLiveData.userData}"
+            app:hint="@string/user_data"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/userId"
+            app:textChangedListener="@{viewModel.userDataTextWatcher}" />
+
+        <io.edna.threads.demo.appCode.views.InputField
+            android:id="@+id/appMarker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/common_app_margins"
+            android:layout_marginTop="@dimen/margin_16"
+            android:layout_marginEnd="@dimen/common_app_margins"
+            android:text="@{viewModel.userLiveData.appMarker}"
+            app:hint="@string/app_marker"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/userData"
+            app:textChangedListener="@{viewModel.appMarkerTextWatcher}" />
+
+        <io.edna.threads.demo.appCode.views.InputField
+            android:id="@+id/signature"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/common_app_margins"
+            android:layout_marginTop="@dimen/margin_16"
+            android:layout_marginEnd="@dimen/common_app_margins"
+            android:text="@{viewModel.userLiveData.signature}"
+            app:hint="@string/signature"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/appMarker"
+            app:textChangedListener="@{viewModel.signatureTextWatcher}" />
+
+        <io.edna.threads.demo.appCode.views.InputField
+            android:id="@+id/authorizationHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/common_app_margins"
+            android:layout_marginTop="@dimen/margin_16"
+            android:layout_marginEnd="@dimen/common_app_margins"
+            android:text="@{viewModel.userLiveData.authorizationHeader}"
+            app:hint="@string/authorization_header"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/signature"
+            app:textChangedListener="@{viewModel.authorizationHeaderTextWatcher}" />
+
+        <io.edna.threads.demo.appCode.views.InputField
+            android:id="@+id/xAuthSchemaHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/common_app_margins"
+            android:layout_marginTop="@dimen/margin_16"
+            android:layout_marginEnd="@dimen/common_app_margins"
+            android:text="@{viewModel.userLiveData.xAuthSchemaHeader}"
+            app:hint="@string/x_auth_schema_header"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/authorizationHeader"
+            app:textChangedListener="@{viewModel.xAuthSchemaHeaderTextWatcher}" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

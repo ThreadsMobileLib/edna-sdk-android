@@ -1,166 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#83B144</color>
-    <color name="colorPrimaryDark">#698D35</color>
-    <color name="colorAccent">#83B144</color>
+    <color name="black_color">#121212</color>
+    <color name="black_color_2d">#2d2d2d</color>
+    <color name="gray_color">#79747E</color>
+    <color name="gray_color_8e">#8E8E93</color>
 
-    <color name="white">#ffffff</color>
-    <color name="shadow">#30000000</color>
-    <color name="gray">#707070</color>
-    <color name="light_green">#B5D18F</color>
-    <color name="lighter_blue">#aff0ff</color>
-    <color name="lighter_green">#ddff88</color>
+    <color name="logo_edna_color">#2B8718</color>
 
-    <!-- цвета для кастомизации -->
-    <color name="ecc_welcome_screen_title">@color/gray</color>
-    <color name="ecc_welcome_screen_subtitle">@color/gray</color>
+    <color name="gray_color_b5">#b5b5b5</color>
+    <color name="gray_color_b7">#b7b7b7</color>
+    <color name="gray_color_f2">#f2f2f7</color>
+    <color name="gray_color_f4">#f4f4f4</color>
+    <color name="white_color_ec">#ececec</color>
+    <color name="white_color_fa">#fafafa</color>
+    <color name="white_color">#ffffff</color>
 
-    <color name="ecc_chat_toolbar">@color/colorPrimary</color>
-    <color name="ecc_chat_toolbar_text">@color/white</color>
-    <color name="ecc_chat_status_bar">@color/colorPrimaryDark</color>
-    <color name="ecc_chat_toolbar_menu_item">@color/colorPrimary</color>
-    <color name="ecc_chat_toolbar_hint">#B5D18F</color>
+    <color name="blue_color">#007AFF</color>
+    <color name="blue_color_lite">#0A84FF</color>
+    <color name="blue_color_dark">#004EA4</color>
+    <color name="toolbar_color">#1C1B1F</color>
+    <color name="red_color">#FF3B30</color>
 
-    <color name="ecc_chat_background">#EAF0F0</color>
-    <color name="ecc_chat_highlighting">#3083B144</color>
-    <color name="ecc_chat_incoming_message_bubble">@color/white</color>
-    <color name="ecc_chat_outgoing_message_bubble">@color/colorPrimary</color>
-    <color name="ecc_chat_connection_message">#333333</color>
+    <color name="info_text_color">#883C3C43</color>
+    <color name="alt_threads_outgoing_bubble_color">#505050</color>
+    <color name="alt_threads_chat_toolbar">#505050</color>
+    <color name="alt_threads_chat_context_menu">@color/white_color_ec</color>
+    <color name="alt_threads_chat_toolbar_text">@color/white_color_ec</color>
+    <color name="alt_threads_chat_status_bar">#000000</color>
+    <color name="alt_threads_chat_toolbar_menu_item_light">#505050</color>
+    <color name="alt_threads_chat_toolbar_menu_item_black">@color/white_color_ec</color>
+    <color name="alt_threads_chat_toolbar_hint">@color/white_color_ec</color>
 
-    <color name="ecc_files_medias_screen_background">@color/white</color>
-    <color name="ecc_icon_and_separators_color">@color/gray</color>
+    <!-- Light theme colors -->
+    <color name="light_outgoing_bubble">#BBF1D1</color>
+    <color name="light_icons">#54DCA0</color>
+    <color name="light_highlighting">#DFF3E7</color>
+    <color name="light_toolbar">#2E7B59</color>
+    <color name="light_statusbar">#18382A</color>
+    <color name="light_outgoing_time_text">#9fa5a9</color>
+    <color name="light_outgoing_image_time_background">#4D000000</color>
+    <color name="light_links">#0000FF</color>
 
-    <color name="ecc_input_background">@color/white</color>
-    <color name="ecc_input_text">#551a8b</color>
-    <color name="ecc_input_hint">#999999</color>
-
-    <color name="ecc_schedule_text">@color/gray</color>
-
-    <color name="ecc_push_background">@color/colorAccent</color>
-    <color name="ecc_nougat_push_accent">@color/colorAccent</color>
-
-    <color name="ecc_survey_selected_icon_tint">@color/colorAccent</color>
-    <color name="ecc_survey_unselected_icon_tint">@color/colorAccent</color>
-    <color name="ecc_survey_choices_text">@color/colorAccent</color>
-
-    <color name="ecc_outgoing_message_link">@color/lighter_blue</color>
-    <color name="ecc_incoming_message_link">@color/ecc_blue_0f87ff</color>
-
-    <color name="ecc_incoming_play_pause_button">@color/colorAccent</color>
-    <color name="ecc_outgoing_play_pause_button">@color/white</color>
-    <color name="ecc_preview_play_pause_button">@color/colorAccent</color>
-
-    <color name="ecc_record_button_background">@color/colorPrimary</color>
-    <color name="ecc_record_button_icon">@color/ecc_white</color>
-    <color name="ecc_record_button_small_mic">#c2185b</color>
-
-    <color name="ecc_consult_searching_progress_color">#c2185b</color>
-
-    <!--Alternative design-->
-    <!-- Приветственный экран -->
-    <color name="alt_threads_welcome_screen_title">@color/ecc_blue</color>
-    <color name="alt_threads_welcome_screen_subtitle">@color/ecc_blue_grey_607d8b</color>
-
-    <!-- Заголовок экрана чата -->
-    <color name="alt_threads_chat_status_bar">@color/ecc_blue_grey_607d8b</color>
-    <color name="alt_threads_chat_toolbar">@color/ecc_blue</color>
-    <color name="alt_threads_chat_context_menu">@color/white</color>
-    <color name="alt_threads_chat_toolbar_text">@color/lighter_blue</color>
-    <color name="alt_threads_chat_toolbar_menu_item">@color/ecc_blue_0f87ff</color>
-    <color name="alt_threads_chat_toolbar_hint">@color/lighter_blue</color>
-
-    <!-- Основная область чата -->
-    <color name="alt_threads_chat_background">@color/ecc_blue_grey_607d8b</color>
-    <color name="alt_threads_chat_highlighting">@color/ecc_chat_highlighting</color>
-
-    <color name="alt_threads_chat_incoming_message_bubble">@color/lighter_blue</color>
-    <color name="alt_threads_chat_outgoing_message_bubble">@color/ecc_blue</color>
-    <color name="alt_threads_incoming_message_text">@color/ecc_blue_grey_607d8b</color>
-    <color name="alt_threads_outgoing_message_text">@color/lighter_blue</color>
-    <color name="alt_threads_user_message_timestamp">@color/lighter_blue</color>
-    <color name="alt_threads_operator_message_timestamp">@color/ecc_blue_grey_607d8b</color>
-
-    <color name="alt_threads_outgoing_message_link">@color/ecc_red_f44336</color>
-    <color name="alt_threads_incoming_message_link">@color/white</color>
-
-    <color name="alt_threads_chat_icons_tint">@color/ecc_blue</color>
-    <color name="alt_threads_chat_system_message">@color/ecc_black</color>
-    <color name="alt_threads_chat_connection_message">@color/lighter_blue</color>
-
-    <color name="alt_threads_icon_and_separators_color">@color/ecc_blue_grey_607d8b</color>
-    <color name="alt_threads_outgoing_time_underlay">@color/ecc_blue_transparent_700f87ff
-    </color>
-    <color name="alt_threads_outgoing_message_time">@color/lighter_blue</color>
-    <color name="alt_threads_incoming_time_underlay">@color/ecc_blue_transparent</color>
-    <color name="alt_threads_incoming_message_time">@color/lighter_blue</color>
-
-    <!-- Цвет иконок статусов доставки сообщений пользователя -->
-    <color name="alt_threads_outgoing_message_sent_icon">@color/lighter_blue</color>
-    <color name="alt_threads_outgoing_message_received_icon">@color/lighter_blue</color>
-    <color name="alt_threads_outgoing_message_not_send_icon">@color/ecc_red_f44336</color>
-
-    <!-- Цвет иконок статусов доставки изображений пользователя -->
-    <color name="alt_threads_outgoing_message_image_sent_icon">@color/lighter_blue</color>
-    <color name="alt_threads_outgoing_message_image_received_icon">@color/lighter_blue</color>
-    <color name="alt_threads_outgoing_message_image_not_send_icon">@color/ecc_red_f44336</color>
-
-    <!-- Экран истории файлов -->
-    <color name="alt_threads_files_medias_screen_background">@color/ecc_blue_grey_607d8b</color>
-    <color name="alt_threads_files_list">@color/ecc_blue</color>
-
-    <!-- Экран просмотра файлов -->
-    <color name="ecc_attachments_toolbar_background">@color/colorPrimary</color>
-    <color name="ecc_attachments_toolbar_text">@color/ecc_white</color>
-    <color name="alt_threads_attachments_background">@color/ecc_blue_grey_607d8b</color>
-    <color name="alt_threads_attachments_author_text_color">@color/lighter_blue</color>
-    <color name="alt_threads_attachments_date_text_color">@color/lighter_blue</color>
-
-    <!-- Индикатор непрочитанных сообщений -->
-    <color name="alt_threads_chat_unread_msg_sticker_background">@color/ecc_blue</color>
-    <color name="alt_threads_chat_unread_msg_count_text">@color/lighter_blue</color>
-
-    <!-- Поле ввода сообщения -->
-    <color name="alt_threads_input_background">@color/lighter_blue</color>
-    <color name="alt_threads_input_text">@color/ecc_blue</color>
-    <color name="alt_threads_input_hint">@color/ecc_blue_grey_607d8b</color>
-
-    <!-- Сообщения о расписании -->
-    <color name="alt_threads_schedule_text">@color/lighter_blue</color>
-
-    <!-- Пуш нотификации -->
-    <color name="alt_threads_push_background">@color/ecc_blue</color>
-    <color name="alt_threads_nougat_push_accent">@color/ecc_blue</color>
-
-    <!-- Опросы -->
-    <color name="alt_threads_survey_selected_icon_tint">@color/lighter_blue</color>
-    <color name="alt_threads_survey_unselected_icon_tint">@color/lighter_blue</color>
-    <color name="alt_threads_survey_choices_text">@color/lighter_blue</color>
-
-    <!-- Notification Quick Reply -->
-    <color name="alt_threads_quick_reply_message_background">@color/lighter_blue</color>
-    <color name="alt_threads_quick_reply_message_text_color">@color/ecc_blue_grey_607d8b</color>
-
-    <!-- System messages -->
-    <color name="alt_threads_chat_new_system_message">@color/ecc_black</color>
-    <color name="alt_threads_system_message_link">@color/ecc_blue_0f87ff</color>
-
-    <array name="alt_threads_swipe_refresh_colors">
-        <item>@color/ecc_blue</item>
-        <item>@color/ecc_blue_transparent_700f87ff</item>
-        <item>@color/ecc_blue_grey_607d8b</item>
-    </array>
-    <color name="alt_threads_record_button_background">@color/ecc_blue</color>
-    <color name="alt_threads_record_button_icon">@color/lighter_blue</color>
-    <color name="alt_threads_record_button_small_mic">#c2185b</color>
-
-    <color name="alt_threads_incoming_play_pause_button">@color/ecc_blue</color>
-    <color name="alt_threads_outgoing_play_pause_button">@color/ecc_blue</color>
-    <color name="alt_threads_preview_play_pause_button">@color/ecc_blue</color>
-
-    <!-- Empty state -->
-    <color name="alt_threads_empty_state_background">@color/ecc_blue_grey_607d8b</color>
-    <color name="alt_threads_empty_state_progress">@color/ecc_blue_0f87ff</color>
-    <color name="alt_threads_empty_state_hint">@color/ecc_white</color>
-
-    <color name="alt_threads_quick_reply_text_color">@color/ecc_blue_grey_607d8b</color>
+    <!-- Dark theme colors -->
+    <color name="dark_outgoing_bubble">#183D2C</color>
+    <color name="dark_icons">#2A6E50</color>
+    <color name="dark_highlighting">#628676</color>
+    <color name="dark_toolbar">#1C1B1F</color>
+    <color name="dark_statusbar">#000000</color>
+    <color name="dark_outgoing_time_text">#9fa5a9</color>
+    <color name="dark_outgoing_image_time_background">#4D000000</color>
+    <color name="dark_links">#0000FF</color>
+    <color name="dark_chat_background">#505050</color>
+    <color name="dark_system_text">#f2f2f7</color>
 </resources>

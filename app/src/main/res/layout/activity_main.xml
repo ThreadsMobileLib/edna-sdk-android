@@ -3,127 +3,29 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
+    <data />
 
-        <variable
-            name="viewModel"
-            type="im.threads.android.ui.MainActivity" />
-
-    </data>
-
-    <ScrollView
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true">
+        tools:context=".appCode.activity.MainActivity">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:orientation="vertical"
-            android:paddingTop="@dimen/ecc_activity_vertical_margin"
-            android:paddingBottom="@dimen/ecc_activity_vertical_margin">
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-            <TextView
-                android:id="@+id/version_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:paddingLeft="@dimen/ecc_activity_horizontal_margin"
-                android:paddingRight="@dimen/ecc_activity_horizontal_margin"
-                android:textColor="@color/ecc_disabled_text_color"
-                tools:text="lib v.2.28" />
-
-            <RelativeLayout
-                android:id="@+id/content_container"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_below="@+id/version_name">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/cards_view"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:clipToPadding="false"
-                    android:overScrollMode="never"
-                    android:paddingLeft="16dp"
-                    android:paddingRight="16dp"
-                    tools:listitem="@layout/item_card" />
-
-                <ImageView
-                    android:id="@+id/add_card"
-                    tools:visibility="gone"
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:layout_above="@+id/add_card_hint"
-                    android:onClickListener="@{v -> viewModel.showEditCardDialog()}"
-                    app:srcCompat="@drawable/ic_add_card" />
-
-                <TextView
-                    android:id="@+id/add_card_hint"
-                    tools:visibility="gone"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:paddingTop="8dp"
-                    android:text="@string/demo_add_client"
-                    android:textColor="@color/gray"
-                    android:textSize="14sp" />
-
-            </RelativeLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/chat_activity_button"
-                    style="@style/ChatButtonStyle"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginRight="8dp"
-                    android:onClickListener="@{v -> viewModel.navigateToChatActivity()}"
-                    android:text="@string/demo_chat_activity_button_label" />
-
-                <Button
-                    android:id="@+id/chat_fragment_button"
-                    style="@style/ChatButtonStyle"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginRight="8dp"
-                    android:onClickListener="@{v -> viewModel.navigateToBottomNavigationActivity()}"
-                    android:text="@string/demo_chat_fragment_button_label" />
-
-            </LinearLayout>
-
-            <Button
-                android:id="@+id/to_chat_with_quote_button"
-                style="@style/ChatButtonStyle"
-                android:layout_marginTop="@dimen/ecc_margin_big"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:paddingLeft="8dp"
-                android:paddingRight="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:onClickListener="@{v -> viewModel.goToChatWithQuote()}"
-                android:text="@string/to_chat_with_quote_text_message" />
-
-            <Spinner
-                android:id="@+id/design_spinner"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/ecc_margin_big"
-                android:entries="@array/demo_designs"
-                android:minWidth="120dp" />
-
-        </LinearLayout>
-
-    </ScrollView>
-
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/nav_host_fragment_content_main"
+                android:name="androidx.navigation.fragment.NavHostFragment"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:defaultNavHost="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:navGraph="@navigation/nav_graph" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

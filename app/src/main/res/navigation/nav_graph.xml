@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/LaunchFragment">
+
+    <fragment
+        android:id="@+id/LaunchFragment"
+        android:name="io.edna.threads.demo.integrationCode.fragments.launch.LaunchFragment"
+        android:label="@string/launch_fragment_label"
+        tools:layout="@layout/fragment_launch">
+
+        <action
+            android:id="@+id/action_LaunchFragment_to_ServerListFragment"
+            app:destination="@id/ServerListFragment" />
+
+        <action
+            android:id="@+id/action_LaunchFragment_to_DemonstrationsListFragment"
+            app:destination="@id/DemoSamplesListFragment" />
+
+        <action
+            android:id="@+id/action_LaunchFragment_to_UserListFragment"
+            app:destination="@id/UserListFragment" />
+
+        <action
+            android:id="@+id/action_LaunchFragment_to_ChatAppFragment"
+            app:destination="@id/ChatAppFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/ServerListFragment"
+        android:name="io.edna.threads.demo.appCode.fragments.server.ServerListFragment"
+        android:label="@string/servers_fragment_label"
+        tools:layout="@layout/fragment_server_list">
+
+        <action
+            android:id="@+id/action_ServerListFragment_to_AddServerFragment"
+            app:destination="@id/AddServerFragment" />
+
+        <action
+            android:id="@+id/action_ServersFragment_to_LaunchFragment"
+            app:destination="@id/LaunchFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/DemoSamplesListFragment"
+        android:name="io.edna.threads.demo.appCode.fragments.demoSamplesList.DemoSamplesListFragment"
+        android:label="@string/demonstrations"
+        tools:layout="@layout/fragment_samples_list">
+
+        <action
+            android:id="@+id/action_DemoSamplesListFragment_to_DemoSamplesFragment"
+            app:destination="@id/DemoSamplesFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/DemoSamplesFragment"
+        android:name="io.edna.threads.demo.appCode.fragments.demoSamplesFragment.DemoSamplesFragment"
+        android:label="@string/demonstrations"
+        tools:layout="@layout/fragment_chat">
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/ChatAppFragment"
+        android:name="io.edna.threads.demo.integrationCode.fragments.chatFragment.ChatAppFragment"
+        android:label="@string/chat"
+        tools:layout="@layout/fragment_chat">
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/UserListFragment"
+        android:name="io.edna.threads.demo.appCode.fragments.user.UserListFragment"
+        android:label="@string/user_list_fragment_label"
+        tools:layout="@layout/fragment_user_list">
+
+        <action
+            android:id="@+id/action_UserListFragment_to_LaunchFragment"
+            app:destination="@id/LaunchFragment" />
+
+        <action
+            android:id="@+id/action_UserListFragment_to_AddUserFragment"
+            app:destination="@id/AddUserFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/AddServerFragment"
+        android:name="io.edna.threads.demo.appCode.fragments.server.AddServerFragment"
+        android:label="@string/add_server_fragment_label"
+        tools:layout="@layout/fragment_add_server">
+
+        <action
+            android:id="@+id/action_AddServerFragment_to_ServerListFragment"
+            app:destination="@id/ServerListFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/AddUserFragment"
+        android:name="io.edna.threads.demo.appCode.fragments.user.AddUserFragment"
+        android:label="@string/add_user_fragment_label"
+        tools:layout="@layout/fragment_add_user">
+
+        <action
+            android:id="@+id/action_AddUserFragment_to_UserListFragment"
+            app:destination="@id/UserListFragment" />
+
+    </fragment>
+</navigation>

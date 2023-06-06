@@ -1,0 +1,94 @@
+{
+  "messages": [
+    {
+      "type": "MESSAGE",
+      "threadId": 304,
+      "providerIds": [],
+      "uuid": "f78114b1-65c3-483e-a2c1-691c3d519b7d",
+      "operator": {
+        "id": 9,
+        "name": "Оператор Елена",
+        "alias": null,
+        "status": null,
+        "photoUrl": null,
+        "gender": "FEMALE",
+        "organizationUnit": "Skill Debet",
+        "role": "OPERATOR"
+      },
+      "text": "",
+      "formattedText": "То есть это все про вас?\n- **Цифровая трансформация клиентов**. Использование мессенджеров в качестве основного канала связи стало нормой.",
+      "receivedDate": "2023-03-22T08:44:01.005Z",
+      "attachments": [],
+      "quotes": [
+        {
+          "type": "MESSAGE",
+          "threadId": 304,
+          "providerIds": [],
+          "uuid": "110c8a46-8c38-45df-9949-5f12b7922f01",
+          "text": "Добро пожаловать в наш чат! А кто такие Edna?",
+          "receivedDate": "2023-03-22T08:43:19.497Z",
+          "attachments": [],
+          "quotes": [
+            {
+              "type": "MESSAGE",
+              "threadId": 304,
+              "providerIds": [],
+              "uuid": "eda36c57-7286-4360-bb42-0cf3d7932113",
+              "operator": {
+                "id": 9,
+                "name": "Оператор Елена",
+                "alias": null,
+                "status": null,
+                "photoUrl": null,
+                "gender": "FEMALE",
+                "organizationUnit": "Skill Debet",
+                "role": "OPERATOR"
+              },
+              "text": "Прежде всего, постоянное информационно-пропагандистское обеспечение нашей деятельности предопределяет высокую востребованность форм воздействия!",
+              "receivedDate": "2023-03-22T08:42:44.275Z",
+              "attachments": [],
+              "quotes": [],
+              "quickReplies": [],
+              "read": true,
+              "settings": {
+                "blockInput": false,
+                "masked": false
+              },
+              "authorized": true,
+              "massPushMessage": false,
+              "origin": "threads"
+            }
+          ],
+          "quickReplies": [],
+          "read": true,
+          "settings": {
+            "blockInput": false,
+            "masked": false
+          },
+          "authorized": true,
+          "massPushMessage": false,
+          "origin": "threads"
+        }
+      ],
+      "quickReplies": [],
+      "read": true,
+      "settings": {
+        "blockInput": false,
+        "masked": false
+      },
+      "authorized": true,
+      "massPushMessage": false,
+      "origin": "threads"
+    }
+  ],
+  "agentInfo": {
+    "action": "AGENT_LOOKUP",
+    "actionDate": "2023-03-22T08:51:43.124Z",
+    "thread": {
+      "id": 304,
+      "state": "UNASSIGNED"
+    },
+    "agent": null
+  },
+  "allowedToSendMessages": true
+}

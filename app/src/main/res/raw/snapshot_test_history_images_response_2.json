@@ -1,0 +1,133 @@
+{
+  "messages": [
+    {
+      "type": "MESSAGE",
+      "threadId": 142,
+      "providerIds": [],
+      "uuid": "23b186c2-33e1-4667-b427-1bd2b531a121",
+      "operator": {
+        "id": 4,
+        "name": "Оператор Елена",
+        "alias": null,
+        "status": null,
+        "photoUrl": null,
+        "gender": "FEMALE",
+        "organizationUnit": "Skill Credit",
+        "role": "OPERATOR"
+      },
+      "text": "",
+      "receivedDate": "2023-03-27T10:18:34.611Z",
+      "attachments": [
+        {
+          "id": 46,
+          "result": "file:///android_asset/test_images/test_image3.jpg",
+          "optional": {
+            "size": 238119,
+            "name": "test_image3.jpg",
+            "type": "image/jpeg"
+          },
+          "state": "READY",
+          "name": "test_image3.jpg",
+          "type": "image/jpeg",
+          "size": 238119,
+          "wellDefined": true,
+          "url": "file:///android_asset/test_images/test_image3.jpg"
+        }
+      ],
+      "quotes": [],
+      "quickReplies": [],
+      "read": true,
+      "settings": {
+        "blockInput": false,
+        "masked": false
+      },
+      "authorized": true,
+      "massPushMessage": false,
+      "origin": "threads"
+    },
+    {
+      "type": "MESSAGE",
+      "threadId": 142,
+      "providerIds": [],
+      "uuid": "ce9f4e95-e370-4bde-b6f1-ed11bc3becd5",
+      "text": "Обожаю океан!",
+      "receivedDate": "2023-03-27T10:19:09.272Z",
+      "attachments": [],
+      "quotes": [
+        {
+          "type": "MESSAGE",
+          "threadId": 142,
+          "providerIds": [],
+          "uuid": "23b186c2-33e1-4667-b427-1bd2b531a121",
+          "operator": {
+            "id": 4,
+            "name": "Оператор Елена",
+            "alias": null,
+            "status": null,
+            "photoUrl": null,
+            "gender": "FEMALE",
+            "organizationUnit": "Skill Credit",
+            "role": "OPERATOR"
+          },
+          "text": "",
+          "receivedDate": "2023-03-27T10:18:34.611Z",
+          "attachments": [
+            {
+              "id": 46,
+              "result": "file:///android_asset/test_images/test_image1.jpg",
+              "optional": {
+                "size": 238119,
+                "name": "test_image1.jpg",
+                "type": "image/jpeg"
+              },
+              "state": "READY",
+              "name": "test_image2.jpg",
+              "type": "image/jpeg",
+              "size": 238119,
+              "wellDefined": true,
+              "url": "file:///android_asset/test_images/test_image1.jpg"
+            }
+          ],
+          "quotes": [],
+          "quickReplies": [],
+          "read": true,
+          "settings": {
+            "blockInput": false,
+            "masked": false
+          },
+          "authorized": true,
+          "massPushMessage": false,
+          "origin": "threads"
+        }
+      ],
+      "quickReplies": [],
+      "read": true,
+      "settings": {
+        "blockInput": false,
+        "masked": false
+      },
+      "authorized": true,
+      "massPushMessage": false,
+      "origin": "threads"
+    }
+  ],
+  "agentInfo": {
+    "action": "AGENT_JOINED",
+    "actionDate": "2023-03-27T10:24:51.591Z",
+    "thread": {
+      "id": 142,
+      "state": "WAITING"
+    },
+    "agent": {
+      "id": 4,
+      "name": "Оператор Елена",
+      "alias": null,
+      "status": null,
+      "photoUrl": null,
+      "gender": "FEMALE",
+      "organizationUnit": "Skill Credit",
+      "role": "OPERATOR"
+    }
+  },
+  "allowedToSendMessages": true
+}

@@ -1,0 +1,103 @@
+{
+  "messages": [
+    {
+      "type": "MESSAGE",
+      "threadId": 182,
+      "providerIds": [],
+      "uuid": "8ea00dba-527d-4fd3-9321-01ce829304eb",
+      "text": "",
+      "receivedDate": "2023-04-05T10:29:43.666Z",
+      "attachments": [
+        {
+          "id": 70,
+          "result": "file:///android_asset/test_files/client_text1.ogg",
+          "optional": {
+            "size": 52095,
+            "name": "client_text1.ogg",
+            "type": "audio/ogg"
+          },
+          "state": "READY",
+          "name": "client_text1.ogg",
+          "type": "audio/ogg",
+          "size": 52095,
+          "wellDefined": true,
+          "url": "file:///android_asset/test_files/client_text1.ogg"
+        }
+      ],
+      "quotes": [],
+      "quickReplies": [],
+      "read": true,
+      "settings": {
+        "blockInput": false,
+        "masked": false
+      },
+      "authorized": true,
+      "massPushMessage": false,
+      "origin": "threads"
+    },
+    {
+      "type": "MESSAGE",
+      "threadId": 182,
+      "providerIds": [],
+      "uuid": "1c1df1af-1a21-49be-9421-f2d846ae493c",
+      "operator": {
+        "id": 4,
+        "name": "Оператор Елена",
+        "alias": null,
+        "status": null,
+        "photoUrl": null,
+        "gender": "FEMALE",
+        "organizationUnit": "Skill Credit",
+        "role": "OPERATOR"
+      },
+      "text": "",
+      "receivedDate": "2023-04-05T10:36:12.443Z",
+      "attachments": [
+        {
+          "id": 71,
+          "result": "file:///android_asset/test_files/operator_text1.ogg",
+          "optional": {
+            "size": 31183,
+            "name": "operator_text1.ogg",
+            "type": "audio/ogg"
+          },
+          "state": "READY",
+          "name": "operator_text1.ogg",
+          "type": "audio/ogg",
+          "size": 31183,
+          "wellDefined": true,
+          "url": "file:///android_asset/test_files/operator_text1.ogg"
+        }
+      ],
+      "quotes": [],
+      "quickReplies": [],
+      "read": false,
+      "settings": {
+        "blockInput": false,
+        "masked": false
+      },
+      "authorized": true,
+      "massPushMessage": false,
+      "origin": "threads"
+    }
+  ],
+  "agentInfo": {
+    "action": "AGENT_JOINED",
+    "actionDate": "2023-04-05T10:39:21.522Z",
+    "thread": {
+      "id": 182,
+      "state": "WAITING"
+    },
+    "agent": {
+      "id": 4,
+      "name": "Оператор Елена",
+      "alias": null,
+      "status": null,
+      "photoUrl": null,
+      "gender": "FEMALE",
+      "organizationUnit": "Skill Credit",
+      "role": "OPERATOR"
+    }
+  },
+  "allowedToSendMessages": true
+}

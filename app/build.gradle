@@ -1,35 +1,24 @@
 plugins {
     id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
     id 'com.huawei.agconnect'
-    id 'kotlin-android'
-    id 'kotlin-parcelize'
-    id 'kotlin-kapt'
     id 'com.google.gms.google-services'
-    id 'org.jetbrains.kotlin.plugin.serialization' version '1.6.21'
+    id 'kotlin-kapt'
+    id 'kotlin-parcelize'
+    id 'dev.testify'
 }
 
 android {
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_11
-        targetCompatibility JavaVersion.VERSION_11
-    }
-    kotlinOptions {
-        jvmTarget = '11'
-    }
-
     compileSdk rootProject.compileSdkVersion
 
     defaultConfig {
         applicationId "io.edna.threads.demo"
         minSdk rootProject.minSdkVersion
         targetSdk rootProject.targetSdkVersion
+        versionName "1.0.1"
+        versionCode 1
 
-        versionCode 89
-        versionName "${version}"
-        project.ext.set("archivesBaseName", "Threads-app " + defaultConfig.versionName)
-        vectorDrawables.useSupportLibrary = true
-        multiDexEnabled = true
+        testInstrumentationRunner "io.edna.threads.demo.MockTestRunner"
     }
 
     signingConfigs {
@@ -42,6 +31,13 @@ android {
     }
 
     buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    buildTypes {
         debug {
             debuggable = true
             minifyEnabled false
@@ -50,24 +46,23 @@ android {
         }
         release {
             debuggable = false
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.debug
         }
     }
 
-    lintOptions {
-        abortOnError false
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+    kotlinOptions {
+        jvmTarget = '11'
     }
 
     buildFeatures {
         dataBinding = true
-        viewBinding true
     }
-}
-
-repositories {
-    mavenCentral()
 }
 
 dependencies {
@@ -75,41 +70,34 @@ dependencies {
     debugImplementation "im.threads:threads-debug:$version"
     releaseImplementation "im.threads:threads-release:$version"
 
-    implementation "com.google.android.gms:play-services-location:$playServiceVersion"
-
-    implementation "androidx.preference:preference-ktx:$rootProject.androidXPreferenceVersion"
     implementation "androidx.core:core-ktx:$rootProject.androidXCoreVersion"
-
-    implementation "androidx.multidex:multidex:$rootProject.androidXMultidexVersion"
+    implementation "org.jetbrains.kotlin:kotlin-reflect:$rootProject.kotlinReflect"
+    implementation "androidx.appcompat:appcompat:$rootProject.appCompatVersion"
     implementation "com.google.android.material:material:$rootProject.materialComponentsVersion"
+    implementation "androidx.constraintlayout:constraintlayout:$rootProject.constraintlayoutVersion"
 
-    implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion"
-    implementation "com.squareup.retrofit2:adapter-rxjava2:$rootProject.retrofitVersion"
+    implementation "androidx.navigation:navigation-fragment-ktx:$rootProject.navigationVersion"
+    implementation "androidx.navigation:navigation-ui-ktx:$rootProject.navigationVersion"
+
+    // Koin main features for Android
+    implementation "io.insert-koin:koin-android:$koin_version"
+
     implementation "com.squareup.retrofit2:converter-gson:$rootProject.retrofitVersion"
+    implementation "org.parceler:parceler-api:$rootProject.parcelerVersion"
+    kapt "org.parceler:parceler:$rootProject.parcelerVersion"
 
-    implementation "io.reactivex.rxjava2:rxjava:$rootProject.rxjava2Version"
-    implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxAndroidVersion"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$rootProject.viewmodelVersion"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$rootProject.viewmodelVersion"
 
-    implementation "com.squareup.okhttp3:okhttp:$rootProject.okhttpVersion"
-    implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.okhttpVersion"
-
-    implementation "com.google.code.gson:gson:$rootProject.gsonVersion"
-
-    //Beagle
-    implementation "io.github.pandulapeter.beagle:ui-bottom-sheet:$beagleVersion"
-    debugImplementation "io.github.pandulapeter.beagle:log-crash-noop:$beagleVersion"
-    releaseImplementation  "io.github.pandulapeter.beagle:log-crash:$beagleVersion"
-    api "io.github.pandulapeter.beagle:log-okhttp:$beagleVersion"
-
-    //Push lite
     debugImplementation "com.edna.android:push-lite-debug:$pushVersion"
     debugImplementation "com.edna.android:push-lite-huawei-debug:$pushVersion"
     releaseImplementation "com.edna.android:push-lite-release:$pushVersion"
     releaseImplementation "com.edna.android:push-lite-huawei-release:$pushVersion"
 
-    // Koin main features for Android
-    implementation "io.insert-koin:koin-android:$koin_version"
-
-    implementation "com.jakewharton:process-phoenix:$rootProject.processPhoenixVersion"
-    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.7'
+    testImplementation "junit:junit:$rootProject.testJunitVersion"
+    androidTestImplementation "androidx.test:runner:$rootProject.androidXTestVersion"
+    androidTestImplementation "androidx.test.ext:junit:$rootProject.testJunitAndroidVersion"
+    androidTestImplementation "androidx.test:rules:$rootProject.androidXTestVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
+    androidTestImplementation "com.squareup.okhttp3:mockwebserver:4.10.0"
 }

@@ -1,0 +1,111 @@
+{
+  "messages": [
+    {
+      "type": "MESSAGE",
+      "threadId": 304,
+      "providerIds": [],
+      "uuid": "309153f8-d58e-4e8d-bdae-592670c93333",
+      "text": "Именно! А еще у нас есть различные каналы коммуникации с клиентами! Подробнее: http://127.0.0.1:8080/channels",
+      "receivedDate": "2023-03-22T08:44:21.741Z",
+      "attachments": [],
+      "quotes": [],
+      "quickReplies": [],
+      "read": true,
+      "settings": {
+        "blockInput": false,
+        "masked": false
+      },
+      "authorized": true,
+      "massPushMessage": false,
+      "origin": "threads"
+    },
+    {
+      "type": "MESSAGE",
+      "threadId": 304,
+      "providerIds": [],
+      "uuid": "a30877eb-3b79-4203-bc14-a622be9acc90",
+      "operator": {
+        "id": 9,
+        "name": "Оператор Елена",
+        "alias": null,
+        "status": null,
+        "photoUrl": null,
+        "gender": "FEMALE",
+        "organizationUnit": "Skill Debet",
+        "role": "OPERATOR"
+      },
+      "text": "Отлично! Давайте проверим ваши контакты. Ваш email: info@edna.ru, телефон: +7 (495) 609-60-80. Верно?",
+      "receivedDate": "2023-03-22T08:45:08.649Z",
+      "attachments": [],
+      "quotes": [],
+      "quickReplies": [],
+      "read": true,
+      "settings": {
+        "blockInput": false,
+        "masked": false
+      },
+      "authorized": true,
+      "massPushMessage": false,
+      "origin": "threads"
+    },
+    {
+      "type": "MESSAGE",
+      "threadId": 304,
+      "providerIds": [],
+      "uuid": "3aee0831-12b9-43ed-9e08-03a6dcd96843",
+      "text": "Да, все верно!",
+      "receivedDate": "2023-03-22T08:45:37.630Z",
+      "attachments": [],
+      "quotes": [],
+      "quickReplies": [],
+      "read": true,
+      "settings": {
+        "blockInput": false,
+        "masked": false
+      },
+      "authorized": true,
+      "massPushMessage": false,
+      "origin": "threads"
+    },
+    {
+      "type": "MESSAGE",
+      "threadId": 304,
+      "providerIds": [],
+      "uuid": "20f8f1a3-6edb-4aa9-8d98-27e2dde324f0",
+      "operator": {
+        "id": 9,
+        "name": "Оператор Елена",
+        "alias": null,
+        "status": null,
+        "photoUrl": null,
+        "gender": "FEMALE",
+        "organizationUnit": "Skill Debet",
+        "role": "OPERATOR"
+      },
+      "text": "",
+      "formattedText": "Тогда ***до связи***!",
+      "receivedDate": "2023-03-22T08:46:18.047Z",
+      "attachments": [],
+      "quotes": [],
+      "quickReplies": [],
+      "read": true,
+      "settings": {
+        "blockInput": false,
+        "masked": false
+      },
+      "authorized": true,
+      "massPushMessage": false,
+      "origin": "threads"
+    }
+  ],
+  "agentInfo": {
+    "action": "AGENT_LOOKUP",
+    "actionDate": "2023-03-22T08:51:43.124Z",
+    "thread": {
+      "id": 304,
+      "state": "UNASSIGNED"
+    },
+    "agent": null
+  },
+  "allowedToSendMessages": true
+}

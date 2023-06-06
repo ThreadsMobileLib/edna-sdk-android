@@ -1,0 +1,7 @@
+<resources>
+    <dimen name="edittext_height">@dimen/height_50</dimen>
+    <dimen name="login_screen_top_margin_small">@dimen/margin_8</dimen>
+    <dimen name="login_screen_top_margin_medium">@dimen/margin_12</dimen>
+    <dimen name="login_screen_top_margin_large">@dimen/margin_24</dimen>
+    <dimen name="login_screen_buttons_height">@dimen/height_50</dimen>
+</resources>

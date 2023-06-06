@@ -1,0 +1,123 @@
+{
+  "messages": [
+    {
+      "type": "MESSAGE",
+      "threadId": 184,
+      "providerIds": [],
+      "uuid": "b2eb39ef-b9f8-4f70-aaba-e89873ae1f25",
+      "text": "Добрый день, возник вопрос",
+      "receivedDate": "2023-04-06T08:06:57.870Z",
+      "attachments": [],
+      "quotes": [],
+      "quickReplies": [],
+      "read": true,
+      "settings": {
+        "blockInput": false,
+        "masked": false
+      },
+      "authorized": true,
+      "massPushMessage": false,
+      "origin": "threads",
+      "errorMock": true
+    },
+    {
+      "type": "MESSAGE",
+      "threadId": 184,
+      "providerIds": [],
+      "uuid": "75098c02-84f5-494a-8c9c-658f1487cc9e",
+      "operator": {
+        "id": 4,
+        "name": "Оператор Елена",
+        "alias": null,
+        "status": null,
+        "photoUrl": null,
+        "gender": "FEMALE",
+        "organizationUnit": "Skill Credit",
+        "role": "OPERATOR"
+      },
+      "text": "",
+      "receivedDate": "2023-04-06T08:10:06.944Z",
+      "attachments": [
+        {
+          "id": 79,
+          "result": "https://mobile4.dev.flex.mfms.ru/files/20230406-f46def28-5b72-41f9-864b-cf87e899ec28.pdf",
+          "optional": {
+            "size": 911839,
+            "name": "89,93-.pdf",
+            "type": "application/pdf"
+          },
+          "state": "ERROR",
+          "name": "89,93-.pdf",
+          "type": "application/pdf",
+          "size": 911839,
+          "wellDefined": true,
+          "url": "https://mobile4.dev.flex.mfms.ru/files/20230406-f46def28-5b72-41f9-864b-cf87e899ec28.pdf"
+        }
+      ],
+      "quotes": [],
+      "quickReplies": [],
+      "read": true,
+      "settings": {
+        "blockInput": false,
+        "masked": false
+      },
+      "authorized": true,
+      "massPushMessage": false,
+      "origin": "threads"
+    },
+    {
+      "type": "MESSAGE",
+      "threadId": 184,
+      "providerIds": [],
+      "uuid": "c1ffdbcf-4ac9-49c9-b941-4b759a414a42",
+      "text": "",
+      "receivedDate": "2023-04-06T08:10:24.552Z",
+      "attachments": [
+        {
+          "id": 80,
+          "result": "https://mobile4.dev.flex.mfms.ru/files/20230406-fda68dc5-fff1-417d-a1b6-c301da1934c2.pdf",
+          "optional": {
+            "size": 61978,
+            "name": "testpdf1.pdf",
+            "type": "application/pdf"
+          },
+          "state": "ERROR",
+          "name": "testpdf1.pdf",
+          "type": "application/pdf",
+          "size": 61978,
+          "wellDefined": true,
+          "url": "https://mobile4.dev.flex.mfms.ru/files/20230406-fda68dc5-fff1-417d-a1b6-c301da1934c2.pdf"
+        }
+      ],
+      "quotes": [],
+      "quickReplies": [],
+      "read": true,
+      "settings": {
+        "blockInput": false,
+        "masked": false
+      },
+      "authorized": true,
+      "massPushMessage": false,
+      "origin": "threads"
+    }
+  ],
+  "agentInfo": {
+    "action": "AGENT_JOINED",
+    "actionDate": "2023-04-06T08:55:22.118Z",
+    "thread": {
+      "id": 184,
+      "state": "IN_PROGRESS"
+    },
+    "agent": {
+      "id": 4,
+      "name": "Оператор Елена",
+      "alias": null,
+      "status": null,
+      "photoUrl": null,
+      "gender": "FEMALE",
+      "organizationUnit": "Skill Credit",
+      "role": "OPERATOR"
+    }
+  },
+  "allowedToSendMessages": true
+}

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:id="@+id/commonLayout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/edittext_height"
+        android:background="@color/gray_color_f4">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/textInputField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="@dimen/common_app_margins"
+            android:layout_marginTop="@dimen/margin_2"
+            android:layout_marginEnd="@dimen/common_app_margins"
+            android:background="@android:color/transparent"
+            android:gravity="center_vertical"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textColor="@color/black_color"
+            android:textColorHint="@color/gray_color_b5"
+            android:textSize="@dimen/text_size_16" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/hintText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/common_app_margins"
+            android:layout_marginEnd="@dimen/common_app_margins"
+            android:fontFamily="@font/roboto_medium"
+            android:textColor="@color/gray_color_b5"
+            android:textSize="@dimen/text_size_12" />
+
+    </FrameLayout>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/errorText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_3"
+        android:fontFamily="@font/roboto_medium"
+        android:textColor="@color/red_color"
+        android:textSize="@dimen/text_size_11"
+        android:visibility="gone" />
+
+</LinearLayout>

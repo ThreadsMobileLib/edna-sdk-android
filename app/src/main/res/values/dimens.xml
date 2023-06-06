@@ -1,78 +1,50 @@
 <resources>
+    <dimen name="margin_2">2dp</dimen>
+    <dimen name="margin_3">3dp</dimen>
+    <dimen name="margin_5">5dp</dimen>
+    <dimen name="margin_8">8dp</dimen>
+    <dimen name="margin_12">12dp</dimen>
+    <dimen name="margin_14">14dp</dimen>
+    <dimen name="margin_16">16dp</dimen>
+    <dimen name="margin_19">19dp</dimen>
+    <dimen name="margin_20">20dp</dimen>
+    <dimen name="margin_21">21dp</dimen>
+    <dimen name="margin_24">24dp</dimen>
+    <dimen name="margin_26">26dp</dimen>
+    <dimen name="margin_32">32dp</dimen>
+    <dimen name="margin_40">40dp</dimen>
 
-    <dimen name="demo_radius_medium">8dp</dimen>
+    <dimen name="padding_48">48dp</dimen>
 
-    <dimen name="demo_stroke_width_medium">2dp</dimen>
+    <dimen name="height_36">36dp</dimen>
+    <dimen name="height_42">42dp</dimen>
+    <dimen name="height_50">50dp</dimen>
+    <dimen name="height_56">56dp</dimen>
 
-    <!-- Default screen margins, per the Android Design guidelines. -->
-    <dimen name="ecc_activity_horizontal_margin">16dp</dimen>
-    <dimen name="ecc_activity_vertical_margin">16dp</dimen>
+    <dimen name="text_size_11">11sp</dimen>
+    <dimen name="text_size_12">12sp</dimen>
+    <dimen name="text_size_14">14sp</dimen>
+    <dimen name="text_size_16">16sp</dimen>
+    <dimen name="text_size_22">22sp</dimen>
+    <dimen name="text_size_28">28sp</dimen>
 
-    <dimen name="ecc_operator_photo_size">40dp</dimen>
-    <dimen name="ecc_system_operator_photo_size">40dp</dimen>
+    <dimen name="toolbar_height">64sp</dimen>
+    <dimen name="add_button_size">56dp</dimen>
+    <dimen name="edittext_height">@dimen/height_56</dimen>
 
-    <dimen name="ecc_welcome_screen_title">16sp</dimen>
-    <dimen name="ecc_welcome_screen_subtitle">12sp</dimen>
+    <dimen name="login_screen_top_margin_small">@dimen/margin_16</dimen>
+    <dimen name="login_screen_top_margin_medium">@dimen/margin_24</dimen>
+    <dimen name="login_screen_top_margin_large">@dimen/margin_40</dimen>
+    <dimen name="login_screen_buttons_height">@dimen/height_56</dimen>
 
-    <!--Alternative Design-->
-    <dimen name="alt_threads_input_height">40dp</dimen>
+    <dimen name="button_add_margins">@dimen/margin_20</dimen>
+    <dimen name="common_app_margins">@dimen/margin_16</dimen>
 
-    <dimen name="alt_threads_welcome_screen_title">20sp</dimen>
-    <dimen name="alt_threads_welcome_screen_subtitle">16sp</dimen>
-    <dimen name="alt_threads_welcome_screen_width">150dp</dimen>
-    <dimen name="alt_threads_welcome_screen_height">150dp</dimen>
-
-    <dimen name="alt_threads_operator_photo_size">55dp</dimen>
-    <dimen name="alt_threads_system_operator_photo_size">55dp</dimen>
-
-    <dimen name="alt_threads_attachments_no_files_header_text_size">20sp</dimen>
-    <dimen name="alt_threads_attachments_no_files_description_text_size">18sp</dimen>
-    <dimen name="alt_threads_attachments_author_text_size">18sp</dimen>
-    <dimen name="alt_threads_attachments_date_text_size">18sp</dimen>
-
-    <dimen name="alt_threads_system_message_text_size">18sp</dimen>
-    <dimen name="alt_threads_system_message_left_right_padding">24dp</dimen>
-
-    <dimen name="alt_threads_scroll_down_button_width">40dp</dimen>
-    <dimen name="alt_threads_scroll_down_button_height">40dp</dimen>
-    <dimen name="alt_threads_scroll_down_button_elevation">3dp</dimen>
-    <dimen name="alt_threads_scroll_down_button_margin">16dp</dimen>
-
-    <dimen name="alt_bubbleOutgoingPaddingLeft">25dp</dimen>
-    <dimen name="alt_bubbleOutgoingPaddingTop">15dp</dimen>
-    <dimen name="alt_bubbleOutgoingPaddingRight">25dp</dimen>
-    <dimen name="alt_bubbleOutgoingPaddingBottom">15dp</dimen>
-
-    <dimen name="alt_bubbleIncomingPaddingLeft">35dp</dimen>
-    <dimen name="alt_bubbleIncomingPaddingTop">15dp</dimen>
-    <dimen name="alt_bubbleIncomingPaddingRight">25dp</dimen>
-    <dimen name="alt_bubbleIncomingPaddingBottom">15dp</dimen>
 
     <dimen name="alt_greenBubbleIncomingPaddingLeft">23dp</dimen>
     <dimen name="alt_greenBubbleIncomingPaddingTop">8dp</dimen>
     <dimen name="alt_greenBubbleIncomingPaddingRight">8dp</dimen>
     <dimen name="alt_greenBubbleIncomingPaddingBottom">8dp</dimen>
-
-    <dimen name="alt_bubbleOutgoingMarginLeft">5dp</dimen>
-    <dimen name="alt_bubbleOutgoingMarginTop">5dp</dimen>
-    <dimen name="alt_bubbleOutgoingMarginRight">5dp</dimen>
-    <dimen name="alt_bubbleOutgoingMarginBottom">5dp</dimen>
-
-    <dimen name="alt_bubbleIncomingMarginLeft">5dp</dimen>
-    <dimen name="alt_bubbleIncomingMarginTop">40dp</dimen>
-    <dimen name="alt_bubbleIncomingMarginRight">5dp</dimen>
-    <dimen name="alt_bubbleIncomingMarginBottom">40dp</dimen>
-
-    <dimen name="alt_input_field_padding_left">30dp</dimen>
-    <dimen name="alt_input_field_padding_top">5dp</dimen>
-    <dimen name="alt_input_field_padding_right">30dp</dimen>
-    <dimen name="alt_input_field_padding_bottom">5dp</dimen>
-
-    <dimen name="alt_input_field_margin_left">5dp</dimen>
-    <dimen name="alt_input_field_margin_top">0dp</dimen>
-    <dimen name="alt_input_field_margin_right">20dp</dimen>
-    <dimen name="alt_input_field_margin_bottom">0dp</dimen>
-
     <dimen name="alt_incomingImageLeftBorderSize">22dp</dimen>
     <dimen name="alt_incomingImageTopBorderSize">12dp</dimen>
     <dimen name="alt_incomingImageRightBorderSize">12dp</dimen>

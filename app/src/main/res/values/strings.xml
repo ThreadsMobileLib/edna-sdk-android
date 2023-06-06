@@ -1,73 +1,67 @@
 <resources>
-    <string name="title_activity_bottom_navigation" translatable="false">BottomNavigationActivity</string>
-    <string name="app_name" translatable="false">Edna Threads Demo</string>
+    <string name="app_name">Edna ChatCenter</string>
 
-    <string name="demo_continue">Continue</string>
-    <string name="demo_skip">Skip</string>
-    <string name="demo_yes">Yes</string>
-    <string name="demo_no">No</string>
-    <string name="demo_add">Add</string>
-    <string name="demo_save">Save</string>
-    <string name="demo_cancel">Cancel</string>
+    <string name="login_to_account">Вход в аккаунт</string>
+    <string name="server">Сервер</string>
+    <string name="user">Пользователь</string>
+    <string name="login">Войти</string>
+    <string name="demonstrations_examples">Демонстрационные примеры</string>
+    <string name="functional_not_support">Функционал не поддерживается в текущей версии приложения.</string>
 
-    <string name="demo_title_home">Home</string>
-    <string name="demo_title_chat">Chat</string>
+    <string name="launch_fragment_label">Welcome screen</string>
+    <string name="servers_fragment_label">Select server screen</string>
+    <string name="demonstrations">Демонстрации</string>
+    <string name="chat">Чат</string>
+    <string name="add_server_fragment_label">Add server screen</string>
+    <string name="user_list_fragment_label">Select user screen</string>
+    <string name="add_user_fragment_label">Add user screen</string>
 
-    <string name="demo_auth_token_hint">Authorization header</string>
-    <string name="demo_auth_schema_hint">X-Auth-Schema header (retail | corp)</string>
-    <string name="demo_add_client">Add a client</string>
-    <string name="demo_client_id_hint">Client ID</string>
-    <string name="demo_client_name_hint">Client name</string>
-    <string name="demo_client_data_hint">Client data</string>
-    <string name="demo_app_marker_hint">App Marker</string>
-    <string name="demo_client_id_signature_hint">Signature (if empty - will load from server)</string>
-    <string name="demo_edit_transport_config">Transport config</string>
-    <string name="demo_get_signature_error">Failed to get client ID signature</string>
-    <string name="demo_error_empty_user">Empty user</string>
-    <string name="demo_error_empty_user_id">Empty user ID</string>
-    <string name="demo_card_delete_text">Are you sure you want to delete the client?</string>
-    <string name="demo_client_info_updated">Client info was updated</string>
+    <string name="text_messages">Текстовые сообщения</string>
+    <string name="connection_errors">Сообщения с ошибками</string>
+    <string name="voice_messages">Голосовые сообщения</string>
+    <string name="images">Изображения</string>
+    <string name="files">Файлы</string>
+    <string name="system_messages">Системные сообщения</string>
+    <string name="chat_with_bot">Чат с ботом</string>
 
-    <string name="demo_chat_activity_button_label">To chat (Activity)</string>
-    <string name="demo_chat_fragment_button_label">To chat (Fragment)</string>
+    <string name="servers">Серверы</string>
+    <string name="users">Пользователи</string>
+    <string name="name">Name</string>
+    <string name="name_hint">* Name</string>
+    <string name="nick_name">Имя пользователя</string>
+    <string name="nick_name_hint">* Имя пользователя</string>
+    <string name="user_id">ID пользователя</string>
+    <string name="user_id_hint">* ID пользователя</string>
+    <string name="user_data">Данные пользователя</string>
+    <string name="app_marker">appMarker</string>
+    <string name="signature">signature</string>
+    <string name="authorization_header">Authorization header</string>
+    <string name="x_auth_schema_header">X-Auth-Schema header</string>
+    <string name="datastore_url">Datastore URL</string>
+    <string name="threads_gate_url">Threads Gate URL</string>
+    <string name="server_base_url">Server Base URL</string>
+    <string name="threads_gate_provider_uid">Threads Gate Provider Uid</string>
+    <string name="datastore_url_hint">* Datastore URL</string>
+    <string name="threads_gate_url_hint">* Threads Gate URL</string>
+    <string name="server_base_url_hint">* Server Base URL</string>
+    <string name="threads_gate_provider_uid_hint">* Threads Gate Provider Uid</string>
+    <string name="required_field">Поле обязательное для заполнения</string>
+    <string name="empty_user_list_text">Добавьте пользователя\nдля входа в чат</string>
 
-    <string name="demo_unread_messages_count">Unread message counts:&#032;</string>
+    <string name="content_description_back_button">Кнопка назад</string>
+    <string name="content_description_save_button">Кнопка сохранить</string>
+    <string name="content_description_add_button">Кнопка добавить</string>
+    <string name="content_description_server_list_icon">Иконка элемента списка серверов</string>
+    <string name="content_description_edit_button">Кнопка редактировать</string>
+    <string name="content_description_remove_button">Кнопка удалить</string>
+    <string name="content_description_user_list_icon">Иконка элемента списка пользователей</string>
 
-    <string name="about_app">"About app"</string>
-    <string name="demo_server_selection">Server selection</string>
-    <string name="demo_server">Server</string>
-    <string name="demo_restart_app_for_server_apply">The application will be restarted to apply the settings</string>
+    <string name="demo_alt_threads_contact_center">Демонстрация сообщений</string>
+    <string name="demo_alt_threads_operator_subtitle">Оператор Елена</string>
 
-    <string-array name="demo_designs">
-        <item>@string/demo_design_green_style</item>
-        <item>@string/demo_design_blue_style</item>
-    </string-array>
-    <string name="demo_design_green_style">Green style</string>
-    <string name="demo_design_blue_style">Blue style</string>
-
-    <string name="send_text_message">Send message</string>
-    <string name="to_chat_with_quote_text_message">To chat with quote</string>
-    <string name="send_text_message_success">Message was successfully sent!</string>
-    <string name="send_text_message_error">Error sending message!</string>
-    <string name="test_message">Test message</string>
-    <string name="login">Login</string>
-    <string name="alt_loading">Loading chat…</string>
-
-    <string name="threads_no_media_and_files_alt_header">File list is empty</string>
-    <string name="threads_no_media_and_files_alt_description">Add new ones on the chat screen</string>
-
-    <!--Alternative Design -->
-    <string name="demo_alt_threads_push_title">Threads</string>
-    <string name="demo_alt_threads_contact_center">VIP Chat</string>
-    <string name="demo_alt_threads_operator_subtitle">Your personal manager is always with you and happy to answer any of your questions</string>
-    <string name="demo_alt_threads_request_to_resolve_thread">Do you still have questions?</string>
-    <string name="demo_alt_threads_request_to_resolve_thread_close">All is decided</string>
-    <string name="demo_alt_threads_request_to_resolve_thread_open">Another question</string>
-    <string name="demo_alt_threads_welcome_screen_title_text">Happy to help you in VIP chat</string>
-    <string name="demo_alt_threads_welcome_screen_subtitle_text">Send your question and your personal manager will immediately answer it</string>
-    <string name="demo_alt_threads_input_hint">Enter your message</string>
-    <string name="demo_select_server">Select server</string>
-    <string name="demo_add_server">Add server</string>
-    <string name="demo_activate_server">Activate server</string>
-    <string name="demo_change_current_server">Change server</string>
+    <string name="select_theme">Выберите тему</string>
+    <string name="default_theme">По умолчанию</string>
+    <string name="dark_theme">Темная</string>
+    <string name="light_theme">Светлая</string>
+    <string name="ok">OK</string>
 </resources>

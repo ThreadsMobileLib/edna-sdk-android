@@ -1,94 +1,98 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
-
 buildscript {
     ext.kotlin_version = '1.6.21'
-    repositories {
-        google()
-        maven { url 'https://plugins.gradle.org/m2/' }
-        maven { url 'https://developer.huawei.com/repo/' }
-    }
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.0.4'
-        classpath 'com.google.gms:google-services:4.3.13'
+        classpath 'com.android.tools.build:gradle:7.2.1'
+        classpath 'com.google.gms:google-services:4.3.15'
         classpath 'net.researchgate:gradle-release:2.8.1'
         classpath 'com.huawei.agconnect:agcp:1.6.4.300'
-        classpath "org.jlleitschuh.gradle:ktlint-gradle:10.3.0"
+        classpath "org.jlleitschuh.gradle:ktlint-gradle:11.3.1"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "org.jetbrains.kotlin:kotlin-allopen:$kotlin_version"
+        classpath "dev.testify:plugin:2.0.0-alpha02"
     }
+}
+
+plugins {
+    id 'com.android.application' version '7.2.1' apply false
+    id 'com.android.library' version '7.2.1' apply false
+    id 'org.jetbrains.kotlin.android' version '1.6.21' apply false
 }
 
 plugins {
     id 'org.jlleitschuh.gradle.ktlint' version "10.3.0"
 }
 
-subprojects {
-    apply plugin: "org.jlleitschuh.gradle.ktlint"
-}
-
 allprojects {
-    repositories {
-        google()
-        mavenCentral()
-        maven { url 'https://developer.huawei.com/repo' }
-        maven { url 'https://maven-pub.edna.ru/repository/maven-public/' }
-        maven { url "https://jitpack.io" }
+    //Support @JvmDefault
+    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+        kotlinOptions {
+            freeCompilerArgs = ['-Xjvm-default=enable'] //enable or compatibility
+            jvmTarget = '11'
+        }
     }
 }
 
+subprojects {
+    apply plugin: "org.jlleitschuh.gradle.ktlint"
+}
 
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
 
 ext {
-    compileSdkVersion = 31
+    compileSdkVersion = 33
     minSdkVersion = 21
-    targetSdkVersion = 31
+    targetSdkVersion = 33
 
-    androidXCoreVersion = '1.7.0'
-    androidXMultidexVersion = '2.0.1'
+    androidXCoreVersion = '1.9.0'
     androidXPreferenceVersion = '1.1.1'
     androidXSwiperefreshlayout = '1.1.0'
-    materialComponentsVersion = '1.4.0'
-    fcmVersion = '23.0.6'
+    materialComponentsVersion = '1.8.0'
+    appCompatVersion = '1.6.1'
+    kotlinReflect = '1.7.10'
 
+    constraintlayoutVersion = '2.1.4'
+    navigationVersion = '2.5.3'
+
+    testExpressoVersion = '3.5.1'
+    testJunitVersion = '4.13.2'
+    testJunitAndroidVersion = '1.1.5'
+    lifecycleViewmodelVersion = '2.4.0'
+    calligraphy3Version = '3.1.1'
+    viewpumpVersion = '2.0.3'
+
+    viewmodelVersion = '2.5.1'
+    koin_version = '3.2.0'
+    okhttp_webserver_version = '4.10.0'
+
+    pushVersion = '3.5.2'
     okhttpVersion = '4.9.3'
     retrofitVersion = '2.9.0'
     rxjava2Version = '2.2.21'
     rxAndroidVersion = '2.1.1'
-    gsonVersion = '2.8.6'
-    pushVersion = '3.5.2'
-    recordViewVersion = '3.1.3'
-    androidAudioConverterVersion = '0.0.8'
     streamVersion = '1.2.1'
-    processPhoenixVersion = '2.0.0'
+    gsonVersion = '2.8.6'
+    picasso_version = '2.8'
+    recordViewVersion = '3.1.3'
+    ffmpeg = '0.3.2'
+    fcmVersion = '23.0.6'
     flexboxVersion = '3.0.0'
     work_version = "2.7.1"
     sqlcipher_version = "4.5.2@aar"
     sqlite_version = "2.0.1"
-
+    crypto_tink = '1.7.0'
+    markwonVersion = '4.6.2'
     robolectricVersion = '4.8.1'
     androidXJunitVersion = '1.1.3'
-    androidXTestVersion = '1.4.0'
-
-    koin_version = '3.2.0'
-    markwonVersion = '4.6.2'
+    androidXTestVersion = '1.5.0'
+    espressoVersion = '3.4.0'
     mockitoVersion = '3.12.4'
     mockitoInlineVersion = '2.21.0'
-    beagleVersion = "2.8.2"
-
-    ffmpeg = '0.3.2'
-
-    koin_version = '3.2.0'
-    picasso_version = '2.8'
-    webserver_version = '2.33.2'
-    okhttp_webserver_version = '4.10.0'
-    kaspresso_version = '1.4.1'
-    singlelivedata_version = '1.3.0'
+    webserver_version = '2.35.0'
     test_ext = '1.1.3'
-    mockitoVersion = '3.12.4'
-    mockitoInlineVersion = '2.21.0'
-    playServiceVersion = '20.0.0'
-    crypto_tink = '1.7.0'
+    kaspresso_version = '1.4.1'
+    retrofitVersion = '2.9.0'
+    parcelerVersion = '1.1.12'
 }

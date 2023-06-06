@@ -1,0 +1,123 @@
+{
+  "messages": [
+    {
+      "type": "MESSAGE",
+      "threadId": 141,
+      "providerIds": [],
+      "uuid": "061f6c38-2ac6-4cf9-aa26-ead6b055bc12",
+      "text": "",
+      "receivedDate": "2023-03-27T10:05:25.953Z",
+      "attachments": [
+        {
+          "id": 45,
+          "result": "file:///android_asset/test_images/test_image6.jpg",
+          "optional": {
+            "size": 3457653,
+            "name": "test_image6.jpg",
+            "type": "image/jpeg"
+          },
+          "state": "READY",
+          "name": "test_image6.jpg",
+          "type": "image/jpeg",
+          "size": 3457653,
+          "wellDefined": true,
+          "url": "file:///android_asset/test_images/test_image6.jpg"
+        }
+      ],
+      "quotes": [],
+      "quickReplies": [],
+      "read": true,
+      "settings": {
+        "blockInput": false,
+        "masked": false
+      },
+      "authorized": true,
+      "massPushMessage": false,
+      "origin": "threads"
+    },
+    {
+      "type": "MESSAGE",
+      "threadId": 141,
+      "providerIds": [],
+      "uuid": "65652fe7-b99e-4250-8328-4a8c3505eb0b",
+      "operator": {
+        "id": 4,
+        "name": "Оператор Елена",
+        "alias": null,
+        "status": null,
+        "photoUrl": null,
+        "gender": "FEMALE",
+        "organizationUnit": "Skill Credit",
+        "role": "OPERATOR"
+      },
+      "text": "Добрый день!",
+      "receivedDate": "2023-03-27T10:06:13.698Z",
+      "attachments": [],
+      "quotes": [
+        {
+          "type": "MESSAGE",
+          "threadId": 141,
+          "providerIds": [],
+          "uuid": "061f6c38-2ac6-4cf9-aa26-ead6b055bc12",
+          "text": "",
+          "receivedDate": "2023-03-27T10:05:25.953Z",
+          "attachments": [
+            {
+              "id": 45,
+              "result": "file:///android_asset/test_images/test_image4.jpg",
+              "optional": {
+                "size": 3457653,
+                "name": "test_image4.jpg",
+                "type": "image/jpeg"
+              },
+              "state": "READY",
+              "name": "test_image4.jpg",
+              "type": "image/jpeg",
+              "size": 3457653,
+              "wellDefined": true,
+              "url": "file:///android_asset/test_images/test_image4.jpg"
+            }
+          ],
+          "quotes": [],
+          "quickReplies": [],
+          "read": true,
+          "settings": {
+            "blockInput": false,
+            "masked": false
+          },
+          "authorized": true,
+          "massPushMessage": false,
+          "origin": "threads"
+        }
+      ],
+      "quickReplies": [],
+      "read": true,
+      "settings": {
+        "blockInput": false,
+        "masked": false
+      },
+      "authorized": true,
+      "massPushMessage": false,
+      "origin": "threads"
+    }
+  ],
+  "agentInfo": {
+    "action": "AGENT_JOINED",
+    "actionDate": "2023-03-27T10:24:51.591Z",
+    "thread": {
+      "id": 142,
+      "state": "WAITING"
+    },
+    "agent": {
+      "id": 4,
+      "name": "Оператор Елена",
+      "alias": null,
+      "status": null,
+      "photoUrl": null,
+      "gender": "FEMALE",
+      "organizationUnit": "Skill Credit",
+      "role": "OPERATOR"
+    }
+  },
+  "allowedToSendMessages": true
+}

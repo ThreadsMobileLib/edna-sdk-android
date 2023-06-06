@@ -1,0 +1,226 @@
+{
+  "messages": [
+    {
+      "type": "MESSAGE",
+      "threadId": 147,
+      "providerIds": [],
+      "uuid": "40109085-25bb-45be-8dd5-ca72c2408cea",
+      "text": "",
+      "receivedDate": "2023-03-29T11:39:37.476Z",
+      "attachments": [
+        {
+          "id": 56,
+          "result": "file:///android_asset/test_files/test_pdf1.pdf",
+          "optional": {
+            "size": 61978,
+            "name": "test_pdf1.pdf",
+            "type": "application/pdf"
+          },
+          "state": "READY",
+          "name": "test_pdf1.pdf",
+          "type": "application/pdf",
+          "size": 61978,
+          "wellDefined": true,
+          "url": "file:///android_asset/test_files/test_pdf1.pdf"
+        }
+      ],
+      "quotes": [],
+      "quickReplies": [],
+      "read": true,
+      "settings": {
+        "blockInput": false,
+        "masked": false
+      },
+      "authorized": true,
+      "massPushMessage": false,
+      "origin": "threads"
+    },
+    {
+      "type": "MESSAGE",
+      "threadId": 147,
+      "providerIds": [],
+      "uuid": "297ad109-4d01-4d01-bfbf-a18ad01140af",
+      "operator": {
+        "id": 4,
+        "name": "Оператор Елена",
+        "alias": null,
+        "status": null,
+        "photoUrl": null,
+        "gender": "FEMALE",
+        "organizationUnit": "Skill Credit",
+        "role": "OPERATOR"
+      },
+      "text": "",
+      "receivedDate": "2023-03-29T11:41:10.914Z",
+      "attachments": [
+        {
+          "id": 57,
+          "result": "file:///android_asset/test_files/test_pdf2.pdf",
+          "optional": {
+            "size": 62707,
+            "name": "test_pdf2.pdf",
+            "type": "application/pdf"
+          },
+          "state": "READY",
+          "name": "test_pdf2.pdf",
+          "type": "application/pdf",
+          "size": 62707,
+          "wellDefined": true,
+          "url": "file:///android_asset/test_files/test_pdf2.pdf"
+        }
+      ],
+      "quotes": [],
+      "quickReplies": [],
+      "read": true,
+      "settings": {
+        "blockInput": false,
+        "masked": false
+      },
+      "authorized": true,
+      "massPushMessage": false,
+      "origin": "threads"
+    },
+    {
+      "type": "MESSAGE",
+      "threadId": 147,
+      "providerIds": [],
+      "uuid": "ff7102ce-4f32-479b-9888-be01ce5cb3a1",
+      "text": "Интересный файл",
+      "receivedDate": "2023-03-29T11:42:14.006Z",
+      "attachments": [],
+      "quotes": [
+        {
+          "type": "MESSAGE",
+          "threadId": 147,
+          "providerIds": [],
+          "uuid": "297ad109-4d01-4d01-bfbf-a18ad01140af",
+          "operator": {
+            "id": 4,
+            "name": "Оператор Елена",
+            "alias": null,
+            "status": null,
+            "photoUrl": null,
+            "gender": "FEMALE",
+            "organizationUnit": "Skill Credit",
+            "role": "OPERATOR"
+          },
+          "text": "",
+          "receivedDate": "2023-03-29T11:41:10.914Z",
+          "attachments": [
+            {
+              "id": 57,
+              "result": "file:///android_asset/test_files/test_pdf2.pdf",
+              "optional": {
+                "size": 62707,
+                "name": "test_pdf2.pdf",
+                "type": "application/pdf"
+              },
+              "state": "READY",
+              "name": "test_pdf2.pdf",
+              "type": "application/pdf",
+              "size": 62707,
+              "wellDefined": true,
+              "url": "file:///android_asset/test_files/test_pdf2.pdf"
+            }
+          ],
+          "quotes": [],
+          "quickReplies": [],
+          "read": true,
+          "settings": {
+            "blockInput": false,
+            "masked": false
+          },
+          "authorized": true,
+          "massPushMessage": false,
+          "origin": "threads"
+        }
+      ],
+      "quickReplies": [],
+      "read": true,
+      "settings": {
+        "blockInput": false,
+        "masked": false
+      },
+      "authorized": true,
+      "massPushMessage": false,
+      "origin": "threads"
+    },
+    {
+      "type": "MESSAGE",
+      "threadId": 147,
+      "providerIds": [],
+      "uuid": "edc2d064-133f-4465-894a-65d1967fa1f1",
+      "operator": {
+        "id": 4,
+        "name": "Оператор Елена",
+        "alias": null,
+        "status": null,
+        "photoUrl": null,
+        "gender": "FEMALE",
+        "organizationUnit": "Skill Credit",
+        "role": "OPERATOR"
+      },
+      "text": "Ваш тоже!",
+      "receivedDate": "2023-03-29T11:42:48.727Z",
+      "attachments": [],
+      "quotes": [
+        {
+          "type": "MESSAGE",
+          "threadId": 147,
+          "providerIds": [],
+          "uuid": "297ad109-4d01-4d01-bfbf-a18ad01140af",
+          "operator": {
+            "id": 4,
+            "name": "Оператор Елена",
+            "alias": null,
+            "status": null,
+            "photoUrl": null,
+            "gender": "FEMALE",
+            "organizationUnit": "Skill Credit",
+            "role": "OPERATOR"
+          },
+          "text": "",
+          "receivedDate": "2023-03-29T11:41:10.914Z",
+          "attachments": [
+            {
+              "id": 57,
+              "result": "file:///android_asset/test_files/test_pdf2.pdf",
+              "optional": {
+                "size": 62707,
+                "name": "test_pdf2.pdf",
+                "type": "application/pdf"
+              },
+              "state": "READY",
+              "name": "testpdf2.pdf",
+              "type": "application/pdf",
+              "size": 62707,
+              "wellDefined": true,
+              "url": "file:///android_asset/test_files/test_pdf2.pdf"
+            }
+          ],
+          "quotes": [],
+          "quickReplies": [],
+          "read": true,
+          "settings": {
+            "blockInput": false,
+            "masked": false
+          },
+          "authorized": true,
+          "massPushMessage": false,
+          "origin": "threads"
+        }
+      ],
+      "quickReplies": [],
+      "read": false,
+      "settings": {
+        "blockInput": false,
+        "masked": false
+      },
+      "authorized": true,
+      "massPushMessage": false,
+      "origin": "threads"
+    }
+  ],
+  "agentInfo": null,
+  "allowedToSendMessages": true
+}

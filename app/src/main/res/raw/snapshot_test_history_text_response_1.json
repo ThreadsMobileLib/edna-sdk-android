@@ -1,0 +1,98 @@
+{
+  "messages": [
+    {
+      "type": "MESSAGE",
+      "threadId": 304,
+      "providerIds": [],
+      "uuid": "ad279408-a236-4fac-823b-a65a460dcb77",
+      "text": "Добрый день! Мы создаем экосистему бизнеса.",
+      "receivedDate": "2023-03-22T08:42:02.061Z",
+      "attachments": [],
+      "quotes": [],
+      "quickReplies": [],
+      "read": true,
+      "settings": {
+        "blockInput": false,
+        "masked": false
+      },
+      "authorized": true,
+      "massPushMessage": false,
+      "origin": "threads"
+    },
+    {
+      "type": "AVERAGE_WAIT_TIME",
+      "threadId": 304,
+      "providerIds": [],
+      "uuid": "f583f7b4-fd6d-41af-8d59-8fd39ecee3bd",
+      "text": "Среднее время ожидания ответа составляет 2 минуты",
+      "receivedDate": "2023-03-22T08:42:02.392Z",
+      "display": true,
+      "authorized": true,
+      "massPushMessage": false,
+      "aps/sound": "default",
+      "origin": "threads"
+    },
+    {
+      "type": "OPERATOR_JOINED",
+      "threadId": 304,
+      "providerIds": [],
+      "uuid": "46c00e2e-3e65-4ea2-86d9-429c0726867e",
+      "operator": {
+        "id": 9,
+        "name": "Оператор Елена",
+        "alias": null,
+        "status": null,
+        "photoUrl": null,
+        "gender": "FEMALE",
+        "organizationUnit": "Skill Debet",
+        "role": "OPERATOR"
+      },
+      "text": "Вам ответит Оператор Елена",
+      "receivedDate": "2023-03-22T08:42:38.526Z",
+      "display": true,
+      "authorized": true,
+      "massPushMessage": false,
+      "aps/sound": "default",
+      "origin": "threads"
+    },
+    {
+      "type": "MESSAGE",
+      "threadId": 304,
+      "providerIds": [],
+      "uuid": "eda36c57-7286-4360-bb42-0cf3d7932113",
+      "operator": {
+        "id": 9,
+        "name": "Оператор Елена",
+        "alias": null,
+        "status": null,
+        "photoUrl": null,
+        "gender": "FEMALE",
+        "organizationUnit": "Skill Debet",
+        "role": "OPERATOR"
+      },
+      "text": "Добро пожаловать в наш чат! А кто такие Edna?",
+      "receivedDate": "2023-03-22T08:42:44.275Z",
+      "attachments": [],
+      "quotes": [],
+      "quickReplies": [],
+      "read": true,
+      "settings": {
+        "blockInput": false,
+        "masked": false
+      },
+      "authorized": true,
+      "massPushMessage": false,
+      "origin": "threads"
+    }
+  ],
+  "agentInfo": {
+    "action": "AGENT_LOOKUP",
+    "actionDate": "2023-03-22T08:51:43.124Z",
+    "thread": {
+      "id": 304,
+      "state": "UNASSIGNED"
+    },
+    "agent": null
+  },
+  "allowedToSendMessages": true
+}
