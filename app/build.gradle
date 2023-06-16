@@ -6,6 +6,8 @@ plugins {
     id 'kotlin-kapt'
     id 'kotlin-parcelize'
     id 'dev.testify'
+    id 'com.google.firebase.crashlytics'
+    id 'com.google.firebase.firebase-perf'
 }
 
 android {
@@ -88,6 +90,11 @@ dependencies {
 
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$rootProject.viewmodelVersion"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$rootProject.viewmodelVersion"
+
+    // Firebase crashlytics and performance
+    implementation 'com.google.firebase:firebase-crashlytics:18.3.7'
+    implementation 'com.google.firebase:firebase-analytics:21.3.0'
+    implementation 'com.google.firebase:firebase-perf:20.3.2'
 
     debugImplementation "com.edna.android:push-lite-debug:$pushVersion"
     debugImplementation "com.edna.android:push-lite-huawei-debug:$pushVersion"

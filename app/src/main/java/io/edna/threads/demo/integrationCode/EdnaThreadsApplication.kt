@@ -139,6 +139,15 @@ class EdnaThreadsApplication : Application() {
         )
         setDownloadButtonTintResId(im.threads.R.color.ecc_white)
         setDownloadButtonBackgroundTintResId(R.color.dark_links)
+        setChatErrorScreenStyle(
+            null,
+            null,
+            R.color.white_color,
+            null,
+            null,
+            null,
+            null
+        )
     }
 
     private fun getMainChatTheme(): ChatStyle {
