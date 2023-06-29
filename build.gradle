@@ -82,7 +82,7 @@ ext {
     fcmVersion = '23.0.6'
     flexboxVersion = '3.0.0'
     work_version = "2.7.1"
-    sqlcipher_version = "4.5.2@aar"
+    sqlcipher_version = "4.5.4@aar"
     sqlite_version = "2.0.1"
     crypto_tink = '1.7.0'
     markwonVersion = '4.6.2'

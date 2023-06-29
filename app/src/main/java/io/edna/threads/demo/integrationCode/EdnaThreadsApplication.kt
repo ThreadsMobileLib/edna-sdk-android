@@ -1,12 +1,14 @@
 package io.edna.threads.demo.integrationCode
 
 import android.app.Application
+import com.google.firebase.crashlytics.FirebaseCrashlytics
 import im.threads.business.logger.LoggerConfig
 import im.threads.business.logger.LoggerRetentionPolicy
 import im.threads.business.markdown.MarkdownConfig
 import im.threads.ui.ChatStyle
 import im.threads.ui.config.ConfigBuilder
 import im.threads.ui.core.ThreadsLib
+import io.edna.threads.demo.BuildConfig
 import io.edna.threads.demo.R
 import io.edna.threads.demo.appCode.business.ServersProvider
 import io.edna.threads.demo.appCode.business.appModule
@@ -20,10 +22,13 @@ class EdnaThreadsApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
+
         startKoin {
             androidContext(this@EdnaThreadsApplication)
             modules(appModule)
         }
+
+        FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(!BuildConfig.DEBUG)
 
         val loggerConfig = LoggerConfig.Builder(this)
             .logToFile()

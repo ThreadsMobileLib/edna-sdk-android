@@ -11,6 +11,7 @@ class PreferencesProvider(private val context: Context) {
             .getSharedPreferences(preferenceName, Context.MODE_PRIVATE)
             .edit()
             .putString(jsonPreferenceKey, json)
+            .putBoolean(isDemoModeEnabledKey, true)
             .commit()
     }
 
@@ -19,6 +20,7 @@ class PreferencesProvider(private val context: Context) {
             .getSharedPreferences(preferenceName, Context.MODE_PRIVATE)
             .edit()
             .putString(jsonPreferenceKey, "")
+            .putBoolean(isDemoModeEnabledKey, false)
             .commit()
     }
 
@@ -92,6 +94,7 @@ class PreferencesProvider(private val context: Context) {
     companion object {
         private const val preferenceName = "ecc_demo_json_preference"
         private const val jsonPreferenceKey = "ecc_demo_json_preference_key"
+        private const val isDemoModeEnabledKey = "ecc_is_demo_mode_enabled_key"
         private const val PREF_DEMO = "DEMO_PREFS"
         private const val PREF_USER_LIST = "USER_LIST_PREFS"
         private const val PREF_SERVERS_LIST = "SERVERS_LIST_PREFS"

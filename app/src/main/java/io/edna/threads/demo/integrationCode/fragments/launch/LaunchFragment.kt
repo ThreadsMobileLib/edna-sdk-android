@@ -40,11 +40,6 @@ class LaunchFragment : BaseAppFragment<FragmentLaunchBinding>() {
         return binding.root
     }
 
-    override fun onStart() {
-        super.onStart()
-        ThreadsLib.getInstance().logoutClient()
-    }
-
     override fun onDestroyView() {
         super.onDestroyView()
         clearResultListeners()

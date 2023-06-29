@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
+import im.threads.ui.core.ThreadsLib
 import io.edna.threads.demo.R
 import io.edna.threads.demo.appCode.adapters.demoSamplesList.DemoSamplesAdapter
 import io.edna.threads.demo.appCode.adapters.demoSamplesList.SampleListItemOnClick
@@ -47,7 +48,10 @@ class DemoSamplesListFragment : BaseAppFragment<FragmentSamplesListBinding>(), S
 
     private fun setNavigationIcon() = with(binding) {
         toolbar.navigationIcon?.setTint(ContextCompat.getColor(requireContext(), R.color.white_color_ec))
-        toolbar.setNavigationOnClickListener { navigateUp() }
+        toolbar.setNavigationOnClickListener {
+            ThreadsLib.getInstance().logoutClient()
+            findNavController().navigateUp()
+        }
     }
 
     private fun subscribeForData() {

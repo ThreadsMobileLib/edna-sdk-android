@@ -186,7 +186,8 @@ class LaunchViewModel(
                 serverConfig.isFromApp,
                 serverConfig.isShowMenu,
                 serverConfig.filesAndMediaMenuItemEnabled,
-                serverConfig.trustedSSLCertificates
+                serverConfig.trustedSSLCertificates,
+                serverConfig.allowUntrustedSSLCertificate
             )
         }
     }
