@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import io.edna.threads.demo.R
 import io.edna.threads.demo.appCode.business.UiThemeProvider
 import io.edna.threads.demo.appCode.business.ordinal
-import io.edna.threads.demo.appCode.extensions.inflateWithBinding
 import io.edna.threads.demo.appCode.models.DemoSamplesListItem
 import io.edna.threads.demo.appCode.models.DemoSamplesListItem.DIVIDER
 import io.edna.threads.demo.appCode.models.DemoSamplesListItem.TEXT
@@ -29,13 +28,13 @@ class DemoSamplesAdapter(private val onItemClickListener: SampleListItemOnClick)
         context = parent.context
         return when (viewType) {
             DIVIDER.ordinal() -> {
-                LineDividerHolder(inflater.inflateWithBinding(parent, R.layout.holder_horizontal_line))
+                LineDividerHolder(HolderHorizontalLineBinding.inflate(inflater))
             }
             TITLE.ordinal() -> {
-                TitleHolder(inflater.inflateWithBinding(parent, R.layout.holder_demo_samples_title))
+                TitleHolder(HolderDemoSamplesTitleBinding.inflate(inflater))
             }
             TEXT.ordinal() -> {
-                TextHolder(inflater.inflateWithBinding(parent, R.layout.holder_demo_samples_text))
+                TextHolder(HolderDemoSamplesTextBinding.inflate(inflater))
             }
             else -> throw IllegalStateException()
         }
@@ -60,7 +59,7 @@ class DemoSamplesAdapter(private val onItemClickListener: SampleListItemOnClick)
         diffResult.dispatchUpdatesTo(this)
     }
 
-    private inner class LineDividerHolder(val binding: HolderHorizontalLineBinding) :
+    private inner class LineDividerHolder(binding: HolderHorizontalLineBinding) :
         RecyclerView.ViewHolder(binding.root), DemoSamplesHolder
 
     private inner class TitleHolder(val binding: HolderDemoSamplesTitleBinding) :

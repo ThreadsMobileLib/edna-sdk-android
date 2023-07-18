@@ -1,9 +1,7 @@
 package io.edna.threads.demo.appCode.fragments.demoSamplesList
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
 import im.threads.ui.core.ThreadsLib
@@ -15,18 +13,9 @@ import io.edna.threads.demo.appCode.models.DemoSamplesListItem
 import io.edna.threads.demo.databinding.FragmentSamplesListBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class DemoSamplesListFragment : BaseAppFragment<FragmentSamplesListBinding>(), SampleListItemOnClick {
+class DemoSamplesListFragment : BaseAppFragment<FragmentSamplesListBinding>(FragmentSamplesListBinding::inflate), SampleListItemOnClick {
     private val viewModel: DemoSamplesListViewModel by viewModel()
     private var adapter: DemoSamplesAdapter? = null
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentSamplesListBinding.inflate(inflater, container, false)
-        return binding.root
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

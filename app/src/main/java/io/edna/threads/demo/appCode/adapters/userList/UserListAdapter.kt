@@ -10,7 +10,6 @@ import im.threads.ui.utils.gone
 import im.threads.ui.utils.visible
 import io.edna.threads.demo.R
 import io.edna.threads.demo.appCode.business.UiThemeProvider
-import io.edna.threads.demo.appCode.extensions.inflateWithBinding
 import io.edna.threads.demo.appCode.models.UserInfo
 import io.edna.threads.demo.databinding.UserListItemBinding
 import org.koin.java.KoinJavaComponent.inject
@@ -23,7 +22,7 @@ class UserListAdapter(private val onItemClickListener: UserListItemOnClickListen
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserItemHolder {
         val inflater = LayoutInflater.from(parent.context)
-        return UserItemHolder(inflater.inflateWithBinding(parent, R.layout.user_list_item))
+        return UserItemHolder(UserListItemBinding.inflate(inflater))
     }
 
     fun showMenu(position: Int) {

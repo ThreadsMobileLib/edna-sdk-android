@@ -1,105 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".appCode.activity.MainActivity">
 
-    <data>
-        <variable
-            name="viewModel"
-            type="io.edna.threads.demo.integrationCode.fragments.launch.LaunchViewModel" />
-    </data>
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/login_screen_top_margin_small"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".appCode.activity.MainActivity">
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/uiTheme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/login_screen_top_margin_medium"
+        android:layout_marginEnd="@dimen/login_screen_top_margin_medium"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/dark_theme" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/logo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/login_screen_top_margin_small"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/logo" />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/title"
+        style="@style/LogoTitleTextStyle"
+        android:layout_marginTop="@dimen/login_screen_top_margin_medium"
+        android:gravity="center_horizontal"
+        android:text="@string/login_to_account"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logo" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/uiTheme"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/login_screen_top_margin_medium"
-            android:layout_marginEnd="@dimen/login_screen_top_margin_medium"
-            android:onClick="@{viewModel::click}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/dark_theme" />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/serverButton"
+        style="@style/TextButtonsStyle"
+        android:layout_marginTop="@dimen/login_screen_top_margin_large"
+        android:gravity="center_vertical"
+        android:hint="@string/server"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/title"
-            style="@style/LogoTitleTextStyle"
-            android:layout_marginTop="@dimen/login_screen_top_margin_medium"
-            android:gravity="center_horizontal"
-            android:text="@string/login_to_account"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/logo" />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/userButton"
+        style="@style/TextButtonsStyle"
+        android:layout_marginTop="@dimen/login_screen_top_margin_small"
+        android:drawableEnd="@drawable/ic_chevron_right"
+        android:gravity="center_vertical"
+        android:hint="@string/user"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/serverButton" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/serverButton"
-            style="@style/TextButtonsStyle"
-            android:layout_marginTop="@dimen/login_screen_top_margin_large"
-            android:gravity="center_vertical"
-            android:onClick="@{viewModel::click}"
-            android:text="@{viewModel.selectedServerConfigLiveData.name}"
-            android:hint="@string/server"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/title" />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/login"
+        style="@style/ButtonsStyle"
+        android:layout_marginTop="@dimen/login_screen_top_margin_large"
+        android:text="@string/login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userButton" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/userButton"
-            style="@style/TextButtonsStyle"
-            android:layout_marginTop="@dimen/login_screen_top_margin_small"
-            android:drawableEnd="@drawable/ic_chevron_right"
-            android:gravity="center_vertical"
-            android:onClick="@{viewModel::click}"
-            android:text="@{viewModel.selectedUserLiveData.nickName}"
-            android:hint="@string/user"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/serverButton" />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/demonstrations"
+        style="@style/SecondaryButtonsStyle"
+        android:layout_marginTop="@dimen/margin_5"
+        android:text="@string/demonstrations_examples"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/login"
-            style="@style/ButtonsStyle"
-            android:layout_marginTop="@dimen/login_screen_top_margin_large"
-            android:onClick="@{viewModel::click}"
-            android:text="@string/login"
-            android:enabled="@{viewModel.enabledLoginButtonLiveData.booleanValue()}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/userButton" />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/about"
+        style="@style/LogoTextStyle"
+        android:layout_marginBottom="@dimen/login_screen_top_margin_medium"
+        android:gravity="center_horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:text="Edna threads demo. v4.10.0" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/demonstrations"
-            style="@style/SecondaryButtonsStyle"
-            android:layout_marginTop="@dimen/margin_5"
-            android:onClick="@{viewModel::click}"
-            android:text="@string/demonstrations_examples"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/login" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/about"
-            style="@style/LogoTextStyle"
-            android:layout_marginBottom="@dimen/login_screen_top_margin_medium"
-            android:gravity="center_horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            tools:text="Edna threads demo. v4.10.0" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</layout>
+</androidx.constraintlayout.widget.ConstraintLayout>

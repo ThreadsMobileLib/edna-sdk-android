@@ -6,8 +6,6 @@ import android.os.Bundle
 import android.os.Parcelable
 import android.text.Editable
 import android.view.View
-import androidx.databinding.Bindable
-import androidx.databinding.Observable
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -22,7 +20,7 @@ import org.parceler.Parcels
 
 class AddUserViewModel(
     private val stringsProvider: StringsProvider
-) : ViewModel(), DefaultLifecycleObserver, Observable {
+) : ViewModel(), DefaultLifecycleObserver {
 
     private var srcUser: UserInfo? = null
     var finalUserLiveData = MutableLiveData<UserInfo>(null)
@@ -44,7 +42,7 @@ class AddUserViewModel(
             }
             if (user != null) {
                 srcUser = user
-                _userLiveData.postValue(user.clone())
+                _userLiveData.value = user.clone()
             }
         }
     }
@@ -79,7 +77,6 @@ class AddUserViewModel(
         }
     }
 
-    @get:Bindable
     val nickNameTextWatcher = object : AfterTextChangedTextWatcher {
         override fun afterTextChanged(s: Editable?) {
             if (s != null) {
@@ -94,7 +91,6 @@ class AddUserViewModel(
         }
     }
 
-    @get:Bindable
     val userIdTextWatcher = object : AfterTextChangedTextWatcher {
         override fun afterTextChanged(s: Editable?) {
             if (s != null) {
@@ -109,7 +105,6 @@ class AddUserViewModel(
         }
     }
 
-    @get:Bindable
     val userDataTextWatcher = object : AfterTextChangedTextWatcher {
         override fun afterTextChanged(s: Editable?) {
             if (s != null) {
@@ -121,7 +116,6 @@ class AddUserViewModel(
         }
     }
 
-    @get:Bindable
     val appMarkerTextWatcher = object : AfterTextChangedTextWatcher {
         override fun afterTextChanged(s: Editable?) {
             if (s != null) {
@@ -133,7 +127,6 @@ class AddUserViewModel(
         }
     }
 
-    @get:Bindable
     val signatureTextWatcher = object : AfterTextChangedTextWatcher {
         override fun afterTextChanged(s: Editable?) {
             if (s != null) {
@@ -145,7 +138,6 @@ class AddUserViewModel(
         }
     }
 
-    @get:Bindable
     val authorizationHeaderTextWatcher = object : AfterTextChangedTextWatcher {
         override fun afterTextChanged(s: Editable?) {
             if (s != null) {
@@ -157,7 +149,6 @@ class AddUserViewModel(
         }
     }
 
-    @get:Bindable
     val xAuthSchemaHeaderTextWatcher = object : AfterTextChangedTextWatcher {
         override fun afterTextChanged(s: Editable?) {
             if (s != null) {
@@ -168,7 +159,4 @@ class AddUserViewModel(
             }
         }
     }
-
-    override fun addOnPropertyChangedCallback(callback: Observable.OnPropertyChangedCallback?) {}
-    override fun removeOnPropertyChangedCallback(callback: Observable.OnPropertyChangedCallback?) {}
 }

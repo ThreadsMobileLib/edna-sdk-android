@@ -2,9 +2,7 @@ package io.edna.threads.demo.integrationCode.fragments.launch
 
 import android.app.AlertDialog
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.clearFragmentResultListener
@@ -14,30 +12,23 @@ import im.threads.ui.core.ThreadsLib
 import io.edna.threads.demo.BuildConfig
 import io.edna.threads.demo.R
 import io.edna.threads.demo.appCode.business.StringsProvider
-import io.edna.threads.demo.appCode.extensions.inflateWithBinding
 import io.edna.threads.demo.appCode.fragments.BaseAppFragment
 import io.edna.threads.demo.appCode.models.UiTheme
 import io.edna.threads.demo.databinding.FragmentLaunchBinding
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class LaunchFragment : BaseAppFragment<FragmentLaunchBinding>() {
+class LaunchFragment : BaseAppFragment<FragmentLaunchBinding>(FragmentLaunchBinding::inflate) {
     private val viewModel: LaunchViewModel by viewModel()
     private val stringsProvider: StringsProvider by inject()
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        super.onCreate(savedInstanceState)
-        _binding = inflater.inflateWithBinding(container, R.layout.fragment_launch)
-        binding.lifecycleOwner = this
-        binding.viewModel = viewModel
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         initObservers()
         setResultListeners()
         initView()
-        return binding.root
+        setOnClickListeners()
+        subscribeForData()
     }
 
     override fun onDestroyView() {
@@ -48,6 +39,27 @@ class LaunchFragment : BaseAppFragment<FragmentLaunchBinding>() {
     private fun initView() = with(binding) {
         login.isEnabled = false
         about.text = generateAboutText()
+    }
+
+    private fun setOnClickListeners() = with(binding) {
+        uiTheme.setOnClickListener { viewModel.click(uiTheme) }
+        serverButton.setOnClickListener { viewModel.click(serverButton) }
+        userButton.setOnClickListener { viewModel.click(userButton) }
+        login.setOnClickListener { viewModel.click(login) }
+        demonstrations.setOnClickListener { viewModel.click(demonstrations) }
+        uiTheme.setOnClickListener { viewModel.click(uiTheme) }
+    }
+
+    private fun subscribeForData() = with(binding) {
+        viewModel.selectedServerConfigLiveData.observe(viewLifecycleOwner) {
+            serverButton.text = it?.name
+        }
+        viewModel.selectedUserLiveData.observe(viewLifecycleOwner) {
+            userButton.text = it?.nickName
+        }
+        viewModel.enabledLoginButtonLiveData.observe(viewLifecycleOwner) {
+            login.isEnabled = it == true
+        }
     }
 
     private fun initObservers() {

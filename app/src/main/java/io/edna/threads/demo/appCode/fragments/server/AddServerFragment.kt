@@ -1,41 +1,67 @@
 package io.edna.threads.demo.appCode.fragments.server
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.setFragmentResult
-import io.edna.threads.demo.R
-import io.edna.threads.demo.appCode.extensions.inflateWithBinding
 import io.edna.threads.demo.appCode.fragments.BaseAppFragment
 import io.edna.threads.demo.appCode.fragments.server.ServerListFragment.Companion.SERVER_CONFIG_KEY
 import io.edna.threads.demo.databinding.FragmentAddServerBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.parceler.Parcels
 
-class AddServerFragment : BaseAppFragment<FragmentAddServerBinding>() {
+class AddServerFragment : BaseAppFragment<FragmentAddServerBinding>(FragmentAddServerBinding::inflate) {
 
     private val viewModel: AddServerViewModel by viewModel()
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = inflater.inflateWithBinding(container, R.layout.fragment_add_server)
-        binding.lifecycleOwner = this
-        binding.viewModel = viewModel
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         subscribeToGlobalBackClick()
+        subscribeForTextWatchers()
         subscribeForData()
+        setOnClickListeners()
         viewModel.initData(arguments)
-        return binding.root
     }
 
-    private fun subscribeForData() {
+    private fun subscribeForTextWatchers() = with(binding) {
+        name.setTextChangedListener(viewModel.nameTextWatcher)
+        providerId.setTextChangedListener(viewModel.providerIdTextWatcher)
+        baseUrl.setTextChangedListener(viewModel.baseUrlTextWatcher)
+        datastoreUrl.setTextChangedListener(viewModel.datastoreUrlTextWatcher)
+        threadsGateUrl.setTextChangedListener(viewModel.threadsGateUrlTextWatcher)
+    }
+
+    private fun subscribeForData() = with(binding) {
         viewModel.finalServerConfigLiveData.observe(viewLifecycleOwner) {
             val args = Bundle()
             args.putParcelable(SERVER_CONFIG_KEY, Parcels.wrap(it))
             setFragmentResult(SERVER_CONFIG_KEY, args)
         }
+        viewModel.serverConfigLiveData.observe(viewLifecycleOwner) {
+            name.text = it.name
+            providerId.text = it.threadsGateProviderUid
+            baseUrl.text = it.serverBaseUrl
+            datastoreUrl.text = it.datastoreUrl
+            threadsGateUrl.text = it.threadsGateUrl
+        }
+        viewModel.errorStringForServerNameFieldLiveData.observe(viewLifecycleOwner) {
+            name.error = it
+        }
+        viewModel.errorStringForProviderIdFieldLiveData.observe(viewLifecycleOwner) {
+            providerId.error = it
+        }
+        viewModel.errorStringForBaseUrlFieldLiveData.observe(viewLifecycleOwner) {
+            baseUrl.error = it
+        }
+        viewModel.errorStringForDatastoreUrlFieldLiveData.observe(viewLifecycleOwner) {
+            datastoreUrl.error = it
+        }
+        viewModel.errorStringForThreadsGateUrlFieldLiveData.observe(viewLifecycleOwner) {
+            datastoreUrl.error = it
+        }
+    }
+
+    private fun setOnClickListeners() = with(binding) {
+        backButton.setOnClickListener { viewModel.click(backButton) }
+        okButton.setOnClickListener { viewModel.click(okButton) }
     }
 }

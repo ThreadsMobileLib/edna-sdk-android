@@ -10,7 +10,6 @@ import im.threads.ui.utils.gone
 import im.threads.ui.utils.visible
 import io.edna.threads.demo.R
 import io.edna.threads.demo.appCode.business.UiThemeProvider
-import io.edna.threads.demo.appCode.extensions.inflateWithBinding
 import io.edna.threads.demo.appCode.models.ServerConfig
 import io.edna.threads.demo.databinding.ServerListItemBinding
 import org.koin.java.KoinJavaComponent.inject
@@ -23,7 +22,7 @@ class ServerListAdapter(private val onItemClickListener: ServerListItemOnClickLi
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ServerItemHolder {
         val inflater = LayoutInflater.from(parent.context)
-        return ServerItemHolder(inflater.inflateWithBinding(parent, R.layout.server_list_item))
+        return ServerItemHolder(ServerListItemBinding.inflate(inflater))
     }
 
     fun showMenu(position: Int) {

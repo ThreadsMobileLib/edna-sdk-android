@@ -2,9 +2,7 @@ package io.edna.threads.demo.appCode.fragments.server
 
 import android.os.Build
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.clearFragmentResultListener
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.setFragmentResultListener
@@ -16,7 +14,6 @@ import io.edna.threads.demo.appCode.adapters.serverList.ServerListAdapter
 import io.edna.threads.demo.appCode.adapters.serverList.ServerListItemOnClickListener
 import io.edna.threads.demo.appCode.business.TouchHelper
 import io.edna.threads.demo.appCode.business.UiThemeProvider
-import io.edna.threads.demo.appCode.extensions.inflateWithBinding
 import io.edna.threads.demo.appCode.fragments.BaseAppFragment
 import io.edna.threads.demo.appCode.models.ServerConfig
 import io.edna.threads.demo.databinding.FragmentServerListBinding
@@ -26,7 +23,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.parceler.Parcels
 
 class ServerListFragment :
-    BaseAppFragment<FragmentServerListBinding>(),
+    BaseAppFragment<FragmentServerListBinding>(FragmentServerListBinding::inflate),
     ServerListItemOnClickListener,
     TouchHelper.OnSwipeItemListener {
 
@@ -34,23 +31,14 @@ class ServerListFragment :
     private val viewModel: ServerListViewModel by viewModel()
     private var adapter: ServerListAdapter? = null
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = inflater.inflateWithBinding(container, R.layout.fragment_server_list)
-        binding.viewModel = viewModel
-        initView()
-        setResultListeners()
-        return binding.root
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initView()
+        setResultListeners()
         createAdapter()
         subscribeForData()
         initAdapter()
+        setOnClickListeners()
         viewLifecycleOwner.lifecycle.addObserver(viewModel)
         viewModel.copyServersFromFileIfNeed()
     }
@@ -98,6 +86,11 @@ class ServerListFragment :
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             binding.recyclerView.setOnScrollChangeListener { _, _, _, _, _ -> adapter?.closeMenu() }
         }
+    }
+
+    private fun setOnClickListeners() = with(binding) {
+        backButton.setOnClickListener { viewModel.click(backButton) }
+        addServer.setOnClickListener { viewModel.click(addServer) }
     }
 
     private fun clearResultListeners() {

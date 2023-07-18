@@ -17,7 +17,7 @@ android {
         applicationId "io.edna.threads.demo"
         minSdk rootProject.minSdkVersion
         targetSdk rootProject.targetSdkVersion
-        versionName "1.0.1"
+        versionName "1.0.2"
         versionCode 1
 
         testInstrumentationRunner "io.edna.threads.demo.MockTestRunner"
@@ -63,7 +63,7 @@ android {
     }
 
     buildFeatures {
-        dataBinding = true
+        viewBinding = true
     }
 }
 

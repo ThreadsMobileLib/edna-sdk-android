@@ -2,9 +2,7 @@ package io.edna.threads.demo.appCode.fragments.user
 
 import android.os.Build
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.clearFragmentResultListener
 import androidx.fragment.app.setFragmentResult
@@ -17,7 +15,6 @@ import io.edna.threads.demo.appCode.adapters.userList.UserListAdapter
 import io.edna.threads.demo.appCode.adapters.userList.UserListItemOnClickListener
 import io.edna.threads.demo.appCode.business.TouchHelper
 import io.edna.threads.demo.appCode.business.UiThemeProvider
-import io.edna.threads.demo.appCode.extensions.inflateWithBinding
 import io.edna.threads.demo.appCode.fragments.BaseAppFragment
 import io.edna.threads.demo.appCode.models.UserInfo
 import io.edna.threads.demo.databinding.FragmentUserListBinding
@@ -27,7 +24,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.parceler.Parcels
 
 class UserListFragment :
-    BaseAppFragment<FragmentUserListBinding>(),
+    BaseAppFragment<FragmentUserListBinding>(FragmentUserListBinding::inflate),
     UserListItemOnClickListener,
     TouchHelper.OnSwipeItemListener {
 
@@ -35,24 +32,15 @@ class UserListFragment :
     private val viewModel: UserListViewModel by viewModel()
     private var adapter: UserListAdapter? = null
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = inflater.inflateWithBinding(container, R.layout.fragment_user_list)
-        binding.viewModel = viewModel
-        initView()
-        setResultListeners()
-        return binding.root
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initView()
+        setResultListeners()
         subscribeToGlobalBackClick()
         createAdapter()
         subscribeForData()
         initAdapter()
+        setOnClickListeners()
         viewLifecycleOwner.lifecycle.addObserver(viewModel)
         viewModel.loadUserList()
     }
@@ -112,6 +100,11 @@ class UserListFragment :
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             binding.recyclerView.setOnScrollChangeListener { _, _, _, _, _ -> adapter?.closeMenu() }
         }
+    }
+
+    private fun setOnClickListeners() = with(binding) {
+        backButton.setOnClickListener { viewModel.click(backButton) }
+        addUser.setOnClickListener { viewModel.click(addUser) }
     }
 
     private fun clearResultListeners() {

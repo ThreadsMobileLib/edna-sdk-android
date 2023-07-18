@@ -6,8 +6,6 @@ import android.os.Bundle
 import android.os.Parcelable
 import android.text.Editable
 import android.view.View
-import androidx.databinding.Bindable
-import androidx.databinding.Observable
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -22,7 +20,7 @@ import org.parceler.Parcels
 
 class AddServerViewModel(
     private val stringsProvider: StringsProvider
-) : ViewModel(), DefaultLifecycleObserver, Observable {
+) : ViewModel(), DefaultLifecycleObserver {
 
     private var srcServerConfig: ServerConfig? = null
     private var _serverConfigLiveData = MutableLiveData(ServerConfig())
@@ -55,7 +53,7 @@ class AddServerViewModel(
             R.id.backButton -> navigationController.navigate(R.id.action_AddServerFragment_to_ServerListFragment)
             R.id.okButton -> {
                 if (serverConfigLiveData.value?.isAllFieldsFilled() == true) {
-                    finalServerConfigLiveData.postValue(serverConfigLiveData.value)
+                    finalServerConfigLiveData.value = serverConfigLiveData.value
                     navigationController.navigate(R.id.action_AddServerFragment_to_ServerListFragment)
                 } else {
                     setupErrorFields(serverConfigLiveData.value)
@@ -83,111 +81,103 @@ class AddServerViewModel(
     private fun setSrcConfig(config: ServerConfig?) {
         if (config != null) {
             srcServerConfig = config
-            _serverConfigLiveData.postValue(config.copy())
+            _serverConfigLiveData.value = config.copy()
         }
     }
 
     private fun setupErrorFields(config: ServerConfig?) {
         if (config == null) {
-            _errorStringForServerNameFieldLiveData.postValue(stringsProvider.requiredField)
-            _errorStringForProviderIdFieldLiveData.postValue(stringsProvider.requiredField)
-            _errorStringForBaseUrlFieldLiveData.postValue(stringsProvider.requiredField)
-            _errorStringForDatastoreUrlFieldLiveData.postValue(stringsProvider.requiredField)
-            _errorStringForThreadsGateUrlFieldLiveData.postValue(stringsProvider.requiredField)
+            _errorStringForServerNameFieldLiveData.value = stringsProvider.requiredField
+            _errorStringForProviderIdFieldLiveData.value = stringsProvider.requiredField
+            _errorStringForBaseUrlFieldLiveData.value = stringsProvider.requiredField
+            _errorStringForDatastoreUrlFieldLiveData.value = stringsProvider.requiredField
+            _errorStringForThreadsGateUrlFieldLiveData.value = stringsProvider.requiredField
         } else {
             if (config.name.isNullOrEmpty()) {
-                _errorStringForServerNameFieldLiveData.postValue(stringsProvider.requiredField)
+                _errorStringForServerNameFieldLiveData.value = stringsProvider.requiredField
             }
             if (config.threadsGateProviderUid.isNullOrEmpty()) {
-                _errorStringForProviderIdFieldLiveData.postValue(stringsProvider.requiredField)
+                _errorStringForProviderIdFieldLiveData.value = stringsProvider.requiredField
             }
             if (config.serverBaseUrl.isNullOrEmpty()) {
-                _errorStringForBaseUrlFieldLiveData.postValue(stringsProvider.requiredField)
+                _errorStringForBaseUrlFieldLiveData.value = stringsProvider.requiredField
             }
             if (config.datastoreUrl.isNullOrEmpty()) {
-                _errorStringForDatastoreUrlFieldLiveData.postValue(stringsProvider.requiredField)
+                _errorStringForDatastoreUrlFieldLiveData.value = stringsProvider.requiredField
             }
             if (config.threadsGateUrl.isNullOrEmpty()) {
-                _errorStringForThreadsGateUrlFieldLiveData.postValue(stringsProvider.requiredField)
+                _errorStringForThreadsGateUrlFieldLiveData.value = stringsProvider.requiredField
             }
         }
     }
 
-    @get:Bindable
     val nameTextWatcher = object : AfterTextChangedTextWatcher {
         override fun afterTextChanged(s: Editable?) {
             if (s != null) {
                 if (_serverConfigLiveData.value?.name != s.toString()) {
                     serverConfigLiveData.value?.name = s.toString()
-                    _serverConfigLiveData.postValue(serverConfigLiveData.value)
+                    _serverConfigLiveData.value = serverConfigLiveData.value
                 }
                 if (s.isNotEmpty()) {
-                    _errorStringForServerNameFieldLiveData.postValue(null)
+                    _errorStringForServerNameFieldLiveData.value = null
                 }
             }
         }
     }
 
-    @get:Bindable
     val providerIdTextWatcher = object : AfterTextChangedTextWatcher {
         override fun afterTextChanged(s: Editable?) {
             if (s != null) {
                 if (serverConfigLiveData.value?.threadsGateProviderUid != s.toString()) {
                     serverConfigLiveData.value?.threadsGateProviderUid = s.toString()
-                    _serverConfigLiveData.postValue(serverConfigLiveData.value)
+                    _serverConfigLiveData.value = serverConfigLiveData.value
                 }
                 if (s.isNotEmpty()) {
-                    _errorStringForProviderIdFieldLiveData.postValue(null)
+                    _errorStringForProviderIdFieldLiveData.value = null
                 }
             }
         }
     }
 
-    @get:Bindable
     val baseUrlTextWatcher = object : AfterTextChangedTextWatcher {
         override fun afterTextChanged(s: Editable?) {
             if (s != null) {
                 if (serverConfigLiveData.value?.serverBaseUrl != s.toString()) {
                     serverConfigLiveData.value?.serverBaseUrl = s.toString()
-                    _serverConfigLiveData.postValue(serverConfigLiveData.value)
+                    _serverConfigLiveData.value = serverConfigLiveData.value
                 }
                 if (s.isNotEmpty()) {
-                    _errorStringForBaseUrlFieldLiveData.postValue(null)
+                    _errorStringForBaseUrlFieldLiveData.value = null
                 }
             }
         }
     }
 
-    @get:Bindable
     val datastoreUrlTextWatcher = object : AfterTextChangedTextWatcher {
         override fun afterTextChanged(s: Editable?) {
             if (s != null) {
                 if (serverConfigLiveData.value?.datastoreUrl != s.toString()) {
                     serverConfigLiveData.value?.datastoreUrl = s.toString()
-                    _serverConfigLiveData.postValue(serverConfigLiveData.value)
+                    _serverConfigLiveData.value = serverConfigLiveData.value
                 }
                 if (s.isNotEmpty()) {
-                    _errorStringForDatastoreUrlFieldLiveData.postValue(null)
+                    _errorStringForDatastoreUrlFieldLiveData.value = null
                 }
             }
         }
     }
 
-    @get:Bindable
     val threadsGateUrlTextWatcher = object : AfterTextChangedTextWatcher {
         override fun afterTextChanged(s: Editable?) {
             if (s != null) {
                 if (serverConfigLiveData.value?.threadsGateUrl != s.toString()) {
                     serverConfigLiveData.value?.threadsGateUrl = s.toString()
-                    _serverConfigLiveData.postValue(serverConfigLiveData.value)
+                    _serverConfigLiveData.value = serverConfigLiveData.value
                 }
                 if (s.isNotEmpty()) {
-                    _errorStringForThreadsGateUrlFieldLiveData.postValue(null)
+                    _errorStringForThreadsGateUrlFieldLiveData.value = null
                 }
             }
         }
     }
-
-    override fun addOnPropertyChangedCallback(callback: Observable.OnPropertyChangedCallback?) {}
-    override fun removeOnPropertyChangedCallback(callback: Observable.OnPropertyChangedCallback?) {}
 }
