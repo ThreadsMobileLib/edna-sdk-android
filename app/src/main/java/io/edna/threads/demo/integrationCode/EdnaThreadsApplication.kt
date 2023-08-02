@@ -2,6 +2,7 @@ package io.edna.threads.demo.integrationCode
 
 import android.app.Application
 import com.google.firebase.crashlytics.FirebaseCrashlytics
+import com.google.firebase.perf.FirebasePerformance
 import im.threads.business.logger.LoggerConfig
 import im.threads.business.logger.LoggerRetentionPolicy
 import im.threads.business.markdown.MarkdownConfig
@@ -29,6 +30,7 @@ class EdnaThreadsApplication : Application() {
         }
 
         FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(!BuildConfig.DEBUG)
+        FirebasePerformance.getInstance().isPerformanceCollectionEnabled = !BuildConfig.DEBUG
 
         val loggerConfig = LoggerConfig.Builder(this)
             .logToFile()
@@ -64,6 +66,7 @@ class EdnaThreadsApplication : Application() {
     private fun getLightChatTheme() = getMainChatTheme().apply {
         setConsultSearchingProgressColor(R.color.light_toolbar)
         setChatBodyIconsTint(R.color.light_toolbar)
+        enableLinkPreview()
         setChatTitleStyle(
             R.string.app_name,
             R.string.demo_alt_threads_operator_subtitle,
@@ -95,6 +98,7 @@ class EdnaThreadsApplication : Application() {
     private fun getDarkChatTheme() = getMainChatTheme().apply {
         setConsultSearchingProgressColor(R.color.dark_toolbar)
         setChatBodyIconsTint(R.color.dark_toolbar)
+        enableLinkPreview()
         setChatTitleStyle(
             R.string.demo_alt_threads_contact_center,
             R.string.demo_alt_threads_operator_subtitle,
