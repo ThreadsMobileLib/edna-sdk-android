@@ -6,15 +6,14 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import im.threads.ui.utils.ColorsHelper
-import im.threads.ui.utils.gone
-import im.threads.ui.utils.visible
 import io.edna.threads.demo.R
+import io.edna.threads.demo.appCode.adapters.ListItemClickListener
 import io.edna.threads.demo.appCode.business.UiThemeProvider
 import io.edna.threads.demo.appCode.models.ServerConfig
 import io.edna.threads.demo.databinding.ServerListItemBinding
 import org.koin.java.KoinJavaComponent.inject
 
-class ServerListAdapter(private val onItemClickListener: ServerListItemOnClickListener) :
+class ServerListAdapter(private val onItemClickListener: ListItemClickListener) :
     RecyclerView.Adapter<ServerListAdapter.ServerItemHolder>() {
 
     private val uiThemeProvider: UiThemeProvider by inject(UiThemeProvider::class.java)
@@ -25,35 +24,6 @@ class ServerListAdapter(private val onItemClickListener: ServerListItemOnClickLi
         return ServerItemHolder(ServerListItemBinding.inflate(inflater))
     }
 
-    fun showMenu(position: Int) {
-        for (i in list.indices) {
-            if (list[i].isShowMenu) {
-                list[i].isShowMenu = false
-                notifyItemChanged(i)
-            }
-        }
-        list[position].isShowMenu = true
-        notifyItemChanged(position)
-    }
-
-    fun closeMenu() {
-        for (i in list.indices) {
-            if (list[i].isShowMenu) {
-                list[i].isShowMenu = false
-                notifyItemChanged(i)
-            }
-        }
-    }
-
-    fun isMenuShown(): Boolean {
-        for (i in list.indices) {
-            if (list[i].isShowMenu) {
-                return true
-            }
-        }
-        return false
-    }
-
     override fun onBindViewHolder(holder: ServerItemHolder, position: Int) {
         holder.onBind(position)
     }
@@ -62,6 +32,10 @@ class ServerListAdapter(private val onItemClickListener: ServerListItemOnClickLi
 
     fun addItems(newItems: List<ServerConfig>) {
         notifyDatasetChangedWithDiffUtil(newItems)
+    }
+
+    fun getItem(position: Int): ServerConfig {
+        return list[position]
     }
 
     private fun notifyDatasetChangedWithDiffUtil(newList: List<ServerConfig>) {
@@ -111,16 +85,7 @@ class ServerListAdapter(private val onItemClickListener: ServerListItemOnClickLi
                     )
                     ColorsHelper.setTint(binding.root.context, binding.image, R.color.black_color)
                 }
-                if (item.isShowMenu) {
-                    binding.menuLayout.visible()
-                    binding.itemLayout.gone()
-                    binding.editButton.setOnClickListener { onItemClickListener.onEditItem(item) }
-                    binding.deleteButton.setOnClickListener { onItemClickListener.onRemoveItem(item) }
-                } else {
-                    binding.menuLayout.gone()
-                    binding.itemLayout.visible()
-                    binding.rootLayout.setOnClickListener { onItemClickListener.onClick(item) }
-                }
+                binding.rootLayout.setOnClickListener { onItemClickListener.onClick(position) }
             }
         }
     }

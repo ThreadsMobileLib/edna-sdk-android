@@ -56,6 +56,12 @@ class ServerListViewModel(
         }
     }
 
+    private fun editConfig(srcConfigName: String?, config: ServerConfig) {
+        coroutineScope.launch {
+            editServer(srcConfigName, config)
+        }
+    }
+
     fun removeConfig(config: ServerConfig) {
         coroutineScope.launch {
             removeServer(config)
@@ -84,8 +90,14 @@ class ServerListViewModel(
             } else {
                 Parcels.unwrap(bundle.getParcelable(ServerListFragment.SERVER_CONFIG_KEY))
             }
+
             if (config != null) {
-                addConfig(config)
+                if (bundle.containsKey(ServerListFragment.SRC_SERVER_NAME_KEY)) {
+                    val srcConfigName = bundle.getString(ServerListFragment.SRC_SERVER_NAME_KEY)
+                    editConfig(srcConfigName, config)
+                } else {
+                    addConfig(config)
+                }
             }
         }
     }
@@ -102,6 +114,19 @@ class ServerListViewModel(
         coroutineScope.launch {
             val servers = preferencesProvider.getAllServers()
             val finalServers = updateServers(servers, config)
+            _serverListLiveData.postValue(finalServers)
+            preferencesProvider.saveServers(finalServers)
+        }
+
+    private fun editServer(srcConfigName: String?, config: ServerConfig) =
+        coroutineScope.launch {
+            val servers = preferencesProvider.getAllServers()
+            val serversAfterRemove = if (!srcConfigName.isNullOrEmpty()) {
+                removeServerByName(servers, srcConfigName)
+            } else {
+                servers
+            }
+            val finalServers = updateServers(serversAfterRemove, config)
             _serverListLiveData.postValue(finalServers)
             preferencesProvider.saveServers(finalServers)
         }
@@ -133,6 +158,23 @@ class ServerListViewModel(
         }
         serversMap[newServer.name] = newServer
         return ArrayList(serversMap.values)
+    }
+
+    private fun removeServerByName(
+        serverList: ArrayList<ServerConfig>,
+        serverName: String
+    ): ArrayList<ServerConfig> {
+        var index = -1
+        for (i in 0 until serverList.size) {
+            if (serverList[i].name == serverName) {
+                index = i
+                break
+            }
+        }
+        if (index >= 0) {
+            serverList.removeAt(index)
+        }
+        return serverList
     }
 
     private fun updateOldServers(

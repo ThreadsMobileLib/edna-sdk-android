@@ -22,7 +22,7 @@ class AddServerViewModel(
     private val stringsProvider: StringsProvider
 ) : ViewModel(), DefaultLifecycleObserver {
 
-    private var srcServerConfig: ServerConfig? = null
+    var srcServerConfig: ServerConfig? = null
     private var _serverConfigLiveData = MutableLiveData(ServerConfig())
     var finalServerConfigLiveData = MutableLiveData<ServerConfig>(null)
     var serverConfigLiveData: LiveData<ServerConfig> = _serverConfigLiveData

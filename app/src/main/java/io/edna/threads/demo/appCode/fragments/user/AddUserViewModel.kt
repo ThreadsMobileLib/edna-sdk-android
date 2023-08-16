@@ -22,13 +22,10 @@ class AddUserViewModel(
     private val stringsProvider: StringsProvider
 ) : ViewModel(), DefaultLifecycleObserver {
 
-    private var srcUser: UserInfo? = null
+    var srcUser: UserInfo? = null
     var finalUserLiveData = MutableLiveData<UserInfo>(null)
     private var _userLiveData = MutableLiveData(UserInfo())
     var userLiveData: LiveData<UserInfo> = _userLiveData
-
-    private var _errorStringForUserNameFieldLiveData = MutableLiveData<String?>(null)
-    var errorStringForUserNameFieldLiveData: LiveData<String?> = _errorStringForUserNameFieldLiveData
 
     private var _errorStringForUserIdFieldLiveData = MutableLiveData<String?>(null)
     var errorStringForUserIdFieldLiveData: LiveData<String?> = _errorStringForUserIdFieldLiveData
@@ -65,28 +62,10 @@ class AddUserViewModel(
 
     private fun setupErrorFields(user: UserInfo?) {
         if (user == null) {
-            _errorStringForUserNameFieldLiveData.postValue(stringsProvider.requiredField)
             _errorStringForUserIdFieldLiveData.postValue(stringsProvider.requiredField)
         } else {
             if (user.userId.isNullOrEmpty()) {
                 _errorStringForUserIdFieldLiveData.postValue(stringsProvider.requiredField)
-            }
-            if (user.nickName.isNullOrEmpty()) {
-                _errorStringForUserNameFieldLiveData.postValue(stringsProvider.requiredField)
-            }
-        }
-    }
-
-    val nickNameTextWatcher = object : AfterTextChangedTextWatcher {
-        override fun afterTextChanged(s: Editable?) {
-            if (s != null) {
-                if (_userLiveData.value?.nickName != s.toString()) {
-                    userLiveData.value?.nickName = s.toString()
-                    _userLiveData.postValue(userLiveData.value)
-                }
-                if (s.isNotEmpty()) {
-                    _errorStringForUserNameFieldLiveData.postValue(null)
-                }
             }
         }
     }

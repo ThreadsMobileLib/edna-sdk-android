@@ -14,6 +14,7 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import io.edna.threads.demo.R
 import io.edna.threads.demo.appCode.business.PreferencesProvider
+import io.edna.threads.demo.appCode.fragments.user.UserListFragment.Companion.SRC_USER_ID_KEY
 import io.edna.threads.demo.appCode.models.UserInfo
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -59,6 +60,20 @@ class UserListViewModel(
         }
     }
 
+    private fun editUser(userId: String?, user: UserInfo) {
+        coroutineScope.launch {
+            val userList = preferencesProvider.getAllUserList()
+            val usersAfterRemove = if (!userId.isNullOrEmpty()) {
+                removeUserById(userList, userId)
+            } else {
+                userList
+            }
+            val newUserList = updateUserList(usersAfterRemove, user)
+            _userListLiveData.postValue(newUserList)
+            preferencesProvider.saveUserList(newUserList)
+        }
+    }
+
     fun removeUser(user: UserInfo) {
         coroutineScope.launch {
             val srcUserList = preferencesProvider.getAllUserList()
@@ -66,6 +81,23 @@ class UserListViewModel(
             _userListLiveData.postValue(finalUserList)
             preferencesProvider.saveUserList(finalUserList)
         }
+    }
+
+    private fun removeUserById(
+        userList: ArrayList<UserInfo>,
+        userId: String
+    ): ArrayList<UserInfo> {
+        var index = -1
+        for (i in 0 until userList.size) {
+            if (userList[i].userId == userId) {
+                index = i
+                break
+            }
+        }
+        if (index >= 0) {
+            userList.removeAt(index)
+        }
+        return userList
     }
 
     fun loadUserList() {
@@ -85,7 +117,12 @@ class UserListViewModel(
                 Parcels.unwrap(bundle.getParcelable(UserListFragment.USER_KEY))
             }
             if (user != null) {
-                addUser(user)
+                if (bundle.containsKey(SRC_USER_ID_KEY)) {
+                    val userId = bundle.getString(SRC_USER_ID_KEY)
+                    editUser(userId, user)
+                } else {
+                    addUser(user)
+                }
             }
         }
     }
@@ -102,11 +139,11 @@ class UserListViewModel(
         userList: ArrayList<UserInfo>,
         newUser: UserInfo
     ): ArrayList<UserInfo> {
-        val serversMap = HashMap<String?, UserInfo>()
+        val usersMap = HashMap<String?, UserInfo>()
         userList.forEach {
-            serversMap[it.nickName] = it
+            usersMap[it.userId] = it
         }
-        serversMap[newUser.nickName] = newUser
-        return ArrayList(serversMap.values)
+        usersMap[newUser.userId] = newUser
+        return ArrayList(usersMap.values)
     }
 }

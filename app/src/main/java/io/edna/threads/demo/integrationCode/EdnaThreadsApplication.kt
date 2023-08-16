@@ -125,6 +125,10 @@ class EdnaThreadsApplication : Application() {
         setChatHighlightingColor(R.color.dark_highlighting)
         setIncomingMessageLinkColor(R.color.dark_links)
         setOutgoingMessageLinkColor(R.color.dark_links)
+        setDelimitersColors(
+            im.threads.R.color.ecc_error_red_df0000,
+            R.color.dark_links
+        )
         setChatBackgroundColor(R.color.dark_chat_background)
         setSystemMessageStyle(
             null,

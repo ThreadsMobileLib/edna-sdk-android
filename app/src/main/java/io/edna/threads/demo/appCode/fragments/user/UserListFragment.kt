@@ -1,6 +1,5 @@
 package io.edna.threads.demo.appCode.fragments.user
 
-import android.os.Build
 import android.os.Bundle
 import android.view.View
 import androidx.core.view.isVisible
@@ -11,12 +10,11 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import im.threads.ui.utils.ColorsHelper
 import io.edna.threads.demo.R
+import io.edna.threads.demo.appCode.adapters.EccTouchHelperCallBack
+import io.edna.threads.demo.appCode.adapters.ListItemClickListener
 import io.edna.threads.demo.appCode.adapters.userList.UserListAdapter
-import io.edna.threads.demo.appCode.adapters.userList.UserListItemOnClickListener
-import io.edna.threads.demo.appCode.business.TouchHelper
 import io.edna.threads.demo.appCode.business.UiThemeProvider
 import io.edna.threads.demo.appCode.fragments.BaseAppFragment
-import io.edna.threads.demo.appCode.models.UserInfo
 import io.edna.threads.demo.databinding.FragmentUserListBinding
 import io.edna.threads.demo.integrationCode.fragments.launch.LaunchFragment.Companion.SELECTED_USER_KEY
 import org.koin.android.ext.android.inject
@@ -25,8 +23,7 @@ import org.parceler.Parcels
 
 class UserListFragment :
     BaseAppFragment<FragmentUserListBinding>(FragmentUserListBinding::inflate),
-    UserListItemOnClickListener,
-    TouchHelper.OnSwipeItemListener {
+    ListItemClickListener {
 
     private val uiThemeProvider: UiThemeProvider by inject()
     private val viewModel: UserListViewModel by viewModel()
@@ -51,35 +48,27 @@ class UserListFragment :
     }
 
     override fun navigateUp() {
-        if (adapter?.isMenuShown() == true) {
-            adapter?.closeMenu()
-        } else {
-            viewModel.backToLaunchScreen(activity)
-        }
+        viewModel.backToLaunchScreen(activity)
     }
 
-    override fun onSwiped(position: Int) {
-        adapter?.showMenu(position)
-    }
-
-    override fun onClick(item: UserInfo) {
+    override fun onClick(position: Int) {
+        val item = adapter?.getItem(position)
         val args = Bundle()
         args.putParcelable(SELECTED_USER_KEY, Parcels.wrap(item))
         setFragmentResult(SELECTED_USER_KEY, args)
         viewModel.backToLaunchScreen(activity)
     }
 
-    override fun onEditItem(item: UserInfo) {
-        adapter?.closeMenu()
+    override fun onEditItem(position: Int) {
+        val item = adapter?.getItem(position)
         val navigationController = activity?.findNavController(R.id.nav_host_fragment_content_main)
         val args = Bundle()
         args.putParcelable(USER_KEY, Parcels.wrap(item))
         navigationController?.navigate(R.id.action_UserListFragment_to_AddUserFragment, args)
     }
 
-    override fun onRemoveItem(item: UserInfo) {
-        adapter?.closeMenu()
-        viewModel.removeUser(item)
+    override fun onRemoveItem(position: Int) {
+        adapter?.getItem(position)?.let { viewModel.removeUser(it) }
     }
 
     private fun initView() {
@@ -95,11 +84,14 @@ class UserListFragment :
     }
 
     private fun initAdapter() {
-        val touchHelper = TouchHelper(this)
-        ItemTouchHelper(touchHelper.touchHelperCallback).attachToRecyclerView(binding.recyclerView)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            binding.recyclerView.setOnScrollChangeListener { _, _, _, _, _ -> adapter?.closeMenu() }
-        }
+        val simpleCallback = EccTouchHelperCallBack(
+            requireContext(),
+            this,
+            0,
+            ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
+        )
+        val touchHelper = ItemTouchHelper(simpleCallback)
+        touchHelper.attachToRecyclerView(binding.recyclerView)
     }
 
     private fun setOnClickListeners() = with(binding) {
@@ -142,5 +134,6 @@ class UserListFragment :
 
     companion object {
         const val USER_KEY = "user_key"
+        const val SRC_USER_ID_KEY = "src_user_id_key"
     }
 }

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.setFragmentResult
 import io.edna.threads.demo.appCode.fragments.BaseAppFragment
+import io.edna.threads.demo.appCode.fragments.user.UserListFragment.Companion.SRC_USER_ID_KEY
 import io.edna.threads.demo.appCode.fragments.user.UserListFragment.Companion.USER_KEY
 import io.edna.threads.demo.databinding.FragmentAddUserBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -23,7 +24,6 @@ class AddUserFragment : BaseAppFragment<FragmentAddUserBinding>(FragmentAddUserB
     }
 
     private fun subscribeForTextWatchers() = with(binding) {
-        nickName.setTextChangedListener(viewModel.nickNameTextWatcher)
         userId.setTextChangedListener(viewModel.userIdTextWatcher)
         userData.setTextChangedListener(viewModel.userDataTextWatcher)
         appMarker.setTextChangedListener(viewModel.appMarkerTextWatcher)
@@ -41,19 +41,18 @@ class AddUserFragment : BaseAppFragment<FragmentAddUserBinding>(FragmentAddUserB
         viewModel.finalUserLiveData.observe(viewLifecycleOwner) {
             val args = Bundle()
             args.putParcelable(USER_KEY, Parcels.wrap(it))
+            viewModel.srcUser?.let { user ->
+                args.putString(SRC_USER_ID_KEY, user.userId)
+            }
             setFragmentResult(USER_KEY, args)
         }
         viewModel.userLiveData.observe(viewLifecycleOwner) {
-            nickName.text = it.nickName
             userId.text = it.userId
             userData.text = it.userData
             appMarker.text = it.appMarker
             signature.text = it.signature
             authorizationHeader.text = it.authorizationHeader
             xAuthSchemaHeader.text = it.xAuthSchemaHeader
-        }
-        viewModel.errorStringForUserNameFieldLiveData.observe(viewLifecycleOwner) {
-            nickName.error = it
         }
         viewModel.errorStringForUserIdFieldLiveData.observe(viewLifecycleOwner) {
             userId.error = it

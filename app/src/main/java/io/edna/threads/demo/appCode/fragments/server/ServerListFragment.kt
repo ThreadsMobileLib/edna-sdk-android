@@ -1,6 +1,5 @@
 package io.edna.threads.demo.appCode.fragments.server
 
-import android.os.Build
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.clearFragmentResultListener
@@ -10,12 +9,11 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import im.threads.ui.utils.ColorsHelper
 import io.edna.threads.demo.R
+import io.edna.threads.demo.appCode.adapters.EccTouchHelperCallBack
+import io.edna.threads.demo.appCode.adapters.ListItemClickListener
 import io.edna.threads.demo.appCode.adapters.serverList.ServerListAdapter
-import io.edna.threads.demo.appCode.adapters.serverList.ServerListItemOnClickListener
-import io.edna.threads.demo.appCode.business.TouchHelper
 import io.edna.threads.demo.appCode.business.UiThemeProvider
 import io.edna.threads.demo.appCode.fragments.BaseAppFragment
-import io.edna.threads.demo.appCode.models.ServerConfig
 import io.edna.threads.demo.databinding.FragmentServerListBinding
 import io.edna.threads.demo.integrationCode.fragments.launch.LaunchFragment.Companion.SELECTED_SERVER_CONFIG_KEY
 import org.koin.android.ext.android.inject
@@ -24,8 +22,7 @@ import org.parceler.Parcels
 
 class ServerListFragment :
     BaseAppFragment<FragmentServerListBinding>(FragmentServerListBinding::inflate),
-    ServerListItemOnClickListener,
-    TouchHelper.OnSwipeItemListener {
+    ListItemClickListener {
 
     private val uiThemeProvider: UiThemeProvider by inject()
     private val viewModel: ServerListViewModel by viewModel()
@@ -49,43 +46,40 @@ class ServerListFragment :
     }
 
     override fun navigateUp() {
-        if (adapter?.isMenuShown() == true) {
-            adapter?.closeMenu()
-        } else {
-            viewModel.backToLaunchScreen(activity)
-        }
+        viewModel.backToLaunchScreen(activity)
     }
 
-    override fun onSwiped(position: Int) {
-        adapter?.showMenu(position)
-    }
-
-    override fun onClick(item: ServerConfig) {
+    override fun onClick(position: Int) {
+        val item = adapter?.getItem(position)
         val args = Bundle()
         args.putParcelable(SELECTED_SERVER_CONFIG_KEY, Parcels.wrap(item))
         setFragmentResult(SELECTED_SERVER_CONFIG_KEY, args)
         viewModel.backToLaunchScreen(activity)
     }
 
-    override fun onEditItem(item: ServerConfig) {
-        adapter?.closeMenu()
+    override fun onEditItem(position: Int) {
+        val item = adapter?.getItem(position)
         val navigationController = activity?.findNavController(R.id.nav_host_fragment_content_main)
         val args = Bundle()
         args.putParcelable(SERVER_CONFIG_KEY, Parcels.wrap(item))
         navigationController?.navigate(R.id.action_ServerListFragment_to_AddServerFragment, args)
     }
 
-    override fun onRemoveItem(item: ServerConfig) {
-        adapter?.closeMenu()
-        viewModel.removeConfig(item)
+    override fun onRemoveItem(position: Int) {
+        adapter?.getItem(position)?.let {
+            viewModel.removeConfig(it)
+        }
     }
 
     private fun initAdapter() {
-        val touchHelper = TouchHelper(this)
-        ItemTouchHelper(touchHelper.touchHelperCallback).attachToRecyclerView(binding.recyclerView)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            binding.recyclerView.setOnScrollChangeListener { _, _, _, _, _ -> adapter?.closeMenu() }
-        }
+        val simpleCallback = EccTouchHelperCallBack(
+            requireContext(),
+            this,
+            0,
+            ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
+        )
+        val touchHelper = ItemTouchHelper(simpleCallback)
+        touchHelper.attachToRecyclerView(binding.recyclerView)
     }
 
     private fun setOnClickListeners() = with(binding) {
@@ -126,5 +120,6 @@ class ServerListFragment :
 
     companion object {
         const val SERVER_CONFIG_KEY = "server_config_key"
+        const val SRC_SERVER_NAME_KEY = "src_server_name_key"
     }
 }

@@ -5,7 +5,6 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class UserInfo(
-    var nickName: String? = null,
     var userId: String? = null,
     var userData: String? = null,
     var appMarker: String? = null,
@@ -15,8 +14,7 @@ data class UserInfo(
     var isShowMenu: Boolean = false
 ) : Parcelable {
 
-    override fun toString() = "$nickName," +
-        "$userId," +
+    override fun toString() = "$userId," +
         "$userData," +
         "$appMarker," +
         "$signature," +
@@ -25,7 +23,7 @@ data class UserInfo(
         "$isShowMenu"
 
     fun isAllFieldsFilled(): Boolean {
-        return !nickName.isNullOrEmpty() && !userId.isNullOrEmpty()
+        return !userId.isNullOrEmpty()
     }
 
     override fun hashCode(): Int {
@@ -34,8 +32,7 @@ data class UserInfo(
 
     override fun equals(other: Any?): Boolean {
         if (other is UserInfo) {
-            return other.nickName == nickName &&
-                other.userId == userId &&
+            return other.userId == userId &&
                 other.appMarker == appMarker &&
                 other.signature == signature &&
                 other.authorizationHeader == authorizationHeader &&
@@ -47,7 +44,6 @@ data class UserInfo(
 
     fun clone(): UserInfo {
         return UserInfo(
-            nickName,
             userId,
             userData,
             appMarker,

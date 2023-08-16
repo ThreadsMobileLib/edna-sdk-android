@@ -41,10 +41,10 @@ class LaunchViewModel(
     val themeSelectorLiveData: VolatileLiveData<CurrentUiTheme> = VolatileLiveData()
     private val coroutineScope = CoroutineScope(Dispatchers.IO)
 
-    private var _selectedUserLiveData = MutableLiveData(preferences.getSelectedUser())
+    private var _selectedUserLiveData = MutableLiveData(getSelectedUser())
     var selectedUserLiveData: LiveData<UserInfo?> = _selectedUserLiveData
 
-    private var _selectedServerLiveData = MutableLiveData(preferences.getSelectedServer())
+    private var _selectedServerLiveData = MutableLiveData(getSelectedServer())
     var selectedServerConfigLiveData: LiveData<ServerConfig?> = _selectedServerLiveData
 
     private var _enabledLoginButtonLiveData = MutableLiveData(false)
@@ -53,7 +53,7 @@ class LaunchViewModel(
     override fun onCreate(owner: LifecycleOwner) {
         super.onCreate(owner)
         preferences.cleanJsonOnPreferences()
-        getServerConfig()?.let { server ->
+        getSelectedServer()?.let { server ->
             if (server.isAllFieldsFilled()) {
                 _selectedServerLiveData.postValue(server)
             }
@@ -88,7 +88,7 @@ class LaunchViewModel(
     private fun login(navigationController: NavController) {
         val serverConfig = _selectedServerLiveData.value
         val user = _selectedUserLiveData.value
-        val isUserHasRequiredFields = user?.userId != null && user.nickName != null
+        val isUserHasRequiredFields = user?.userId != null
 
         if (serverConfig != null && isUserHasRequiredFields) {
             ThreadsLib.changeServerSettings(
@@ -175,20 +175,39 @@ class LaunchViewModel(
         }
     }
 
-    private fun getServerConfig(): ServerConfig? {
-        return serversProvider.getSelectedServer()?.let { serverConfig ->
-            ServerConfig(
-                serverConfig.name,
-                serverConfig.threadsGateProviderUid,
-                serverConfig.datastoreUrl,
-                serverConfig.serverBaseUrl,
-                serverConfig.threadsGateUrl,
-                serverConfig.isFromApp,
-                serverConfig.isShowMenu,
-                serverConfig.filesAndMediaMenuItemEnabled,
-                serverConfig.trustedSSLCertificates,
-                serverConfig.allowUntrustedSSLCertificate
-            )
+    private fun getSelectedUser(): UserInfo? {
+        val user = preferences.getSelectedUser()
+        preferences.getAllUserList().forEach {
+            if (it.userId == user?.userId) {
+                return user
+            }
+        }
+        return UserInfo()
+    }
+
+    private fun getSelectedServer(): ServerConfig? {
+        preferences.getSelectedServer()?.let { server ->
+            preferences.getAllServers().forEach {
+                if (server.name == it.name) {
+                    return ServerConfig(
+                        it.name,
+                        it.threadsGateProviderUid,
+                        it.datastoreUrl,
+                        it.serverBaseUrl,
+                        it.threadsGateUrl,
+                        it.isFromApp,
+                        it.isShowMenu,
+                        it.filesAndMediaMenuItemEnabled,
+                        it.trustedSSLCertificates,
+                        it.allowUntrustedSSLCertificate
+                    )
+                }
+            }
+        }
+        return if (preferences.getAllServers().size > 0) {
+            preferences.getAllServers()[0]
+        } else {
+            null
         }
     }
 }
