@@ -5,6 +5,8 @@
     <string name="server">Сервер</string>
     <string name="user">Пользователь</string>
     <string name="login">Войти</string>
+    <string name="logout">Logout</string>
+    <string name="logout_client_text">Вход под пользователем: </string>
     <string name="demonstrations_examples">Демонстрационные примеры</string>
     <string name="functional_not_support">Функционал не поддерживается в текущей версии приложения.</string>
 
@@ -64,4 +66,6 @@
     <string name="dark_theme">Темная</string>
     <string name="light_theme">Светлая</string>
     <string name="ok">OK</string>
+    <string name="remove">Удалить</string>
+    <string name="edit">Изменить</string>
 </resources>

@@ -1,8 +1,11 @@
 package io.edna.threads.demo.integrationCode
 
 import android.app.Application
+import android.content.Intent
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.google.firebase.perf.FirebasePerformance
+import im.threads.business.UserInfoBuilder
+import im.threads.business.core.UnreadMessagesCountListener
 import im.threads.business.logger.LoggerConfig
 import im.threads.business.logger.LoggerRetentionPolicy
 import im.threads.business.markdown.MarkdownConfig
@@ -11,8 +14,15 @@ import im.threads.ui.config.ConfigBuilder
 import im.threads.ui.core.ThreadsLib
 import io.edna.threads.demo.BuildConfig
 import io.edna.threads.demo.R
+import io.edna.threads.demo.appCode.business.PreferencesProvider
 import io.edna.threads.demo.appCode.business.ServersProvider
 import io.edna.threads.demo.appCode.business.appModule
+import io.edna.threads.demo.integrationCode.fragments.launch.LaunchFragment.Companion.APP_INIT_THREADS_LIB_ACTION
+import io.edna.threads.demo.integrationCode.fragments.launch.LaunchFragment.Companion.APP_UNREAD_COUNT_BROADCAST
+import io.edna.threads.demo.integrationCode.fragments.launch.LaunchFragment.Companion.UNREAD_COUNT_KEY
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
@@ -20,6 +30,9 @@ import java.io.File
 
 class EdnaThreadsApplication : Application() {
     private val serversProvider: ServersProvider by inject()
+    private val preferences: PreferencesProvider by inject()
+    private val coroutineScope = CoroutineScope(Dispatchers.IO)
+    private val asyncInit = false
 
     override fun onCreate() {
         super.onCreate()
@@ -32,7 +45,20 @@ class EdnaThreadsApplication : Application() {
         FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(!BuildConfig.DEBUG)
         FirebasePerformance.getInstance().isPerformanceCollectionEnabled = !BuildConfig.DEBUG
 
-        val loggerConfig = LoggerConfig.Builder(this)
+        if (asyncInit) {
+            coroutineScope.launch {
+                initThreadsLib()
+                initUser()
+                sendBroadcast(Intent(APP_INIT_THREADS_LIB_ACTION))
+            }
+        } else {
+            initThreadsLib()
+            initUser()
+        }
+    }
+
+    private fun initThreadsLib() {
+        val loggerConfig = LoggerConfig.Builder(this@EdnaThreadsApplication)
             .logToFile()
             .dir(File(this.filesDir, "logs"))
             .retentionPolicy(LoggerRetentionPolicy.TOTAL_SIZE)
@@ -40,11 +66,19 @@ class EdnaThreadsApplication : Application() {
             .build()
 
         val configBuilder = ConfigBuilder(this)
+            .unreadMessagesCountListener(object : UnreadMessagesCountListener {
+                override fun onUnreadMessagesCountChanged(count: Int) {
+                    val intent = Intent(APP_UNREAD_COUNT_BROADCAST)
+                    intent.putExtra(UNREAD_COUNT_KEY, count)
+                    sendBroadcast(intent)
+                }
+            })
             .surveyCompletionDelay(2000)
             .historyLoadingCount(50)
             .isDebugLoggingEnabled(true)
             .showAttachmentsButton()
             .enableLogging(loggerConfig)
+            .keepSocketActive(true)
 
         serversProvider.getSelectedServer()?.let { server ->
             configBuilder.serverBaseUrl(server.serverBaseUrl)
@@ -60,6 +94,20 @@ class EdnaThreadsApplication : Application() {
         ThreadsLib.getInstance().apply {
             applyLightTheme(getLightChatTheme())
             applyDarkTheme(getDarkChatTheme())
+        }
+    }
+
+    private fun initUser() {
+        val user = preferences.getSelectedUser()
+        if (user != null && user.isAllFieldsFilled()) {
+            ThreadsLib.getInstance().initUser(
+                UserInfoBuilder(user.userId!!)
+                    .setAuthData(user.authorizationHeader, user.xAuthSchemaHeader)
+                    .setClientData(user.userData)
+                    .setClientIdSignature(user.signature)
+                    .setAppMarker(user.appMarker),
+                false
+            )
         }
     }
 

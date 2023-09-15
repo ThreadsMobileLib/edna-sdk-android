@@ -6,77 +6,42 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/itemLayout"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/image"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/common_app_margins"
             android:layout_marginTop="@dimen/margin_8"
             android:layout_marginEnd="@dimen/common_app_margins"
+            android:layout_marginBottom="@dimen/margin_8"
             android:contentDescription="@string/content_description_user_list_icon"
             android:src="@drawable/ic_user"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
 
         <TextView
-            android:id="@+id/name"
-            android:layout_width="wrap_content"
+            android:id="@+id/userId"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/common_app_margins"
-            android:layout_marginTop="@dimen/margin_8"
             android:ellipsize="end"
             android:lines="1"
             android:textColor="@color/black_color"
             android:textSize="@dimen/text_size_14"
             app:layout_constraintStart_toEndOf="@+id/image"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
 
-        <TextView
-            android:id="@+id/userId"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/common_app_margins"
-            android:ellipsize="end"
-            android:lines="2"
-            android:textColor="@color/gray_color_b5"
-            android:textSize="@dimen/text_size_12"
-            app:layout_constraintStart_toEndOf="@+id/image"
-            app:layout_constraintTop_toBottomOf="@+id/name" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <LinearLayout
-        android:id="@+id/menuLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:visibility="gone">
-
-        <ImageView
-            android:id="@+id/editButton"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:background="@color/blue_color"
-            android:contentDescription="@string/content_description_edit_button"
-            android:padding="@dimen/margin_12"
-            android:src="@drawable/ic_edit" />
-
-        <ImageView
-            android:id="@+id/deleteButton"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:background="@color/red_color"
-            android:contentDescription="@string/content_description_remove_button"
-            android:padding="@dimen/margin_12"
-            android:src="@drawable/ic_remove" />
-    </LinearLayout>
 </FrameLayout>

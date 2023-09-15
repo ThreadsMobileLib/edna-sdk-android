@@ -49,18 +49,6 @@
     </LinearLayout>
 
     <io.edna.threads.demo.appCode.views.InputField
-        android:id="@+id/nickName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/common_app_margins"
-        android:layout_marginTop="@dimen/margin_16"
-        android:layout_marginEnd="@dimen/common_app_margins"
-        app:hint="@string/nick_name_hint"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
-
-    <io.edna.threads.demo.appCode.views.InputField
         android:id="@+id/userId"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -70,7 +58,7 @@
         app:hint="@string/user_id_hint"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nickName" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <io.edna.threads.demo.appCode.views.InputField
         android:id="@+id/userData"

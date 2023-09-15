@@ -13,9 +13,11 @@
     <dimen name="margin_26">26dp</dimen>
     <dimen name="margin_32">32dp</dimen>
     <dimen name="margin_40">40dp</dimen>
+    <dimen name="margin_52">52dp</dimen>
 
     <dimen name="padding_48">48dp</dimen>
 
+    <dimen name="height_25">25dp</dimen>
     <dimen name="height_36">36dp</dimen>
     <dimen name="height_42">42dp</dimen>
     <dimen name="height_50">50dp</dimen>
@@ -35,6 +37,7 @@
     <dimen name="login_screen_top_margin_small">@dimen/margin_16</dimen>
     <dimen name="login_screen_top_margin_medium">@dimen/margin_24</dimen>
     <dimen name="login_screen_top_margin_large">@dimen/margin_40</dimen>
+    <dimen name="login_screen_top_margin_extra_large">@dimen/margin_52</dimen>
     <dimen name="login_screen_buttons_height">@dimen/height_56</dimen>
 
     <dimen name="button_add_margins">@dimen/margin_20</dimen>

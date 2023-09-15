@@ -6,9 +6,13 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/itemLayout"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
         <ImageView
@@ -25,7 +29,7 @@
 
         <TextView
             android:id="@+id/name"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/common_app_margins"
             android:layout_marginTop="@dimen/margin_8"
@@ -38,7 +42,7 @@
 
         <TextView
             android:id="@+id/description"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/common_app_margins"
             android:ellipsize="end"
@@ -49,34 +53,4 @@
             app:layout_constraintTop_toBottomOf="@+id/name" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <LinearLayout
-        android:id="@+id/menuLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:visibility="gone">
-
-        <ImageView
-            android:id="@+id/editButton"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:background="@color/blue_color"
-            android:contentDescription="@string/content_description_edit_button"
-            android:padding="@dimen/margin_12"
-            android:src="@drawable/ic_edit" />
-
-        <ImageView
-            android:id="@+id/deleteButton"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:background="@color/red_color"
-            android:contentDescription="@string/content_description_remove_button"
-            android:padding="@dimen/margin_12"
-            android:src="@drawable/ic_remove" />
-    </LinearLayout>
 </FrameLayout>
