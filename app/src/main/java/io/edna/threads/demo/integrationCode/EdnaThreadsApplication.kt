@@ -78,7 +78,6 @@ class EdnaThreadsApplication : Application() {
             .isDebugLoggingEnabled(true)
             .showAttachmentsButton()
             .enableLogging(loggerConfig)
-            .keepSocketActive(true)
 
         serversProvider.getSelectedServer()?.let { server ->
             configBuilder.serverBaseUrl(server.serverBaseUrl)
@@ -258,3 +257,11 @@ class EdnaThreadsApplication : Application() {
 private const val LATO_BOLD_FONT_PATH = "fonts/lato-bold.ttf"
 private const val LATO_LIGHT_FONT_PATH = "fonts/lato-light.ttf"
 private const val LATO_REGULAR_FONT_PATH = "fonts/lato-regular.ttf"
+
+const val ednaMockScheme = "http"
+const val ednaMockHost = "localhost"
+const val ednaMockPort = 8080
+const val ednaMockUrl = "$ednaMockScheme://$ednaMockHost:$ednaMockPort/"
+const val ednaMockThreadsGateUrl = "ws://$ednaMockHost:$ednaMockPort/gate/socket"
+const val ednaMockThreadsGateProviderUid = "TEST_93jLrtnipZsfbTddRfEfbyfEe5LKKhTl"
+const val ednaMockAllowUntrustedSSLCertificate = true

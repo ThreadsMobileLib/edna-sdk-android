@@ -23,7 +23,7 @@ class AddUserFragment : BaseAppFragment<FragmentAddUserBinding>(FragmentAddUserB
         initData()
     }
 
-    private fun subscribeForTextWatchers() = with(binding) {
+    private fun subscribeForTextWatchers() = getBinding()?.apply {
         userId.setTextChangedListener(viewModel.userIdTextWatcher)
         userData.setTextChangedListener(viewModel.userDataTextWatcher)
         appMarker.setTextChangedListener(viewModel.appMarkerTextWatcher)
@@ -32,12 +32,12 @@ class AddUserFragment : BaseAppFragment<FragmentAddUserBinding>(FragmentAddUserB
         xAuthSchemaHeader.setTextChangedListener(viewModel.xAuthSchemaHeaderTextWatcher)
     }
 
-    private fun subscribeForClickListeners() = with(binding) {
+    private fun subscribeForClickListeners() = getBinding()?.apply {
         backButton.setOnClickListener { viewModel.click(backButton) }
         okButton.setOnClickListener { viewModel.click(okButton) }
     }
 
-    private fun subscribeForData() = with(binding) {
+    private fun subscribeForData() = getBinding()?.apply {
         viewModel.finalUserLiveData.observe(viewLifecycleOwner) {
             val args = Bundle()
             args.putParcelable(USER_KEY, Parcels.wrap(it))

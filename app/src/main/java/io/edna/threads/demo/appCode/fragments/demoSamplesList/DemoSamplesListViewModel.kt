@@ -43,7 +43,8 @@ class DemoSamplesListViewModel(
                 TEXT(stringsProvider.images, samplesJsonProvider.getImagesChatJson()),
                 TEXT(stringsProvider.files, samplesJsonProvider.getFilesChatJson()),
                 TEXT(stringsProvider.systemMessages, samplesJsonProvider.getSystemChatJson()),
-                TEXT(stringsProvider.chatWithBot, samplesJsonProvider.getChatBotJson())
+                TEXT(stringsProvider.chatWithBot, samplesJsonProvider.getChatBotJson()),
+                TEXT(stringsProvider.chatWithEditAndDeletedMessages, samplesJsonProvider.getChatWithEditAndDeletedMessages())
             )
         )
     }

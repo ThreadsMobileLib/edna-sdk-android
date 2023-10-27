@@ -22,6 +22,8 @@ class SamplesJsonProvider(private val context: Context) {
 
     fun getChatBotJson() = readTextFileFromRawResourceId(R.raw.history_bot_response)
 
+    fun getChatWithEditAndDeletedMessages() = readTextFileFromRawResourceId(R.raw.history_deleted_and_edited_messages)
+
     private fun readTextFileFromRawResourceId(resourceId: Int): String {
         var string: String? = ""
         val stringBuilder = StringBuilder()

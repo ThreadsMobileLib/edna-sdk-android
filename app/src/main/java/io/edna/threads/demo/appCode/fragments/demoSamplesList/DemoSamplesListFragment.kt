@@ -12,10 +12,11 @@ import io.edna.threads.demo.appCode.fragments.BaseAppFragment
 import io.edna.threads.demo.appCode.models.DemoSamplesListItem
 import io.edna.threads.demo.databinding.FragmentSamplesListBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.lang.ref.WeakReference
 
 class DemoSamplesListFragment : BaseAppFragment<FragmentSamplesListBinding>(FragmentSamplesListBinding::inflate), SampleListItemOnClick {
     private val viewModel: DemoSamplesListViewModel by viewModel()
-    private var adapter: DemoSamplesAdapter? = null
+    private var adapter: WeakReference<DemoSamplesAdapter>? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -30,12 +31,13 @@ class DemoSamplesListFragment : BaseAppFragment<FragmentSamplesListBinding>(Frag
         viewModel.onItemClick(item)
     }
 
-    private fun createAdapter() = with(binding) {
-        adapter = DemoSamplesAdapter(this@DemoSamplesListFragment)
-        recyclerView.adapter = adapter
+    private fun createAdapter() = getBinding()?.apply {
+        val newAdapter = DemoSamplesAdapter(this@DemoSamplesListFragment)
+        adapter = WeakReference(newAdapter)
+        recyclerView.adapter = newAdapter
     }
 
-    private fun setNavigationIcon() = with(binding) {
+    private fun setNavigationIcon() = getBinding()?.apply {
         toolbar.navigationIcon?.setTint(ContextCompat.getColor(requireContext(), R.color.white_color_ec))
         toolbar.setNavigationOnClickListener {
             ThreadsLib.getInstance().logoutClient()
@@ -44,7 +46,7 @@ class DemoSamplesListFragment : BaseAppFragment<FragmentSamplesListBinding>(Frag
     }
 
     private fun subscribeForData() {
-        viewModel.demoSamplesLiveData.observe(viewLifecycleOwner) { adapter?.addItems(it) }
+        viewModel.demoSamplesLiveData.observe(viewLifecycleOwner) { adapter?.get()?.addItems(it) }
         viewModel.navigationLiveData.observe(viewLifecycleOwner) { findNavController().navigate(it) }
     }
 }

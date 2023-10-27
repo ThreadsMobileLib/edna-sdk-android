@@ -12,8 +12,9 @@ import io.edna.threads.demo.appCode.business.UiThemeProvider
 import io.edna.threads.demo.appCode.models.UserInfo
 import io.edna.threads.demo.databinding.UserListItemBinding
 import org.koin.java.KoinJavaComponent.inject
+import java.lang.ref.WeakReference
 
-class UserListAdapter(private val onItemClickListener: ListItemClickListener) :
+class UserListAdapter(private val onItemClickListener: WeakReference<ListItemClickListener>) :
     RecyclerView.Adapter<UserListAdapter.UserItemHolder>() {
 
     private val uiThemeProvider: UiThemeProvider by inject(UiThemeProvider::class.java)
@@ -58,7 +59,7 @@ class UserListAdapter(private val onItemClickListener: ListItemClickListener) :
                     binding.userId.setTextColor(ContextCompat.getColor(binding.root.context, R.color.black_color))
                     ColorsHelper.setTint(binding.root.context, binding.image, R.color.black_color)
                 }
-                binding.rootLayout.setOnClickListener { onItemClickListener.onClick(position) }
+                binding.rootLayout.setOnClickListener { onItemClickListener.get()?.onClick(position) }
             }
         }
     }

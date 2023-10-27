@@ -6,6 +6,7 @@ import io.edna.threads.demo.R
 import io.edna.threads.demo.appCode.fragments.BaseAppFragment
 import io.edna.threads.demo.databinding.FragmentChatBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.lang.ref.WeakReference
 
 class DemoSamplesFragment : BaseAppFragment<FragmentChatBinding>(FragmentChatBinding::inflate) {
     private val viewModel: DemoSamplesViewModel by viewModel()
@@ -19,7 +20,7 @@ class DemoSamplesFragment : BaseAppFragment<FragmentChatBinding>(FragmentChatBin
 
     private fun subscribeToData() {
         viewModel.chatFragmentLiveData.observe(viewLifecycleOwner) {
-            fragment = it
+            fragment = WeakReference(it)
             childFragmentManager
                 .beginTransaction()
                 .add(R.id.chatFragmentContainer, it)

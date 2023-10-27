@@ -63,12 +63,12 @@ class LaunchFragment : BaseAppFragment<FragmentLaunchBinding>(FragmentLaunchBind
         }
     }
 
-    private fun initView() = with(binding) {
+    private fun initView() = getBinding()?.apply {
         login.isEnabled = false
         about.text = generateAboutText()
     }
 
-    private fun setOnClickListeners() = with(binding) {
+    private fun setOnClickListeners() = getBinding()?.apply {
         uiTheme.setOnClickListener { viewModel.click(uiTheme) }
         serverButton.setOnClickListener { viewModel.click(serverButton) }
         userButton.setOnClickListener { viewModel.click(userButton) }
@@ -80,7 +80,7 @@ class LaunchFragment : BaseAppFragment<FragmentLaunchBinding>(FragmentLaunchBind
         }
     }
 
-    private fun subscribeForData() = with(binding) {
+    private fun subscribeForData() = getBinding()?.apply {
         viewModel.selectedServerConfigLiveData.observe(viewLifecycleOwner) {
             serverButton.text = it?.name
         }
@@ -113,7 +113,7 @@ class LaunchFragment : BaseAppFragment<FragmentLaunchBinding>(FragmentLaunchBind
         clearFragmentResultListener(SELECTED_SERVER_CONFIG_KEY)
     }
 
-    private fun setUiThemeDependentViews(theme: UiTheme) = with(binding) {
+    private fun setUiThemeDependentViews(theme: UiTheme) = getBinding()?.apply {
         context?.let { context ->
             when (theme) {
                 UiTheme.LIGHT -> {
@@ -141,8 +141,8 @@ class LaunchFragment : BaseAppFragment<FragmentLaunchBinding>(FragmentLaunchBind
     }
 
     fun setUnreadCount(count: Int) {
-        binding.count.isVisible = count > 0
-        binding.count.text = count.toString()
+        getBinding()?.count?.isVisible = count > 0
+        getBinding()?.count?.text = count.toString()
     }
 
     private fun initReceivers() {

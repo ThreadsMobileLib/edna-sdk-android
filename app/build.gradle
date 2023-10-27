@@ -20,7 +20,13 @@ android {
         versionName "1.0.3"
         versionCode 1
 
-        testInstrumentationRunner "io.edna.threads.demo.MockTestRunner"
+        testInstrumentationRunner "io.edna.threads.demo.TestNoAnimRunner"
+        testInstrumentationRunnerArguments clearPackageData: 'true'
+    }
+
+    testOptions {
+        execution 'ANDROIDX_TEST_ORCHESTRATOR'
+        animationsDisabled = true
     }
 
     signingConfigs {
@@ -43,18 +49,23 @@ android {
         debug {
             debuggable = true
             minifyEnabled false
+            buildConfigField "java.util.concurrent.atomic.AtomicReference", "TEST_DATA", "new java.util.concurrent.atomic.AtomicReference<String>()"
+            buildConfigField "java.util.concurrent.atomic.AtomicBoolean", "IS_MOCK_WEB_SERVER", "new java.util.concurrent.atomic.AtomicBoolean(false)"
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.debug
         }
         release {
             debuggable = false
             minifyEnabled true
+            buildConfigField "java.util.concurrent.atomic.AtomicReference", "TEST_DATA", "new java.util.concurrent.atomic.AtomicReference<String>()"
+            buildConfigField "java.util.concurrent.atomic.AtomicBoolean", "IS_MOCK_WEB_SERVER", "new java.util.concurrent.atomic.AtomicBoolean(false)"
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.debug
         }
     }
 
     compileOptions {
+        coreLibraryDesugaringEnabled true
         sourceCompatibility JavaVersion.VERSION_11
         targetCompatibility JavaVersion.VERSION_11
     }
@@ -65,9 +76,20 @@ android {
     buildFeatures {
         viewBinding = true
     }
+
+    splits {
+        abi {
+            enable true
+            reset()
+            include 'x86', 'x86_64', 'armeabi', 'armeabi-v7a', 'mips', 'mips64', 'arm64-v8a'
+            universalApk true
+        }
+    }
 }
 
 dependencies {
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.9'
+
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     debugImplementation "im.threads:threads-debug:$version"
     releaseImplementation "im.threads:threads-release:$version"
@@ -101,10 +123,19 @@ dependencies {
     releaseImplementation "com.edna.android:push-lite-release:$pushVersion"
     releaseImplementation "com.edna.android:push-lite-huawei-release:$pushVersion"
 
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.12'
+
     testImplementation "junit:junit:$rootProject.testJunitVersion"
+    androidTestUtil 'androidx.test:orchestrator:1.4.2'
+    androidTestImplementation 'androidx.test:runner:1.5.2'
+    androidTestImplementation "org.mockito.kotlin:mockito-kotlin:5.1.0"
+    androidTestImplementation "com.squareup.okhttp3:mockwebserver:$okhttp_webserver_version"
+    androidTestImplementation "androidx.test.ext:junit-ktx:$test_ext"
+    androidTestImplementation "com.kaspersky.android-components:kaspresso:$kaspresso_version"
     androidTestImplementation "androidx.test:runner:$rootProject.androidXTestVersion"
-    androidTestImplementation "androidx.test.ext:junit:$rootProject.testJunitAndroidVersion"
     androidTestImplementation "androidx.test:rules:$rootProject.androidXTestVersion"
-    androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
-    androidTestImplementation "com.squareup.okhttp3:mockwebserver:4.10.0"
+    androidTestImplementation "org.mockito:mockito-core:$rootProject.mockitoVersion"
+    androidTestImplementation "org.mockito:mockito-android:$rootProject.mockitoVersion"
+    androidTestImplementation "com.github.tomakehurst:wiremock-standalone:2.26.3"
+    androidTestImplementation 'androidx.test.espresso:espresso-intents:3.5.1'
 }

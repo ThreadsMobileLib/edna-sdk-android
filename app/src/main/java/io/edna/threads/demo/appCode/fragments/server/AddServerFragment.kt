@@ -23,7 +23,7 @@ class AddServerFragment : BaseAppFragment<FragmentAddServerBinding>(FragmentAddS
         viewModel.initData(arguments)
     }
 
-    private fun subscribeForTextWatchers() = with(binding) {
+    private fun subscribeForTextWatchers() = getBinding()?.apply {
         name.setTextChangedListener(viewModel.nameTextWatcher)
         providerId.setTextChangedListener(viewModel.providerIdTextWatcher)
         baseUrl.setTextChangedListener(viewModel.baseUrlTextWatcher)
@@ -31,7 +31,7 @@ class AddServerFragment : BaseAppFragment<FragmentAddServerBinding>(FragmentAddS
         threadsGateUrl.setTextChangedListener(viewModel.threadsGateUrlTextWatcher)
     }
 
-    private fun subscribeForData() = with(binding) {
+    private fun subscribeForData() = getBinding()?.apply {
         viewModel.finalServerConfigLiveData.observe(viewLifecycleOwner) {
             val args = Bundle()
             args.putParcelable(SERVER_CONFIG_KEY, Parcels.wrap(it))
@@ -64,7 +64,7 @@ class AddServerFragment : BaseAppFragment<FragmentAddServerBinding>(FragmentAddS
         }
     }
 
-    private fun setOnClickListeners() = with(binding) {
+    private fun setOnClickListeners() = getBinding()?.apply {
         backButton.setOnClickListener { viewModel.click(backButton) }
         okButton.setOnClickListener { viewModel.click(okButton) }
     }

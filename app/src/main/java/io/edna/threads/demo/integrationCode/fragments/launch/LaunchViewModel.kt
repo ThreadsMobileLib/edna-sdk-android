@@ -19,12 +19,14 @@ import androidx.navigation.findNavController
 import im.threads.business.UserInfoBuilder
 import im.threads.business.models.enums.CurrentUiTheme
 import im.threads.ui.core.ThreadsLib
+import io.edna.threads.demo.BuildConfig
 import io.edna.threads.demo.R
 import io.edna.threads.demo.appCode.business.PreferencesProvider
 import io.edna.threads.demo.appCode.business.ServersProvider
 import io.edna.threads.demo.appCode.business.UiThemeProvider
 import io.edna.threads.demo.appCode.business.VolatileLiveData
 import io.edna.threads.demo.appCode.models.ServerConfig
+import io.edna.threads.demo.appCode.models.TestData
 import io.edna.threads.demo.appCode.models.UiTheme
 import io.edna.threads.demo.appCode.models.UserInfo
 import kotlinx.coroutines.CoroutineScope
@@ -182,36 +184,50 @@ class LaunchViewModel(
     }
 
     private fun getSelectedUser(): UserInfo? {
-        val user = preferences.getSelectedUser()
-        preferences.getAllUserList().forEach {
-            if (it.userId == user?.userId) {
-                return user
+        val testData = BuildConfig.TEST_DATA.get() as? String
+        return if (testData.isNullOrEmpty()) {
+            val user = preferences.getSelectedUser()
+            preferences.getAllUserList().forEach {
+                if (it.userId == user?.userId) {
+                    return user
+                }
             }
+            UserInfo()
+        } else if (testData.isNotEmpty()) {
+            TestData.fromJson(testData).userInfo
+        } else {
+            null
         }
-        return UserInfo()
     }
 
     private fun getSelectedServer(): ServerConfig? {
-        preferences.getSelectedServer()?.let { server ->
-            preferences.getAllServers().forEach {
-                if (server.name == it.name) {
-                    return ServerConfig(
-                        it.name,
-                        it.threadsGateProviderUid,
-                        it.datastoreUrl,
-                        it.serverBaseUrl,
-                        it.threadsGateUrl,
-                        it.isFromApp,
-                        it.isShowMenu,
-                        it.filesAndMediaMenuItemEnabled,
-                        it.trustedSSLCertificates,
-                        it.allowUntrustedSSLCertificate
-                    )
+        val testData = BuildConfig.TEST_DATA.get() as? String
+        return if (testData.isNullOrEmpty()) {
+            preferences.getSelectedServer()?.let { server ->
+                preferences.getAllServers().forEach {
+                    if (server.name == it.name) {
+                        return ServerConfig(
+                            it.name,
+                            it.threadsGateProviderUid,
+                            it.datastoreUrl,
+                            it.serverBaseUrl,
+                            it.threadsGateUrl,
+                            it.isFromApp,
+                            it.isShowMenu,
+                            it.filesAndMediaMenuItemEnabled,
+                            it.trustedSSLCertificates,
+                            it.allowUntrustedSSLCertificate
+                        )
+                    }
                 }
             }
-        }
-        return if (preferences.getAllServers().size > 0) {
-            preferences.getAllServers()[0]
+            if (preferences.getAllServers().size > 0) {
+                preferences.getAllServers()[0]
+            } else {
+                null
+            }
+        } else if (testData.isNotEmpty()) {
+            TestData.fromJson(testData).serverConfig
         } else {
             null
         }

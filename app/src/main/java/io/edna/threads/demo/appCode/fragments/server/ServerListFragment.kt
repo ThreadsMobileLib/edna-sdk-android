@@ -19,6 +19,7 @@ import io.edna.threads.demo.integrationCode.fragments.launch.LaunchFragment.Comp
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.parceler.Parcels
+import java.lang.ref.WeakReference
 
 class ServerListFragment :
     BaseAppFragment<FragmentServerListBinding>(FragmentServerListBinding::inflate),
@@ -26,7 +27,7 @@ class ServerListFragment :
 
     private val uiThemeProvider: UiThemeProvider by inject()
     private val viewModel: ServerListViewModel by viewModel()
-    private var adapter: ServerListAdapter? = null
+    private var adapter: WeakReference<ServerListAdapter>? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -50,7 +51,7 @@ class ServerListFragment :
     }
 
     override fun onClick(position: Int) {
-        val item = adapter?.getItem(position)
+        val item = adapter?.get()?.getItem(position)
         val args = Bundle()
         args.putParcelable(SELECTED_SERVER_CONFIG_KEY, Parcels.wrap(item))
         setFragmentResult(SELECTED_SERVER_CONFIG_KEY, args)
@@ -58,7 +59,7 @@ class ServerListFragment :
     }
 
     override fun onEditItem(position: Int) {
-        val item = adapter?.getItem(position)
+        val item = adapter?.get()?.getItem(position)
         val navigationController = activity?.findNavController(R.id.nav_host_fragment_content_main)
         val args = Bundle()
         args.putParcelable(SERVER_CONFIG_KEY, Parcels.wrap(item))
@@ -66,7 +67,7 @@ class ServerListFragment :
     }
 
     override fun onRemoveItem(position: Int) {
-        adapter?.getItem(position)?.let {
+        adapter?.get()?.getItem(position)?.let {
             viewModel.removeConfig(it)
         }
     }
@@ -79,10 +80,10 @@ class ServerListFragment :
             ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
         )
         val touchHelper = ItemTouchHelper(simpleCallback)
-        touchHelper.attachToRecyclerView(binding.recyclerView)
+        touchHelper.attachToRecyclerView(getBinding()?.recyclerView)
     }
 
-    private fun setOnClickListeners() = with(binding) {
+    private fun setOnClickListeners() = getBinding()?.apply {
         backButton.setOnClickListener { viewModel.click(backButton) }
         addServer.setOnClickListener { viewModel.click(addServer) }
     }
@@ -97,25 +98,26 @@ class ServerListFragment :
         }
     }
 
-    private fun initView() {
-        binding.addServer.background = null
-        binding.addServer.setImageResource(R.drawable.ic_plus)
+    private fun initView() = getBinding()?.apply {
+        addServer.background = null
+        addServer.setImageResource(R.drawable.ic_plus)
         if (uiThemeProvider.isDarkThemeOn()) {
-            ColorsHelper.setTint(activity, binding.addServer, R.color.black_color)
-            binding.addServer.setBackgroundResource(R.drawable.buttons_bg_selector_dark)
+            ColorsHelper.setTint(activity, addServer, R.color.black_color)
+            addServer.setBackgroundResource(R.drawable.buttons_bg_selector_dark)
         } else {
-            ColorsHelper.setTint(activity, binding.addServer, R.color.white_color_fa)
-            binding.addServer.setBackgroundResource(R.drawable.buttons_bg_selector)
+            ColorsHelper.setTint(activity, addServer, R.color.white_color_fa)
+            addServer.setBackgroundResource(R.drawable.buttons_bg_selector)
         }
     }
 
-    private fun createAdapter() = with(binding) {
-        adapter = ServerListAdapter(this@ServerListFragment)
-        recyclerView.adapter = adapter
+    private fun createAdapter() = getBinding()?.apply {
+        val newAdapter = ServerListAdapter(this@ServerListFragment)
+        adapter = WeakReference(newAdapter)
+        recyclerView.adapter = newAdapter
     }
 
     private fun subscribeForData() {
-        viewModel.serverConfigLiveData.observe(viewLifecycleOwner) { adapter?.addItems(it) }
+        viewModel.serverConfigLiveData.observe(viewLifecycleOwner) { adapter?.get()?.addItems(it) }
     }
 
     companion object {

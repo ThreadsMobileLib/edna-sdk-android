@@ -25,6 +25,7 @@
     <string name="files">Файлы</string>
     <string name="system_messages">Системные сообщения</string>
     <string name="chat_with_bot">Чат с ботом</string>
+    <string name="deleted_and_edited_messages">Удаленные и измененные сообщения</string>
 
     <string name="servers">Серверы</string>
     <string name="users">Пользователи</string>

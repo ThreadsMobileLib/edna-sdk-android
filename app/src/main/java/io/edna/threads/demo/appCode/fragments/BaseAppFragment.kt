@@ -16,21 +16,21 @@ import im.threads.ui.fragments.ChatFragment
 import io.edna.threads.demo.R
 import io.edna.threads.demo.appCode.fragments.demoSamplesList.DemoSamplesListFragment
 import io.edna.threads.demo.integrationCode.fragments.chatFragment.ChatAppFragment
+import java.lang.ref.WeakReference
 
 abstract class BaseAppFragment<T : ViewBinding>(
     private val bindingInflater: (layoutInflater: LayoutInflater) -> T
 ) : Fragment() {
-    protected var fragment: ChatFragment? = null
-    private var _binding: T? = null
-    protected val binding by lazy { _binding!! }
+    protected var fragment: WeakReference<ChatFragment>? = null
+    private var binding: WeakReference<T>? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = bindingInflater.invoke(inflater)
-        return binding.root
+        binding = WeakReference(bindingInflater.invoke(inflater))
+        return getBinding()?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -39,21 +39,24 @@ abstract class BaseAppFragment<T : ViewBinding>(
     }
 
     protected fun subscribeToGlobalBackClick() {
-        activity?.onBackPressedDispatcher?.addCallback(object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                navigateUp()
+        activity?.onBackPressedDispatcher?.addCallback(
+            viewLifecycleOwner,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    navigateUp()
+                }
             }
-        })
+        )
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
+    override fun onDestroyView() {
+        binding = null
+        super.onDestroyView()
     }
 
     protected open fun navigateUp() {
         val isDemoListFragment = this is DemoSamplesListFragment
-        val chatBackPressed = fragment?.onBackPressed() == true
+        val chatBackPressed = fragment?.get()?.onBackPressed() == true
         if ((chatBackPressed || isDemoListFragment) && isAdded) {
             if (this@BaseAppFragment is ChatAppFragment || this@BaseAppFragment is DemoSamplesListFragment) {
                 ThreadsLib.getInstance().logoutClient()
@@ -62,7 +65,7 @@ abstract class BaseAppFragment<T : ViewBinding>(
         }
     }
 
-    protected fun setToolbarColor() = with(binding) {
+    protected fun setToolbarColor() = getBinding()?.apply {
         if (ThreadsLib.isInitialized()) {
             context?.let { context ->
                 val toolbar = try {
@@ -79,4 +82,6 @@ abstract class BaseAppFragment<T : ViewBinding>(
             }
         }
     }
+
+    protected fun getBinding() = binding?.get()
 }

@@ -1,0 +1,189 @@
+{
+  "messages": [
+    {
+      "type": "MESSAGE",
+      "threadId": 182,
+      "providerIds": [],
+      "uuid": "bd50a2a0-f3cf-48ec-a601-5b2318e75f54",
+      "operator": {
+        "id": 4,
+        "name": "Оператор Елена",
+        "alias": null,
+        "status": null,
+        "photoUrl": null,
+        "gender": "FEMALE",
+        "organizationUnit": "Skill Credit",
+        "role": "OPERATOR"
+      },
+      "text": "",
+      "receivedDate": "2023-04-05T10:39:38.903Z",
+      "attachments": [
+        {
+          "id": 73,
+          "result": "file:///android_asset/test_files/operator_text2.ogg",
+          "optional": {
+            "size": 33080,
+            "name": "operator_text2.ogg",
+            "type": "audio/ogg"
+          },
+          "state": "READY",
+          "name": "operator_text2.ogg",
+          "type": "audio/ogg",
+          "size": 33080,
+          "wellDefined": true,
+          "url": "file:///android_asset/test_files/operator_text2.ogg"
+        }
+      ],
+      "quotes": [],
+      "quickReplies": [],
+      "read": false,
+      "settings": {
+        "blockInput": false,
+        "masked": false
+      },
+      "authorized": true,
+      "massPushMessage": false,
+      "modified": "EDITED",
+      "origin": "threads"
+    },
+    {
+      "type": "MESSAGE",
+      "threadId": 142,
+      "providerIds": [],
+      "uuid": "90987158-c75a-45d9-87a8-79bbdf279570",
+      "operator": {
+        "id": 4,
+        "name": "Оператор Елена",
+        "alias": null,
+        "status": null,
+        "photoUrl": null,
+        "gender": "FEMALE",
+        "organizationUnit": "Skill Credit",
+        "role": "OPERATOR"
+      },
+      "text": "Великолепно! Как и вот это.",
+      "receivedDate": "2023-03-27T10:25:04.907Z",
+      "attachments": [
+        {
+          "id": 48,
+          "result": "file:///android_asset/test_images/test_image5.jpg",
+          "optional": {
+            "size": 258264,
+            "name": "test_image5.jpg",
+            "type": "image/jpeg"
+          },
+          "state": "READY",
+          "name": "test_image5.jpg",
+          "type": "image/jpeg",
+          "size": 258264,
+          "wellDefined": true,
+          "url": "file:///android_asset/test_images/test_image5.jpg"
+        }
+      ],
+      "quotes": [],
+      "quickReplies": [],
+      "read": false,
+      "settings": {
+        "blockInput": false,
+        "masked": false
+      },
+      "authorized": true,
+      "massPushMessage": false,
+      "modified": "EDITED",
+      "origin": "threads"
+    },
+    {
+      "type": "MESSAGE",
+      "threadId": 147,
+      "providerIds": [],
+      "uuid": "297ad109-4d01-4d01-bfbf-a18ad0114103",
+      "operator": {
+        "id": 4,
+        "name": "Оператор Елена",
+        "alias": null,
+        "status": null,
+        "photoUrl": null,
+        "gender": "FEMALE",
+        "organizationUnit": "Skill Credit",
+        "role": "OPERATOR"
+      },
+      "text": "",
+      "receivedDate": "2023-03-29T11:45:10.914Z",
+      "attachments": [
+        {
+          "id": 57,
+          "result": "file:///android_asset/test_files/test_pdf2.pdf",
+          "optional": {
+            "size": 62707,
+            "name": "test_pdf2.pdf",
+            "type": "application/pdf"
+          },
+          "state": "READY",
+          "name": "test_pdf2.pdf",
+          "type": "application/pdf",
+          "size": 62707,
+          "wellDefined": true,
+          "url": "file:///android_asset/test_files/test_pdf2.pdf"
+        }
+      ],
+      "quotes": [],
+      "quickReplies": [],
+      "read": true,
+      "settings": {
+        "blockInput": false,
+        "masked": false
+      },
+      "authorized": true,
+      "massPushMessage": false,
+      "modified": "EDITED",
+      "origin": "threads"
+    },
+    {
+      "type": "MESSAGE",
+      "threadId": 304,
+      "providerIds": [],
+      "uuid": "20f8f1a3-6edb-4aa9-8d98-27e2dde324f1",
+      "operator": {
+        "id": 9,
+        "name": "Оператор Елена",
+        "alias": null,
+        "status": null,
+        "photoUrl": null,
+        "gender": "FEMALE",
+        "organizationUnit": "Skill Debet",
+        "role": "OPERATOR"
+      },
+      "text": "",
+      "formattedText": "Отредактированное сообщение.",
+      "receivedDate": "2023-03-22T08:48:18.047Z",
+      "attachments": [],
+      "quotes": [],
+      "quickReplies": [],
+      "read": true,
+      "settings": {
+        "blockInput": false,
+        "masked": false
+      },
+      "authorized": true,
+      "modified": "EDITED",
+      "massPushMessage": false,
+      "origin": "threads"
+    },
+    {
+      "type": "MESSAGE",
+      "receivedDate": "2023-03-22T08:51:18.047Z",
+      "uuid": "20f8f1a3-6edb-4aa9-8d98-27e2dde324f2",
+      "modified": "DELETED"
+    }
+  ],
+  "agentInfo": {
+    "action": "AGENT_LOOKUP",
+    "actionDate": "2023-03-22T08:51:43.124Z",
+    "thread": {
+      "id": 304,
+      "state": "UNASSIGNED"
+    },
+    "agent": null
+  },
+  "allowedToSendMessages": true
+}

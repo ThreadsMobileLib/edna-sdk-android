@@ -20,6 +20,7 @@ import io.edna.threads.demo.integrationCode.fragments.launch.LaunchFragment.Comp
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.parceler.Parcels
+import java.lang.ref.WeakReference
 
 class UserListFragment :
     BaseAppFragment<FragmentUserListBinding>(FragmentUserListBinding::inflate),
@@ -27,7 +28,7 @@ class UserListFragment :
 
     private val uiThemeProvider: UiThemeProvider by inject()
     private val viewModel: UserListViewModel by viewModel()
-    private var adapter: UserListAdapter? = null
+    private var adapter: WeakReference<UserListAdapter>? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -52,7 +53,7 @@ class UserListFragment :
     }
 
     override fun onClick(position: Int) {
-        val item = adapter?.getItem(position)
+        val item = adapter?.get()?.getItem(position)
         val args = Bundle()
         args.putParcelable(SELECTED_USER_KEY, Parcels.wrap(item))
         setFragmentResult(SELECTED_USER_KEY, args)
@@ -60,7 +61,7 @@ class UserListFragment :
     }
 
     override fun onEditItem(position: Int) {
-        val item = adapter?.getItem(position)
+        val item = adapter?.get()?.getItem(position)
         val navigationController = activity?.findNavController(R.id.nav_host_fragment_content_main)
         val args = Bundle()
         args.putParcelable(USER_KEY, Parcels.wrap(item))
@@ -68,18 +69,18 @@ class UserListFragment :
     }
 
     override fun onRemoveItem(position: Int) {
-        adapter?.getItem(position)?.let { viewModel.removeUser(it) }
+        adapter?.get()?.getItem(position)?.let { viewModel.removeUser(it) }
     }
 
-    private fun initView() {
-        binding.addUser.background = null
-        binding.addUser.setImageResource(R.drawable.ic_plus)
+    private fun initView() = getBinding()?.apply {
+        addUser.background = null
+        addUser.setImageResource(R.drawable.ic_plus)
         if (uiThemeProvider.isDarkThemeOn()) {
-            ColorsHelper.setTint(activity, binding.addUser, R.color.black_color)
-            binding.addUser.setBackgroundResource(R.drawable.buttons_bg_selector_dark)
+            ColorsHelper.setTint(activity, addUser, R.color.black_color)
+            addUser.setBackgroundResource(R.drawable.buttons_bg_selector_dark)
         } else {
-            ColorsHelper.setTint(activity, binding.addUser, R.color.white_color_fa)
-            binding.addUser.setBackgroundResource(R.drawable.buttons_bg_selector)
+            ColorsHelper.setTint(activity, addUser, R.color.white_color_fa)
+            addUser.setBackgroundResource(R.drawable.buttons_bg_selector)
         }
     }
 
@@ -91,10 +92,10 @@ class UserListFragment :
             ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
         )
         val touchHelper = ItemTouchHelper(simpleCallback)
-        touchHelper.attachToRecyclerView(binding.recyclerView)
+        touchHelper.attachToRecyclerView(getBinding()?.recyclerView)
     }
 
-    private fun setOnClickListeners() = with(binding) {
+    private fun setOnClickListeners() = getBinding()?.apply {
         backButton.setOnClickListener { viewModel.click(backButton) }
         addUser.setOnClickListener { viewModel.click(addUser) }
     }
@@ -109,20 +110,21 @@ class UserListFragment :
         }
     }
 
-    private fun createAdapter() = with(binding) {
-        adapter = UserListAdapter(this@UserListFragment)
-        recyclerView.adapter = adapter
+    private fun createAdapter() = getBinding()?.apply {
+        val newAdapter = UserListAdapter(WeakReference(this@UserListFragment))
+        adapter = WeakReference(newAdapter)
+        recyclerView.adapter = newAdapter
     }
 
-    private fun subscribeForData() {
+    private fun subscribeForData() = getBinding()?.apply {
         viewModel.userListLiveData.observe(viewLifecycleOwner) {
-            adapter?.addItems(it)
-            if (adapter?.itemCount == 0) {
-                binding.emptyView.isVisible = true
-                binding.recyclerView.isVisible = false
+            adapter?.get()?.addItems(it)
+            if (adapter?.get()?.itemCount == 0) {
+                emptyView.isVisible = true
+                recyclerView.isVisible = false
             } else {
-                binding.emptyView.isVisible = false
-                binding.recyclerView.isVisible = true
+                emptyView.isVisible = false
+                recyclerView.isVisible = true
             }
         }
         viewModel.backButtonClickedLiveData.observe(viewLifecycleOwner) {
