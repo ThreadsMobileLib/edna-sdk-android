@@ -17,6 +17,9 @@ import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import im.threads.business.UserInfoBuilder
+import im.threads.business.config.BaseConfig
+import im.threads.business.models.enums.ApiVersionEnum
+import im.threads.business.models.enums.ApiVersionEnum.Companion.defaultApiVersionEnum
 import im.threads.business.models.enums.CurrentUiTheme
 import im.threads.ui.core.ThreadsLib
 import io.edna.threads.demo.BuildConfig
@@ -43,8 +46,14 @@ class LaunchViewModel(
     val themeSelectorLiveData: VolatileLiveData<CurrentUiTheme> = VolatileLiveData()
     private val coroutineScope = CoroutineScope(Dispatchers.IO)
 
+    private var _selectedApiVersionLiveData = MutableLiveData(getSelectedApiVersion())
+    var selectedApiVersionLiveData: LiveData<String> = _selectedApiVersionLiveData
+
     private var _selectedUserLiveData = MutableLiveData(getSelectedUser())
     var selectedUserLiveData: LiveData<UserInfo?> = _selectedUserLiveData
+
+    val _preregisterLiveData: MutableLiveData<Boolean> = MutableLiveData()
+    val preregisterLiveData: LiveData<Boolean> = _preregisterLiveData
 
     private var _selectedServerLiveData = MutableLiveData(getSelectedServer())
     var selectedServerConfigLiveData: LiveData<ServerConfig?> = _selectedServerLiveData
@@ -65,6 +74,7 @@ class LaunchViewModel(
     override fun onStart(owner: LifecycleOwner) {
         super.onStart(owner)
         checkUiTheme()
+        initPreregisterCheckbox()
     }
 
     fun click(view: View) {
@@ -87,6 +97,17 @@ class LaunchViewModel(
         }
     }
 
+    fun callInitUser(user: UserInfo) {
+        ThreadsLib.getInstance().initUser(
+            UserInfoBuilder(user.userId!!)
+                .setAuthData(user.authorizationHeader, user.xAuthSchemaHeader)
+                .setClientData(user.userData)
+                .setClientIdSignature(user.signature)
+                .setAppMarker(user.appMarker),
+            isPreregisterEnabled
+        )
+    }
+
     private fun login(navigationController: NavController) {
         if (!ThreadsLib.isInitialized()) {
             return
@@ -97,6 +118,14 @@ class LaunchViewModel(
         val isUserHasRequiredFields = user?.userId != null
 
         if (serverConfig != null && isUserHasRequiredFields) {
+            var apiVersion: ApiVersionEnum? = _selectedApiVersionLiveData.value?.let {
+                ApiVersionEnum.createApiVersionEnum(it)
+            }
+            if (apiVersion == null) {
+                apiVersion = ApiVersionEnum.defaultApiVersionEnum
+            }
+            BaseConfig.getInstance().apiVersion = apiVersion
+
             ThreadsLib.changeServerSettings(
                 serverConfig.serverBaseUrl,
                 serverConfig.datastoreUrl,
@@ -105,14 +134,7 @@ class LaunchViewModel(
                 serverConfig.trustedSSLCertificates,
                 serverConfig.allowUntrustedSSLCertificate
             )
-            ThreadsLib.getInstance().initUser(
-                UserInfoBuilder(user?.userId!!)
-                    .setAuthData(user.authorizationHeader, user.xAuthSchemaHeader)
-                    .setClientData(user.userData)
-                    .setClientIdSignature(user.signature)
-                    .setAppMarker(user.appMarker),
-                false
-            )
+            if (user != null && !isPreregisterEnabled) callInitUser(user)
             navigationController.navigate(R.id.action_LaunchFragment_to_ChatAppFragment)
         }
     }
@@ -133,6 +155,10 @@ class LaunchViewModel(
             currentUiThemeLiveData.postValue(getCurrentUiTheme(uiTheme))
             applyCurrentUiTheme(uiTheme)
         }
+    }
+
+    private fun initPreregisterCheckbox() {
+        _preregisterLiveData.postValue(isPreregisterEnabled)
     }
 
     private fun getCurrentUiTheme(currentUiTheme: CurrentUiTheme): UiTheme {
@@ -180,6 +206,26 @@ class LaunchViewModel(
     fun subscribeForData(lifecycleOwner: LifecycleOwner) {
         selectedUserLiveData.observe(lifecycleOwner) {
             _enabledLoginButtonLiveData.postValue(it?.isAllFieldsFilled())
+        }
+    }
+
+    fun onPreregisterCheckedChange(isChecked: Boolean) {
+        isPreregisterEnabled = isChecked
+    }
+
+    internal fun setSelectedApiVersion(apiVersion: String?) {
+        if (!apiVersion.isNullOrBlank()) {
+            preferences.saveSelectedApiVersion(apiVersion)
+            _selectedApiVersionLiveData.postValue(apiVersion)
+        }
+    }
+
+    private fun getSelectedApiVersion(): String {
+        val apiVersion = preferences.getSelectedApiVersion()
+        return if (apiVersion.isNullOrBlank()) {
+            defaultApiVersionEnum.toString()
+        } else {
+            apiVersion
         }
     }
 
@@ -231,5 +277,9 @@ class LaunchViewModel(
         } else {
             null
         }
+    }
+
+    companion object {
+        var isPreregisterEnabled = false
     }
 }

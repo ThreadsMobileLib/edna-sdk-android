@@ -1,7 +1,7 @@
 <resources>
-    <dimen name="edittext_height">@dimen/height_50</dimen>
-    <dimen name="login_screen_top_margin_small">@dimen/margin_8</dimen>
-    <dimen name="login_screen_top_margin_medium">@dimen/margin_12</dimen>
-    <dimen name="login_screen_top_margin_large">@dimen/margin_24</dimen>
-    <dimen name="login_screen_buttons_height">@dimen/height_50</dimen>
+    <dimen name="edittext_height">@dimen/height_42</dimen>
+    <dimen name="login_screen_top_margin_small">@dimen/margin_5</dimen>
+    <dimen name="login_screen_top_margin_medium">@dimen/margin_8</dimen>
+    <dimen name="login_screen_top_margin_large">@dimen/margin_16</dimen>
+    <dimen name="login_screen_buttons_height">@dimen/height_42</dimen>
 </resources>

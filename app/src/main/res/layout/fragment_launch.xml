@@ -58,13 +58,24 @@
         app:layout_constraintTop_toBottomOf="@+id/serverButton" />
 
     <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/apiSelector"
+        style="@style/TextButtonsStyle"
+        android:layout_marginTop="@dimen/login_screen_top_margin_small"
+        android:drawableEnd="@drawable/ic_chevron_right"
+        android:gravity="center_vertical"
+        android:hint="@string/api_version"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userButton" />
+
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/login"
         style="@style/ButtonsStyle"
         android:layout_marginTop="@dimen/login_screen_top_margin_large"
         android:text="@string/login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userButton" />
+        app:layout_constraintTop_toBottomOf="@+id/apiSelector" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/count"
@@ -88,6 +99,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/login" />
+
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/preRegisterCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/pre_register"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/about"/>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/about"

@@ -3,7 +3,7 @@ package io.edna.threads.demo.appCode.business
 import android.content.Context
 import io.edna.threads.demo.R
 
-class StringsProvider(private val context: Context) {
+class StringsProvider(context: Context) {
     val textMessages = context.getString(R.string.text_messages)
     val connectionErrors = context.getString(R.string.connection_errors)
     val voiceMessages = context.getString(R.string.voice_messages)
