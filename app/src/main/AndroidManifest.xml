@@ -60,21 +60,6 @@
 
         <activity android:name=".appCode.test.TestChatActivity"/>
 
-        <service android:name=".appCode.push.CustomPushFcmIntentService"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-            </intent-filter>
-        </service>
-
-        <service
-            android:name=".appCode.push.CustomPushHcmIntentService"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="com.huawei.push.action.MESSAGING_EVENT" />
-            </intent-filter>
-        </service>
-
         <meta-data
             android:name="com.pushserver.android.logs"
             android:value="true" />

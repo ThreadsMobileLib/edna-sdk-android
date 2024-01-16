@@ -2,8 +2,6 @@ package io.edna.threads.demo.integrationCode
 
 import android.app.Application
 import android.content.Intent
-import com.google.firebase.crashlytics.FirebaseCrashlytics
-import com.google.firebase.perf.FirebasePerformance
 import im.threads.business.UserInfoBuilder
 import im.threads.business.core.UnreadMessagesCountListener
 import im.threads.business.logger.LoggerConfig
@@ -12,7 +10,6 @@ import im.threads.business.markdown.MarkdownConfig
 import im.threads.ui.ChatStyle
 import im.threads.ui.config.ConfigBuilder
 import im.threads.ui.core.ThreadsLib
-import io.edna.threads.demo.BuildConfig
 import io.edna.threads.demo.R
 import io.edna.threads.demo.appCode.business.PreferencesProvider
 import io.edna.threads.demo.appCode.business.ServersProvider
@@ -41,9 +38,6 @@ class EdnaThreadsApplication : Application() {
             androidContext(this@EdnaThreadsApplication)
             modules(appModule)
         }
-
-        FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(!BuildConfig.DEBUG)
-        FirebasePerformance.getInstance().isPerformanceCollectionEnabled = !BuildConfig.DEBUG
 
         if (asyncInit) {
             coroutineScope.launch {

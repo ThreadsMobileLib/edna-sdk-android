@@ -3,15 +3,12 @@ buildscript {
     ext.kotlin_version = '1.8.0'
     dependencies {
         classpath 'com.android.tools.build:gradle:7.2.1'
-        classpath 'com.google.gms:google-services:4.3.15'
         classpath 'net.researchgate:gradle-release:2.8.1'
         classpath 'com.huawei.agconnect:agcp:1.6.4.300'
         classpath "org.jlleitschuh.gradle:ktlint-gradle:11.5.1"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "org.jetbrains.kotlin:kotlin-allopen:$kotlin_version"
         classpath "dev.testify:plugin:2.0.0-alpha02"
-        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.9.2'
-        classpath 'com.google.firebase:perf-plugin:1.4.2'
     }
 }
 

@@ -2,12 +2,9 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'com.huawei.agconnect'
-    id 'com.google.gms.google-services'
     id 'kotlin-kapt'
     id 'kotlin-parcelize'
     id 'dev.testify'
-    id 'com.google.firebase.crashlytics'
-    id 'com.google.firebase.firebase-perf'
 }
 
 android {
@@ -27,15 +24,6 @@ android {
     testOptions {
         execution 'ANDROIDX_TEST_ORCHESTRATOR'
         animationsDisabled = true
-    }
-
-    signingConfigs {
-        debug {
-            keyAlias 'androiddebugkey'
-            keyPassword 'android'
-            storePassword 'android'
-            storeFile file('debug.keystore')
-        }
     }
 
     buildTypes {
@@ -113,14 +101,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$rootProject.viewmodelVersion"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$rootProject.viewmodelVersion"
 
-    // Firebase crashlytics and performance
-    implementation 'com.google.firebase:firebase-crashlytics:18.3.7'
-    implementation 'com.google.firebase:firebase-analytics:21.3.0'
-    implementation 'com.google.firebase:firebase-perf:20.3.2'
-
-    debugImplementation "com.edna.android:push-lite-debug:$pushVersion"
     debugImplementation "com.edna.android:push-lite-huawei-debug:$pushVersion"
-    releaseImplementation "com.edna.android:push-lite-release:$pushVersion"
     releaseImplementation "com.edna.android:push-lite-huawei-release:$pushVersion"
 
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.12'
