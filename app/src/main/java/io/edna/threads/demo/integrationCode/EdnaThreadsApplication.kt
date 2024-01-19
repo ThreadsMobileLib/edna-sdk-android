@@ -7,6 +7,7 @@ import im.threads.business.core.UnreadMessagesCountListener
 import im.threads.business.logger.LoggerConfig
 import im.threads.business.logger.LoggerRetentionPolicy
 import im.threads.business.markdown.MarkdownConfig
+import im.threads.business.models.enums.ApiVersionEnum
 import im.threads.ui.ChatStyle
 import im.threads.ui.config.ConfigBuilder
 import im.threads.ui.core.ThreadsLib
@@ -81,6 +82,7 @@ class EdnaThreadsApplication : Application() {
             configBuilder.trustedSSLCertificates(server.trustedSSLCertificates)
             configBuilder.allowUntrustedSSLCertificates(server.allowUntrustedSSLCertificate)
             configBuilder.setNewChatCenterApi()
+            configBuilder.setApiVersion(ApiVersionEnum.V18)
         }
 
         ThreadsLib.init(configBuilder)
