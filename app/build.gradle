@@ -14,7 +14,7 @@ android {
         applicationId "io.edna.threads.demo"
         minSdk rootProject.minSdkVersion
         targetSdk rootProject.targetSdkVersion
-        versionName "1.0.4"
+        versionName "1.0.3"
         versionCode 1
 
         testInstrumentationRunner "io.edna.threads.demo.TestNoAnimRunner"
@@ -100,9 +100,6 @@ dependencies {
 
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$rootProject.viewmodelVersion"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$rootProject.viewmodelVersion"
-
-    debugImplementation "com.edna.android:push-lite-huawei-debug:$pushVersion"
-    releaseImplementation "com.edna.android:push-lite-huawei-release:$pushVersion"
 
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.12'
 
