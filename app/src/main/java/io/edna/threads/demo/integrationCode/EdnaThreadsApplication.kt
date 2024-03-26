@@ -204,6 +204,18 @@ class EdnaThreadsApplication : Application() {
             null,
             null
         )
+        setOutgoingQuoteViewStyle(
+            R.color.dark_links,
+            R.color.black_color,
+            R.color.alt_threads_chat_toolbar_hint,
+            R.color.white_color_fa
+        )
+        setIncomingQuoteViewStyle(
+            R.color.dark_links,
+            R.color.black_color,
+            R.color.alt_threads_chat_toolbar_hint,
+            R.color.white_color_fa
+        )
     }
 
     private fun getMainChatTheme(): ChatStyle {
