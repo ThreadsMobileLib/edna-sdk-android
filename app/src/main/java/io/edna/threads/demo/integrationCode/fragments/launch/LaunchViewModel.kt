@@ -67,6 +67,7 @@ class LaunchViewModel(
         getSelectedServer()?.let { server ->
             if (server.isAllFieldsFilled()) {
                 _selectedServerLiveData.postValue(server)
+                changeServerSettings(server)
             }
         }
     }
@@ -125,18 +126,22 @@ class LaunchViewModel(
                 apiVersion = ApiVersionEnum.defaultApiVersionEnum
             }
             BaseConfig.getInstance().apiVersion = apiVersion
+            changeServerSettings(serverConfig)
 
-            ThreadsLib.changeServerSettings(
-                serverConfig.serverBaseUrl,
-                serverConfig.datastoreUrl,
-                serverConfig.threadsGateUrl,
-                serverConfig.threadsGateProviderUid,
-                serverConfig.trustedSSLCertificates,
-                serverConfig.allowUntrustedSSLCertificate
-            )
             if (user != null && !isPreregisterEnabled) callInitUser(user)
             navigationController.navigate(R.id.action_LaunchFragment_to_ChatAppFragment)
         }
+    }
+
+    private fun changeServerSettings(serverConfig: ServerConfig) {
+        ThreadsLib.changeServerSettings(
+            serverConfig.serverBaseUrl,
+            serverConfig.datastoreUrl,
+            serverConfig.threadsGateUrl,
+            serverConfig.threadsGateProviderUid,
+            serverConfig.trustedSSLCertificates,
+            serverConfig.allowUntrustedSSLCertificate
+        )
     }
 
     private fun applyCurrentUiTheme(currentUiTheme: CurrentUiTheme) {
@@ -199,6 +204,7 @@ class LaunchViewModel(
             if (server != null && server.isAllFieldsFilled()) {
                 _selectedServerLiveData.postValue(server)
                 serversProvider.saveSelectedServer(server)
+                changeServerSettings(server)
             }
         }
     }

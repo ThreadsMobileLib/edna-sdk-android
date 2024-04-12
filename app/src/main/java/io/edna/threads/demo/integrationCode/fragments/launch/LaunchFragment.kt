@@ -87,7 +87,8 @@ class LaunchFragment : BaseAppFragment<FragmentLaunchBinding>(FragmentLaunchBind
 
     private fun subscribeForData() = getBinding()?.apply {
         viewModel.selectedApiVersionLiveData.observe(viewLifecycleOwner) {
-            apiSelector.text = "${getString(R.string.api_version)}: $it"
+            val apiVersionText = "${getString(R.string.api_version)}: $it"
+            apiSelector.text = apiVersionText
         }
         viewModel.selectedServerConfigLiveData.observe(viewLifecycleOwner) {
             serverButton.text = it?.name
