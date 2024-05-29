@@ -8,6 +8,7 @@ import android.content.IntentFilter
 import android.os.Bundle
 import android.view.Menu
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.widget.PopupMenu
 import androidx.core.content.ContextCompat
@@ -114,7 +115,14 @@ class LaunchFragment : BaseAppFragment<FragmentLaunchBinding>(FragmentLaunchBind
 
     private fun initPreregisterCheckBox() = getBinding()?.apply {
         preRegisterCheckBox.setOnClickListener {
-            viewModel.onPreregisterCheckedChange(preRegisterCheckBox.isChecked)
+            val isChecked = preRegisterCheckBox.isChecked
+            viewModel.onPreregisterCheckedChange(isChecked)
+
+            if (isChecked) {
+                Toast
+                    .makeText(context, getString(R.string.pre_register_selected_hint), Toast.LENGTH_LONG)
+                    .show()
+            }
         }
     }
 

@@ -71,4 +71,5 @@
     <string name="remove">Удалить</string>
     <string name="edit">Изменить</string>
     <string name="pre_register">Предварительная регистрация</string>
+    <string name="pre_register_selected_hint">Необходимо установить или заново переустановить пользователя</string>
 </resources>
