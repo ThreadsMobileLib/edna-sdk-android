@@ -2,9 +2,12 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'com.huawei.agconnect'
+    id 'com.google.gms.google-services'
     id 'kotlin-kapt'
     id 'kotlin-parcelize'
     id 'dev.testify'
+    id 'com.google.firebase.crashlytics'
+    id 'com.google.firebase.firebase-perf'
 }
 
 android {
@@ -14,7 +17,7 @@ android {
         applicationId "io.edna.threads.demo"
         minSdk rootProject.minSdkVersion
         targetSdk rootProject.targetSdkVersion
-        versionName "1.0.3"
+        versionName "1.0.6"
         versionCode 1
 
         testInstrumentationRunner "io.edna.threads.demo.TestNoAnimRunner"
@@ -24,6 +27,15 @@ android {
     testOptions {
         execution 'ANDROIDX_TEST_ORCHESTRATOR'
         animationsDisabled = true
+    }
+
+    signingConfigs {
+        debug {
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
+            storePassword 'android'
+            storeFile file('debug.keystore')
+        }
     }
 
     buildTypes {
@@ -100,6 +112,17 @@ dependencies {
 
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$rootProject.viewmodelVersion"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$rootProject.viewmodelVersion"
+
+    // Firebase crashlytics and performance
+    implementation 'com.google.firebase:firebase-crashlytics:18.3.7'
+    implementation 'com.google.firebase:firebase-analytics:21.3.0'
+    implementation 'com.google.firebase:firebase-perf:20.3.2'
+    implementation "com.google.firebase:firebase-messaging-ktx:$rootProject.firebaseMessagingVersion"
+    implementation "com.huawei.hms:push:$rootProject.hmsMessagingVersion"
+
+    // Microsoft Appcenter
+    implementation "com.microsoft.appcenter:appcenter-analytics:${appCenterSdkVersion}"
+    implementation "com.microsoft.appcenter:appcenter-crashes:${appCenterSdkVersion}"
 
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.12'
 
