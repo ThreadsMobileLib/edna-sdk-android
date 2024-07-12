@@ -36,6 +36,6 @@ class DemoSamplesViewModel(
     }
 
     private fun prepareFragment() {
-        chatFragmentMutableLiveData.value = ChatFragment.newInstance(OpenWay.FROM_PUSH)
+        chatFragmentMutableLiveData.value = ChatFragment.newInstance(OpenWay.DEFAULT)
     }
 }

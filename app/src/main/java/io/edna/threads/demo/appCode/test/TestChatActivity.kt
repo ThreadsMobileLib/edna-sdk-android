@@ -15,7 +15,7 @@ class TestChatActivity : AppCompatActivity() {
         saveJsonMock(intent.extras?.getString(jsonMockExtraKey))
 
         supportFragmentManager.beginTransaction()
-            .replace(R.id.chatFragmentContainer, ChatFragment.newInstance(OpenWay.FROM_PUSH))
+            .replace(R.id.chatFragmentContainer, ChatFragment.newInstance(OpenWay.DEFAULT))
             .commitNow()
     }
 

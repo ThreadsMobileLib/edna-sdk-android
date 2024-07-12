@@ -14,7 +14,7 @@ class ChatAppFragment : BaseAppFragment<FragmentChatBinding>(FragmentChatBinding
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         subscribeToGlobalBackClick()
-        ChatFragment.newInstance(OpenWay.FROM_PUSH).let {
+        ChatFragment.newInstance(OpenWay.DEFAULT).let {
             fragment = WeakReference(it)
             childFragmentManager
                 .beginTransaction()
