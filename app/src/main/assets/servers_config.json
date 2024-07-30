@@ -3,9 +3,9 @@
     {
       "name": "Default",
       "threadsGateProviderUid": "MOBILE1_93jLrvripZeDXSKJzdRfEu9QpMMvIe5LKKHQl",
-      "serverBaseUrl": "http://arm.mobile1.chc.dte/",
+      "serverBaseUrl": "http://mobile1.chc.dte/",
       "datastoreUrl": "http://datastore.mobile1.chc.dte/",
-      "threadsGateUrl": "http://tg.mobile1.chc.dte/socket"
+      "threadsGateUrl": "ws://mobile1.chc.dte/socket"
     }
   ]
 }

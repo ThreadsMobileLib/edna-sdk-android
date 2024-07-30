@@ -24,6 +24,10 @@ import io.edna.threads.demo.appCode.business.StringsProvider
 import io.edna.threads.demo.appCode.fragments.BaseAppFragment
 import io.edna.threads.demo.appCode.models.UiTheme
 import io.edna.threads.demo.databinding.FragmentLaunchBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -109,6 +113,7 @@ class LaunchFragment : BaseAppFragment<FragmentLaunchBinding>(FragmentLaunchBind
         viewModel.currentUiThemeLiveData.observe(viewLifecycleOwner) { setUiThemeDependentViews(it) }
         viewModel.themeSelectorLiveData.observe(viewLifecycleOwner) { showUiThemesSelector(it) }
         viewModel.preregisterLiveData.observe(viewLifecycleOwner) { setValueToPreregisterCheckBox(it) }
+        viewModel.restartAppLiveData.observe(viewLifecycleOwner) { restartApp(it) }
         viewLifecycleOwner.lifecycle.addObserver(viewModel)
         viewModel.subscribeForData(viewLifecycleOwner)
     }
@@ -246,6 +251,26 @@ class LaunchFragment : BaseAppFragment<FragmentLaunchBinding>(FragmentLaunchBind
             "v${BuildConfig.VERSION_NAME} " +
             "(${BuildConfig.VERSION_CODE})" +
             "/ ChatCenter SDK ${ThreadsLib.getLibVersion()}"
+    }
+
+    private fun restartApp(isRestart: Boolean) {
+        if (isRestart) {
+            CoroutineScope(Dispatchers.Main).launch {
+                Toast.makeText(
+                    context,
+                    context?.getString(R.string.app_will_be_restarted),
+                    Toast.LENGTH_SHORT
+                ).show()
+                delay(2000)
+
+                context?.apply {
+                    val intent = packageManager.getLaunchIntentForPackage(packageName)
+                    intent?.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+                    startActivity(intent)
+                    android.os.Process.killProcess(android.os.Process.myPid())
+                }
+            }
+        }
     }
 
     fun onThreadsLibInitialized() {

@@ -1,6 +1,7 @@
 package io.edna.threads.demo.integrationCode.fragments.launch
 
 import android.app.Activity
+import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import android.os.Parcelable
@@ -16,11 +17,13 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
+import com.google.firebase.messaging.FirebaseMessaging
 import im.threads.business.UserInfoBuilder
 import im.threads.business.config.BaseConfig
 import im.threads.business.models.enums.ApiVersionEnum
 import im.threads.business.models.enums.ApiVersionEnum.Companion.defaultApiVersionEnum
 import im.threads.business.models.enums.CurrentUiTheme
+import im.threads.ui.ChatCenterPushMessageHelper
 import im.threads.ui.core.ThreadsLib
 import io.edna.threads.demo.BuildConfig
 import io.edna.threads.demo.R
@@ -34,6 +37,7 @@ import io.edna.threads.demo.appCode.models.UiTheme
 import io.edna.threads.demo.appCode.models.UserInfo
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.parceler.Parcels
 
@@ -61,12 +65,14 @@ class LaunchViewModel(
     private var _enabledLoginButtonLiveData = MutableLiveData(false)
     var enabledLoginButtonLiveData: LiveData<Boolean> = _enabledLoginButtonLiveData
 
+    private var _restartAppLiveData = MutableLiveData(false)
+    var restartAppLiveData: LiveData<Boolean> = _restartAppLiveData
+
     override fun onCreate(owner: LifecycleOwner) {
         super.onCreate(owner)
         preferences.cleanJsonOnPreferences()
         getSelectedServer()?.let { server ->
             if (server.isAllFieldsFilled()) {
-                _selectedServerLiveData.postValue(server)
                 changeServerSettings(server)
             }
         }
@@ -86,7 +92,7 @@ class LaunchViewModel(
             R.id.demonstrations -> navigationController.navigate(R.id.action_LaunchFragment_to_DemonstrationsListFragment)
             R.id.uiTheme -> themeSelectorLiveData.postValue(ThreadsLib.getInstance().currentUiTheme)
             R.id.userButton -> navigationController.navigate(R.id.action_LaunchFragment_to_UserListFragment)
-            R.id.login -> { login(navigationController) }
+            R.id.login -> { login(navigationController, view.context) }
         }
     }
 
@@ -109,7 +115,7 @@ class LaunchViewModel(
         )
     }
 
-    private fun login(navigationController: NavController) {
+    private fun login(navigationController: NavController, context: Context) {
         if (!ThreadsLib.isInitialized()) {
             return
         }
@@ -131,17 +137,6 @@ class LaunchViewModel(
             if (user != null && !isPreregisterEnabled) callInitUser(user)
             navigationController.navigate(R.id.action_LaunchFragment_to_ChatAppFragment)
         }
-    }
-
-    private fun changeServerSettings(serverConfig: ServerConfig) {
-        ThreadsLib.changeServerSettings(
-            serverConfig.serverBaseUrl,
-            serverConfig.datastoreUrl,
-            serverConfig.threadsGateUrl,
-            serverConfig.threadsGateProviderUid,
-            serverConfig.trustedSSLCertificates,
-            serverConfig.allowUntrustedSSLCertificate
-        )
     }
 
     private fun applyCurrentUiTheme(currentUiTheme: CurrentUiTheme) {
@@ -202,10 +197,18 @@ class LaunchViewModel(
                 server = serversProvider.getSelectedServer()
             }
             if (server != null && server.isAllFieldsFilled()) {
-                _selectedServerLiveData.postValue(server)
-                serversProvider.saveSelectedServer(server)
                 changeServerSettings(server)
             }
+        }
+    }
+
+    private fun changeServerSettings(server: ServerConfig) {
+        if (serversProvider.getSelectedServer()?.name == server.name) {
+            return
+        } else {
+            _selectedServerLiveData.postValue(server)
+            serversProvider.saveSelectedServer(server)
+            _restartAppLiveData.postValue(true)
         }
     }
 

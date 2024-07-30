@@ -72,4 +72,5 @@
     <string name="edit">Изменить</string>
     <string name="pre_register">Предварительная регистрация</string>
     <string name="pre_register_selected_hint">Необходимо установить или заново переустановить пользователя</string>
+    <string name="app_will_be_restarted">Приложение будет перезапущено</string>
 </resources>
