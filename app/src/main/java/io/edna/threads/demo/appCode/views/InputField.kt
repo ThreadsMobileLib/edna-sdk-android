@@ -16,12 +16,9 @@ import androidx.core.view.isVisible
 import com.google.android.material.textfield.TextInputEditText
 import io.edna.threads.demo.R
 import io.edna.threads.demo.R.styleable.InputField
-import io.edna.threads.demo.appCode.business.UiThemeProvider
-import org.koin.java.KoinJavaComponent
+import io.edna.threads.demo.appCode.extensions.isDarkThemeOn
 
 class InputField : FrameLayout, View.OnFocusChangeListener, TextWatcher {
-
-    private val uiThemeProvider: UiThemeProvider by KoinJavaComponent.inject(UiThemeProvider::class.java)
     private var isInFocus: Boolean = false
     private var textInputField: TextInputEditText
     private var hintText: AppCompatTextView
@@ -61,7 +58,7 @@ class InputField : FrameLayout, View.OnFocusChangeListener, TextWatcher {
             textInputField.requestFocus()
             showKeyboard(textInputField)
         }
-        if (uiThemeProvider.isDarkThemeOn()) {
+        if (context.isDarkThemeOn()) {
             commonLayout.setBackgroundResource(R.color.black_color_2d)
             textInputField.setTextColor(ContextCompat.getColor(context, R.color.white_color_fa))
         } else {

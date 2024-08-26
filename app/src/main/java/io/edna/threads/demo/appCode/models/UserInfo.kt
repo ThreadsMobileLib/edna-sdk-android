@@ -11,6 +11,7 @@ data class UserInfo(
     var signature: String? = null,
     var authorizationHeader: String? = null,
     var xAuthSchemaHeader: String? = null,
+    var userName: String? = null,
     var isShowMenu: Boolean = false
 ) : Parcelable {
 
@@ -20,6 +21,7 @@ data class UserInfo(
         "$signature," +
         "$authorizationHeader," +
         "$xAuthSchemaHeader," +
+        "$userName, " +
         "$isShowMenu"
 
     fun isAllFieldsFilled(): Boolean {
@@ -37,7 +39,8 @@ data class UserInfo(
                 other.signature == signature &&
                 other.authorizationHeader == authorizationHeader &&
                 other.xAuthSchemaHeader == xAuthSchemaHeader &&
-                other.userData == userData
+                other.userData == userData &&
+                other.userName == userName
         }
         return false
     }
@@ -50,6 +53,7 @@ data class UserInfo(
             signature,
             authorizationHeader,
             xAuthSchemaHeader,
+            userName,
             isShowMenu
         )
     }

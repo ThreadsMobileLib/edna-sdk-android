@@ -8,15 +8,13 @@ import androidx.recyclerview.widget.RecyclerView
 import im.threads.ui.utils.ColorsHelper
 import io.edna.threads.demo.R
 import io.edna.threads.demo.appCode.adapters.ListItemClickListener
-import io.edna.threads.demo.appCode.business.UiThemeProvider
+import io.edna.threads.demo.appCode.extensions.isDarkThemeOn
 import io.edna.threads.demo.appCode.models.ServerConfig
 import io.edna.threads.demo.databinding.ServerListItemBinding
-import org.koin.java.KoinJavaComponent.inject
 
 class ServerListAdapter(private val onItemClickListener: ListItemClickListener) :
     RecyclerView.Adapter<ServerListAdapter.ServerItemHolder>() {
 
-    private val uiThemeProvider: UiThemeProvider by inject(UiThemeProvider::class.java)
     private val list: MutableList<ServerConfig> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ServerItemHolder {
@@ -52,7 +50,7 @@ class ServerListAdapter(private val onItemClickListener: ListItemClickListener) 
             (list[position] as? ServerConfig)?.let { item ->
                 binding.name.text = item.name
                 binding.description.text = item.serverBaseUrl
-                if (uiThemeProvider.isDarkThemeOn()) {
+                if (binding.root.context.isDarkThemeOn()) {
                     binding.name.setTextColor(
                         ContextCompat.getColor(
                             binding.root.context,

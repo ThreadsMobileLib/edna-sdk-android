@@ -6,9 +6,8 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import io.edna.threads.demo.R
-import io.edna.threads.demo.appCode.business.UiThemeProvider
+import io.edna.threads.demo.appCode.extensions.isDarkThemeOn
 import io.edna.threads.demo.appCode.views.ItemDecorator
-import org.koin.java.KoinJavaComponent
 
 class EccTouchHelperCallBack(
     private val context: Context,
@@ -16,8 +15,6 @@ class EccTouchHelperCallBack(
     dragDirs: Int,
     swipeDirs: Int
 ) : ItemTouchHelper.SimpleCallback(dragDirs, swipeDirs) {
-
-    private val uiThemeProvider: UiThemeProvider by KoinJavaComponent.inject(UiThemeProvider::class.java)
 
     override fun onMove(
         recyclerView: RecyclerView,
@@ -34,7 +31,7 @@ class EccTouchHelperCallBack(
         actionState: Int,
         isCurrentlyActive: Boolean
     ) {
-        val defaultWhiteColor = if (uiThemeProvider.isDarkThemeOn()) {
+        val defaultWhiteColor = if (context.isDarkThemeOn()) {
             ContextCompat.getColor(context, R.color.white_color_fa)
         } else {
             ContextCompat.getColor(context, R.color.black_color)

@@ -13,11 +13,10 @@ import io.edna.threads.demo.R
 import io.edna.threads.demo.appCode.adapters.EccTouchHelperCallBack
 import io.edna.threads.demo.appCode.adapters.ListItemClickListener
 import io.edna.threads.demo.appCode.adapters.userList.UserListAdapter
-import io.edna.threads.demo.appCode.business.UiThemeProvider
+import io.edna.threads.demo.appCode.extensions.isDarkThemeOn
 import io.edna.threads.demo.appCode.fragments.BaseAppFragment
 import io.edna.threads.demo.databinding.FragmentUserListBinding
 import io.edna.threads.demo.integrationCode.fragments.launch.LaunchFragment.Companion.SELECTED_USER_KEY
-import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.parceler.Parcels
 import java.lang.ref.WeakReference
@@ -26,7 +25,6 @@ class UserListFragment :
     BaseAppFragment<FragmentUserListBinding>(FragmentUserListBinding::inflate),
     ListItemClickListener {
 
-    private val uiThemeProvider: UiThemeProvider by inject()
     private val viewModel: UserListViewModel by viewModel()
     private var adapter: WeakReference<UserListAdapter>? = null
 
@@ -75,7 +73,7 @@ class UserListFragment :
     private fun initView() = getBinding()?.apply {
         addUser.background = null
         addUser.setImageResource(R.drawable.ic_plus)
-        if (uiThemeProvider.isDarkThemeOn()) {
+        if (context?.isDarkThemeOn() == true) {
             ColorsHelper.setTint(activity, addUser, R.color.black_color)
             addUser.setBackgroundResource(R.drawable.buttons_bg_selector_dark)
         } else {

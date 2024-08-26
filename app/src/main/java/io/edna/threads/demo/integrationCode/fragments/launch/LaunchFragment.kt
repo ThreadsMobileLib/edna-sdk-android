@@ -9,7 +9,6 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.View
 import android.widget.Toast
-import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.widget.PopupMenu
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
@@ -22,7 +21,6 @@ import io.edna.threads.demo.BuildConfig
 import io.edna.threads.demo.R
 import io.edna.threads.demo.appCode.business.StringsProvider
 import io.edna.threads.demo.appCode.fragments.BaseAppFragment
-import io.edna.threads.demo.appCode.models.UiTheme
 import io.edna.threads.demo.databinding.FragmentLaunchBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -78,12 +76,10 @@ class LaunchFragment : BaseAppFragment<FragmentLaunchBinding>(FragmentLaunchBind
     }
 
     private fun setOnClickListeners() = getBinding()?.apply {
-        uiTheme.setOnClickListener { viewModel.click(uiTheme) }
         serverButton.setOnClickListener { viewModel.click(serverButton) }
         userButton.setOnClickListener { viewModel.click(userButton) }
         demonstrations.setOnClickListener { viewModel.click(demonstrations) }
         apiSelector.setOnClickListener { showSelectApiVersionMenu() }
-        uiTheme.setOnClickListener { viewModel.click(uiTheme) }
         login.setOnClickListener {
             viewModel.click(login)
             setUnreadCount(0)
@@ -110,7 +106,6 @@ class LaunchFragment : BaseAppFragment<FragmentLaunchBinding>(FragmentLaunchBind
     }
 
     private fun initObservers() {
-        viewModel.currentUiThemeLiveData.observe(viewLifecycleOwner) { setUiThemeDependentViews(it) }
         viewModel.themeSelectorLiveData.observe(viewLifecycleOwner) { showUiThemesSelector(it) }
         viewModel.preregisterLiveData.observe(viewLifecycleOwner) { setValueToPreregisterCheckBox(it) }
         viewModel.restartAppLiveData.observe(viewLifecycleOwner) { restartApp(it) }
@@ -147,33 +142,6 @@ class LaunchFragment : BaseAppFragment<FragmentLaunchBinding>(FragmentLaunchBind
     private fun clearResultListeners() {
         clearFragmentResultListener(SELECTED_USER_KEY)
         clearFragmentResultListener(SELECTED_SERVER_CONFIG_KEY)
-    }
-
-    private fun setUiThemeDependentViews(theme: UiTheme) = getBinding()?.apply {
-        context?.let { context ->
-            when (theme) {
-                UiTheme.LIGHT -> {
-                    title.setTextColor(ContextCompat.getColor(context, R.color.black_color))
-                    about.setTextColor(ContextCompat.getColor(context, R.color.info_text_color))
-                    uiTheme.setImageDrawable(
-                        AppCompatResources.getDrawable(
-                            context,
-                            R.drawable.dark_theme
-                        )
-                    )
-                }
-                UiTheme.DARK -> {
-                    title.setTextColor(ContextCompat.getColor(context, R.color.white_color_fa))
-                    about.setTextColor(ContextCompat.getColor(context, R.color.gray_color_b7))
-                    uiTheme.setImageDrawable(
-                        AppCompatResources.getDrawable(
-                            context,
-                            R.drawable.light_theme
-                        )
-                    )
-                }
-            }
-        }
     }
 
     private fun showSelectApiVersionMenu() {

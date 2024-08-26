@@ -12,11 +12,10 @@ import io.edna.threads.demo.R
 import io.edna.threads.demo.appCode.adapters.EccTouchHelperCallBack
 import io.edna.threads.demo.appCode.adapters.ListItemClickListener
 import io.edna.threads.demo.appCode.adapters.serverList.ServerListAdapter
-import io.edna.threads.demo.appCode.business.UiThemeProvider
+import io.edna.threads.demo.appCode.extensions.isDarkThemeOn
 import io.edna.threads.demo.appCode.fragments.BaseAppFragment
 import io.edna.threads.demo.databinding.FragmentServerListBinding
 import io.edna.threads.demo.integrationCode.fragments.launch.LaunchFragment.Companion.SELECTED_SERVER_CONFIG_KEY
-import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.parceler.Parcels
 import java.lang.ref.WeakReference
@@ -25,7 +24,6 @@ class ServerListFragment :
     BaseAppFragment<FragmentServerListBinding>(FragmentServerListBinding::inflate),
     ListItemClickListener {
 
-    private val uiThemeProvider: UiThemeProvider by inject()
     private val viewModel: ServerListViewModel by viewModel()
     private var adapter: WeakReference<ServerListAdapter>? = null
 
@@ -101,7 +99,7 @@ class ServerListFragment :
     private fun initView() = getBinding()?.apply {
         addServer.background = null
         addServer.setImageResource(R.drawable.ic_plus)
-        if (uiThemeProvider.isDarkThemeOn()) {
+        if (context?.isDarkThemeOn() == true) {
             ColorsHelper.setTint(activity, addServer, R.color.black_color)
             addServer.setBackgroundResource(R.drawable.buttons_bg_selector_dark)
         } else {

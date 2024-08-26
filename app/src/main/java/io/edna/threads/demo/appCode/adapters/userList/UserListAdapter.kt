@@ -8,16 +8,14 @@ import androidx.recyclerview.widget.RecyclerView
 import im.threads.ui.utils.ColorsHelper
 import io.edna.threads.demo.R
 import io.edna.threads.demo.appCode.adapters.ListItemClickListener
-import io.edna.threads.demo.appCode.business.UiThemeProvider
+import io.edna.threads.demo.appCode.extensions.isDarkThemeOn
 import io.edna.threads.demo.appCode.models.UserInfo
 import io.edna.threads.demo.databinding.UserListItemBinding
-import org.koin.java.KoinJavaComponent.inject
 import java.lang.ref.WeakReference
 
 class UserListAdapter(private val onItemClickListener: WeakReference<ListItemClickListener>) :
     RecyclerView.Adapter<UserListAdapter.UserItemHolder>() {
 
-    private val uiThemeProvider: UiThemeProvider by inject(UiThemeProvider::class.java)
     private val list: MutableList<UserInfo> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserItemHolder {
@@ -52,7 +50,7 @@ class UserListAdapter(private val onItemClickListener: WeakReference<ListItemCli
         fun onBind(position: Int) {
             (list[position] as? UserInfo)?.let { item ->
                 binding.userId.text = item.userId
-                if (uiThemeProvider.isDarkThemeOn()) {
+                if (binding.root.context.isDarkThemeOn()) {
                     binding.userId.setTextColor(ContextCompat.getColor(binding.root.context, R.color.white_color_fa))
                     ColorsHelper.setTint(binding.root.context, binding.image, R.color.white_color_fa)
                 } else {
