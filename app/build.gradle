@@ -19,7 +19,6 @@ android {
         targetSdk rootProject.targetSdkVersion
         versionName "1.0.6"
         versionCode 1
-
         testInstrumentationRunner "io.edna.threads.demo.TestNoAnimRunner"
         testInstrumentationRunnerArguments clearPackageData: 'true'
     }
@@ -59,6 +58,7 @@ android {
             minifyEnabled true
             buildConfigField "java.util.concurrent.atomic.AtomicReference", "TEST_DATA", "new java.util.concurrent.atomic.AtomicReference<String>()"
             buildConfigField "java.util.concurrent.atomic.AtomicBoolean", "IS_MOCK_WEB_SERVER", "new java.util.concurrent.atomic.AtomicBoolean(false)"
+
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.debug
         }

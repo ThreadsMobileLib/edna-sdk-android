@@ -6,6 +6,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import im.threads.business.UserInfoBuilder
+import im.threads.business.core.ContextHolder
+import im.threads.ui.config.ConfigBuilder
 import im.threads.ui.core.ThreadsLib
 import io.edna.threads.demo.R
 import io.edna.threads.demo.appCode.business.StringsProvider
@@ -14,6 +16,11 @@ import io.edna.threads.demo.appCode.business.mockJsonProvider.CurrentJsonProvide
 import io.edna.threads.demo.appCode.business.mockJsonProvider.SamplesJsonProvider
 import io.edna.threads.demo.appCode.models.DemoSamplesListItem
 import io.edna.threads.demo.appCode.models.DemoSamplesListItem.TEXT
+import io.edna.threads.demo.appCode.models.ServerConfig
+import io.edna.threads.demo.appCode.themes.ChatThemes
+import io.edna.threads.demo.integrationCode.ednaMockThreadsGateProviderUid
+import io.edna.threads.demo.integrationCode.ednaMockThreadsGateUrl
+import io.edna.threads.demo.integrationCode.ednaMockUrl
 
 class DemoSamplesListViewModel(
     private val stringsProvider: StringsProvider,
@@ -26,7 +33,27 @@ class DemoSamplesListViewModel(
 
     override fun onCreate(owner: LifecycleOwner) {
         super.onCreate(owner)
+        checkSdkInit()
         createData()
+    }
+
+    private fun checkSdkInit() {
+        if (!ThreadsLib.isInitialized()) {
+            val demoServerConfig = getDefaultServerConfig()
+            val config = ConfigBuilder(ContextHolder.context).apply {
+                threadsGateUrl(demoServerConfig.threadsGateUrl)
+                datastoreUrl(demoServerConfig.datastoreUrl)
+                serverBaseUrl(demoServerConfig.serverBaseUrl)
+                threadsGateProviderUid(demoServerConfig.threadsGateProviderUid)
+            }
+            ThreadsLib.init(config)
+            ThreadsLib.getInstance().apply {
+                // Кастомизация внешнего вида. Поддержка темной темы
+                val themes = ChatThemes()
+                applyLightTheme(themes.getLightChatTheme())
+                applyDarkTheme(themes.getDarkChatTheme())
+            }
+        }
     }
 
     fun onItemClick(item: DemoSamplesListItem) {
@@ -51,4 +78,13 @@ class DemoSamplesListViewModel(
             )
         )
     }
+
+    private fun getDefaultServerConfig() = ServerConfig(
+        name = "TestServer",
+        threadsGateProviderUid = ednaMockThreadsGateProviderUid,
+        datastoreUrl = ednaMockUrl,
+        serverBaseUrl = ednaMockUrl,
+        threadsGateUrl = ednaMockThreadsGateUrl,
+        isShowMenu = true
+    )
 }

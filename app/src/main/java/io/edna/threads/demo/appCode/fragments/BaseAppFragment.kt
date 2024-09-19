@@ -1,9 +1,11 @@
 package io.edna.threads.demo.appCode.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
@@ -16,6 +18,10 @@ import im.threads.ui.fragments.ChatFragment
 import io.edna.threads.demo.R
 import io.edna.threads.demo.appCode.fragments.demoSamplesList.DemoSamplesListFragment
 import io.edna.threads.demo.integrationCode.fragments.chatFragment.ChatAppFragment
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import java.lang.ref.WeakReference
 
 abstract class BaseAppFragment<T : ViewBinding>(
@@ -38,6 +44,11 @@ abstract class BaseAppFragment<T : ViewBinding>(
         setToolbarColor()
     }
 
+    override fun onResume() {
+        super.onResume()
+        checkIsAppShouldBeRestarted()
+    }
+
     protected fun subscribeToGlobalBackClick() {
         activity?.onBackPressedDispatcher?.addCallback(
             viewLifecycleOwner,
@@ -52,6 +63,13 @@ abstract class BaseAppFragment<T : ViewBinding>(
     override fun onDestroyView() {
         binding = null
         super.onDestroyView()
+    }
+
+    override fun onDestroy() {
+        if (this is DemoSamplesListFragment) {
+            isAppShouldBeRestarted = true
+        }
+        super.onDestroy()
     }
 
     protected open fun navigateUp() {
@@ -83,5 +101,33 @@ abstract class BaseAppFragment<T : ViewBinding>(
         }
     }
 
+    protected fun restartApp() {
+        CoroutineScope(Dispatchers.Main).launch {
+            Toast.makeText(
+                context,
+                context?.getString(R.string.app_will_be_restarted),
+                Toast.LENGTH_SHORT
+            ).show()
+            delay(2000)
+
+            context?.apply {
+                val intent = packageManager.getLaunchIntentForPackage(packageName)
+                intent?.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+                startActivity(intent)
+                android.os.Process.killProcess(android.os.Process.myPid())
+            }
+        }
+    }
+
     protected fun getBinding() = binding?.get()
+
+    private fun checkIsAppShouldBeRestarted() {
+        if (isAppShouldBeRestarted) {
+            restartApp()
+        }
+    }
+
+    companion object {
+        var isAppShouldBeRestarted = false
+    }
 }

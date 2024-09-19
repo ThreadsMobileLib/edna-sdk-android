@@ -58,9 +58,10 @@ class PreferencesProvider(private val context: Context) {
         prefsEditor.apply()
     }
 
-    fun getSelectedApiVersion(): String? {
+    fun getSelectedApiVersion(): String {
         return context.getSharedPreferences(PREF_DEMO, Context.MODE_PRIVATE)
             .getString(PREF_SELECTED_API_VERSION, ApiVersionEnum.defaultApiVersionEnum.toString())
+            ?: ApiVersionEnum.defaultApiVersionEnum.toString()
     }
 
     fun saveSelectedUser(value: UserInfo) {
