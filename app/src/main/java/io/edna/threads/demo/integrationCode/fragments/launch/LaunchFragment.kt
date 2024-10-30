@@ -91,8 +91,10 @@ class LaunchFragment : BaseAppFragment<FragmentLaunchBinding>(FragmentLaunchBind
             serverButton.text = it?.name
         }
         viewModel.selectedUserLiveData.observe(viewLifecycleOwner) {
+            val previousUserBtnText = userButton.text
+
             userButton.text = it?.userId
-            if (LaunchViewModel.isPreregisterEnabled && it != null && !it.userId.isNullOrBlank()) {
+            if (previousUserBtnText.isNotEmpty() && it != null && !it.userId.isNullOrBlank()) {
                 viewModel.callInitUser(it)
             }
         }

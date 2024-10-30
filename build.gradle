@@ -3,12 +3,15 @@ buildscript {
     ext.kotlin_version = '1.8.0'
     dependencies {
         classpath 'com.android.tools.build:gradle:7.2.1'
+        classpath 'com.google.gms:google-services:4.3.15'
         classpath 'net.researchgate:gradle-release:2.8.1'
         classpath 'com.huawei.agconnect:agcp:1.6.4.300'
         classpath "org.jlleitschuh.gradle:ktlint-gradle:11.5.1"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "org.jetbrains.kotlin:kotlin-allopen:$kotlin_version"
         classpath "dev.testify:plugin:2.0.0-alpha02"
+        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.9.2'
+        classpath 'com.google.firebase:perf-plugin:1.4.2'
     }
 }
 
@@ -65,16 +68,14 @@ ext {
 
     pushVersion = '3.5.2'
     okhttpVersion = '4.9.3'
-    retrofitVersion = '2.9.0'
+    retrofitVersion = '2.11.0'
     rxjava2Version = '2.2.21'
     rxAndroidVersion = '2.1.1'
     streamVersion = '1.2.1'
     gsonVersion = '2.8.6'
     picasso_version = '2.8'
-    recordViewVersion = '3.1.3'
     ffmpeg = '0.3.2'
     fcmVersion = '23.0.6'
-    flexboxVersion = '3.0.0'
     work_version = "2.7.1"
     sqlite_version = "2.0.1"
     crypto_tink = '1.7.0'
@@ -90,4 +91,8 @@ ext {
     kaspresso_version = '1.5.3'
     retrofitVersion = '2.9.0'
     parcelerVersion = '1.1.12'
+    parcelerVersion = '1.1.12'
+    firebaseMessagingVersion = '23.4.0'
+    hmsMessagingVersion = '6.11.0.300'
+    appCenterSdkVersion = '4.4.5'
 }
