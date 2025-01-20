@@ -10,7 +10,6 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "org.jetbrains.kotlin:kotlin-allopen:$kotlin_version"
         classpath "dev.testify:plugin:2.0.0-alpha02"
-        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.9.2'
         classpath 'com.google.firebase:perf-plugin:1.4.2'
     }
 }
@@ -72,7 +71,7 @@ ext {
     rxjava2Version = '2.2.21'
     rxAndroidVersion = '2.1.1'
     streamVersion = '1.2.1'
-    gsonVersion = '2.8.6'
+    gsonVersion = '2.11.0'
     picasso_version = '2.8'
     ffmpeg = '0.3.2'
     fcmVersion = '23.0.6'

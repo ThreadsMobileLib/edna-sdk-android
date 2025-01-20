@@ -2,7 +2,6 @@ package io.edna.threads.demo.integrationCode
 
 import android.app.Application
 import android.util.Log
-import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.perf.FirebasePerformance
 import com.microsoft.appcenter.AppCenter
@@ -38,9 +37,6 @@ class EdnaThreadsApplication : Application() {
             androidContext(this@EdnaThreadsApplication)
             modules(appModule)
         }
-
-        FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(!BuildConfig.DEBUG)
-        FirebasePerformance.getInstance().isPerformanceCollectionEnabled = !BuildConfig.DEBUG
 
         val sdkInitializer = ThreadsLibInitializer()
         val apiVersion = ApiVersionEnum.createApiVersionEnum(preferences.getSelectedApiVersion())

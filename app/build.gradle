@@ -6,7 +6,6 @@ plugins {
     id 'kotlin-kapt'
     id 'kotlin-parcelize'
     id 'dev.testify'
-    id 'com.google.firebase.crashlytics'
     id 'com.google.firebase.firebase-perf'
 }
 
@@ -85,6 +84,7 @@ android {
             universalApk true
         }
     }
+    buildToolsVersion '30.0.3'
 }
 
 dependencies {
@@ -114,7 +114,6 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$rootProject.viewmodelVersion"
 
     // Firebase crashlytics and performance
-    implementation 'com.google.firebase:firebase-crashlytics:18.3.7'
     implementation 'com.google.firebase:firebase-analytics:21.3.0'
     implementation 'com.google.firebase:firebase-perf:20.3.2'
     implementation "com.google.firebase:firebase-messaging-ktx:$rootProject.firebaseMessagingVersion"
